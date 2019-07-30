@@ -1,0 +1,8 @@
+#baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+baseurl = "/"
+theme = "er"
+
+[params]
+	custom_css = ["css/molokai.css"]
