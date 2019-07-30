@@ -1,0 +1,3 @@
+[submodule "themes/er"]
+	path = themes/er
+	url = git@github.com:lingxz/er.git

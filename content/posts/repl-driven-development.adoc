@@ -1,3 +1,8 @@
+---
+title: "NodeJS'te Maybe Monad'ını Kullanarak REPL-Destekli Kod Yazma"
+date: 2019-07-28
+---
+
 = Türkiye'de OCaml İş İmkanları: ya da NodeJS'te Maybe Monad'ını Kullanarak REPL-Destekli Kod Yazma
 aecepoglu
 v0.1, 2019-07-28
