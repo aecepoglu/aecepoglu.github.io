@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+  <title>NodeJS&#39;te Maybe Monad&#39;ını Kullanarak REPL-Destekli Kod Yazma - aecepoglu</title>
+  <meta content='NodeJS&#39;te Maybe Monad&#39;ını Kullanarak REPL-Destekli Kod Yazma - aecepoglu' property='title' />
+  <meta content='NodeJS&#39;te Maybe Monad&#39;ını Kullanarak REPL-Destekli Kod Yazma - aecepoglu' property='og:title' />
+
+
+<meta property="og:description" content="http://discuss.ocaml.org &#39;u açıyorum; uzun zamandır portfolyomu fonksiyonel yaklaşımlar ve diller konusunda zenginleştirmekteyim ve de aktif bir iş arayışındayım. İnternette bir OCaml ilanı var ise orada bulabileceğimden eminim.
+ Komşu başlıklardan birisinde &#34;Closure&#8217;da REPL Driven Development&#34; yapmanın ne kadar keyifli olduğunu, acaba OCaml&#8217;da da bunun mümkün olup olmadığı tartışılıyor.
+  I want to define “Repl based development” not as “occasionally use the REPL”, but something like this:
+ we start a REPL we type code in some editor, and continuously “send last expression” to the REPL, and we look at the new output eventually, we clean up the buffer a bit and store it as code" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/repl-driven-development/" />
+
+
+<meta property="article:published_time" content="2019-07-28T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2019-07-28T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.40.1" />
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<style type="text/css">/*https://coolors.co/afd5aa-f0f2ef-a69f98-3d3d3d-8c6057*/
+:root {
+  --main-color: #8C6056; 
+  --secondary-color: #AFD5AA;
+  --logo-text-color: #fff;
+  --body-text-color: #3d3d3d;
+  --heading-text-color: #383838;
+  --background-color: #fff;
+}</style>
+<link href='/css/tachyons.min.css' rel="stylesheet">
+<link href='/css/styles.css' rel="stylesheet">
+<link href='/css/asciidoctor.css' rel="stylesheet">
+<link href='/css/codehl.css' rel="stylesheet">
+
+
+<link rel="icon" 
+ 
+  href='/favicon.ico'
+
+type="image/x-icon"/>
+
+<link href='/feed.xml' rel="alternate" type="application/atom+xml" title="aecepoglu" />
+
+</head>
+<body class="global-font">
+  <nav class=" justify-between border-box pa3 pl3-l pr2-l mt1 mt0-ns" id="navbar">
+  <div class="flex">
+    <a class="f4 fw6 ttu no-underline dim bg-main-color pv1 ph2 br2" id="site-title" href='/' title="Home">aecepoglu</a>
+  </div>
+  
+</nav>
+  
+<main class="center mv4 content-width ph3">
+  <div class="f3 fw6 heading-color heading-font post-title">NodeJS&#39;te Maybe Monad&#39;ını Kullanarak REPL-Destekli Kod Yazma</div>
+  <p class="silver f6 mt1 mb4 post-meta">
+    <time>28 Jul 2019</time> 
+    
+    
+    
+  </p>
+  <div class="lh-copy post-content"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="http://discuss.ocaml.org" class="bare">http://discuss.ocaml.org</a> 'u açıyorum; uzun zamandır portfolyomu fonksiyonel yaklaşımlar ve diller konusunda zenginleştirmekteyim ve de aktif bir iş arayışındayım. İnternette bir OCaml ilanı var ise orada bulabileceğimden eminim.</p>
+</div>
+<div class="paragraph">
+<p>Komşu başlıklardan birisinde "Closure&#8217;da REPL Driven Development" yapmanın ne kadar keyifli olduğunu, acaba OCaml&#8217;da da bunun mümkün olup olmadığı tartışılıyor.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>I want to define “Repl based development” not as “occasionally use the REPL”, but something like this:</p>
+</div>
+<div class="paragraph">
+<p>we start a REPL
+we type code in some editor, and continuously “send last expression” to the REPL, and we look at the new output
+eventually, we clean up the buffer a bit and store it as code</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p><em>REPL Driven Development ne?</em><br>
+<em>Piyasada benim bilmediğim yeni bir moda akımı mı var?</em><br>
+<em>Derhal araştırmaya koyuluyorum&#8230;&#8203;</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_read_eval_print_loop">Read-Eval-Print-Loop</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Herhangi bir "interpreted" dil ile kod yazmış iseniz, adina "REPL" dendiğini bilmeseniz de bir REPL arayüzüne denk gelmişsinizdir.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://media.giphy.com/media/L3E1mat1ji5WEVy33V/giphy.gif" alt="GIF">
+</div>
+<div class="title">Ornegin: Python3 REPL</div>
+</div>
+<div class="paragraph">
+<p>REPL programı:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Kullanıcıdan bir satir kod ister (<strong>R</strong>ead)</p>
+</li>
+<li>
+<p>Sonucunu hesaplar (<strong>E</strong>val)</p>
+</li>
+<li>
+<p>Ekrana yazdırır (<strong>P</strong>rint)</p>
+</li>
+<li>
+<p>1&#8217;inci adıma dönerek sonsuz bir döngü oluşturur (<strong>L</strong>oop)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>REPL programı (<kbd>ctrl-c</kbd> veya <kbd>ctrl-d</kbd> ile) sonlandırılıncaya kadar bu döngüde kalarak girdilerinizi hesaplar. Ama ben bu sistemi hesap makinesinden öte bir şey icin henüz kullanabilmiş değilim.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_repl_ile_kod_geliştirmek">REPL ile Kod Geliştirmek</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>REPL&#8217;i yazılım geliştirme surecinin merkezine oturtmak icin JVM&#8217;e hapsolmuş bir LISP kullanmak zorunda değilsiniz (<a href="https://root.cern.ch/cling">C dili icin bile REPL bulunabiliyor</a>). LISP programcıları uzun bir süredir kodlarını (metodlarını) istedikleri şeyi yapana kadar REPL&#8217;de geliştirip sonra da bir dosyaya kaydediyorlar. <code>npm install mocha</code> demeden, kalite mühendisleri tepelerinde dikilmeden doğal bir şekilde Test-Driven-Development yapıyorlar. Bunu yaparken de REPL ile entegre bir kod geliştirme ortamından faydalanıyorlar.</p>
+</div>
+<div class="paragraph">
+<p>Bir yazılımcının hangi kod geliştirme ortamini kullanacağı tamamen şahsi bir tercihtir; aynen sert zeminli bir ofiste işini yapmaya odaklanmış 20 mühendisin arasından günde 20 defa geçeceğini bile bile topuklu ayakkabı giymek gibi.</p>
+</div>
+<div class="paragraph">
+<p>Siz kod yazmak için:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Vim/NeoVim gibi bir metin düzenleyici kullanıyor olabilirsiniz,</p>
+</li>
+<li>
+<p>NetBeans gibi bir IDE kullanıyor olabilirsiniz,</p>
+</li>
+<li>
+<p>Emacs gibi bir işletim sistemi kullanıyor olabilirsiniz,</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://imgs.xkcd.com/comics/real_programmers.png" alt="GIF">
+</div>
+<div class="title">Ilgili XKCD</div>
+</div>
+<div class="paragraph">
+<p>Ve de REPL&#8217;le entegre bir şekilde kod yazıp yazamayacağınız ortamınızın bunu destekleyip desteklemediğine bakar.</p>
+</div>
+<div class="paragraph">
+<p>Ve tam bu arada ben birkaç hafta önce <a href="http://neovim.io">NeoVim</a>'den <a href="http://kakoune.org">Kakoune</a>'a geçtiğimi, Kakoune&#8217;da <code>:repl</code> komutuna denk gelip ne yaptığını anlamadığımı hatırlıyorum.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Kakoune, "kakuun" diye okunur.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kakounerepl_entegrasyonu">Kakoune/REPL Entegrasyonu</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="https://media.giphy.com/media/H7Sd0Zr8ESnpExHgfz/giphy.gif" alt="GIF">
+</div>
+<div class="title">Ornegin: Kakoune&#8217;den Bash REPL&#8217;iyle konuşma</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Bu arada Bash/Sh&#8217;nin de bir REPL olduğunu farkediyoruz
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Kakoune&#8217;da bu işi yapabilmemizi sağlayan iki komut var:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>:repl</code> yeni bir pencere pencere açar</p>
+</li>
+<li>
+<p><code>:send-text</code> ise <code>:repl</code> komutuyla açılmış pencereyi bulup, seçilen metni ona yollar</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Kakoune&#8217;un pencereleri pencere yöneticisi seviyesinde (X11) veya Tmux&#8217;un içinde olabiliyor. Kakoune hangi ortamda çalıştığını anlayıp ona göre davranıyor.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Ben <code>:send-text</code> yazmaya usendigim icin <kbd>#</kbd> tusunu <code>:send-text</code> komutuna kisayol atadim</p>
+</div>
+<div class="listingblock">
+<div class="title">kakrc</div>
+<div class="content">
+<pre>map global normal &lt;#&gt; ":send-text"</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_repl_destegiyle_nodejs_yazmak">REPL destegiyle NodeJS yazmak</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>REPL&#8217;le nasıl konuşacağımı oğrendiğime göre, örnek bir problem çözerek bunu bir denemek istiyorum. <a href="http://exercism.io" class="bare">http://exercism.io</a> 'da geldiğim son probleme bakalım:</p>
+</div>
+<div class="sect2">
+<h3 id="_luhn_doğrulama_problemi">Luhn doğrulama problemi</h3>
+<div class="paragraph">
+<p>Kredi kartı vb numaralarının geçerliligini bulmada kullanılıyor.</p>
+</div>
+<div class="paragraph">
+<p>Bir string alıp bunun Luhn algoritmasınca gecerli bir sayi olup olmadığını hesaplayın.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>String&#8217;in boyu 1&#8217;den az olamaz</p>
+</li>
+<li>
+<p>Boşluk olabilir ama hesaplamaya başlanmadan silinmelidir</p>
+<div class="paragraph">
+<p>mesela bize verilen metin şu olsun: <code>4539 1488 0343 6467</code></p>
+</div>
+<div class="paragraph">
+<p>boşluklarını silelim: <code>4539148803436467</code></p>
+</div>
+</li>
+<li>
+<p>Bunlar haricinde rakam dışında bir karakter olamaz</p>
+</li>
+<li>
+<p>En sağdan baslayıp her ikinci rakamı ikiyle carpın</p>
+</li>
+<li>
+<p>Carpım sonucunda 10 veya daha büyük bir sayı bulduysanız 9 çıkarın</p>
+<div class="paragraph">
+<p>bu sayıyı elde ettik: <code>8569247803833437</code></p>
+</div>
+</li>
+<li>
+<p>Tum rakamları toplayın</p>
+<div class="paragraph">
+<p>sonuç <code>80</code></p>
+</div>
+</li>
+<li>
+<p>Sonuç 10 ile bölunebiliyor ise geçerli bir sayıdır, yoksa değildir</p>
+</li>
+</ol>
+</div>
+<div class="paragraph lead">
+<p>Sizi bilmiyorum ama, ben iç içe (ya da peş peşe )bu kadar <code>if else</code> yazmak istemem. Hele de böylesine <em>beni fonksiyonel yaz!</em> diyen, <em>once bunu yap, sonra bunu yap</em> şeklinde bir algoritma var ise <code>Maybe</code> kullanmak isterim.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_maybe_haznesi">Maybe haznesi</h3>
+<div class="paragraph">
+<p>Maybe; doğrulugundan emin olmadığınız değerleri içerisine koyup, uzerinde işlem yapabileceğiniz bir hazne.</p>
+</div>
+<div class="paragraph">
+<p>Önce bir örnek gösterip sonra açıklamasını yapacağım.</p>
+</div>
+<div class="paragraph">
+<p>Bir metod yazalım, bu metod bir sayıyla çağırılmış olabilir, veya hiçbir sey verilmeden çağırılmış da olabilir. Biz bunu 3&#8217;le çarpıp 2 ekleyelim&#8230;&#8203;</p>
+</div>
+<div class="listingblock">
+<div class="title">kod</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">num</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">Maybe</span><span class="p">.</span><span class="k">of</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>         <span class="c1">//Just(num) veya Nothing'imiz olacak</span>
+              <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">//Just(x)'i Just(3*x) haline getirecek</span>
+                               <span class="c1">// Nothing ise ona dokunmayacak</span>
+              <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">//Just(3*x)'i Just(3*x + 2) yapacak</span>
+                               <span class="c1">// Nothing ise ona dokunmayacak</span>
+              <span class="p">.</span><span class="nx">withDefault</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">//3x+2 ya da 0 donecek</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Maybe&#8217;ye koyduğunuz değerler ya <em>Bir Sey</em> olarak tutulur, ya da <em>Hicbir Sey</em>. Eğer <em>Hicbir Sey</em>'iniz var ise yapacak bir sey yok zaten. Ama eğer <em>Bir Sey</em> iniz var ise o değeri metodlar vererek güncelleyebilirsiniz.+</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>Maybe/BirSey/HicbirSey</code> uclemesi farkli dillerde farkli isimlerde duyulabiliyor. Benim bildiklerim:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>OCaml&#8217;da <code>option/Some/None</code></p>
+</li>
+<li>
+<p>Haskell&#8217;de <code>Maybe/Just/Nothing</code></p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>JavaScript&#8217;te Maybe ve benzeri fonksiyonel tanımları içeren kutüphaneler mevcut ama kendimizinkini yazmak da 2dk&#8217;mızı alacak.</p>
+</div>
+<div class="listingblock">
+<div class="title">JavaScript Maybe kodu</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nx">Maybe</span> <span class="p">{</span>
+  <span class="kd">static</span> <span class="k">of</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>   <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span>
+                    <span class="p">?</span> <span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+                    <span class="p">:</span> <span class="k">new</span> <span class="nx">Nothing</span><span class="p">()</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nx">Just</span> <span class="kd">extends</span> <span class="nx">Maybe</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">super</span><span class="p">();</span>
+                   <span class="k">this</span><span class="p">.</span><span class="nx">$value</span> <span class="o">=</span> <span class="nx">x</span> <span class="p">}</span>
+  <span class="nx">map</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>         <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nx">Just</span><span class="p">(</span> <span class="nx">f</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">$value</span><span class="p">)</span> <span class="p">)</span> <span class="p">}</span>
+  <span class="nx">chain</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>       <span class="p">{</span> <span class="k">return</span> <span class="nx">f</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">$value</span><span class="p">)</span> <span class="p">}</span>
+  <span class="nx">withDefault</span><span class="p">()</span>  <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$value</span> <span class="p">}</span>
+  <span class="nx">toString</span><span class="p">()</span>     <span class="p">{</span> <span class="k">return</span> <span class="s2">`Just </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">}</span><span class="s2">`</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nx">Nothing</span> <span class="kd">extends</span> <span class="nx">Maybe</span> <span class="p">{</span>
+  <span class="nx">map</span><span class="p">()</span>          <span class="p">{</span> <span class="k">return</span> <span class="k">this</span> <span class="p">}</span>
+  <span class="nx">chain</span><span class="p">()</span>        <span class="p">{</span> <span class="k">return</span> <span class="k">this</span> <span class="p">}</span>
+  <span class="nx">withDefault</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="p">}</span>
+  <span class="nx">toString</span><span class="p">()</span>     <span class="p">{</span> <span class="k">return</span> <span class="dl">"</span><span class="s2">Nothing</span><span class="dl">"</span> <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>NodeJS REPL&#8217;ine test değerleri yolluyorum&#8230;&#8203;</p>
+</div>
+ <iframe src='https://gfycat.com/ifr/TangibleGargantuanFossa' frameborder='0' scrolling='no' allowfullscreen width='640' height='390'></iframe>
+<div class="paragraph">
+<p>Unutmayayım diye bunlari da koduma kopyalıyorum.
+İstediğim sonucu veriyor mu diye de kontrol edeceğim.
+Bunları koduma koyduğum için de bu kod yaşadığı sürece bu test yapılıyor olacak.</p>
+</div>
+<div class="listingblock">
+<div class="title">Test kodu</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">fail</span> <span class="o">=</span> <span class="nx">msg</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">).</span><span class="nx">withDefault</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">Just map withDefault</span><span class="dl">"</span><span class="p">)</span>
+<span class="k">new</span> <span class="nx">Nothing</span><span class="p">().</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">).</span><span class="nx">withDefault</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">Nothing map withDefault</span><span class="dl">"</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Maybe&#8217;ye dair yapmak istediğim 1 adet şey kaldi.</p>
+</div>
+<div class="paragraph">
+<p><code>Maybe.of</code> Maybe&#8217;nin içerisine değer koymak için ideal bir yöntem değil. Bir değerin <code>truthy</code> olup olmamasından ötesiyle ilgileniyor olabiliriz. Onun için yardımcı bir metod yazacağım:</p>
+</div>
+<div class="listingblock">
+<div class="title">safe()</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">safe</span> <span class="o">=</span> <span class="nx">pred</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">pred</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+                            <span class="p">?</span> <span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+                            <span class="p">:</span> <span class="k">new</span> <span class="nx">Nothing</span><span class="p">())</span>
+<span class="nx">safe</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)(</span><span class="mi">10</span><span class="p">)</span> <span class="c1">// Just 5</span>
+<span class="nx">safe</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">// Nothing</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(<code>Maybe.of</code> metoduna da artık ihtiyacım kalmadı)</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>chain</code> metodu farklı isimlerle anılabiliyor:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>chain</p>
+</li>
+<li>
+<p>flatMap</p>
+</li>
+<li>
+<p>bind</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_luhn_dogrulama_devam">Luhn dogrulama - devam</h3>
+<div class="paragraph">
+<p>Bundan sonrası oldukça basit. Tüm doğrulama adımlarını sırasıyla ekleyeceğim.</p>
+</div>
+<iframe src='https://gfycat.com/ifr/TotalGrandIrishwaterspaniel' frameborder='0' scrolling='no' allowfullscreen width='640' height='390'></iframe>
+<div class="paragraph">
+<p>Koduma feature&#8217;lari ekledikçe onları REPL&#8217;e yollayarak test ediyorum. Bu test davranışlarını da koduma kaydediyorum.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sonuc">Sonuc</h3>
+<div class="listingblock">
+<div class="title">luhn metodu</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">sumList</span> <span class="o">=</span> <span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">luhn</span> <span class="o">=</span> <span class="nx">str</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">""</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">!=</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">x</span><span class="p">)))</span>
+    <span class="p">.</span><span class="nx">chain</span><span class="p">(</span><span class="nx">safe</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="nx">l</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="kc">NaN</span><span class="p">)))</span>
+    <span class="p">.</span><span class="nx">chain</span><span class="p">(</span><span class="nx">safe</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">reverse</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
+                                <span class="p">?</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+                                <span class="p">:</span> <span class="nx">x</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">10</span>
+                           <span class="p">?</span> <span class="p">(</span><span class="nx">x</span> <span class="o">-</span> <span class="mi">9</span><span class="p">)</span>
+                           <span class="p">:</span> <span class="nx">x</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">sumList</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">withDefault</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nx">luhn</span><span class="p">(</span><span class="dl">"</span><span class="s2">4539 1488 0343 6467</span><span class="dl">"</span><span class="p">)</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">valid num</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">luhn</span><span class="p">(</span><span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">too short</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">luhn</span><span class="p">(</span><span class="dl">"</span><span class="s2">123 a 456</span><span class="dl">"</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">has unknown chars</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">sumList</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">==</span> <span class="mi">6</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">sumList 1 2 3</span><span class="dl">"</span><span class="p">)</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_luhn_online_repl">Luhn Online REPL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="http://repl.it">Repl.it</a>'i henüz keşfettim. Hem tüm kodu sizlerle paylaşmama, hem de sizlere kod ile oynama imkanı sunuyor.</p>
+</div>
+<iframe height="400px" width="100%" src="https://repl.it/@aecepoglu/Luhn-Validation?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<hr>
+<div class="paragraph">
+<p><em>Birkaç saat geçmiş, çoktan öğlen olmuş ve benim tek yapmak istediğim OCaml ilanlarına bakmak idi&#8230;&#8203;</em><br>
+<em>"sonraki sefere artık" diyerek öğle yemeğine çıkacağım</em><br>
+<em>Yolundan sapmış bir sonraki maceramızda görüşmek üzere&#8230;&#8203;</em></p>
+</div>
+</div>
+</div>
+</div>
+</main>
+ 
+
+
+
+
+
+
+
+
+<div class="pagination tc tr-l db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+  
+<a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
+<br>
+  <p class="mb0 mt2">
+  
+  
+  </p>
+</div>
+
+  <footer class="content-width mt0 mt5-l mb4 f6 center ph3 gray tc tl-l">
+  <hr class="dn db-l ml0-l gray w3"><br>
+  Powered by <a href="https://gohugo.io/" target="_blank" class="link gray dim">Hugo</a>, based on the <a href="https://github.com/lingxz/er" target="_blank" class="link gray dim">Er</a> theme. <br>
+  
+</footer>
+  
+
+
+<script type="text/javascript">
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+
+  
+
+  
+  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+      document.getElementById("scroll-to-top").style.display = "inline";
+      document.getElementById("scroll-to-top").style.visibility = "visible";
+      document.getElementById("scroll-to-top").style.opacity = "1";
+  } else {
+      document.getElementById("scroll-to-top").style.visibility = "hidden";
+      document.getElementById("scroll-to-top").style.opacity = "0";
+  }
+  
+  prevScrollpos = currentScrollPos;
+}
+
+
+function topFunction() {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0; 
+}
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

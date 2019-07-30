@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on aecepoglu</title>
+    <link>/posts/</link>
+    <description>Recent content in Posts on aecepoglu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NodeJS&#39;te Maybe Monad&#39;ını Kullanarak REPL-Destekli Kod Yazma</title>
+      <link>/posts/repl-driven-development/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/repl-driven-development/</guid>
+      <description>http://discuss.ocaml.org &#39;u açıyorum; uzun zamandır portfolyomu fonksiyonel yaklaşımlar ve diller konusunda zenginleştirmekteyim ve de aktif bir iş arayışındayım. İnternette bir OCaml ilanı var ise orada bulabileceğimden eminim.
+ Komşu başlıklardan birisinde &#34;Closure&amp;#8217;da REPL Driven Development&#34; yapmanın ne kadar keyifli olduğunu, acaba OCaml&amp;#8217;da da bunun mümkün olup olmadığı tartışılıyor.
+  I want to define “Repl based development” not as “occasionally use the REPL”, but something like this:
+ we start a REPL we type code in some editor, and continuously “send last expression” to the REPL, and we look at the new output eventually, we clean up the buffer a bit and store it as code</description>
+    </item>
+    
+  </channel>
+</rss>
