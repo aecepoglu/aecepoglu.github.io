@@ -18,7 +18,7 @@
       
       <guid>/posts/immutability/</guid>
       <description>Sıradan bir iş günü. JavaScript&amp;#8217;te tablolarımızdan birisine sayfalar arasında geçiş yaparken veri indir/kaldır yapma kabiliyeti ekliyorum (halk arasında buna &#34;pagination&#34; diyorlar). retrieveItems diye ve drawItems diye birer metod yazdım. retrieveItemsAndDraw yazıp cözüme ulaşmak üzereyken şu kodu yazdığımı farkediyorum:
- const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   Ekip arkadaşlarımdan birisi bu satırda n&amp;#8217;aptığımı sorduğunda &#34;Basit!&#34; diye cevaplıyorum, &#34;Aslinda olay myCompose = fs &amp;#8658; x0 &amp;#8658; fs.reverse().reduce((x, f) &amp;#8658; f(x), x0)den ibaret~&#34;.</description>
+ const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   Ekip arkadaşlarımdan birisi bu satırda n&amp;#8217;aptığımı sorduğunda &#34;Basit!&#34; diye cevaplıyorum, &#34;Aslında olay myCompose = fs &amp;#8658; x0 &amp;#8658; fs.reverse().reduce((x, f) &amp;#8658; f(x), x0)den ibaret~&#34;.</description>
     </item>
     
     <item>

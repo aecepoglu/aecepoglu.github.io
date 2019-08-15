@@ -10,7 +10,7 @@
 
 
 <meta property="og:description" content="Sıradan bir iş günü. JavaScript&#8217;te tablolarımızdan birisine sayfalar arasında geçiş yaparken veri indir/kaldır yapma kabiliyeti ekliyorum (halk arasında buna &#34;pagination&#34; diyorlar). retrieveItems diye ve drawItems diye birer metod yazdım. retrieveItemsAndDraw yazıp cözüme ulaşmak üzereyken şu kodu yazdığımı farkediyorum:
- const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   Ekip arkadaşlarımdan birisi bu satırda n&#8217;aptığımı sorduğunda &#34;Basit!&#34; diye cevaplıyorum, &#34;Aslinda olay myCompose = fs &#8658; x0 &#8658; fs.reverse().reduce((x, f) &#8658; f(x), x0)den ibaret~&#34;." />
+ const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   Ekip arkadaşlarımdan birisi bu satırda n&#8217;aptığımı sorduğunda &#34;Basit!&#34; diye cevaplıyorum, &#34;Aslında olay myCompose = fs &#8658; x0 &#8658; fs.reverse().reduce((x, f) &#8658; f(x), x0)den ibaret~&#34;." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/immutability/" />
 
@@ -79,11 +79,11 @@ JavaScript&#8217;te tablolarımızdan birisine sayfalar arasında geçiş yapark
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)</code></pre>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">retrieveAndDrawItems</span> <span class="o">=</span> <span class="nx">R</span><span class="p">.</span><span class="nx">compose</span><span class="p">(</span><span class="nx">drawItems</span><span class="p">,</span> <span class="nx">retrieveItems</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ekip arkadaşlarımdan birisi bu satırda n&#8217;aptığımı sorduğunda <em>"Basit!"</em> diye cevaplıyorum, <em>"Aslinda olay <code>myCompose = fs &#8658; x0 &#8658; fs.reverse().reduce((x, f) &#8658; f(x), x0)</code>den ibaret~"</em>.</p>
+<p>Ekip arkadaşlarımdan birisi bu satırda n&#8217;aptığımı sorduğunda <em>"Basit!"</em> diye cevaplıyorum, <em>"Aslında olay <code>myCompose = fs &#8658; x0 &#8658; fs.reverse().reduce((x, f) &#8658; f(x), x0)</code>den ibaret~"</em>.</p>
 </div>
 <div class="paragraph">
 <p>Ama o cevap yanlış, ve <code>compose</code> (yani metod-birleştirme) basit olsa da oldukça önemli bir konu. Bu yazı yukaridaki <code>myCompose</code>u anlama, anlatma ve çözme uğruna yazılmış bir yazı&#8230;&#8203;</p>
@@ -107,9 +107,9 @@ g(x) = x * 3
 <div class="listingblock">
 <div class="title">f,g,fog JavaScript&#8217;te</div>
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">f = x =&gt; x + 2
-g = x =&gt; x * 3
-fog = x =&gt; f(g(x))</code></pre>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">f</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="nx">g</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="nx">fog</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">f</span><span class="p">(</span><span class="nx">g</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span></code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -145,13 +145,13 @@ fog = x =&gt; f(g(x))</code></pre>
 <div class="listingblock">
 <div class="title">f,g,fog JavaScript&#8217;te</div>
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">f = x =&gt; x + 2
-g = x =&gt; x * 3
-fog = x =&gt; f(g(x))</code></pre>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">f</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="nx">g</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="nx">fog</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">f</span><span class="p">(</span><span class="nx">g</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Aslında ben <code>f</code>nin ve <code>g</code>nin ne alip ne verdigini biliyorsam, ikisinin birlesimi olan <code>fog</code>un da ne alıp verdiğini bilebilirim.</p>
+<p>Aslında ben <code>f</code>'nin ve <code>g</code>'nin ne alip ne verdiğini biliyorsam, ikisinin birleşimi olan <code>fog</code>'un da ne alıp verdiğini bilebilirim.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -165,84 +165,106 @@ fog :: 'a -&gt; 'c</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">//myParseInt :: string -&gt; int
-myParseInt = parseInt // <b class="conum">(1)</b>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="c1">//myParseInt :: string -&gt; int</span>
+<span class="nx">myParseInt</span> <span class="o">=</span> <span class="nb">parseInt</span> <i class="conum" data-value="1"></i><b>(1)</b>
 
-//indexOf :: 'a -&gt; ['a] -&gt; int
-indexOf = x =&gt; xs =&gt; xs.indexOf(x)
+<span class="c1">//indexOf :: 'a -&gt; ['a] -&gt; int</span>
+<span class="nx">indexOf</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">xs</span> <span class="o">=&gt;</span> <span class="nx">xs</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
 
-//increment :: int -&gt; int
-increment = x =&gt; x + 1
+<span class="c1">//increment :: int -&gt; int</span>
+<span class="nx">increment</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span>
 
-//uppercase :: string -&gt; string
-uppercase = x =&gt; x.toUpperCase()
+<span class="c1">//uppercase :: string -&gt; string</span>
+<span class="nx">uppercase</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span>
 
-// cities :: [string]
-cities = ["ANKARA", "ISTANBUL", "KAYSERI"]
+<span class="c1">// cities :: [string]</span>
+<span class="nx">cities</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">ANKARA</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">ISTANBUL</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">KAYSERI</span><span class="dl">"</span><span class="p">]</span>
 
-// indexOfCity :: string -&gt; int
-indexOfCity = x =&gt; indexOf(uppercase(x)) //<b class="conum">(2)</b></code></pre>
+<span class="c1">// indexOfCity :: string -&gt; int</span>
+<span class="nx">indexOfCity</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">indexOf</span><span class="p">(</span><span class="nx">uppercase</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p><code>parseInt</code> sayıya dönüşteremediği değerler için <code>NaN</code> dönüyor ama şimdilik onu görmezden gelin.</p>
-</li>
-<li>
-<p><code>indexOfCity</code> metodu <code>indexOf</code> ile <code>uppercase</code> metodlarının bileşimi. <code>(fog)(x)</code> örneğindeki gibi ancak <code>f</code> yerinde <code>indexOf</code>, <code>g</code> yerinde <code>uppercase</code> var.</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>parseInt</code> sayıya dönüşteremediği değerler için <code>NaN</code> dönüyor ama şimdilik onu görmezden gelin.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>indexOfCity</code> metodu <code>indexOf</code> ile <code>uppercase</code> metodlarının bileşimi. <code>(fog)(x)</code> örneğindeki gibi ancak <code>f</code> yerinde <code>indexOf</code>, <code>g</code> yerinde <code>uppercase</code> var.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Aynı biçimde <code>uppercase(myParseInt("4"))</code>un sorunlu, <code>increment(myParseInt("4"))</code>un ise sorunsuz olduğu da görulebilir.</p>
+<p>Aynı biçimde <code>uppercase(myParseInt("4"))</code>'un sorunlu, <code>increment(myParseInt("4"))</code>'un ise sorunsuz olduğu da görulebilir.</p>
 </div>
 <div class="paragraph">
-<p>Dediğim gibi, problemleri metodlar şeklinde parçalayıp, metodların birleşimi şeklinde çözümler sunmak fonksiyonel programlamadaki en temel yaklaşımlardan. Bu yüzdendir ki <code>Haskell</code>de iki fonksiyonun bileşkesini almak <code>.</code> yazmak kadar kolay:</p>
+<p>Dediğim gibi, problemleri metodlar şeklinde parçalayıp, metodların birleşimi şeklinde çözümler sunmak fonksiyonel programlamadaki en temel yaklaşımlardan. Bu yüzdendir ki <code>Haskell</code>'de iki fonksiyonun bileşkesini almak <code>.</code> yazmak kadar kolay:</p>
 </div>
-<div class="exampleblock">
-<div class="title">Example 1. Haskell&#8217;de bileşke fonksiyon</div>
+<div class="listingblock">
+<div class="title">Haskell&#8217;de bileşke fonksiyon</div>
 <div class="content">
-<div class="paragraph">
-<p>indexOfCity = (indexOf . uppercase)</p>
-</div>
+<pre class="rouge highlight"><code data-lang="haskell"><span class="n">indexOfCity</span> <span class="o">=</span> <span class="p">(</span><span class="n">indexOf</span> <span class="o">.</span> <span class="n">uppercase</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>JavaScript&#8217;te ise bunu kendimiz inşaa etmek durumundayız:</p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>compose = (f, g) &#8658; x &#8658; f(g(x))</p>
-</div>
-<div class="paragraph">
-<p>f = x + 2
-g = x * 3
-fog = compose(f, g)</p>
-</div>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Eğer karmaşık geliyorsa durun ve burada n&#8217;oldugunu anlayana kadar bekleyin</p>
+<p><code>string &#8594; int</code> : bir metod. <code>string</code> alıp <code>int</code> dönüyor</p>
+</li>
+<li>
+<p><code>f :: string &#8594; int</code>: <code>f</code> adındakı metod <code>string</code> alıp <code>int</code> dönüyor</p>
+</li>
+<li>
+<p><code>int &#8594; int &#8594; int</code>: 2 <code>int</code> alıp bir <code>int</code> dönen bir metod</p>
+</li>
+<li>
+<p><code>indexOf: [string] &#8594; int</code>: <code>string</code> listesi alıp <code>int</code> dönen bir metod. mesela: <code>indexOf</code></p>
+</li>
+<li>
+<p><code>find :: ['a] &#8594; Maybe 'a</code>: herhangi bir tipte (<code>a</code>) bir liste alıp, içinde o tip olan bir <code>Maybe</code> donen bir metod.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Hatta ayni şeyi OCaml&#8217;de yapıp <code>compose</code>un tipini sorgulatacak olursam:</p>
+<p>Artık metodları tanımlamak için ortak dili kullanabildiğimize göre bileşke fonksiyonlara tekrar bakalım:</p>
+</div>
+<div class="listingblock">
+<div class="title">f,g,fog JavaScript&#8217;te</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="c1">//compose :: (('b -&gt; 'c), ('a -&gt; 'b)) -&gt; 'a -&gt; 'c  </span><i class="conum" data-value="1"></i><b>(1)</b>
+<span class="nx">compose</span> <span class="o">=</span> <span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">g</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">f</span><span class="p">(</span><span class="nx">g</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span>
+
+<span class="nx">f</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="nx">g</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="nx">fog</span> <span class="o">=</span> <span class="nx">compose</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">g</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Eğer karmaşık geliyorsa durun ve burada n&#8217;olduğunu anlayana kadar bekleyin</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Hatta ayni şeyi OCaml&#8217;de yapıp <code>compose</code>'un tipini sorgulatacak olursam:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="https://postimg.cc/tZmpXJqy" alt="OCaml compose">
+<img src="https://i.postimg.cc/gjGJHL1w/2019-08-09-143835-754x378-scrot.png" alt="OCaml compose">
 </div>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -253,10 +275,10 @@ fog = compose(f, g)</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-ocaml" data-lang="ocaml">let (&gt;&lt;) f g x = f (g x)
-let f x = x + 2
-let g x = x * 3
-let fog = f &gt;&lt; g</code></pre>
+<pre class="rouge highlight"><code data-lang="ocaml"><span class="k">let</span> <span class="p">(</span><span class="o">&gt;&lt;</span><span class="p">)</span> <span class="n">f</span> <span class="n">g</span> <span class="n">x</span> <span class="o">=</span> <span class="n">f</span> <span class="p">(</span><span class="n">g</span> <span class="n">x</span><span class="p">)</span>
+<span class="k">let</span> <span class="n">f</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="k">let</span> <span class="n">g</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="k">let</span> <span class="n">fog</span> <span class="o">=</span> <span class="n">f</span> <span class="o">&gt;&lt;</span> <span class="n">g</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -264,11 +286,11 @@ let fog = f &gt;&lt; g</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-ocaml" data-lang="ocaml">let fog x = x |&gt; g |&gt; f</code></pre>
+<pre class="rouge highlight"><code data-lang="ocaml"><span class="k">let</span> <span class="n">fog</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">g</span> <span class="o">|&gt;</span> <span class="n">f</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>|&gt;</code> operatorunun JavaScript&#8217;e eklenmesi icin <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Pipeline_operator">bir oneri de var</a></p>
+<p><code>|&gt;</code> operatörünün JavaScript&#8217;e eklenmesi için <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Pipeline_operator">bir öneri de var</a></p>
 </div>
 </td>
 </tr>
@@ -278,10 +300,10 @@ let fog = f &gt;&lt; g</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Kakoune&#8217;da imleci istediğim metodun üzerine getirip <code>:lsp-hover</code> dediğimde, o değerin tipini ve (var ise) tanımını gösterir.
+Kakoune&#8217;da imleci istediğim metodun üzerine getirip <code>:lsp-hover</code> dediğimde, o değerin tipini ve (var ise) tanımını görebiliyorum.
 </td>
 </tr>
 </table>
@@ -295,21 +317,23 @@ Kakoune&#8217;da imleci istediğim metodun üzerine getirip <code>:lsp-hover</co
 <div class="listingblock">
 <div class="title">fonksiyonları birleştirmeye calışan masum bir kod</div>
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">compose = fs =&gt; x0 =&gt; (fs                           //<b class="conum">(1)</b>
-                        .reverse()                  //<b class="conum">(2)</b>
-                        .reduce((x, f) =&gt; f(x), x0)
-                      )</code></pre>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">compose</span> <span class="o">=</span> <span class="nx">fs</span> <span class="o">=&gt;</span> <span class="nx">x0</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">fs</span> <i class="conum" data-value="1"></i><b>(1)</b>
+                        <span class="p">.</span><span class="nx">reverse</span><span class="p">()</span> <i class="conum" data-value="2"></i><b>(2)</b>
+                        <span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">f</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span> <span class="nx">x0</span><span class="p">)</span>
+                      <span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p><code>compose</code>u `compose = (&#8230;&#8203;fs) &#8658; ` şeklinde de tanımlayabilirdim</p>
-</li>
-<li>
-<p><code>compose([f, g])(x)</code> demek <code>g(f(x))</code> değil de <code>f(g(x))</code> demek oldugu icin önce listeyi tersine çeviriyorum. Çünkü <code>reduce</code> sondan başa doğru değil, baştan sona doğru gidiyor.</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>compose</code>'u <code>compose = (&#8230;&#8203;fs) &#8658; &#8230;&#8203;</code> şeklinde de tanımlayabilirdim</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>compose([f, g])(x)</code> demek <code>g(f(x))</code> değil de <code>f(g(x))</code> demek oldugu icin önce listeyi tersine çeviriyorum. Çünkü <code>reduce</code> sondan başa doğru değil, baştan sona doğru gidiyor.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><em>Yukarıdaki kodu okuyup örümcek hisleri gıdıklanan?</em></p>
@@ -318,7 +342,7 @@ Kakoune&#8217;da imleci istediğim metodun üzerine getirip <code>:lsp-hover</co
 <table>
 <tr>
 <td class="icon">
-<div class="title">Warning</div>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 Yukarıdaki <code>compose</code> metodu <strong>CALIŞMIYOR</strong>.
@@ -327,50 +351,50 @@ Yukarıdaki <code>compose</code> metodu <strong>CALIŞMIYOR</strong>.
 </table>
 </div>
 <div class="paragraph">
-<p><em>Peki neden calismiyor?</em></p>
+<p><em>Peki neden calışmıyor?</em></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">const f = x =&gt; x + 2
-const g = x =&gt; x * 3
-const h = x =&gt; x * x
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="kd">const</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="kd">const</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span>
 
-const hfg = compose([h, f, g])
+<span class="kd">const</span> <span class="nx">hfg</span> <span class="o">=</span> <span class="nx">compose</span><span class="p">([</span><span class="nx">h</span><span class="p">,</span> <span class="nx">f</span><span class="p">,</span> <span class="nx">g</span><span class="p">])</span>
 
-hfg(5) //sonuc 289
-hfg(5) //sonuc 81
-hfg(5) //sonuc 289
-hfg(5) //sonuc 81
-//ve sonsuza kadar boyle devam ediyor</code></pre>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 289</span>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 81</span>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 289</span>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 81</span>
+<span class="c1">//ve sonsuza kadar boyle devam ediyor</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>hfg</code>nin once <code>h(g(f(x)))</code> yaptığını, sonra <code>f(g(h(x)))</code> yaptığını farkettiniz mi?</p>
+<p><code>hfg</code>'nin once <code>h(g(f(x)))</code> yaptığını, sonra <code>f(g(h(x)))</code> yaptığını farkettiniz mi?</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_immutability">Immutability</h2>
+<h2 id="_değişemezlik">Değişemezlik</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">const f = x =&gt; x + 2
-const g = x =&gt; x * 3
-const h = x =&gt; x * x
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="kd">const</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="kd">const</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span>
 
-const funs = [h, f, g]
-const hfg = compose(funs)
+<span class="kd">const</span> <span class="nx">funs</span> <span class="o">=</span> <span class="p">[</span><span class="nx">h</span><span class="p">,</span> <span class="nx">f</span><span class="p">,</span> <span class="nx">g</span><span class="p">]</span>
+<span class="kd">const</span> <span class="nx">hfg</span> <span class="o">=</span> <span class="nx">compose</span><span class="p">(</span><span class="nx">funs</span><span class="p">)</span>
 
-hfg(5) //sonuc 289
-console.log(funs) // [ [Function: g], [Function: f], [Function: h] ]
-hfg(5) //sonuc 81
-console.log(funs) // [ [Function: h], [Function: f], [Function: g] ]
-hfg(5) //sonuc 289</code></pre>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 289</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">funs</span><span class="p">)</span> <span class="c1">// [ [Function: g], [Function: f], [Function: h] ]</span>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 81</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">funs</span><span class="p">)</span> <span class="c1">// [ [Function: h], [Function: f], [Function: g] ]</span>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 289</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Artık sağır Sultan da, onun bilgisayar mühendisliği okuyan kızıyla sohpet ederken "a benim bilgisayar da cok yavaşladı, n&#8217;apsak buna? Sen format atmayı biliyo musun?" diyen ve istemediği cevabı alınca da "E ne anladık bundan! Bizim mahalledeki bilgisayar tamircisi bile bilir bunu" diyen eniştesi de problemin n&#8217;olduğunu anladı galiba.</p>
+<p>Artık sağır Sultan da, onun bilgisayar mühendisliği okuyan kızıyla sohpet ederken <em>"a benim bilgisayar da cok yavaşladı, n&#8217;apsak buna? Sen format atmayı biliyo musun?"</em> diyen ve istemediği cevabı alınca da <em>"E ne anladık bundan! Bizim mahalledeki bilgisayar tamircisi bile bilir bunu"</em> diyen eniştesi de problemin n&#8217;olduğunu anladı galiba.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -379,25 +403,25 @@ hfg(5) //sonuc 289</code></pre>
 <div class="title">Orneğin: sağır Sultan&#8217;in eniştesinin bilgisayari</div>
 </div>
 <div class="paragraph">
-<p><code>Array</code>in <code>reverse</code> metodu, üzerinde çağırıldığı <code>array</code>i değiştiriyor.<br>
-Yani <code>reverse</code> metodu <code>mutative</code>.</p>
+<p><code>Array</code>'in <code>reverse</code> metodu, üzerinde çağırıldığı <code>array</code>'i değiştiriyor.<br>
+Yani <code>reverse</code> metodu <code>mutative</code> .</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_degistirebilir_mutative_fonksiyon">Degistirebilir (Mutative) Fonksiyon</h2>
+<h2 id="_değiştirebilir_mutative_fonksiyon">Değiştirebilir (Mutative) Fonksiyon</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Değistirebilir</strong> (mutative) fonksiyon adi ne diyorsa onu yapiyor; <strong>değiştirebilir</strong> fonksiyon programın <strong>vaziyet</strong>ini degistir(ebil)iyor.</p>
+<p><strong>Değiştirebilir</strong> (mutative) fonksiyon adi ne diyorsa onu yapiyor; <strong>değiştirebilir</strong> fonksiyon programın <strong>vaziyet</strong>ini değiştir(ebil)iyor.</p>
 </div>
 <div class="paragraph">
-<p><strong>Vaziyet</strong> tanımını daha açık hale getirmek adına önce fonksiyonun tanımını yapmak lazım.</p>
+<p><strong>Vaziyet</strong> tanımını daha açık hale getirmek adına önce "fonksiyon"un tanımını yapmak lazım.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor. Bir metodun adı <code>reverse</code> değil de <code>reverse!</code> ise biliyorsunuz ki bu metod bir yerlere müdahele ediyor.
@@ -421,8 +445,8 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">const A2B = { a: 1, b: 2, c: 2 }
-fab = x =&gt; A2B[x]</code></pre>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">A2B</span> <span class="o">=</span> <span class="p">{</span> <span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">c</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
+<span class="nx">fab</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">A2B</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -445,10 +469,10 @@ fab = x =&gt; A2B[x]</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">fabAndEdit = x =&gt; {
-	document.querySelector("#text").innerHTML = x
-	return A2B[x]
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">fabAndEdit</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="p">{</span>
+	<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#text</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">x</span>
+	<span class="k">return</span> <span class="nx">A2B</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -458,7 +482,7 @@ fab = x =&gt; A2B[x]</code></pre>
 <div class="title">Örneğin:fabAndEdit</div>
 </div>
 <div class="paragraph">
-<p>Bu <code>innerHTML</code>nin atanışı gibi, girdi-çıktı bağıntısı dışında olan etkilere <strong>yan etki</strong> diyoruz.</p>
+<p>Bu <code>innerHTML</code>'nin atanışı gibi, girdi-çıktı bağıntısı dışında olan etkilere <strong>yan etki</strong> diyoruz.</p>
 </div>
 <div class="paragraph">
 <p>Yan etki pröğramın vaziyetini değiştiren her şey olarak da düşünülebilir.</p>
@@ -500,7 +524,7 @@ fab = x =&gt; A2B[x]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Zihinsel kapasitemiz sınırsız değil; zaten benim gibiyseniz hem podcast dinliyorsunuz, bir kulağınizla da "acaba benimle ilgili bir şey mi konuşuluyor" diye toplantı odasından gelen sesleri dinler iken kod yazıyorsunuz.</p>
+<p>Zihinsel kapasitemiz sınırsız değil; zaten benim gibiyseniz bir kulağınızla podcast dinliyorsunuz, bir kulağınızla da <em>"acaba benimle ilgili bir şey mi konuşuluyor"</em> diye toplantı odasından gelen sesleri dinler iken kod yazıyorsunuz.</p>
 </div>
 <div class="paragraph">
 <p>Bu haldeyken yazdığınız koddaki her bir metod cağrısının  acaba programın vaziyetini nasıl değiştirdiğini, global değişkenlere nasıl müdahele ettiğini, verdiğiniz argümanlari değiştirip değiştirmedigini kendinize zihinsel yük edinmemek adına kodunuzu olabildiğince <strong>saf</strong> yazmak, <strong>Yan etkileri</strong> (var ise) sınırlı kullanmak kodun sürdürülebilirliğini arttıracaktır (ki yan etkisi olmayan program olmaz; kullanıcıdan girdi almayan ve kullanıcıya çıktı vermeyen programın manası yoktur. Felsefe yapıp çıktısı görülemeyen programın var olmadığını bile iddia edebiliriz).</p>
@@ -509,10 +533,156 @@ fab = x =&gt; A2B[x]</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Haskell&#8217;de yan etkiler <code>IO</code> haznesinde tutulur. Bu sayede yan etkili metodlar saflaştırılıp, kirli (yani yan etkileri tetikleyen) kod alanı sınırlanır.
+<div class="paragraph">
+<p>Yan etkiler tembelleştirilerek fonksiyonlar saflaştırılabilir.</p>
+</div>
+<div class="paragraph">
+<p>Açıklayayım&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Bir fonksiyon sonucunu hemen üretmiyorsa, sonucun tam olarak ihtiyaci duyulan ana kadar bekletiyorsa ona tembel denir. Haskell mesela doğal olarak tembel bir dil, OCaml`da ise herhangi bir degeri <code>lazy</code> ilan ederek bunu yapabiliyoruz. JavaScript&#8217;te ise (her zaman oldugu gibi) icat yapmamız gerekiyor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nx">incrCounter_unsafe</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">counter</span> <span class="o">++</span><span class="p">}</span>
+<span class="nx">incrCounter</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">counter</span> <span class="o">++</span><span class="p">}</span>
+
+<span class="nx">range</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="kd">let</span> <span class="nx">l</span> <span class="o">=</span> <span class="p">[]</span>
+               <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="nx">l</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">}</span>
+               <span class="k">return</span> <span class="nx">l</span> <span class="p">}</span>
+
+<span class="nx">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="nx">range</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">incrCounter_unsafe</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+
+<span class="nx">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nx">lazyFuns</span> <span class="o">=</span> <span class="nx">range</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">incrCounter</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span> <i class="conum" data-value="4"></i><b>(4)</b>
+<span class="nx">lazyFuns</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">f</span> <span class="o">=&gt;</span> <span class="nx">f</span><span class="p">())</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span> <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>[0, 1, 2]</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>ekrana <code>0</code> yazar</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>ekrana <code>3</code> yazar</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>ekrana <code>0</code> yazar</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>ekrana <code>4</code> yazar</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>incrCounter_unsafe</code> global değişken <code>counter</code>'a mudahele ettigi icin saf değil. <code>incrCounter_unsafe</code> fonksiyonu çağırıldığında hemen gidip yapması gerekeni yapıyor: <code>counter</code> değerini değiştiriyor.</p>
+</div>
+<div class="paragraph">
+<p>Öte yandan <code>incrCounter</code> fonksiyonunu cağırdığımızda hiçbir şey olmuyor, <code>incrCounter</code> bize "ya hic halim yok, bak ben sana istediğini yapan bir şey vereyim, sen onu kullan olur mu?" diyip bir fonksiyon dönüyor. Cevapta gelen bu fonksiyon cağırılana kadar da programın vaziyetine bir müdahele olmuyor; yani <code>incrCounter</code> bu şekilde hem <strong>tembel</strong>, hem de <strong>saf</strong> oluyor.</p>
+</div>
+<div class="paragraph">
+<p>Bu gibi tembel işlemler için genel-geçer bir çözüm yazacak olursak:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nx">LazyF</span> <span class="p">{</span>
+	<span class="kd">constructor</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>   <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">$f</span> <span class="o">=</span> <span class="nx">f</span> <span class="p">}</span>
+	<span class="c1">// map :: LazyF ('a -&gt; 'b) -&gt; ('b -&gt; 'c) -&gt; LazyF ('a -&gt; 'c)</span>
+	<span class="nx">map</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> 	     <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nx">LazyF</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">f</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">$f</span><span class="p">(</span><span class="nx">x</span><span class="p">)))</span> <span class="p">}</span>
+	<span class="c1">// chain :: LazyF ('a -&gt; 'b) -&gt; LazyF ('b -&gt; 'c) -&gt; LazyF ('a -&gt; 'c)</span>
+	<span class="nx">chain</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> 	     <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nx">LazyF</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">performUnsafe</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">$f</span><span class="p">(</span><span class="nx">x</span><span class="p">)))</span> <span class="p">}</span>
+	<span class="c1">// performUnsafe :: LazyF ('a -&gt; 'b) -&gt; 'a -&gt; 'b</span>
+	<span class="nx">performUnsafe</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$f</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">foo</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">x: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span>
+<span class="nx">foo</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="k">new</span> <span class="nx">LazyF</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="k">new</span> <span class="nx">LazyF</span><span class="p">(</span><span class="nx">foo</span><span class="p">).</span><span class="nx">performUnsafe</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="k">new</span> <span class="nx">LazyF</span><span class="p">(</span><span class="nx">foo</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">foo</span><span class="p">).</span><span class="nx">performUnsafe</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <i class="conum" data-value="4"></i><b>(4)</b>
+
+<span class="nx">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1">//incrCounter :: () -&gt; LazyF (() -&gt; ())</span>
+<span class="nx">incrCounter</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">LazyF</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">counter</span> <span class="o">++</span><span class="p">})</span>
+<span class="nx">lazy</span> <span class="o">=</span> <span class="p">(</span><span class="nx">incrCounter</span><span class="p">()</span>
+          <span class="p">.</span><span class="nx">chain</span><span class="p">(</span><span class="nx">incrCounter</span><span class="p">())</span>
+          <span class="p">.</span><span class="nx">chain</span><span class="p">(</span><span class="nx">incrCounter</span><span class="p">()))</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span> <i class="conum" data-value="5"></i><b>(5)</b>
+<span class="nx">lazy</span><span class="p">.</span><span class="nx">performUnsafe</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span> <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>ekrana <code>x: 5</code> yazıp <code>6</code> döner</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>LazyF {'$f': [Function: foo]}</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>ekrana <code>x: 5</code> yazip <code>6</code> döner</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>ekrana <code>x: 5</code> ve <code>x: 6</code> yazıp <code>7</code> döner</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>ekrana <code>0</code> yazar</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>ekrana <code>3</code> yazar</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Haskell&#8217;de her tür yan etki IO haznelerine konularak saf kod yazılıyor
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Yukarıdaki <code>LazyF</code>'e benzer bir çözümü <a href="https://crocks.dev/docs/crocks/Arrow.html"><code>crocks</code> isimli bir kütüphanede <code>Arrow</code> olarak bulabilirsiniz</a>
+</td>
+</tr>
+</table>
+</div>
 </td>
 </tr>
 </table>
@@ -525,13 +695,13 @@ Haskell&#8217;de yan etkiler <code>IO</code> haznesinde tutulur. Bu sayede yan e
 </div>
 <iframe height="600px" width="100%" src="https://repl.it/@aecepoglu/Immutable-Array?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 <div class="paragraph">
-<p>Array&#8217;in <code>push</code> metodunda programda varolan değerleri deşiştirir iken <code>ImmutableArray</code>in <code>push</code> metodu varolan değerlere asla dokunmuyor. ImmutableArray gibi kendi vaziyetini koruyan nesnelere/değişken-tiplerine <strong>değişemez</strong> (immutable) deniyor. <strong>Değişemez</strong> değerler kullanıldıkları fonksiyonların saflaşmasını da teşvik ediyor.</p>
+<p>Array&#8217;in <code>push</code> metodunda programda varolan değerleri deşiştirir iken <code>ImmutableArray</code>'in <code>push</code> metodu varolan değerlere asla dokunmuyor. ImmutableArray gibi kendi vaziyetini koruyan nesnelere/değişken-tiplerine <strong>değişemez</strong> (immutable) deniyor. <strong>Değişemez</strong> değerler kullanıldıkları fonksiyonların saflaşmasını da teşvik ediyor.</p>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -547,23 +717,33 @@ Haskell&#8217;de yan etkiler <code>IO</code> haznesinde tutulur. Bu sayede yan e
 <p>Record kullanımında ise:</p>
 </div>
 <div class="listingblock">
-<div class="title">sex ve student</div>
+<div class="title">ocaml mutable records</div>
 <div class="content">
-<pre class="highlight"><code class="language-ocaml" data-lang="ocaml">type sex = Male | Female
-type student = {name: string;
-                age: int;
-                sex: sex;
-               }</code></pre>
+<pre class="rouge highlight"><code data-lang="ocaml"><span class="k">type</span> <span class="n">sex</span> <span class="o">=</span> <span class="nc">Male</span> <span class="o">|</span> <span class="nc">Female</span>
+<span class="k">type</span> <span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+               <span class="n">age</span><span class="o">:</span> <span class="kt">int</span><span class="p">;</span>
+               <span class="n">sex</span><span class="o">:</span> <span class="n">sex</span><span class="p">;</span>
+              <span class="p">}</span>
+
+<span class="k">let</span> <span class="n">a_person</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="o">=</span><span class="s2">"Bruce"</span><span class="p">;</span> <span class="n">age</span><span class="o">=</span><span class="mi">60</span><span class="p">;</span> <span class="n">gender</span><span class="o">=</span><span class="nc">Male</span><span class="p">}</span>
+<span class="n">a_person</span><span class="o">.</span><span class="n">sex</span> <span class="o">&lt;-</span> <span class="nc">Female</span> <span class="c">(* HATALI *)</span>
+
+<span class="k">let</span> <span class="n">a_new_person</span> <span class="o">=</span> <span class="p">{</span><span class="n">a_person</span> <span class="k">with</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Caitlynn"</span><span class="p">;</span> <span class="n">gender</span><span class="o">=</span><span class="nc">Female</span><span class="p">}</span> <span class="c">(* OK *)</span>
+
+<span class="k">type</span> <span class="n">changable_person</span> <span class="o">=</span> <span class="p">{</span><span class="k">mutable</span> <span class="n">name</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+                         <span class="n">age</span><span class="o">:</span> <span class="kt">int</span><span class="p">;</span>
+                         <span class="k">mutable</span> <span class="n">sex</span><span class="o">:</span> <span class="n">sex</span><span class="p">;</span>
+                        <span class="p">}</span>
+<span class="k">let</span> <span class="n">a_person2</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="o">=</span><span class="s2">"Bruce"</span><span class="p">;</span> <span class="n">age</span><span class="o">=</span><span class="mi">60</span><span class="p">;</span> <span class="n">gender</span><span class="o">=</span><span class="nc">Male</span><span class="p">}</span>
+<span class="n">a_person2</span><span class="o">.</span><span class="n">name</span> <span class="o">&lt;-</span> <span class="s2">"Caitlynn"</span>
+<span class="n">a_new_person</span> <span class="o">&lt;-</span> <span class="nc">Female</span></code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Eğer <code>let a_person = {name="Bruce"; age=60; gender=Male}</code> dediyseniz <code>a_person.sex &#8592; Female</code> diyemezsiniz. Ya <code>let a_new_person = {a_person with name="Caitlynn"; gender=Female}</code> diyeceksiniz ya da <code>student</code> tipini tanımlarken <code>name: string</code> yerine <code>mutable name: string</code> diyeceksiniz.</p>
 </div>
 <div class="paragraph">
 <p>Siz de immutable kod yazmak istiyorsanız ama ekibinizde JavaScript&#8217;i terkedip OCaml yazmak mümkün değilse <a href="https://github.com/immutable-js/immutable-js">immutableJS</a> kütüphanesi sayesinde primitive değerler olmasa da liste, küme, map gibi veri tiplerini mutable kullanabilirsiniz.</p>
 </div>
 <div class="paragraph">
-<p>"Yok istemem" diyorsanız da o zaman size bol <code>clone()</code>lamalar, bol <code>slice()</code>lamalar&#8230;&#8203;</p>
+<p>"Yok istemem" diyorsanız da o zaman size bol <code>clone()</code>'lamalar, bol <code>slice()</code>'lamalar&#8230;&#8203;</p>
 </div>
 </td>
 </tr>
@@ -573,17 +753,21 @@ type student = {name: string;
 </div>
 </div>
 <div class="sect1">
-<h2 id="_çalışan_compose_kodu">Çalışan <code>compose</code> kodu</h2>
+<h2 id="_ee_sonuç">Ee&#8230;&#8203; Sonuç?</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Sonuç basit, çalışan bir compose kodu:</p>
+</div>
 <div class="listingblock">
+<div class="title">compose</div>
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">reverseList = l =&gt; l.slice().reverse()
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">reverseList</span> <span class="o">=</span> <span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">slice</span><span class="p">().</span><span class="nx">reverse</span><span class="p">()</span>
 
-compose = (...fs) =&gt; x0 =&gt; reverseList(fs).reduce((x, f) =&gt; f(x), x0)</code></pre>
+<span class="nx">compose</span> <span class="o">=</span> <span class="p">(...</span><span class="nx">fs</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">x0</span> <span class="o">=&gt;</span> <span class="nx">reverseList</span><span class="p">(</span><span class="nx">fs</span><span class="p">).</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">f</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span> <span class="nx">x0</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Tabii bana <code>R.compose</code>un n&#8217;olduğunu soran çocuk tüm bu hikayeyi dinlemeye kalmadı&#8230;&#8203; Olsun, yarın kilitlerim ben onu aynı çok-bilmişlikle~</p>
+<p>Tabii bana <code>R.compose</code>'un n&#8217;olduğunu soran çocuk tüm bu hikayeyi dinlemeye kalmadı&#8230;&#8203; Olsun, yarın kilitlerim ben onu aynı çok-bilmişlikle~</p>
 </div>
 </div>
 </div>
