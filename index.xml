@@ -6,10 +6,20 @@
     <description>Recent content on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bileşke Fonksiyon (compose), Birleştirebilme (Composability), Değişemezlik (Immutability)</title>
+      <link>/posts/immutability/</link>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/immutability/</guid>
+      <description>Sıradan bir iş günü. JavaScript&amp;#8217;te tablolarımızdan birisine sayfalar arasında geçiş yaparken veri indir/kaldır yapma kabiliyeti ekliyorum (halk arasında buna &#34;pagination&#34; diyorlar). retrieveItems diye ve drawItems diye birer metod yazdım. retrieveItemsAndDraw yazıp cözüme ulaşmak üzereyken şu kodu yazdığımı farkediyorum:
+ const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   Ekip arkadaşlarımdan birisi bu satırda n&amp;#8217;aptığımı sorduğunda &#34;Basit!&#34; diye cevaplıyorum, &#34;Aslinda olay myCompose = fs &amp;#8658; x0 &amp;#8658; fs.reverse().reduce((x, f) &amp;#8658; f(x), x0)den ibaret~&#34;.</description>
+    </item>
     
     <item>
       <title>NodeJS&#39;te Maybe Monad&#39;ını Kullanarak REPL-Destekli Kod Yazma</title>

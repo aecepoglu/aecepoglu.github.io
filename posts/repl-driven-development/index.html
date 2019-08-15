@@ -117,13 +117,13 @@ eventually, we clean up the buffer a bit and store it as code</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Kullanıcıdan bir satir kod ister (<strong>R</strong>ead)</p>
+<p>Kullanıcıdan bir satır kod alır (<strong>R</strong>ead)</p>
 </li>
 <li>
 <p>Sonucunu hesaplar (<strong>E</strong>val)</p>
 </li>
 <li>
-<p>Ekrana yazdırır (<strong>P</strong>rint)</p>
+<p>Ekrana yazar (<strong>P</strong>rint)</p>
 </li>
 <li>
 <p>1&#8217;inci adıma dönerek sonsuz bir döngü oluşturur (<strong>L</strong>oop)</p>
@@ -142,7 +142,7 @@ eventually, we clean up the buffer a bit and store it as code</p>
 <p>REPL&#8217;i yazılım geliştirme surecinin merkezine oturtmak icin JVM&#8217;e hapsolmuş bir LISP kullanmak zorunda değilsiniz (<a href="https://root.cern.ch/cling">C dili icin bile REPL bulunabiliyor</a>). LISP programcıları uzun bir süredir kodlarını (metodlarını) istedikleri şeyi yapana kadar REPL&#8217;de geliştirip sonra da bir dosyaya kaydediyorlar. <code>npm install mocha</code> demeden, kalite mühendisleri tepelerinde dikilmeden doğal bir şekilde Test-Driven-Development yapıyorlar. Bunu yaparken de REPL ile entegre bir kod geliştirme ortamından faydalanıyorlar.</p>
 </div>
 <div class="paragraph">
-<p>Bir yazılımcının hangi kod geliştirme ortamini kullanacağı tamamen şahsi bir tercihtir; aynen sert zeminli bir ofiste işini yapmaya odaklanmış 20 mühendisin arasından günde 20 defa geçeceğini bile bile topuklu ayakkabı giymek gibi.</p>
+<p>Bir yazılımcının hangi kod geliştirme ortamini kullanacağı tamamen şahsi bir tercihtir; aynen sert zeminli bir ofiste işini yapmaya odaklanmış 20 mühendisin arasından günde 20 defa geçeceğini bile bile yumurta topuklu ayakkabı giymek gibi.</p>
 </div>
 <div class="paragraph">
 <p>Siz kod yazmak için:</p>
@@ -170,7 +170,7 @@ eventually, we clean up the buffer a bit and store it as code</p>
 <p>Ve de REPL&#8217;le entegre bir şekilde kod yazıp yazamayacağınız ortamınızın bunu destekleyip desteklemediğine bakar.</p>
 </div>
 <div class="paragraph">
-<p>Ve tam bu arada ben birkaç hafta önce <a href="http://neovim.io">NeoVim</a>'den <a href="http://kakoune.org">Kakoune</a>'a geçtiğimi, Kakoune&#8217;da <code>:repl</code> komutuna denk gelip ne yaptığını anlamadığımı hatırlıyorum.</p>
+<p>Ben birkaç hafta önce <a href="http://neovim.io">NeoVim</a>'den <a href="http://kakoune.org">Kakoune</a> adında bir programa geçmiş, Kakoune&#8217;da <code>:repl</code> komutuna denk gelip ne yaptığını anlamamıştım.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -249,15 +249,13 @@ Bu arada Bash/Sh&#8217;nin de bir REPL olduğunu farkediyoruz
 <h2 id="_repl_destegiyle_nodejs_yazmak">REPL destegiyle NodeJS yazmak</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>REPL&#8217;le nasıl konuşacağımı oğrendiğime göre, örnek bir problem çözerek bunu bir denemek istiyorum. <a href="http://exercism.io" class="bare">http://exercism.io</a> 'da geldiğim son probleme bakalım:</p>
+<p>REPL&#8217;le nasıl konuşacağımı oğrendiğime göre, örnek bir problem çözerek REPL&#8217;i etkince kullanarak kod yazmayı denemek istiyorum. <a href="http://exercism.io" class="bare">http://exercism.io</a> 'da geldiğim son probleme bakalım:</p>
 </div>
 <div class="sect2">
 <h3 id="_luhn_doğrulama_problemi">Luhn doğrulama problemi</h3>
 <div class="paragraph">
-<p>Kredi kartı vb numaralarının geçerliligini bulmada kullanılıyor.</p>
-</div>
-<div class="paragraph">
-<p>Bir string alıp bunun Luhn algoritmasınca gecerli bir sayi olup olmadığını hesaplayın.</p>
+<p>Kredi kartı vb. numaralarının geçerliligini bulmada kullanılıyor.+
+Bir string alıp bunun Luhn algoritmasınca gecerli bir sayi olup olmadığını hesaplayacağız.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -267,10 +265,10 @@ Bu arada Bash/Sh&#8217;nin de bir REPL olduğunu farkediyoruz
 <li>
 <p>Boşluk olabilir ama hesaplamaya başlanmadan silinmelidir</p>
 <div class="paragraph">
-<p>mesela bize verilen metin şu olsun: <code>4539 1488 0343 6467</code></p>
+<p><em>mesela bize verilen metin şu olsun:</em> <code>4539 1488 0343 6467</code></p>
 </div>
 <div class="paragraph">
-<p>boşluklarını silelim: <code>4539148803436467</code></p>
+<p><em>boşluklarını silelim:</em> <code>4539148803436467</code></p>
 </div>
 </li>
 <li>
@@ -282,13 +280,13 @@ Bu arada Bash/Sh&#8217;nin de bir REPL olduğunu farkediyoruz
 <li>
 <p>Carpım sonucunda 10 veya daha büyük bir sayı bulduysanız 9 çıkarın</p>
 <div class="paragraph">
-<p>bu sayıyı elde ettik: <code>8569247803833437</code></p>
+<p><em>bu sayıyı elde ettik:</em> <code>8569247803833437</code></p>
 </div>
 </li>
 <li>
 <p>Tum rakamları toplayın</p>
 <div class="paragraph">
-<p>sonuç <code>80</code></p>
+<p><em>sonuç</em> <code>80</code></p>
 </div>
 </li>
 <li>
@@ -315,17 +313,56 @@ Bu arada Bash/Sh&#8217;nin de bir REPL olduğunu farkediyoruz
 <div class="title">kod</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">num</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">Maybe</span><span class="p">.</span><span class="k">of</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>         <span class="c1">//Just(num) veya Nothing'imiz olacak</span>
-              <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">//Just(x)'i Just(3*x) haline getirecek</span>
-                               <span class="c1">// Nothing ise ona dokunmayacak</span>
-              <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">//Just(3*x)'i Just(3*x + 2) yapacak</span>
-                               <span class="c1">// Nothing ise ona dokunmayacak</span>
-              <span class="p">.</span><span class="nx">withDefault</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">//3x+2 ya da 0 donecek</span>
+  <span class="k">return</span> <span class="nx">Maybe</span><span class="p">.</span><span class="k">of</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>         <i class="conum" data-value="1"></i><b>(1)</b>
+              <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
+              <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+              <span class="p">.</span><span class="nx">withDefault</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <i class="conum" data-value="4"></i><b>(4)</b>
 <span class="p">}</span></code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>num&#8217;un "truthy" olup olmadigina gore <code>Just num</code> veya <code>Nothing</code>'imiz olacak</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>map</code> komutu <code>Just x&#8217;i `Just 3x</code> yapar, Nothing&#8217;e ise dokunmaz</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>Just 3x+2</code> veya <code>Nothing</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>3x+2</code> veya <code>0</code></td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Maybe&#8217;ye koyduğunuz değerler ya <em>Bir Sey</em> olarak tutulur, ya da <em>Hicbir Sey</em>. Eğer <em>Hicbir Sey</em>'iniz var ise yapacak bir sey yok zaten. Ama eğer <em>Bir Sey</em> iniz var ise o değeri metodlar vererek güncelleyebilirsiniz.+</p>
+<p>Maybe&#8217;ye koyduğunuz değerler ya <em>Bir Sey</em> olarak tutulur, ya da <em>Hicbir Sey</em>. Eğer <em>Hicbir Sey</em>'iniz var ise yapacak bir şey yok zaten. Ama eğer <em>Bir Sey</em>'iniz var ise o değeri metodlar vererek güncelleyebilirsiniz.+</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>X a</code>: içinde <code>a</code> olan <code>X</code> tipinde bir hazne demek. Orneğin <code>Maybe int</code>, <code>List string</code> gibi.</p>
+</li>
+<li>
+<p>Bir hazne içerisine başka bir hazne de konulabilir. Orneğin <code>List (Maybe int)</code> içinde <code>Maybe int</code> olan bir liste</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -335,7 +372,7 @@ Bu arada Bash/Sh&#8217;nin de bir REPL olduğunu farkediyoruz
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>Maybe/BirSey/HicbirSey</code> uclemesi farkli dillerde farkli isimlerde duyulabiliyor. Benim bildiklerim:<br></p>
+<p><code>Maybe/BirSey/HicbirSey</code> üçlemesi farklı dillerde farklı isimlerde duyulabiliyor. Benim bildiklerim:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -383,7 +420,7 @@ Bu arada Bash/Sh&#8217;nin de bir REPL olduğunu farkediyoruz
 </div>
  <iframe src='https://gfycat.com/ifr/TangibleGargantuanFossa' frameborder='0' scrolling='no' allowfullscreen width='640' height='390'></iframe>
 <div class="paragraph">
-<p>Unutmayayım diye bunlari da koduma kopyalıyorum.
+<p>Unutmayayım diye bu denemeleri de koduma kopyalıyorum.
 İstediğim sonucu veriyor mu diye de kontrol edeceğim.
 Bunları koduma koyduğum için de bu kod yaşadığı sürece bu test yapılıyor olacak.</p>
 </div>
@@ -397,7 +434,7 @@ Bunları koduma koyduğum için de bu kod yaşadığı sürece bu test yapılıy
 </div>
 </div>
 <div class="paragraph">
-<p>Maybe&#8217;ye dair yapmak istediğim 1 adet şey kaldi.</p>
+<p>Maybe&#8217;ye dair yapmak istediğim 1 adet şey kaldı.</p>
 </div>
 <div class="paragraph">
 <p><code>Maybe.of</code> Maybe&#8217;nin içerisine değer koymak için ideal bir yöntem değil. Bir değerin <code>truthy</code> olup olmamasından ötesiyle ilgileniyor olabiliriz. Onun için yardımcı bir metod yazacağım:</p>
@@ -438,13 +475,46 @@ Bunları koduma koyduğum için de bu kod yaşadığı sürece bu test yapılıy
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p><strong>Kategori Teorisi</strong> konusunda bu tip dönüşümlere ayrıça değineceğim, ama şimdilik pratikte şu ikisinin farkını anlamanız şimdilik yeterli:</p>
+</div>
+<div class="listingblock">
+<div class="title">map vs chain</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">isEven</span> <span class="o">=</span> <span class="nx">safe</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="kd">const</span> <span class="nx">double</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">double</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">isEven</span><span class="p">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">chain</span><span class="p">(</span><span class="nx">isEven</span><span class="p">)</span> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>bir sayı alıp (<code>x</code> diyelim), eğer çift ise <code>Just x</code>, degil ise <code>Nothing</code> dönen bir metod</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>sonuç: <code>Just 8</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>sonuç: <code>Just (Just 4)</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>sonuç: <code>Just 4</code></td>
+</tr>
+</table>
+</div>
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_luhn_dogrulama_devam">Luhn dogrulama - devam</h3>
+<h3 id="_luhn_doğrulama_devam">Luhn doğrulama - devam</h3>
 <div class="paragraph">
 <p>Bundan sonrası oldukça basit. Tüm doğrulama adımlarını sırasıyla ekleyeceğim.</p>
 </div>
@@ -454,7 +524,7 @@ Bunları koduma koyduğum için de bu kod yaşadığı sürece bu test yapılıy
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sonuc">Sonuc</h3>
+<h3 id="_sonuç">Sonuç</h3>
 <div class="listingblock">
 <div class="title">luhn metodu</div>
 <div class="content">
@@ -494,12 +564,12 @@ Bunları koduma koyduğum için de bu kod yaşadığı sürece bu test yapılıy
 <div class="paragraph">
 <p><a href="http://repl.it">Repl.it</a>'i henüz keşfettim. Hem tüm kodu sizlerle paylaşmama, hem de sizlere kod ile oynama imkanı sunuyor.</p>
 </div>
-<iframe height="400px" width="100%" src="https://repl.it/@aecepoglu/Luhn-Validation?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<iframe height="600px" width="100%" src="https://repl.it/@aecepoglu/Luhn-Validation?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 <hr>
 <div class="paragraph">
 <p><em>Birkaç saat geçmiş, çoktan öğlen olmuş ve benim tek yapmak istediğim OCaml ilanlarına bakmak idi&#8230;&#8203;</em><br>
 <em>"sonraki sefere artık" diyerek öğle yemeğine çıkacağım</em><br>
-<em>Yolundan sapmış bir sonraki maceramızda görüşmek üzere&#8230;&#8203;</em></p>
+<em>Etkin-calışma-suresi tutan bir komut satırı programı yazmaya baslayıp yolun sonunda yine NodeJS&#8217;te Smalltalk&#8217;taki gibi ileti al-ver arayüzü inşaa ederken bulacagimiz bir sonraki yazıda görüşmek üzere&#8230;&#8203;</em></p>
 </div>
 </div>
 </div>
@@ -520,7 +590,7 @@ Bunları koduma koyduğum için de bu kod yaşadığı sürece bu test yapılıy
 <br>
   <p class="mb0 mt2">
   
-  
+  <a href="/posts/immutability/">next post</a>
   </p>
 </div>
 
