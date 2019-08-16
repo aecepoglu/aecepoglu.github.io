@@ -3,6 +3,35 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/en/posts/immutability/</loc>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/posts/immutability/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/posts/immutability/"
+                />
+  </url>
+  
+  <url>
+    <loc>/en/about/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/about/"
+                />
+  </url>
+  
+  <url>
     <loc>/en/categories/</loc>
     <priority>0</priority>
     <xhtml:link
@@ -14,6 +43,22 @@
                 rel="alternate"
                 hreflang="en"
                 href="/en/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>/en/posts/</loc>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/posts/"
                 />
   </url>
   
@@ -34,6 +79,7 @@
   
   <url>
     <loc>/en/</loc>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"

@@ -4,15 +4,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta content='text/html; charset=utf-8' http-equiv='content-type' />
 
-  <title>Bileşke Fonksiyon (compose), Birleştirebilme (Composability), Değişemezlik (Immutability) - aecepoglu</title>
-  <meta content='Bileşke Fonksiyon (compose), Birleştirebilme (Composability), Değişemezlik (Immutability) - aecepoglu' property='title' />
-  <meta content='Bileşke Fonksiyon (compose), Birleştirebilme (Composability), Değişemezlik (Immutability) - aecepoglu' property='og:title' />
+  <title>A look into composing, Composability, Immutability - aecepoglu</title>
+  <meta content='A look into composing, Composability, Immutability - aecepoglu' property='title' />
+  <meta content='A look into composing, Composability, Immutability - aecepoglu' property='og:title' />
 
 
-<meta property="og:description" content="Sıradan bir iş günü. JavaScript&#8217;te tablolarımızdan birisine sayfalar arasında geçiş yaparken veri indir/kaldır yapma kabiliyeti ekliyorum (halk arasında buna &#34;pagination&#34; diyorlar). retrieveItems diye ve drawItems diye birer metod yazdım. retrieveItemsAndDraw yazıp cözüme ulaşmak üzereyken şu kodu yazdığımı farkediyorum:
- const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   Ekip arkadaşlarımdan birisi bu satırda n&#8217;aptığımı sorduğunda &#34;Basit!&#34; diye cevaplıyorum, &#34;Aslında olay myCompose = fs &#8658; x0 &#8658; fs.reverse().reduce((x, f) &#8658; f(x), x0)den ibaret~&#34;." />
+<meta property="og:description" content="An ordinary work day,
+I&#8217;m adding a feature to our JavaScript driven tables so it can pull/push data while navigating between the pages(I belive in common tongue they call this &#34;pagination&#34;). I wrote two functions named retrieveItems and drawItems. As I&#8217;m building the retrieveItemsAndDraw function, this is what I find myself writing:
+ const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   At that time one of the guys in my team creep up behind me and ask what I&#8217;m up to, and what that line does." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/posts/immutability/" />
+<meta property="og:url" content="/en/posts/immutability/" />
 
 
 <meta property="article:published_time" content="2019-08-12T00:00:00&#43;00:00"/>
@@ -64,16 +65,16 @@ type="image/x-icon"/>
     
       <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/en/' title="en">en</a>
     
-      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/tr/' title="tr">tr</a>
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/' title="tr">tr</a>
     
-      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/about' title="hakkimda">hakkimda</a>
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/en/about' title="about">about</a>
     
   </div>
   
 </nav>
   
 <main class="center mv4 content-width ph3">
-  <div class="f3 fw6 heading-color heading-font post-title">Bileşke Fonksiyon (compose), Birleştirebilme (Composability), Değişemezlik (Immutability)</div>
+  <div class="f3 fw6 heading-color heading-font post-title">A look into composing, Composability, Immutability</div>
   <p class="silver f6 mt1 mb4 post-meta">
     <time>12 Aug 2019</time> 
     
@@ -83,9 +84,9 @@ type="image/x-icon"/>
   <div class="lh-copy post-content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Sıradan bir iş günü.
-JavaScript&#8217;te tablolarımızdan birisine sayfalar arasında geçiş yaparken veri indir/kaldır yapma kabiliyeti ekliyorum (halk arasında buna "pagination" diyorlar).
-<code>retrieveItems</code> diye ve <code>drawItems</code> diye birer metod yazdım. <code>retrieveItemsAndDraw</code> yazıp cözüme ulaşmak üzereyken şu kodu yazdığımı farkediyorum:</p>
+<p>An ordinary work day,<br>
+I&#8217;m adding a feature to our JavaScript driven tables so it can pull/push data while navigating between the pages(I belive in common tongue they call this "pagination").
+I wrote two functions named <code>retrieveItems</code> and <code>drawItems</code>. As I&#8217;m building the <code>retrieveItemsAndDraw</code> function, this is what I find myself writing:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -93,18 +94,19 @@ JavaScript&#8217;te tablolarımızdan birisine sayfalar arasında geçiş yapark
 </div>
 </div>
 <div class="paragraph">
-<p>Ekip arkadaşlarımdan birisi bu satırda n&#8217;aptığımı sorduğunda <em>"Basit!"</em> diye cevaplıyorum, <em>"Aslında olay <code>myCompose = fs &#8658; x0 &#8658; fs.reverse().reduce((x, f) &#8658; f(x), x0)</code>den ibaret~"</em>.</p>
+<p>At that time one of the guys in my team creep up behind me and ask what I&#8217;m up to, and what that line does. <em>"Simple!"</em> I answer, <em>"It&#8217;s just <code>myCompose = fs &#8658; x0 &#8658; fs.reverse().reduce((x, f) &#8658; f(x), x0)</code>~"</em>.</p>
 </div>
 <div class="paragraph">
-<p>Ama o cevap yanlış, ve <code>compose</code> (yani metod-birleştirme) basit olsa da oldukça önemli bir konu. Bu yazı yukaridaki <code>myCompose</code>u anlama, anlatma ve çözme uğruna yazılmış bir yazı&#8230;&#8203;</p>
+<p>But that answer isn&#8217;t correct. And <code>compose</code> (or function composition) as simple as it may be is a fundamental concept and need to be understood and explained properly.
+This text has been written for the sake of <code>myPurpose</code>; to understand it and to explain it in detail.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_bileşke_fonksiyon">Bileşke fonksiyon</h2>
+<h2 id="_composing_functions">Composing functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>Bileşke fonksiyon</em>u matematikten hatırlıyorsunuz değil mi? Birden fazla fonksiyonu tek bir fonksiyon  altinda birleştirmeye yarıyor. <em>Bileşke</em>, <em>birleştirebilme</em> (yani "composability"); fonksiyonel programlamada "mödülerlik" elde edebilmek için yegane silahımız.</p>
+<p>Do you remember <em>function composition</em> from mathematics? It&#8217;s when you join multiple functions together to create a new one. Joining, or <em>compose</em> or <em>composability</em> is the bread and butter of functional programming in achieving modularity.</p>
 </div>
 <div class="listingblock">
 <div class="title">f,g,fog</div>
@@ -123,37 +125,37 @@ g(x) = x * 3
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bileşke_fonksiyonu_inşaa_etmek">Bileşke fonksiyonu inşaa etmek</h3>
+<h3 id="_building_the_compose_function">Building the compose function</h3>
 <div class="paragraph">
-<p>2 metodu alıp birleştiren bir metod yazmak niyetindeyim; ama önce metodlarin girdi ve çıktı tiplerini tanımlamak istiyorum ki hangi metodların nasıl birleşebildiğini görelim.</p>
+<p>I want to write a function that takes two functions and joins them; but first I would like to be able to describe the inputs and outputs of those functions so I can argue about how they can be joined together.</p>
 </div>
 <div class="paragraph">
-<p>Fonksiyonel dillerde metodların tiplerini tanımlarken Haskell kökenli bir yaklaşım kullanılıyor:</p>
+<p>In functional languages, function signatures resemble that of Haskell:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>string &#8594; int</code> : bir metod. <code>string</code> alıp <code>int</code> dönüyor</p>
+<p><code>string &#8594; int</code> : A function. Takes <code>string</code> and returns <code>int</code></p>
 </li>
 <li>
-<p><code>f :: string &#8594; int</code>: <code>f</code> adındakı metod <code>string</code> alıp <code>int</code> dönüyor</p>
+<p><code>f :: string &#8594; int</code>: The function named <code>f</code> takes <code>string</code> and returns <code>int</code></p>
 </li>
 <li>
 <p><code>int &#8594; int &#8594; int</code>: 2 <code>int</code> alıp bir <code>int</code> dönen bir metod</p>
 </li>
 <li>
-<p><code>indexOf: [string] &#8594; int</code>: <code>string</code> listesi alıp <code>int</code> dönen bir metod. mesela: <code>indexOf</code></p>
+<p><code>indexOf: [string] &#8594; int</code>: a function named <code>indexOf</code> that takes <code>string</code> list and returns an <code>int</code></p>
 </li>
 <li>
-<p><code>find :: ['a] &#8594; Maybe 'a</code>: herhangi bir tipte (<code>a</code>) bir liste alıp, içinde o tip olan bir <code>Maybe</code> donen bir metod.</p>
+<p><code>find :: ['a] &#8594; Maybe 'a</code>: a function that takes a list of a generic type(<code>a</code>), and returns a <code>Maybe</code> container with a value of that same type (<code>a</code>) in it</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Artık metodları tanımlamak için ortak dili kullanabildiğimize göre bileşke fonksiyonlara tekrar bakalım:</p>
+<p>Given the syntax for function signatures, lets continue the conversation about composing:</p>
 </div>
 <div class="listingblock">
-<div class="title">f,g,fog JavaScript&#8217;te</div>
+<div class="title">f,g,fog in JavaScript</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="nx">f</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span>
 <span class="nx">g</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">3</span>
@@ -161,7 +163,7 @@ g(x) = x * 3
 </div>
 </div>
 <div class="paragraph">
-<p>Aslında ben <code>f</code>'nin ve <code>g</code>'nin ne alip ne verdiğini biliyorsam, ikisinin birleşimi olan <code>fog</code>'un da ne alıp verdiğini bilebilirim.</p>
+<p>If I know what type inputs and outputs <code>f</code> and <code>g</code> have, then I can know what their composition will input and output:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -171,7 +173,7 @@ fog :: 'a -&gt; 'c</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Biraz daha somut örnekler verecek olursak:</p>
+<p>Or to give more concrete examples:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -198,31 +200,31 @@ fog :: 'a -&gt; 'c</pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>parseInt</code> sayıya dönüşteremediği değerler için <code>NaN</code> dönüyor ama şimdilik onu görmezden gelin.</td>
+<td><code>parseInt</code> would return <code>NaN</code> for things that it cannot parse into numbers, but lets ignore that for the moment</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>indexOfCity</code> metodu <code>indexOf</code> ile <code>uppercase</code> metodlarının bileşimi. <code>(fog)(x)</code> örneğindeki gibi ancak <code>f</code> yerinde <code>indexOf</code>, <code>g</code> yerinde <code>uppercase</code> var.</td>
+<td>the function <code>indexOfCity</code> is <code>indexOf</code> and <code>uppercase</code> put together. As in the case of <code>(fog)(x)</code> but with <code>indexOf</code> in the place of <code>f</code> , <code>uppercase</code> in the place of <code>g</code>.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Aynı biçimde <code>uppercase(myParseInt("4"))</code>'un sorunlu, <code>increment(myParseInt("4"))</code>'un ise sorunsuz olduğu da görulebilir.</p>
+<p>Similarly, we can see <code>uppercase(myParseInt("4"))</code> is faulty but <code>increment(myParseInt("4"))</code> is not.</p>
 </div>
 <div class="paragraph">
-<p>Dediğim gibi, problemleri metodlar şeklinde parçalayıp, metodların birleşimi şeklinde çözümler sunmak fonksiyonel programlamadaki en temel yaklaşımlardan. Bu yüzdendir ki <code>Haskell</code>'de iki fonksiyonun bileşkesini almak <code>.</code> yazmak kadar kolay:</p>
+<p>As I said, splitting a problem into functions and creating solutions that are composed of those functions is the basic functional approach to programming. Which is why in <code>Haskell</code> to compose two functions into one is as easy as typing <code>.</code>:</p>
 </div>
 <div class="listingblock">
-<div class="title">Haskell&#8217;de bileşke fonksiyon</div>
+<div class="title">composing in Haskell</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="haskell"><span class="n">indexOfCity</span> <span class="o">=</span> <span class="p">(</span><span class="n">indexOf</span> <span class="o">.</span> <span class="n">uppercase</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>JavaScript&#8217;te ise bunu kendimiz inşaa etmek durumundayız:</p>
+<p>In JavaScript however we have to roll our own:</p>
 </div>
 <div class="listingblock">
-<div class="title">f,g,fog JavaScript&#8217;te</div>
+<div class="title">f,g,fog in JavaScript</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="c1">//compose :: (('b -&gt; 'c), ('a -&gt; 'b)) -&gt; 'a -&gt; 'c  </span><i class="conum" data-value="1"></i><b>(1)</b>
 <span class="nx">compose</span> <span class="o">=</span> <span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">g</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">f</span><span class="p">(</span><span class="nx">g</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span>
@@ -236,12 +238,12 @@ fog :: 'a -&gt; 'c</pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Eğer karmaşık geliyorsa durun ve burada n&#8217;olduğunu anlayana kadar bekleyin</td>
+<td>If that is looking complicated I suggest you pause and wait till it clicks until you proceed further</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Hatta ayni şeyi OCaml&#8217;de yapıp <code>compose</code>'un tipini sorgulatacak olursam:</p>
+<p>In fact, if I did the same in OCaml and queried the type of <code>compose</code> I would get:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -256,10 +258,10 @@ fog :: 'a -&gt; 'c</pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>OCaml&#8217;da bir <code>f</code> adindaki bir metodu <code>x</code> ve <code>y</code> argümanlarıyla cağırmak için <code>f(x, y)</code> değil <code>f x y</code> deriz.</p>
+<p>In OCaml to call a function named <code>f</code> with the arguments <code>x</code> and <code>y</code>, instead of the familiar <code>f(x, y)</code> we say <code>f x y</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>+</code> ve <code>-</code> gibi işlemler <code>x + 2</code> örneğindeki gibi iki argümanın arasına konulur. Eğer istersek biz de başa-konulan <em>(prefix)</em> metod yazabildiğimiz gibi araya-konulan <em>(infix)</em> metod yazabiliriz:</p>
+<p>Operators like <code>+</code> and <code>-</code> come between its two arguments, as in <code>x + 2</code>. We can create <em>infix</em> methods (like <code>a + b</code>) as well as <em>prefix</em> ones (like <code>(+) a b</code>) if we desired:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -270,7 +272,7 @@ fog :: 'a -&gt; 'c</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ama OCaml&#8217;da <code>|&gt;</code> operatörü `compose`a tercih ediliyor:</p>
+<p>But in OCaml the pipe operator (<code>|&gt;</code>) is preferred to <code>compose</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -278,7 +280,7 @@ fog :: 'a -&gt; 'c</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>|&gt;</code> operatörünün JavaScript&#8217;e eklenmesi için <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Pipeline_operator">bir öneri de var</a></p>
+<p>There is also a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Pipeline_operator">proposition</a> to have the <code>|&gt;</code> operator added to ECMA</p>
 </div>
 </td>
 </tr>
@@ -291,19 +293,19 @@ fog :: 'a -&gt; 'c</pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Kakoune&#8217;da imleci istediğim metodun üzerine getirip <code>:lsp-hover</code> dediğimde, o değerin tipini ve (var ise) tanımını görebiliyorum.
+In Kakoune, the command <code>:lsp-hover</code> can show me the signature of whatever my cursor is on
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_genel_geçer_bir_compose_metodu">Genel-Geçer bir compose metodu</h3>
+<h3 id="_a_general_purpose_compose_method">A general purpose compose method</h3>
 <div class="paragraph">
-<p>Bazen 2 değil, daha fazla sayıda metodu birleştirmek isteyebiliyorum. JavaScript&#8217;te bunu yapmak da yeterince basit:</p>
+<p>Sometimes I feel like composing more than two functions together. In JavaScript this is also trivial to accomplish:</p>
 </div>
 <div class="listingblock">
-<div class="title">fonksiyonları birleştirmeye calışan masum bir kod</div>
+<div class="title">an innocent piece of code that tries to compose functions</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="nx">compose</span> <span class="o">=</span> <span class="nx">fs</span> <span class="o">=&gt;</span> <span class="nx">x0</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">fs</span> <i class="conum" data-value="1"></i><b>(1)</b>
                         <span class="p">.</span><span class="nx">reverse</span><span class="p">()</span> <i class="conum" data-value="2"></i><b>(2)</b>
@@ -315,16 +317,16 @@ Kakoune&#8217;da imleci istediğim metodun üzerine getirip <code>:lsp-hover</co
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>compose</code>'u <code>compose = (&#8230;&#8203;fs) &#8658; &#8230;&#8203;</code> şeklinde de tanımlayabilirdim</td>
+<td>I could have got variable number of arguments instead of an array by declaring the function as <code>compose = (&#8230;&#8203;fs) &#8658; &#8230;&#8203;</code></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>compose([f, g])(x)</code> demek <code>g(f(x))</code> değil de <code>f(g(x))</code> demek oldugu icin önce listeyi tersine çeviriyorum. Çünkü <code>reduce</code> sondan başa doğru değil, baştan sona doğru gidiyor.</td>
+<td>Because <code>compose([f, g])(x)</code> means <code>f(g(x))</code> , not <code>g(f(x))</code> ; I reverse the list. <code>reduce</code> would iterate over the list from the beginning to the end.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><em>Yukarıdaki kodu okuyup örümcek hisleri gıdıklanan?</em></p>
+<p><em>Did anyone else have their spider senses tingling after reading the <code>compose</code> function above?</em></p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -333,13 +335,13 @@ Kakoune&#8217;da imleci istediğim metodun üzerine getirip <code>:lsp-hover</co
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Yukarıdaki <code>compose</code> metodu <strong>CALIŞMIYOR</strong>.
+The <code>compose</code> above <strong>DOES NOT WORK</strong>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><em>Peki neden calışmıyor?</em></p>
+<p><em>But why does it not work?</em></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -349,21 +351,21 @@ Yukarıdaki <code>compose</code> metodu <strong>CALIŞMIYOR</strong>.
 
 <span class="kd">const</span> <span class="nx">hfg</span> <span class="o">=</span> <span class="nx">compose</span><span class="p">([</span><span class="nx">h</span><span class="p">,</span> <span class="nx">f</span><span class="p">,</span> <span class="nx">g</span><span class="p">])</span>
 
-<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 289</span>
-<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 81</span>
-<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 289</span>
-<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 81</span>
-<span class="c1">//ve sonsuza kadar boyle devam ediyor</span></code></pre>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 289</span>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 81</span>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 289</span>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 81</span>
+<span class="c1">//And it continues forever in the same pattern</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>hfg</code>'nin once <code>h(g(f(x)))</code> yaptığını, sonra <code>f(g(h(x)))</code> yaptığını farkettiniz mi?</p>
+<p>Have you realized that <code>hfg</code> does <code>h(g(f(x)))</code> first, and <code>f(g(h(x)))</code> after?</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_değişemezlik">Değişemezlik</h2>
+<h2 id="_immutability">Immutability</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -374,11 +376,11 @@ Yukarıdaki <code>compose</code> metodu <strong>CALIŞMIYOR</strong>.
 <span class="kd">const</span> <span class="nx">funs</span> <span class="o">=</span> <span class="p">[</span><span class="nx">h</span><span class="p">,</span> <span class="nx">f</span><span class="p">,</span> <span class="nx">g</span><span class="p">]</span>
 <span class="kd">const</span> <span class="nx">hfg</span> <span class="o">=</span> <span class="nx">compose</span><span class="p">(</span><span class="nx">funs</span><span class="p">)</span>
 
-<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 289</span>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//result 289</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">funs</span><span class="p">)</span> <span class="c1">// [ [Function: g], [Function: f], [Function: h] ]</span>
-<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 81</span>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//result 81</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">funs</span><span class="p">)</span> <span class="c1">// [ [Function: h], [Function: f], [Function: g] ]</span>
-<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//sonuc 289</span></code></pre>
+<span class="nx">hfg</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">//result 289</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -386,24 +388,24 @@ Yukarıdaki <code>compose</code> metodu <strong>CALIŞMIYOR</strong>.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="https://i.pinimg.com/736x/bd/fe/98/bdfe98a28b94edc7d30487099e935227.jpg" alt="IT Crowd&#8217;da Jen&#8217;in masaüstü">
+<img src="https://i.pinimg.com/736x/bd/fe/98/bdfe98a28b94edc7d30487099e935227.jpg" alt="Jen&#8217;s desktop in IT Crowd">
 </div>
-<div class="title">Orneğin: sağır Sultan&#8217;in eniştesinin bilgisayari</div>
+<div class="title">eg: what you may find the said person&#8217;s desktop to look like</div>
 </div>
 <div class="paragraph">
-<p><code>Array</code>'in <code>reverse</code> metodu, üzerinde çağırıldığı <code>array</code>'i değiştiriyor.<br>
-Yani <code>reverse</code> metodu <code>mutative</code> .</p>
+<p>The <code>reverse</code> method of <code>Array</code> modifies the array it is called on.<br>
+So it turns out <code>reverse</code> is <strong>mutative</strong>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_değiştirebilir_mutative_fonksiyon">Değiştirebilir (Mutative) Fonksiyon</h2>
+<h2 id="_mutative_function">Mutative Function</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Değiştirebilir</strong> (mutative) fonksiyon adi ne diyorsa onu yapiyor; <strong>değiştirebilir</strong> fonksiyon programın <strong>vaziyet</strong>ini değiştir(ebil)iyor.</p>
+<p><strong>Mutative</strong> function simply does what its name suggests; it may <strong>mutate</strong> the program <strong>state</strong></p>
 </div>
 <div class="paragraph">
-<p><strong>Vaziyet</strong> tanımını daha açık hale getirmek adına önce "fonksiyon"un tanımını yapmak lazım.</p>
+<p>To get into what <strong>state</strong> is I believe it&#8217;s best to know what a <strong>pure</strong> function is.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -412,24 +414,24 @@ Yani <code>reverse</code> metodu <code>mutative</code> .</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor. Bir metodun adı <code>reverse</code> değil de <code>reverse!</code> ise biliyorsunuz ki bu metod bir yerlere müdahele ediyor.
+In Ruby the mutative functions have a <code>!</code> at the end of their names. If a function is named <code>reverse!</code> instead of <code>reverse</code> you very well know that it modifies something somewhere.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_saf_fonksiyon">Saf Fonksiyon</h3>
+<h3 id="_pure_function">Pure Function</h3>
 <div class="paragraph">
-<p>Matematikte (hatırlarsanız) fonksiyon bir kümeden bir kümeye giden bir bağıntıya denir.</p>
+<p>In mathematics (if you remember) a function is just a relation between two sets.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="https://i.postimg.cc/gjYf97g7/untitled.png" alt="fonksiyon semasi">
+<img src="https://i.postimg.cc/gjYf97g7/untitled.png" alt="function diagram">
 </div>
-<div class="title">Orneğin:A&#8217;dan B&#8217;ye giden bir fonksiyon</div>
+<div class="title">eg.a function from A to B</div>
 </div>
 <div class="paragraph">
-<p>Bu fonksiyona <code>fab</code> ismini verip JavaScript&#8217;te yazalım:</p>
+<p>Lets call this function <code>fab</code> and write it in JavaScript:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -438,22 +440,22 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 </div>
 </div>
 <div class="paragraph">
-<p><code>fab</code> A&#8217;dan B&#8217;ye giden bir fonksiyon olduğu gibi, <code>f(x) = 2x + 3</code> gibi tam sayılarda tanımlı bir fonksiyon da olabilir.</p>
+<p>Like how <code>fab</code> maps A to B, <code>f(x) = 2x + 3</code> is a function that maps natural numbers to natural numbers.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="https://i.postimg.cc/LsZXhxz5/untitled-1.png" alt="fonksiyon semasi">
+<img src="https://i.postimg.cc/LsZXhxz5/untitled-1.png" alt="function diagram">
 </div>
-<div class="title">Örneğin:Z&#8217;den Z&#8217;ye giden <code>f(x) = 2x + 3</code> fonksiyonu</div>
+<div class="title">eg:<code>f(x) = 2x + 3</code> function mapping Z to Z</div>
 </div>
 <div class="paragraph">
-<p><code>fab</code> ve <code>f(x) = 2x + 3</code> gibi tek yaptığı bir kümeyi başka bir kümeye bağlamak olan fonksiyonlara programlamada <strong>saf</strong> denir. <strong>Saf fonksiyon</strong> tanımı <strong>yan etki</strong> açıklanınça daha anlaşılır olacak:</p>
+<p>Functions like <code>fab</code> and <code>f(x) = 2x + 3</code> that only map one set to the other are called <strong>pure</strong> . The definition <strong>pure function</strong> may make more sense knowing what a <strong>side effect</strong> is:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_yan_etki">Yan Etki</h3>
+<h3 id="_side_effect">Side Effect</h3>
 <div class="paragraph">
-<p><code>fab</code> metodu A kümesini B kümesine bağlamaktan fazlasını yapıyor olsun, mesela bir web sayfasına yazı yazsın:</p>
+<p>Lets say our <code>fab</code> method does not only map A to B, it does more; it renders a text in a webpage:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -465,45 +467,45 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="https://i.postimg.cc/gkdND5j9/untitled-2.png" alt="yan etkili fonksiyon semasi">
+<img src="https://i.postimg.cc/gkdND5j9/untitled-2.png" alt="function diagram with side effects">
 </div>
-<div class="title">Örneğin:fabAndEdit</div>
-</div>
-<div class="paragraph">
-<p>Bu <code>innerHTML</code>'nin atanışı gibi, girdi-çıktı bağıntısı dışında olan etkilere <strong>yan etki</strong> diyoruz.</p>
+<div class="title">eg:fabAndEdit</div>
 </div>
 <div class="paragraph">
-<p>Yan etki pröğramın vaziyetini değiştiren her şey olarak da düşünülebilir.</p>
+<p>Like the setting of <code>innerHTML</code>, any effect that is not a mapping of an input to an output is called a <strong>side effect</strong>.</p>
 </div>
 <div class="paragraph">
-<p><strong>Vaziyet</strong> (state) pröğramın/bilgisayarın o anki halidir. Örneğin siz klavyede bir tuşa basınca bilgisayarin <strong>vaziyet</strong>ini bir-tuşu-basılı-bilgisayar vaziyetine dönüştürürsünüz. Bir fonksiyonda bir metin-kutusuna (textbox) müdahele ederseniz artık programın <strong>vaziyet</strong>i değişmiştir, o metin-kutusunda evvelde yazmayan bir şey yazıyordur; başka bir kod o metin-kutusunun değerini degiştikten sonra okuyacak olursa, değiştikten önce okuyacağından başka bir değer bulacaktır.</p>
+<p>You can also think of a side effect as anything that changes the program state.</p>
+</div>
+<div class="paragraph">
+<p><strong>State</strong> is the state of a program or a computer. For example when you press a button on your keyboard, you change the <strong>state</strong> of your computer from a computer to a computer-that-has-a-button-pressed. If you modify a textbox the <strong>state</strong> of the program is changed, something writes in that textbox that didn&#8217;t write before; if a different piece of code were to read the value of that textbox after it has been modified it will find a different value than it would before.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Programın <strong>vaziyet</strong>ine müdahele etmeyen fonksiyonlara <strong>saf fonksiyon</strong> denir.</p>
+<p>Functions that don&#8217;t modify the <strong>state</strong> are called <strong>pure functions</strong>.</p>
 </li>
 <li>
-<p>Bir fonksiyon programın <strong>vaziyet</strong>ine müdahele ediyor ise, bu müdaheleye <strong>yan etki</strong> denir.</p>
+<p>If a function is modifying the <strong>state</strong> that modification is called a <strong>side effect</strong>.</p>
 </li>
 <li>
-<p><strong>Saf fonksiyon</strong>larin <strong>yan etkisi</strong> yoktur. <strong>Yan etkisi</strong> olan fonksiyonlar <strong>saf</strong> değildir.</p>
+<p><strong>Pure functions</strong> don&#8217;t have <strong>side effects</strong>. Functions that have <strong>side effects</strong> are not <strong>pure</strong>.</p>
 </li>
 <li>
-<p><strong>Saf fonksiyonlar</strong> ne zaman cağırılırsa çağırılsın, her zaman aynı girdi için aynı sonucu verir.</p>
+<p><strong>Pure functions</strong> always give the same result for the same input no matter when they are called.</p>
 </li>
 <li>
-<p><strong>Değiştirebilir</strong> fonksiyonların yan etkileri vardır. <strong>Değiştirebilir</strong> fonksiyonlar saf değildir.</p>
+<p><strong>Mutative</strong> functions have <strong>side effects</strong>. <strong>Mutative</strong> functions are not <strong>pure</strong>.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_değiştirebilir_fonksiyonlarin_zihinsel_yükü">Değiştirebilir Fonksiyonlarin Zihinsel Yükü</h3>
+<h3 id="_the_mental_overhead_of_mutative_functions">The Mental Overhead of Mutative Functions</h3>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>Bir insanın short-term memory&#8217;sinde tutabileceği sey sayısı 7±2&#8217;dir</p>
+<p>The number of objects an average human can hold in working memory is 7±2</p>
 </div>
 </blockquote>
 <div class="attribution">
@@ -512,10 +514,10 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 </div>
 </div>
 <div class="paragraph">
-<p>Zihinsel kapasitemiz sınırsız değil; zaten benim gibiyseniz bir kulağınızla podcast dinliyorsunuz, bir kulağınızla da <em>"acaba benimle ilgili bir şey mi konuşuluyor"</em> diye toplantı odasından gelen sesleri dinler iken kod yazıyorsunuz.</p>
+<p>Our mental capacity is not limitless; and if you are like me you&#8217;re listening to a podcast with one ear, while the other ear is focused on the sounds coming from the meeting room to check if anyone is saying anything about you; while you&#8217;re writing code.</p>
 </div>
 <div class="paragraph">
-<p>Bu haldeyken yazdığınız koddaki her bir metod cağrısının  acaba programın vaziyetini nasıl değiştirdiğini, global değişkenlere nasıl müdahele ettiğini, verdiğiniz argümanlari değiştirip değiştirmedigini kendinize zihinsel yük edinmemek adına kodunuzu olabildiğince <strong>saf</strong> yazmak, <strong>Yan etkileri</strong> (var ise) sınırlı kullanmak kodun sürdürülebilirliğini arttıracaktır (ki yan etkisi olmayan program olmaz; kullanıcıdan girdi almayan ve kullanıcıya çıktı vermeyen programın manası yoktur. Felsefe yapıp çıktısı görülemeyen programın var olmadığını bile iddia edebiliriz).</p>
+<p>In addition for every function in your code, instead of having to ponder if and how they&#8217;re modifying the program state, how they&#8217;re modifying the global variables, if they overwrote your function arguments; if you wrote them <strong>pure</strong>, if you limited their <strong>side effects</strong> (if any) it would make your code more maintainable (then again, there is no program that doesn&#8217;t have side effects; what&#8217;s the point of a program if it doesn&#8217;t take an input and it doesn&#8217;t produce an output. We could even get philosophical and argue that if we can&#8217;t see the output of a program, it does not exist).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -525,13 +527,16 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Yan etkiler tembelleştirilerek fonksiyonlar saflaştırılabilir.</p>
+<p>Side effects can be purified by making them lazy.</p>
 </div>
 <div class="paragraph">
-<p>Açıklayayım&#8230;&#8203;</p>
+<p>Let me explain what that means&#8230;&#8203;</p>
 </div>
 <div class="paragraph">
-<p>Bir fonksiyon sonucunu hemen üretmiyorsa, sonucun tam olarak ihtiyaci duyulan ana kadar bekletiyorsa ona tembel denir. Haskell mesela doğal olarak tembel bir dil, OCaml`da ise herhangi bir degeri <code>lazy</code> ilan ederek bunu yapabiliyoruz. JavaScript&#8217;te ise (her zaman oldugu gibi) icat yapmamız gerekiyor:</p>
+<p>If a function doesn&#8217;t produce its output immediately, if the result is delayed until the moment it is needed that function is called <strong>lazy</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Haskell, for example, is an inherently lazy language. In OCaml we can have lazy values by declaring them <code>lazy</code>. In JavaScript (as usual) we have to hack our own:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -564,30 +569,31 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>ekrana <code>0</code> yazar</td>
+<td>prints <code>0</code></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>ekrana <code>3</code> yazar</td>
+<td>prints <code>3</code></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>ekrana <code>0</code> yazar</td>
+<td>prints <code>0</code></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>ekrana <code>4</code> yazar</td>
+<td>prints <code>4</code></td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>incrCounter_unsafe</code> global değişken <code>counter</code>'a mudahele ettigi icin saf değil. <code>incrCounter_unsafe</code> fonksiyonu çağırıldığında hemen gidip yapması gerekeni yapıyor: <code>counter</code> değerini değiştiriyor.</p>
+<p><code>incrCounter_unsafe</code> is impure, because it modifies the global variable <code>counter</code>. <code>incrCounter_unsafe</code> upon being called does what it must: it immediately changes the value of <code>counter</code>.</p>
 </div>
 <div class="paragraph">
-<p>Öte yandan <code>incrCounter</code> fonksiyonunu cağırdığımızda hiçbir şey olmuyor, <code>incrCounter</code> bize "ya hic halim yok, bak ben sana istediğini yapan bir şey vereyim, sen onu kullan olur mu?" diyip bir fonksiyon dönüyor. Cevapta gelen bu fonksiyon cağırılana kadar da programın vaziyetine bir müdahele olmuyor; yani <code>incrCounter</code> bu şekilde hem <strong>tembel</strong>, hem de <strong>saf</strong> oluyor.</p>
+<p>Öte yandan <code>incrCounter</code> fonksiyonunu cağırdığımızda hiçbir şey olmuyor, <code>incrCounter</code> bize "ya hic halim yok, bak ben sana istediğini yapan bir şey vereyim, sen onu kullan olur mu?" diyip bir fonksiyon dönüyor. Cevapta gelen bu fonksiyon cağırılana kadar da programın vaziyetine bir müdahele olmuyor; yani <code>incrCounter</code> bu şekilde hem <strong>tembel</strong>, hem de <strong>saf</strong> oluyor.
+On the other hand <code>incrCounter</code> function doesn&#8217;t do a thing when it is called, it just says "hey man&#8230;&#8203; I really can&#8217;t be bothered right now. Here just take this and you just call it, won&#8217;t you?" returning a function. No change happens in the program state until the returned function is called; which is why <code>incrCounter</code> is <strong>safe</strong> and <strong>lazy</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Bu gibi tembel işlemler için genel-geçer bir çözüm yazacak olursak:</p>
+<p>An all-purpose solution for things lazy would be:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -623,7 +629,7 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>ekrana <code>x: 5</code> yazıp <code>6</code> döner</td>
+<td>prints <code>x: 5</code> and returns <code>6</code></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -631,19 +637,19 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>ekrana <code>x: 5</code> yazip <code>6</code> döner</td>
+<td>prints <code>x: 5</code> and returns <code>6</code></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>ekrana <code>x: 5</code> ve <code>x: 6</code> yazıp <code>7</code> döner</td>
+<td>prints <code>x: 5</code> and <code>x: 6</code> , returns <code>7</code></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>ekrana <code>0</code> yazar</td>
+<td>prints <code>0</code></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>ekrana <code>3</code> yazar</td>
+<td>prints <code>3</code></td>
 </tr>
 </table>
 </div>
@@ -654,7 +660,7 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Haskell&#8217;de her tür yan etki IO haznelerine konularak saf kod yazılıyor
+Haskell can be a purely functional programming language by wrapping every side effect in containers called <code>IO</code>
 </td>
 </tr>
 </table>
@@ -666,7 +672,7 @@ Haskell&#8217;de her tür yan etki IO haznelerine konularak saf kod yazılıyor
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Yukarıdaki <code>LazyF</code>'e benzer bir çözümü <a href="https://crocks.dev/docs/crocks/Arrow.html"><code>crocks</code> isimli bir kütüphanede <code>Arrow</code> olarak bulabilirsiniz</a>
+A similar solution to <code>LazyF</code> can be found in <a href="https://crocks.dev/docs/crocks/Arrow.html">a JavaScript library named <code>crocks</code> , under a different name: <code>Arrow</code></a>
 </td>
 </tr>
 </table>
@@ -677,13 +683,13 @@ Yukarıdaki <code>LazyF</code>'e benzer bir çözümü <a href="https://crocks.d
 </div>
 </div>
 <div class="sect2">
-<h3 id="_değişebilirlik_mutability_değişemezlik_immutability">Değişebilirlik (Mutability), Değişemezlik (Immutability)</h3>
+<h3 id="_mutability_immutability">Mutability, Immutability</h3>
 <div class="paragraph">
-<p>Aslında <strong>değiştirebilirlik</strong> ile iç içe bir kavram. JavaScript&#8217;teki Array ile aşağıda yazdığım ImmutableArray&#8217;in davranışını bi' karşılaştırın:</p>
+<p>A term that goes hand-in-hand with "mutative". Compare the behaviour of the Array in JavaScript to that of ImmutableArray</p>
 </div>
 <iframe height="600px" width="100%" src="https://repl.it/@aecepoglu/Immutable-Array?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 <div class="paragraph">
-<p>Array&#8217;in <code>push</code> metodunda programda varolan değerleri deşiştirir iken <code>ImmutableArray</code>'in <code>push</code> metodu varolan değerlere asla dokunmuyor. ImmutableArray gibi kendi vaziyetini koruyan nesnelere/değişken-tiplerine <strong>değişemez</strong> (immutable) deniyor. <strong>Değişemez</strong> değerler kullanıldıkları fonksiyonların saflaşmasını da teşvik ediyor.</p>
+<p>While <code>push</code> method of Array modifies values, the <code>push</code> method in <code>ImmutableArray</code> doesn&#8217;t. Data types like ImmutableArray that protect their states are called <strong>immutable</strong>. Immutable values also encourage purification of the functions they are used in</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -693,16 +699,16 @@ Yukarıdaki <code>LazyF</code>'e benzer bir çözümü <a href="https://crocks.d
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Fonksiyonel programlama dillerinde <strong>değişemez</strong> değerleri kullanmak için çabalamaya gerek yok; doğal ve kolay bir şekilde destekleniyorlar.</p>
+<p>In functional languages you don&#8217;t have to struggle to achieve <strong>immutable</strong> values; they are supported natively.</p>
 </div>
 <div class="paragraph">
-<p>Mesela OCaml&#8217;da imperative dillerden alışık olunan <strong>değişken</strong> yok. Zaten matematikteki değişken de aslında ismiyle çakışıyor; <code>g = 9.8</code> dedikten sonra formülün içerisinde <code>g</code>'nin değerini değiştirmiyorsak değişken aslında değişken değildir, değil mi?<br></p>
+<p>For example in OCaml the concept of <strong>variable</strong> doesn&#8217;t exist. To think about it the name "variable" in mathematics actually contradicts with what it actually is; you can&#8217;t declare <code>g = 9.8</code> in the beginning of your formula and half way through change <code>g</code> to something else; if a variable doesn&#8217;t vary, then it isn&#8217;t a variable is it?</p>
 </div>
 <div class="paragraph">
-<p>OCaml&#8217;da <code>let a = 5</code> dendikten sonra <code>a</code> etiketi her zaman <code>5</code> değerine eşittir. <code>let counter = ref 5</code> deyip <code>counter &#8592; !counter + 1</code> diyebilirsiniz.</p>
+<p>In OCaml once you say <code>let a = 5</code> , <code>a</code> is always a label for the value <code>5</code>. If you want modifiable values you could <code>let counter = ref 5</code> and then <code>counter &#8592; !counter + 1</code>.</p>
 </div>
 <div class="paragraph">
-<p>Record kullanımında ise:</p>
+<p>For records:</p>
 </div>
 <div class="listingblock">
 <div class="title">ocaml mutable records</div>
@@ -714,7 +720,7 @@ Yukarıdaki <code>LazyF</code>'e benzer bir çözümü <a href="https://crocks.d
               <span class="p">}</span>
 
 <span class="k">let</span> <span class="n">a_person</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="o">=</span><span class="s2">"Bruce"</span><span class="p">;</span> <span class="n">age</span><span class="o">=</span><span class="mi">60</span><span class="p">;</span> <span class="n">gender</span><span class="o">=</span><span class="nc">Male</span><span class="p">}</span>
-<span class="n">a_person</span><span class="o">.</span><span class="n">sex</span> <span class="o">&lt;-</span> <span class="nc">Female</span> <span class="c">(* HATALI *)</span>
+<span class="n">a_person</span><span class="o">.</span><span class="n">sex</span> <span class="o">&lt;-</span> <span class="nc">Female</span> <span class="c">(* ERROR *)</span>
 
 <span class="k">let</span> <span class="n">a_new_person</span> <span class="o">=</span> <span class="p">{</span><span class="n">a_person</span> <span class="k">with</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Caitlynn"</span><span class="p">;</span> <span class="n">gender</span><span class="o">=</span><span class="nc">Female</span><span class="p">}</span> <span class="c">(* OK *)</span>
 
@@ -728,10 +734,10 @@ Yukarıdaki <code>LazyF</code>'e benzer bir çözümü <a href="https://crocks.d
 </div>
 </div>
 <div class="paragraph">
-<p>Siz de immutable kod yazmak istiyorsanız ama ekibinizde JavaScript&#8217;i terkedip OCaml yazmak mümkün değilse <a href="https://github.com/immutable-js/immutable-js">immutableJS</a> kütüphanesi sayesinde primitive değerler olmasa da liste, küme, map gibi veri tiplerini mutable kullanabilirsiniz.</p>
+<p>If you too want to write code with immutable values but having your JavaScript focused team switch to OCaml is out of the picture, you may want to try <a href="https://github.com/immutable-js/immutable-js">immutableJS</a>: a library that provides immutable implementations of many collection data types</p>
 </div>
 <div class="paragraph">
-<p>"Yok istemem" diyorsanız da o zaman size bol <code>clone()</code>'lamalar, bol <code>slice()</code>'lamalar&#8230;&#8203;</p>
+<p>If your answer is "thanks but no thanks" then I can only wish you luck with your endless <code>clone()</code>ing and <code>slice(0)</code>ing&#8230;&#8203;</p>
 </div>
 </td>
 </tr>
@@ -741,10 +747,10 @@ Yukarıdaki <code>LazyF</code>'e benzer bir çözümü <a href="https://crocks.d
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ee_sonuç">Ee&#8230;&#8203; Sonuç?</h2>
+<h2 id="_uhm_conclusion">Uhm, Conclusion?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Sonuç basit, çalışan bir compose kodu:</p>
+<p>In conclusion we have a working <code>compose</code> method:</p>
 </div>
 <div class="listingblock">
 <div class="title">compose</div>
@@ -755,7 +761,7 @@ Yukarıdaki <code>LazyF</code>'e benzer bir çözümü <a href="https://crocks.d
 </div>
 </div>
 <div class="paragraph">
-<p>Tabii bana <code>R.compose</code>'un n&#8217;olduğunu soran çocuk tüm bu hikayeyi dinlemeye kalmadı&#8230;&#8203; Olsun, yarın kilitlerim ben onu aynı çok-bilmişlikle~</p>
+<p>Of course the kid that asked me what <code>R.compose</code> does has long gone&#8230;&#8203; He didn&#8217;t stick around to listet to my storytelling. That&#8217;s OK though, I&#8217;ll mansplain to him tomorrow continuing from where  we left off&#8230;&#8203;</p>
 </div>
 </div>
 </div>
@@ -775,7 +781,7 @@ Yukarıdaki <code>LazyF</code>'e benzer bir çözümü <a href="https://crocks.d
 <a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
 <br>
   <p class="mb0 mt2">
-  <a href="/posts/repl-driven-development/">prev post</a>
+  
   
   </p>
 </div>
