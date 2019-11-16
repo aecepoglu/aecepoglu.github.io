@@ -583,8 +583,7 @@ In Ruby the mutative functions have a <code>!</code> at the end of their names. 
 <p><code>incrCounter_unsafe</code> is impure, because it modifies the global variable <code>counter</code>. <code>incrCounter_unsafe</code> upon being called does what it must: it immediately changes the value of <code>counter</code>.</p>
 </div>
 <div class="paragraph">
-<p>Öte yandan <code>incrCounter</code> fonksiyonunu cağırdığımızda hiçbir şey olmuyor, <code>incrCounter</code> bize "ya hic halim yok, bak ben sana istediğini yapan bir şey vereyim, sen onu kullan olur mu?" diyip bir fonksiyon dönüyor. Cevapta gelen bu fonksiyon cağırılana kadar da programın vaziyetine bir müdahele olmuyor; yani <code>incrCounter</code> bu şekilde hem <strong>tembel</strong>, hem de <strong>saf</strong> oluyor.
-On the other hand <code>incrCounter</code> function doesn&#8217;t do a thing when it is called, it just says "hey man&#8230;&#8203; I really can&#8217;t be bothered right now. Here just take this and you just call it, won&#8217;t you?" returning a function. No change happens in the program state until the returned function is called; which is why <code>incrCounter</code> is <strong>safe</strong> and <strong>lazy</strong>.</p>
+<p>On the other hand <code>incrCounter</code> function doesn&#8217;t do a thing when it is called, it just says "hey man&#8230;&#8203; I really can&#8217;t be bothered right now. Here just take this and you just call it yourself, won&#8217;t you?" returning a function. No change happens in the program state until the returned function is called; which is why <code>incrCounter</code> is <strong>safe</strong> and <strong>lazy</strong>.</p>
 </div>
 <div class="paragraph">
 <p>An all-purpose solution for things lazy would be:</p>
