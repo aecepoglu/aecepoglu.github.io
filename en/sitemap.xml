@@ -18,7 +18,38 @@
   </url>
   
   <url>
+    <loc>/en/</loc>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/"
+                />
+  </url>
+  
+  <url>
+    <loc>/en/posts/</loc>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/posts/"
+                />
+  </url>
+  
+  <url>
     <loc>/en/about/</loc>
+    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
@@ -33,7 +64,6 @@
   
   <url>
     <loc>/en/categories/</loc>
-    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
@@ -47,24 +77,7 @@
   </url>
   
   <url>
-    <loc>/en/posts/</loc>
-    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="tr"
-                href="/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/posts/"
-                />
-  </url>
-  
-  <url>
     <loc>/en/tags/</loc>
-    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
@@ -74,22 +87,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="/en/tags/"
-                />
-  </url>
-  
-  <url>
-    <loc>/en/</loc>
-    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="tr"
-                href="/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/"
                 />
   </url>
   

@@ -27,7 +27,7 @@ I&#8217;m adding a feature to our JavaScript driven tables so it can pull/push d
 
 
 
-<meta name="generator" content="Hugo 0.40.1" />
+<meta name="generator" content="Hugo 0.57.2" />
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -98,7 +98,7 @@ I wrote two functions named <code>retrieveItems</code> and <code>drawItems</code
 </div>
 <div class="paragraph">
 <p>But that answer isn&#8217;t correct. And <code>compose</code> (or function composition) as simple as it may be is a fundamental concept and need to be understood and explained properly.
-This text has been written for the sake of <code>myPurpose</code>; to understand it and to explain it in detail.</p>
+This text has been written for the sake of <code>myCompose</code>; to understand it and to explain it in detail.</p>
 </div>
 </div>
 </div>
@@ -127,7 +127,7 @@ g(x) = x * 3
 <div class="sect2">
 <h3 id="_building_the_compose_function">Building the compose function</h3>
 <div class="paragraph">
-<p>I want to write a function that takes two functions and joins them; but first I would like to be able to describe the inputs and outputs of those functions so I can argue about how they can be joined together.</p>
+<p>My next step is to write a generic compose function; a function that takes two functions and joins them; but first I would like to be able to describe the inputs and outputs of those functions so I can argue about how they can be joined together.</p>
 </div>
 <div class="paragraph">
 <p>In functional languages, function signatures resemble that of Haskell:</p>
@@ -141,7 +141,7 @@ g(x) = x * 3
 <p><code>f :: string &#8594; int</code>: The function named <code>f</code> takes <code>string</code> and returns <code>int</code></p>
 </li>
 <li>
-<p><code>int &#8594; int &#8594; int</code>: 2 <code>int</code> alıp bir <code>int</code> dönen bir metod</p>
+<p><code>int &#8594; int &#8594; int</code>: A function that takes 2 integers and returns one integer</p>
 </li>
 <li>
 <p><code>indexOf: [string] &#8594; int</code>: a function named <code>indexOf</code> that takes <code>string</code> list and returns an <code>int</code></p>
@@ -152,7 +152,7 @@ g(x) = x * 3
 </ol>
 </div>
 <div class="paragraph">
-<p>Given the syntax for function signatures, lets continue the conversation about composing:</p>
+<p>Being able to read function signatures will help me argue about which functions I can compose together and how. Lets return to a a simple composition example to see how:</p>
 </div>
 <div class="listingblock">
 <div class="title">f,g,fog in JavaScript</div>
@@ -190,7 +190,7 @@ fog :: 'a -&gt; 'c</pre>
 <span class="nx">uppercase</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span>
 
 <span class="c1">// cities :: [string]</span>
-<span class="nx">cities</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">ANKARA</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">ISTANBUL</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">KAYSERI</span><span class="dl">"</span><span class="p">]</span>
+<span class="nx">cities</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"ANKARA"</span><span class="p">,</span> <span class="s2">"ISTANBUL"</span><span class="p">,</span> <span class="s2">"KAYSERI"</span><span class="p">]</span>
 
 <span class="c1">// indexOfCity :: string -&gt; int</span>
 <span class="nx">indexOfCity</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">indexOf</span><span class="p">(</span><span class="nx">uppercase</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
@@ -384,13 +384,7 @@ The <code>compose</code> above <strong>DOES NOT WORK</strong>
 </div>
 </div>
 <div class="paragraph">
-<p>Artık sağır Sultan da, onun bilgisayar mühendisliği okuyan kızıyla sohpet ederken <em>"a benim bilgisayar da cok yavaşladı, n&#8217;apsak buna? Sen format atmayı biliyo musun?"</em> diyen ve istemediği cevabı alınca da <em>"E ne anladık bundan! Bizim mahalledeki bilgisayar tamircisi bile bilir bunu"</em> diyen eniştesi de problemin n&#8217;olduğunu anladı galiba.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://i.pinimg.com/736x/bd/fe/98/bdfe98a28b94edc7d30487099e935227.jpg" alt="Jen&#8217;s desktop in IT Crowd">
-</div>
-<div class="title">eg: what you may find the said person&#8217;s desktop to look like</div>
+<p>Is it obvious yet?</p>
 </div>
 <div class="paragraph">
 <p>The <code>reverse</code> method of <code>Array</code> modifies the array it is called on.<br>
@@ -460,7 +454,7 @@ In Ruby the mutative functions have a <code>!</code> at the end of their names. 
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="nx">fabAndEdit</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="p">{</span>
-	<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#text</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">x</span>
+	<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#text"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">x</span>
 	<span class="k">return</span> <span class="nx">A2B</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span>
 <span class="p">}</span></code></pre>
 </div>
@@ -607,7 +601,7 @@ On the other hand <code>incrCounter</code> function doesn&#8217;t do a thing whe
 	<span class="nx">performUnsafe</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$f</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="nx">foo</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">x: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">x</span><span class="p">)</span>
+<span class="nx">foo</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"x: "</span> <span class="o">+</span> <span class="nx">x</span><span class="p">)</span>
             <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span>
 <span class="nx">foo</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <i class="conum" data-value="1"></i><b>(1)</b>
 <span class="k">new</span> <span class="nx">LazyF</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>

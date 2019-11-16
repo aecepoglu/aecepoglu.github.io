@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.40.1" />
+<meta name="generator" content="Hugo 0.57.2" />
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -188,7 +188,7 @@ fog :: 'a -&gt; 'c</pre>
 <span class="nx">uppercase</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span>
 
 <span class="c1">// cities :: [string]</span>
-<span class="nx">cities</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">ANKARA</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">ISTANBUL</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">KAYSERI</span><span class="dl">"</span><span class="p">]</span>
+<span class="nx">cities</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"ANKARA"</span><span class="p">,</span> <span class="s2">"ISTANBUL"</span><span class="p">,</span> <span class="s2">"KAYSERI"</span><span class="p">]</span>
 
 <span class="c1">// indexOfCity :: string -&gt; int</span>
 <span class="nx">indexOfCity</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">indexOf</span><span class="p">(</span><span class="nx">uppercase</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
@@ -458,7 +458,7 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="nx">fabAndEdit</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="p">{</span>
-	<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#text</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">x</span>
+	<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#text"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">x</span>
 	<span class="k">return</span> <span class="nx">A2B</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span>
 <span class="p">}</span></code></pre>
 </div>
@@ -601,7 +601,7 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 	<span class="nx">performUnsafe</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$f</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="nx">foo</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">x: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">x</span><span class="p">)</span>
+<span class="nx">foo</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"x: "</span> <span class="o">+</span> <span class="nx">x</span><span class="p">)</span>
             <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span>
 <span class="nx">foo</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <i class="conum" data-value="1"></i><b>(1)</b>
 <span class="k">new</span> <span class="nx">LazyF</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
