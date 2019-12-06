@@ -3,18 +3,8 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/</loc>
-    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="tr"
-                href="/"
-                />
+    <loc>/posts/immutability-alt/</loc>
+    <lastmod>2019-12-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -33,28 +23,12 @@
   </url>
   
   <url>
-    <loc>/posts/</loc>
-    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="tr"
-                href="/posts/"
-                />
-  </url>
-  
-  <url>
     <loc>/posts/repl-driven-development/</loc>
     <lastmod>2019-07-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/about/</loc>
-    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -69,6 +43,7 @@
   
   <url>
     <loc>/categories/</loc>
+    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -82,7 +57,24 @@
   </url>
   
   <url>
+    <loc>/posts/</loc>
+    <lastmod>2019-12-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/posts/"
+                />
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
+    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -92,6 +84,22 @@
                 rel="alternate"
                 hreflang="tr"
                 href="/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-12-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/"
                 />
   </url>
   

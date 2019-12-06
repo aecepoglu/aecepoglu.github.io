@@ -6,10 +6,22 @@
     <description>Recent content in Posts on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 06 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Değişebilirlik(Mutability) Suratınızda Patlayınca</title>
+      <link>/posts/immutability-alt/</link>
+      <pubDate>Fri, 06 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/immutability-alt/</guid>
+      <description>Sıradan bir iş günü. JavaScript&amp;#8217;te tablolarımızdan birisine sayfalar arasında geçiş yaparken veri indir/kaldır yapma kabiliyeti ekliyorum (halk arasında buna &#34;pagination&#34; diyorlar). retrieveItems diye ve drawItems diye birer fonksiyon yazdım. retrieveItemsAndDraw yazıp çözüme ulaşmak üzereyken şu kodu yazdığımı farkediyorum:
+ const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   Ekip arkadaşlarımdan birisi bu satırda n&amp;#8217;aptığımı sorduğunda &#34;Basit!&#34; diye cevaplıyorum:
+  Bu iki fonksiyonu birleştirip yeni bir fonksiyon oluşturuyorum.
+ De ki f(x) = 2x + 3 demek istiyorum.</description>
+    </item>
     
     <item>
       <title>Bileşke Fonksiyon (compose), Birleştirebilme (Composability), Değişemezlik (Immutability)</title>
