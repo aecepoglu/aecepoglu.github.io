@@ -28,7 +28,9 @@
 
 
 
-<meta name="generator" content="Hugo 0.40.1" />
+<meta name="generator" content="Hugo 0.61.0" />
+
+
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -42,9 +44,7 @@
   --background-color: #fff;
 }</style>
 <link href='/css/tachyons.min.css' rel="stylesheet">
-<link href='/css/styles.css' rel="stylesheet">
-<link href='/css/asciidoctor.css' rel="stylesheet">
-<link href='/css/codehl.css' rel="stylesheet">
+<link href='/style.css' rel="stylesheet">
 
 
 <link rel="icon" 
@@ -55,6 +55,18 @@ type="image/x-icon"/>
 
 <link href='/feed.xml' rel="alternate" type="application/atom+xml" title="aecepoglu" />
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	displayAlign: "left",
+	asciimath2jax: {
+		delimiters: [['\\$', '\\$']]
+	}
+});
+</script>
+
+
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=AM_HTMLorMML"> </script>
+
 </head>
 <body class="global-font">
   <nav class=" flex-ns justify-between border-box pa3 pl3-l pr2-l mt1 mt0-ns" id="navbar">
@@ -63,6 +75,8 @@ type="image/x-icon"/>
   </div>
   
   <div class=" flex-ns mt2 mt0-ns pv1">
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/posts/index.xml' title="rss">rss</a>
     
       <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/en/' title="en">en</a>
     
@@ -182,12 +196,14 @@ Yani <code>reverse</code> fonksiyonu <code>mutative</code> .</p>
 <div class="paragraph">
 <p><em>Bileşke fonksiyon</em>u matematikten hatırlıyorsunuz değil mi? Birden fazla fonksiyonu tek bir fonksiyon  altinda birleştirmeye yarıyor. <em>Bileşke</em>, <em>birleştirebilme</em> (yani "composability"); fonksiyonel programlamada "modülerlik" elde edebilmek için yegane silahımız.</p>
 </div>
-<div class="listingblock">
+<div class="stemblock">
 <div class="title">f,g,fog Matematikte</div>
 <div class="content">
-<pre>f(x) = x + 2
-g(x) = x * 3
-(fog)(x) = f(g(x)) = (3 * x) + 2</pre>
+\$f(x) = x + 2\$<br>
+<br>
+\$g(x) = 3x\$<br>
+<br>
+\$(f@g)(x) = f(g(x)) = (3x) + 2\$
 </div>
 </div>
 <div class="listingblock">
@@ -530,16 +546,24 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 <a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
 <br>
   <p class="mb0 mt2">
-  <a href="/posts/immutability/">prev post</a>
+  <a href="/posts/repl-driven-development/">prev post</a>
   
   </p>
 </div>
 
   <footer class="content-width mt0 mt5-l mb4 f6 center ph3 gray tc tl-l">
-  <hr class="dn db-l ml0-l gray w3"><br>
-  Powered by <a href="https://gohugo.io/" target="_blank" class="link gray dim">Hugo</a>, based on the <a href="https://github.com/lingxz/er" target="_blank" class="link gray dim">Er</a> theme. <br>
-  
+	<hr class="dn db-l ml0-l gray w3"><br>
+	Powered by <a href="https://gohugo.io/" target="_blank" class="link gray dim">Hugo</a>, based on the <a href="https://github.com/lingxz/er" target="_blank" class="link gray dim">Er</a> theme. <br>
+	
 </footer>
+
+<script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101227184);</script>
+<script async src="//static.getclicky.com/js"></script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101227184ns.gif" /></p></noscript>
+
+</body>
+</html>
+
   
 
 

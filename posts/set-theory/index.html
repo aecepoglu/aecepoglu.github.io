@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+  <title>Kitap Notları: Naive Set Theory - aecepoglu</title>
+  <meta content='Kitap Notları: Naive Set Theory - aecepoglu' property='title' />
+  <meta content='Kitap Notları: Naive Set Theory - aecepoglu' property='og:title' />
+
+
+<meta property="og:description" content="Bir süre önce teorik (ve pratik) yazılım ve matematik bilgimi yenilemek için bir maceraya atıldım. Bu yolculktaki ilk adım &#34;ben zaten ilkokulda bunu öğrenmedim mi?&#34; dedirterek küme teorisi idi.
+ Yakında kendisinden daha fazla bahsedeceğim &#34;Prolog&#34; dilinden örnekler sunmak için bunu fırsat bilip notlarımı sizinle paylaşmak istedim.
+   Giriş Kitap adı üzerinde &#34;naive&#34;, yani cebir kitaplarında tercih edilen kuramsal (sunulan tüm bilginin kuramlar ile yapıldığı) biçimde değil de daha söz öncelikli bir yöntem tercih ediliyor." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/set-theory/" />
+
+
+<meta property="article:published_time" content="2019-12-16T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2019-12-16T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.61.0" />
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<style type="text/css">/*https://coolors.co/afd5aa-f0f2ef-a69f98-3d3d3d-8c6057*/
+:root {
+  --main-color: #8C6056; 
+  --secondary-color: #AFD5AA;
+  --logo-text-color: #fff;
+  --body-text-color: #3d3d3d;
+  --heading-text-color: #383838;
+  --background-color: #fff;
+}</style>
+<link href='/css/tachyons.min.css' rel="stylesheet">
+<link href='/css/styles.css' rel="stylesheet">
+<link href='/style.css' rel="stylesheet">
+
+
+<link rel="icon" 
+ 
+  href='/favicon.ico'
+
+type="image/x-icon"/>
+
+<link href='/feed.xml' rel="alternate" type="application/atom+xml" title="aecepoglu" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	displayAlign: "left",
+	asciimath2jax: {
+		delimiters: [['\\$', '\\$']]
+	}
+});
+</script>
+
+
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=AM_HTMLorMML"> </script>
+
+</head>
+<body class="global-font">
+  <nav class=" flex-ns justify-between border-box pa3 pl3-l pr2-l mt1 mt0-ns" id="navbar">
+  <div class="flex">
+    <a class="f4 fw6 ttu no-underline dim bg-main-color pv1 ph2 br2" id="site-title" href='/' title="Home">aecepoglu</a>
+  </div>
+  
+  <div class=" flex-ns mt2 mt0-ns pv1">
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/posts/index.xml' title="rss">rss</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/en/' title="en">en</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/tr/' title="tr">tr</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/about' title="hakkimda">hakkimda</a>
+    
+  </div>
+  
+</nav>
+  
+<main class="center mv4 content-width ph3">
+  <div class="f3 fw6 heading-color heading-font post-title">Kitap Notları: Naive Set Theory</div>
+  <p class="silver f6 mt1 mb4 post-meta">
+    <time>16 Dec 2019</time> 
+    
+    
+    
+  </p>
+  <div class="lh-copy post-content"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bir süre önce teorik (ve pratik) yazılım ve matematik bilgimi yenilemek için bir maceraya atıldım. Bu yolculktaki ilk adım "ben zaten ilkokulda bunu öğrenmedim mi?" dedirterek küme teorisi idi.</p>
+</div>
+<div class="paragraph">
+<p>Yakında kendisinden daha fazla bahsedeceğim "Prolog" dilinden örnekler sunmak için bunu fırsat bilip notlarımı sizinle paylaşmak istedim.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_giriş">Giriş</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kitap adı üzerinde "naive", yani cebir kitaplarında tercih edilen kuramsal (sunulan tüm bilginin kuramlar ile yapıldığı) biçimde değil de daha söz öncelikli bir yöntem tercih ediliyor.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_küme_elemanlarının_uzantısıdır">Küme Elemanlarının Uzantısıdır</h2>
+<div class="sectionbody">
+<div class="stemblock">
+<div class="title">ait olma</div>
+<div class="content">
+\$x in A.\$
+</div>
+</div>
+<div class="listingblock">
+<div class="title">prolog</div>
+<div class="content">
+<pre class="highlight"><code>elem(x, a).</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Yani bir küme sadece ama sadece elemanlarından ibarettir.</p>
+</div>
+<div class="paragraph">
+<p>Bir kümeyi ve elemanlarını kısaca bu şekilde gösterebiliriz:</p>
+</div>
+<div class="stemblock">
+<div class="title">küme tanımlama</div>
+<div class="content">
+\$S1 = {1, 2}\$<br>
+<br>
+\$S2 = {2, 4, 6}\$
+</div>
+</div>
+<div class="paragraph">
+<p>Prolog&#8217;da bunları herhangi bir veri tipi kullanmadan tanımlayacağız, mantık kuralları küme tanımları için gayet yeterli.</p>
+</div>
+<div class="listingblock">
+<div class="title">prolog&#8217;da küme tanımlama</div>
+<div class="content">
+<pre class="highlight"><code>set(s1). <i class="conum" data-value="1"></i><b>(1)</b>
+set(s2).
+e(1, s1). <i class="conum" data-value="2"></i><b>(2)</b>
+e(2, s1).
+e(2, s2).
+e(4, s2).
+e(6, s2).
+
+% ?- set(s1). <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b>
+% true.
+
+% ?- set(ahmet).
+% false.
+
+% ?- set(X). <i class="conum" data-value="5"></i><b>(5)</b>
+% X = s1 ;
+% X = s2 .
+
+% ?- e(2, X). <i class="conum" data-value="6"></i><b>(6)</b>
+% X = s1 ;
+% X = s2 .</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Neyin küme olduğunun kuralı.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Kümelerde neler olduğunun kuralı.<br></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>%</code> ile başlayan satırlar comment. <code>?-</code> ise bunun prolog repl&#8217;ine atılan bir sorgu olduğunu göstermek için.<br></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Burada <code>s1</code> adında bir kümenin varlığı sorgulanıyor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Tüm kümeler listeleniyor/sorgulanıyor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><code>2</code>'nin ait olduğu tüm kümeler sorgulanıyor.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Kümeleri ve eleman-küme ilişkisini ayrı yönetmek istemeyip böyle bir sadeleştirmeye de gidilebilir:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>e(1, s1).
+e(2, s1).
+e(2, s2).
+e(4, s2).
+e(6, s2).
+
+item(X) :- e(X, _).
+set(X) :- e(_, X).</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>İki küme de ancak ve ancak tamamen aynı elemanları içeriyorsa eşittir.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$S_1 = S_2 =&gt; AA x, (x in S_1 &lt;=&gt; x in S_2)\$<br>
+<br>
+\$S_1 != S_2\$<br>
+<br>
+\$S1 = S3\$<br>
+<br>
+\$S1 != S2\$
+</div>
+</div>
+<div class="listingblock">
+<div class="title">prolog&#8217;da küme tanımlama</div>
+<div class="content">
+<pre class="highlight"><code class="language-prolog" data-lang="prolog">not_set_eql(A, B) :- e(X, A), not(e(X, B)).
+not_set_eql(A, B) :- e(X, B), not(e(X, A)).
+set_eql(A, B) :- set(A), set(B), not(not_set_eql(A, B)).</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Kümelerin eşitliğinin Prolog&#8217;daki formülünü de tabii ki yumurtlayarak bulmuyoruz, mantıkla ispatlıyoruz:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$a &lt;=&gt; b = (a ^^ b) vv (not a ^^ not b)\$<br>
+<br>
+\$not(AA x, f(x)) = EE x, bar f(x)\$<br>
+<br>
+\$"Yukarıdaki iki mantık kuralına ihtiyaç olacak."\$<br>
+<br>
+\$S_1 = S_2 =&gt; AA x, (x in S_1 =&gt; x in S_2), (x in S_2 =&gt; x in S_1)\$<br>
+<br>
+\$"İki tarafın da zıttını alırsak;"\$<br>
+<br>
+\$S_1 != S_2 =&gt; not(AA x, (x in S_1 &lt;=&gt; x in S_2))\$<br>
+<br>
+\$S_1 != S_2 =&gt; EE x, (x in S_1 ^^ x !in S_2) vv (x !in S_2 ^^ x in S_1))\$
+</div>
+</div>
+<div class="paragraph">
+<p>Bu gibi tanımları basitleştirmek için <code>forall</code> kullanılabilir, ama ihtiyacımız olmadığını da görmüş olduk.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-prolog" data-lang="prolog">set_eql(A, B) :- set(A), set(B), forall(e(X, A), e(X, B)), forall(e(X, B), e(X, A)). <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Bu kuralın \$S_1 = S_2 =&gt; AA x, (x in S_1 =&gt; x in S_2), (x in S_2 =&gt; x in S_1)\$ ile aynı olduğunu farkettiniz mi?</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_alt_küme_üst_küme">Alt Küme, Üst Küme</h3>
+<div class="paragraph">
+<p>Eğer bir küme (<code>A</code> diyelim) başka bir kümenin (<code>B</code> diyelim buna da) alt kümesi ise, o zaman <code>A</code>'de olan her eleman <code>B</code>de vardır.</p>
+</div>
+<div class="paragraph">
+<p>Bu \$A sub B\$ diye gösteriliyor.</p>
+</div>
+<div class="paragraph">
+<p>\$A sub B\$ ile \$B sup A\$ aynı anlamda.</p>
+</div>
+<div class="listingblock">
+<div class="title">Prolog&#8217;da alt küme</div>
+<div class="content">
+<pre class="highlight"><code>e(1, s3).
+e(2, s3).
+e(3, s3).
+e(4, s3).
+e(5, s3).
+
+subset(A, B) :- set(A), set(B), forall(e(X, A), e(X, B)).
+superset(A, B) :- subset(B, A).
+
+% ?- subset(s1, X).
+% X = s1 ;
+% X = s3 .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kesişim_ve_birleşim_kümeleri">Kesişim ve Birleşim Kümeleri</h3>
+<div class="paragraph">
+<p>Hem <code>A</code> kümesinde hem <code>B</code> kümesinde olan elemanlar \$A nn B\$ kümesinde, <code>A</code>'da <strong>ya da</strong> <code>B</code>'de olan elemanlar ise \$A uu B\$ kümesinde deniyor.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$A nn B = {x : x in A ^^ x in B}\$<br>
+<br>
+\$A uu B = {x : x in A vv x in B}\$
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>in_intersection(X, A, B) :- e(X, A), e(X, B).
+
+in_union(X, A, _) :- e(X, A).
+in_union(X, _, B) :- e(X, B).
+
+% ?- in_intersection(X, s1, s2).
+% X = 2 ;
+
+% ?- in_union(X, s1, s2).
+% X = 1 ;
+% X = 2 ;
+% X = 4 ;
+% X = 6 .</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fark_kümesi">Fark Kümesi</h3>
+<div class="paragraph">
+<p><code>A</code> kümesinde olup <code>B</code> kümesinde olmayan elemanlar <code>A - B</code> (veya <code>A/B</code>) ile tanımlanıyor.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\$A - B = {x : x in A ^^ x notin B}\$
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>in_diff(X, A, B) :- e(X, A), not(e(X, B)).</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_boş_küme_evrensel_küme">Boş Küme, Evrensel Küme</h3>
+<div class="paragraph">
+<p>Her <strong>şey</strong>i içeren kümeye <em>Evrensel Küme</em> deniyor. Bu tanım gereği evrensel kümenin kendisini de içermesi gerek; bu yüzden de varlığı tartışmalı.</p>
+</div>
+<div class="paragraph">
+<p>Bir de hiçbir şey içermeyen küme var, ona da adı üstünde: <em>Boş Küme</em> deniyor.</p>
+</div>
+<div class="paragraph">
+<p>Her küme <em>boş küme</em>yi alt küme olarak içerir.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>set(empty).
+e(_, universe).
+
+% ?- e(1, universe).
+% true.
+
+% ?- e(ahmet, universe).
+% true.
+
+% ?- superset(universe, s1).
+% true.
+
+% ?- e(X, universe), item(X).
+% X = 1 ;
+% X = 2 ;
+% X = 3 ;
+% X = 4 ;
+% X = 5 ;
+% X = 6 .
+
+% ?- e(X, universe), set(X).
+% X = empty.
+% X = s1 ;
+% X = s2 ;
+% X = s3 ;
+% X = universe .
+
+% ?- in_intersection(X, universe, s1), item(X). <i class="conum" data-value="1"></i><b>(1)</b>
+% X = 1 ;
+% X = 2 .
+
+% ?- subset(empty, s1).
+% true.
+
+% in_intersection(X, empty, s1).
+% false.</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Bu sorgunun cevabı <code>e(X, s1).</code> ile aynı olmalı.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+ 
+
+
+
+
+
+
+
+
+<div class="pagination tc tr-l db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+  
+<a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
+<br>
+  <p class="mb0 mt2">
+  <a href="/posts/immutability-alt/">prev post</a>
+  
+  </p>
+</div>
+
+  <footer class="content-width mt0 mt5-l mb4 f6 center ph3 gray tc tl-l">
+	<hr class="dn db-l ml0-l gray w3"><br>
+	Powered by <a href="https://gohugo.io/" target="_blank" class="link gray dim">Hugo</a>, based on the <a href="https://github.com/lingxz/er" target="_blank" class="link gray dim">Er</a> theme. <br>
+	
+</footer>
+
+<script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101227184);</script>
+<script async src="//static.getclicky.com/js"></script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101227184ns.gif" /></p></noscript>
+
+</body>
+</html>
+
+  
+
+
+<script type="text/javascript">
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+
+  
+
+  
+  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+      document.getElementById("scroll-to-top").style.display = "inline";
+      document.getElementById("scroll-to-top").style.visibility = "visible";
+      document.getElementById("scroll-to-top").style.opacity = "1";
+  } else {
+      document.getElementById("scroll-to-top").style.visibility = "hidden";
+      document.getElementById("scroll-to-top").style.opacity = "0";
+  }
+  
+  prevScrollpos = currentScrollPos;
+}
+
+
+function topFunction() {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0; 
+}
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
