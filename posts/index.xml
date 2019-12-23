@@ -6,10 +6,27 @@
     <description>Recent content in Posts on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 06 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kurt, Koyun, Ot</title>
+      <link>/posts/wolf-sheep-grass/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/wolf-sheep-grass/</guid>
+      <description>Bir çobanın bir kurdu, bir koyunu, bir balya da otu var.
+Bunları nehrin karşı yakasına taşımak istiyor.
+Nehirde bir kayık var.
+Kayık ancak çobanı ve bir adet şeyi (ot, koyun ya da kurt) taşıyacak kadar büyük.
+Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebiliyor.
+Çoban herkesi sağ sağlim nasıl karşıya taşır?
+ Evet, farkındayım&amp;#8230;&amp;#8203; Basit bir bulmaca.
+ Peki ya bunu kod ile çozecek olsak?
+ İleride mantık-proglamlamadan ve declarative programlamadan bahsedeceğim.</description>
+    </item>
     
     <item>
       <title>Değişebilirlik(Mutability) Suratınızda Patlayınca</title>

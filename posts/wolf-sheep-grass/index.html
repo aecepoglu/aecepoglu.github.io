@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+  <title>Kurt, Koyun, Ot - aecepoglu</title>
+  <meta content='Kurt, Koyun, Ot - aecepoglu' property='title' />
+  <meta content='Kurt, Koyun, Ot - aecepoglu' property='og:title' />
+
+
+<meta property="og:description" content="Bir çobanın bir kurdu, bir koyunu, bir balya da otu var.
+Bunları nehrin karşı yakasına taşımak istiyor.
+Nehirde bir kayık var.
+Kayık ancak çobanı ve bir adet şeyi (ot, koyun ya da kurt) taşıyacak kadar büyük.
+Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebiliyor.
+Çoban herkesi sağ sağlim nasıl karşıya taşır?
+ Evet, farkındayım&#8230;&#8203; Basit bir bulmaca.
+ Peki ya bunu kod ile çozecek olsak?
+ İleride mantık-proglamlamadan ve declarative programlamadan bahsedeceğim." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/wolf-sheep-grass/" />
+
+
+<meta property="article:published_time" content="2019-12-22T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2019-12-22T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.61.0" />
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<style type="text/css">/*https://coolors.co/afd5aa-f0f2ef-a69f98-3d3d3d-8c6057*/
+:root {
+  --main-color: #8C6056; 
+  --secondary-color: #AFD5AA;
+  --logo-text-color: #fff;
+  --body-text-color: #3d3d3d;
+  --heading-text-color: #383838;
+  --background-color: #fff;
+}</style>
+<link href='/css/tachyons.min.css' rel="stylesheet">
+<link href='/css/styles.css' rel="stylesheet">
+<link href='/style.css' rel="stylesheet">
+
+
+<link rel="icon" 
+ 
+  href='/favicon.ico'
+
+type="image/x-icon"/>
+
+<link href='/feed.xml' rel="alternate" type="application/atom+xml" title="aecepoglu" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	displayAlign: "left",
+	asciimath2jax: {
+		delimiters: [['\\$', '\\$']]
+	}
+});
+</script>
+
+
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=AM_HTMLorMML"> </script>
+
+</head>
+<body class="global-font">
+  <nav class=" flex-ns justify-between border-box pa3 pl3-l pr2-l mt1 mt0-ns" id="navbar">
+  <div class="flex">
+    <a class="f4 fw6 ttu no-underline dim bg-main-color pv1 ph2 br2" id="site-title" href='/' title="Home">aecepoglu</a>
+  </div>
+  
+  <div class=" flex-ns mt2 mt0-ns pv1">
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/posts/index.xml' title="rss">rss</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/en/' title="en">en</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/tr/' title="tr">tr</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/about' title="hakkimda">hakkimda</a>
+    
+  </div>
+  
+</nav>
+  
+<main class="center mv4 content-width ph3">
+  <div class="f3 fw6 heading-color heading-font post-title">Kurt, Koyun, Ot</div>
+  <p class="silver f6 mt1 mb4 post-meta">
+    <time>22 Dec 2019</time> 
+    
+    
+    
+  </p>
+  <div class="lh-copy post-content"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bir çobanın bir kurdu, bir koyunu, bir balya da otu var.<br>
+Bunları nehrin karşı yakasına taşımak istiyor.<br>
+Nehirde bir kayık var.<br>
+Kayık ancak çobanı ve bir adet şeyi (ot, koyun ya da kurt) taşıyacak kadar büyük.<br>
+Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebiliyor.<br>
+Çoban herkesi sağ sağlim nasıl karşıya taşır?</p>
+</div>
+<div class="paragraph">
+<p>Evet, farkındayım&#8230;&#8203; Basit bir bulmaca.</p>
+</div>
+<div class="paragraph">
+<p>Peki ya bunu kod ile çozecek olsak?</p>
+</div>
+<div class="paragraph">
+<p>İleride mantık-proglamlamadan ve declarative programlamadan bahsedeceğim. Bu yazı da o geleceğin ön-izlemesi olsun.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_potassco_cevap_kümesi_programlama">Potassco: Cevap Kümesi Programlama</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mantık programlama, problemi mantık kuralları halinde yazıp çözüme gidilen bir programlama biçimi.</p>
+</div>
+<div class="paragraph">
+<p>Cevap-Kümesi programlama (<a href="https://en.wikipedia.org/wiki/Answer_set_programming">Answer Set Programming</a>) ise bunun daha da özel bir hali: doğru/yanlış tüm çözümlerin nasıl üretileceğini ve kısıtlarınızı belirtiyorsunuz. Sistem bu bilgiler çerçevesinde bulabildiği çözümleri sıralıyor.</p>
+</div>
+<div class="paragraph">
+<p>Potassco(<a href="https://potassco.org/about/" class="bare">https://potassco.org/about/</a>) da bu yaklaşımı sunan yegane çözümlerden birisi.</p>
+</div>
+<div class="paragraph">
+<p>Dili ve yaklaşımı daha ufak bir problem ile örneklendireyim:</p>
+</div>
+<div class="sect2">
+<h3 id="_üçe_i̇kili_takla_attırmaca">Üçe İkili Takla Attırmaca</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Elinizde yan yana dizili 3 kart var.</p>
+</li>
+<li>
+<p>Bu kartların üzerinde soldan sağa sırayla "A", "B" ve "C" yazıyor.</p>
+</li>
+<li>
+<p>Yapabileceğiniz iki çeşit hamle var: soldaki kart ile ortadaki kartı yer değiştirebilirsiniz ya da ortadaki kart ile sağdaki kartı yer değiştirebilirsiniz.</p>
+</li>
+<li>
+<p>Hangi hamleleri yapmanız gerekir ki kartlar ters sıraya girsinler: soldan sağa "C", "B", "A" şeklinde.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">clingo kodu</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">finish</span><span class="p">(</span><span class="ss">c</span><span class="p">,</span> <span class="ss">b</span><span class="p">,</span> <span class="ss">a</span><span class="p">).</span>
+<span class="ss">max_moves</span><span class="p">(</span><span class="m">3</span><span class="p">).</span>
+
+<span class="ss">state</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="ss">a</span><span class="p">,</span> <span class="ss">b</span><span class="p">,</span> <span class="ss">c</span><span class="p">).</span>
+<span class="ss">state</span><span class="p">(</span><span class="nv">T</span><span class="o">+</span><span class="m">1</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Z</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">state</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">state</span><span class="p">(</span><span class="nv">T</span><span class="o">+</span><span class="m">1</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Z</span><span class="p">,</span> <span class="nv">Y</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">max_moves</span><span class="p">(</span><span class="nv">T</span><span class="p">).</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="ss">state</span><span class="p">(</span><span class="nv">T</span><span class="o">+</span><span class="m">1</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Z</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">state</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">state</span><span class="p">(</span><span class="nv">T</span><span class="o">+</span><span class="m">1</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Z</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">max_moves</span><span class="p">(</span><span class="nv">T</span><span class="p">).</span> <i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="p">:-</span> <span class="ss">state</span><span class="p">(</span><span class="nv">M</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">),</span> <span class="ss">max_moves</span><span class="p">(</span><span class="nv">M</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">finish</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">).</span> <i class="conum" data-value="3"></i><b>(3)</b>
+
+<span class="o">#</span><span class="ss">show</span> <span class="ss">state</span><span class="o">/</span><span class="m">4</span><span class="p">.</span> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Eğer <code>T</code> vaktinde <code>X,Y,Z</code> halinde bir sistemim var ise <code>T+1</code> halinde bu <code>X,Z,Y</code> olabilir (<code>Y</code> ve <code>Z</code> yer değiştirirse), eğer zaten <code>T+1</code> anı için ben <code>X</code> ve <code>Y</code>'yi yer değiştirmeyi seçmemiş isem.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>bir evvelki maddenin benzeri</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Son state&#8217;in istediğim hal olmadığı durumları istemiyorum</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Sonuçta sadece <code>state</code> kuralına dair bilgileri göster (<code>/4</code> denmesi bu <code>state</code> kuralının 4 argüman aldığını belirtiyor)</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Bu ve tüm clingo kodlarını <a href="https://potassco.org/clingo/run/" class="bare">https://potassco.org/clingo/run/</a> adresinde deneyebilirsiniz.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">sonuç:</div>
+<div class="content">
+<pre>Solving...
+Answer: 1
+state(0,a,b,c) state(1,a,c,b) state(2,c,a,b) state(3,c,b,a)
+SATISFIABLE</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ancak bu <code>T</code>'den <code>T+1</code>'e geçiş anı için tanımladığım kural bu seviyede bir problem için yeterli olsa da daha karmaşık olanlarda zorluk çıkaracak. Üstesinden kısıt-kapsamında-kural üreterek gelebiliyoruz:</p>
+</div>
+<div class="listingblock">
+<div class="title">kısıtlar ile kural türetme</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">card</span><span class="p">(</span><span class="ss">a</span><span class="p">;</span> <span class="ss">b</span><span class="p">;</span> <span class="ss">c</span><span class="p">).</span>
+<span class="ss">finish</span><span class="p">(</span><span class="ss">c</span><span class="p">,</span> <span class="ss">b</span><span class="p">,</span> <span class="ss">a</span><span class="p">).</span>
+<span class="ss">max_moves</span><span class="p">(</span><span class="m">3</span><span class="p">).</span>
+
+<span class="p">{</span> <span class="ss">state</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">)</span> <span class="o">:</span> <span class="ss">card</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">card</span><span class="p">(</span><span class="nv">Y</span><span class="p">),</span> <span class="ss">card</span><span class="p">(</span><span class="nv">Z</span><span class="p">)</span> <span class="p">}</span> <span class="o">=</span> <span class="m">1</span> <span class="p">:-</span> <span class="ss">max_moves</span><span class="p">(</span><span class="nv">M</span><span class="p">),</span> <span class="nv">T</span><span class="o">=</span><span class="m">1</span><span class="p">..</span><span class="nv">M</span><span class="p">.</span> <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="ss">state</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="ss">a</span><span class="p">,</span> <span class="ss">b</span><span class="p">,</span> <span class="ss">c</span><span class="p">).</span>
+<span class="ss">achievable_state</span><span class="p">(</span><span class="nv">T</span><span class="o">+</span><span class="m">1</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Z</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">state</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">).</span>
+<span class="ss">achievable_state</span><span class="p">(</span><span class="nv">T</span><span class="o">+</span><span class="m">1</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Z</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">state</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">).</span>
+
+<span class="p">:-</span> <span class="ss">state</span><span class="p">(</span><span class="nv">M</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">),</span> <span class="ss">max_moves</span><span class="p">(</span><span class="nv">M</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">finish</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">).</span>
+<span class="p">:-</span> <span class="ss">state</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">achievable_state</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">),</span> <span class="ss">max_moves</span><span class="p">(</span><span class="nv">M</span><span class="p">),</span> <span class="nv">T</span><span class="o">=</span><span class="m">1</span><span class="p">..</span><span class="nv">M</span><span class="p">.</span> <i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="o">#</span><span class="ss">show</span> <span class="ss">state</span><span class="o">/</span><span class="m">4</span><span class="p">.</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>1</code>'den <code>max_moves</code>'a kadar her bir <code>T</code> için sadece 1 değer üret.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>bir yer-değiştirme ile elde edilemeyecek durumları istemiyorum.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Bu 3 kart probleminde yapmamıza izin verilen 2 hamle ile kartların olabileceği tüm dizilimleri elde etmek mümkün. Bu 3 kart üzerinde tanımlayabileceğimiz her yeni hamleyi (1&#8217;nci kart ile 3&#8217;ncü kartı yer değiştirmek gibi, kartları bir sağa kaydırmak gibi [<code>ABC&#8217;yi `CAB</code> yapmak]&#8230;&#8203;) zaten elimizdeki hamleler ile elde edebiliyoruz.</p>
+</div>
+<div class="paragraph">
+<p>Bu gibi sistemlere matematikte "grup", sistemi üretebilen en ufak hamle kümesine (bize verilen 2 hamle gibi) de sistemin "üreticileri"(generator) deniyor.</p>
+</div>
+<div class="paragraph">
+<p>Grup teorisine de ileriki zamanlarda değinmeyi düşünüyorum.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_asıl_probleme_dönüş">Asıl Probleme Dönüş</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kurt, kuzu, ot probleminin, daha fazla kısıtı olması haricinde kart-değiştirme probleminden bir farkı yok.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">shore</span><span class="p">(</span><span class="ss">a</span><span class="p">;</span> <span class="ss">b</span><span class="p">).</span>
+<span class="ss">item</span><span class="p">(</span><span class="ss">wolf</span><span class="p">;</span><span class="ss">sheep</span><span class="p">;</span><span class="ss">grass</span><span class="p">).</span>
+<span class="ss">attacks</span><span class="p">(</span><span class="ss">wolf</span><span class="p">,</span> <span class="ss">sheep</span><span class="p">).</span>
+<span class="ss">attacks</span><span class="p">(</span><span class="ss">sheep</span><span class="p">,</span> <span class="ss">grass</span><span class="p">).</span>
+<span class="ss">init_shore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="ss">a</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">item</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="ss">goal_shore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="ss">b</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">item</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="ss">my_start_shore</span><span class="p">(</span><span class="ss">a</span><span class="p">).</span>
+<span class="ss">moves</span><span class="p">(</span><span class="m">7</span><span class="p">).</span>
+
+<span class="p">{</span> <span class="ss">move</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span><span class="nv">S</span><span class="p">,</span><span class="nv">T</span><span class="p">;</span> <span class="ss">nothing</span><span class="p">,</span><span class="nv">S</span><span class="p">,</span><span class="nv">T</span><span class="p">)</span> <span class="o">:</span> <span class="ss">item</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">shore</span><span class="p">(</span><span class="nv">S</span><span class="p">)</span> <span class="p">}</span> <span class="o">=</span> <span class="m">1</span> <span class="p">:-</span> <span class="ss">moves</span><span class="p">(</span><span class="nv">M</span><span class="p">),</span> <span class="nv">T</span> <span class="o">=</span> <span class="m">1</span><span class="p">..</span><span class="nv">M</span><span class="p">.</span>
+
+<span class="ss">myshore</span><span class="p">(</span><span class="nv">S</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">my_start_shore</span><span class="p">(</span><span class="nv">S</span><span class="p">).</span>
+<span class="ss">myshore</span><span class="p">(</span><span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">move</span><span class="p">(</span><span class="nv">_</span><span class="p">,</span><span class="nv">S</span><span class="p">,</span><span class="nv">T</span><span class="p">).</span> <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="ss">onshore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">init_shore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">).</span>
+<span class="ss">onshore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">item</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">move</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">).</span> <i class="conum" data-value="4"></i><b>(4)</b>
+<span class="ss">onshore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="o">+</span><span class="m">1</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">onshore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">move</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">_</span><span class="p">,</span> <span class="nv">T</span><span class="o">+</span><span class="m">1</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">moves</span><span class="p">(</span><span class="nv">T</span><span class="p">).</span> <i class="conum" data-value="4"></i><b>(4)</b>
+
+<span class="ss">danger</span><span class="p">(</span><span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">item</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">item</span><span class="p">(</span><span class="nv">Y</span><span class="p">),</span> <span class="ss">attacks</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">),</span> <span class="ss">onshore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">),</span> <span class="ss">onshore</span><span class="p">(</span><span class="nv">Y</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">myshore</span><span class="p">(</span><span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">).</span> <i class="conum" data-value="5"></i><b>(5)</b>
+
+<span class="p">:-</span> <span class="ss">move</span><span class="p">(</span><span class="nv">_</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">),</span> <span class="ss">move</span><span class="p">(</span><span class="nv">_</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="o">+</span><span class="m">1</span><span class="p">),</span> <span class="ss">shore</span><span class="p">(</span><span class="nv">S</span><span class="p">).</span> <i class="conum" data-value="6"></i><b>(6)</b>
+<span class="p">:-</span> <span class="ss">move</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="o">+</span><span class="m">1</span><span class="p">),</span> <span class="ss">onshore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S2</span><span class="p">,</span> <span class="nv">T</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">myshore</span><span class="p">(</span><span class="nv">S2</span><span class="p">,</span> <span class="nv">T</span><span class="p">).</span> <i class="conum" data-value="7"></i><b>(7)</b>
+<span class="p">:-</span> <span class="ss">not</span> <span class="ss">onshore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">),</span> <span class="ss">goal_shore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">),</span> <span class="ss">moves</span><span class="p">(</span><span class="nv">T</span><span class="p">).</span> <i class="conum" data-value="8"></i><b>(8)</b>
+<span class="p">:-</span> <span class="ss">danger</span><span class="p">(</span><span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">),</span> <span class="ss">shore</span><span class="p">(</span><span class="nv">S</span><span class="p">),</span> <span class="ss">moves</span><span class="p">(</span><span class="nv">M</span><span class="p">),</span> <span class="nv">T</span><span class="o">=</span><span class="m">1</span><span class="p">..</span><span class="nv">M</span><span class="p">.</span> <i class="conum" data-value="9"></i><b>(9)</b>
+
+<span class="o">#</span><span class="ss">show</span> <span class="ss">move</span><span class="o">/</span><span class="m">3</span><span class="p">.</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Her bir <code>item</code> <code>a</code> yakasında başlamalı</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Her bit <code>item</code> <code>b</code> yakasında bitirmeli</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Benim (yani çobanın) bulunduğu yaka en son hamlenin yapıldığı yakadır</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Eğer bir şey bir yakaya taşınmış ise, o an itibariyle o yakadadır.<br>
+Eğer bir şeye son hamlemde dokunmamış isem, o şey önceden nerede ise oradadır</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Eğer çobanın olmadığı bir yakadaki iki şeyden biri diğerine saldırmaya meyilli ise tehlike vardır.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Bir yakadan aynı yakaya hamle yapılmasın</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Bulunduğum yakada olmayan şeyleri taşıyamam</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Her şeyin çözümün sonunda gitmesi gereken yakaya gitmediği durumları istemiyorum</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>Herhangi bir anda tehlikeli bir durum olmasın</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Ve sonuç:</div>
+<div class="content">
+<pre class="rouge highlight"><code>Solving...
+Answer: 1
+move(sheep,b,1)
+ move(wolf,a,2)
+ move(grass,b,3)
+ move(sheep,a,4)
+ move(wolf,b,5)
+ move(nothing,a,6)
+ move(sheep,b,7)
+SATISFIABLE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Bu yaklaşımı daha gündelik hayatta çözdüğümüz yazılım problemlerine nasıl yansıtacağımıza, hangi dillerde zaten aynı şeyi yaptığımıza daha sonra değineceğim.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+ 
+
+
+
+
+
+
+
+
+<div class="pagination tc tr-l db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+  
+<a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
+<br>
+  <p class="mb0 mt2">
+  <a href="/posts/immutability-alt/">prev post</a>
+  
+  </p>
+</div>
+
+  <footer class="content-width mt0 mt5-l mb4 f6 center ph3 gray tc tl-l">
+	<hr class="dn db-l ml0-l gray w3"><br>
+	Powered by <a href="https://gohugo.io/" target="_blank" class="link gray dim">Hugo</a>, based on the <a href="https://github.com/lingxz/er" target="_blank" class="link gray dim">Er</a> theme. <br>
+	
+</footer>
+
+<script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101227184);</script>
+<script async src="//static.getclicky.com/js"></script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101227184ns.gif" /></p></noscript>
+
+</body>
+</html>
+
+  
+
+
+<script type="text/javascript">
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+
+  
+
+  
+  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+      document.getElementById("scroll-to-top").style.display = "inline";
+      document.getElementById("scroll-to-top").style.visibility = "visible";
+      document.getElementById("scroll-to-top").style.opacity = "1";
+  } else {
+      document.getElementById("scroll-to-top").style.visibility = "hidden";
+      document.getElementById("scroll-to-top").style.opacity = "0";
+  }
+  
+  prevScrollpos = currentScrollPos;
+}
+
+
+function topFunction() {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0; 
+}
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

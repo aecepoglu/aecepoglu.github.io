@@ -4,7 +4,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-12-06T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-22T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -18,13 +18,13 @@
   </url>
   
   <url>
-    <loc>/posts/immutability-alt/</loc>
-    <lastmod>2019-12-06T00:00:00+00:00</lastmod>
+    <loc>/posts/wolf-sheep-grass/</loc>
+    <lastmod>2019-12-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/posts/</loc>
-    <lastmod>2019-12-06T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-22T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -35,6 +35,11 @@
                 hreflang="tr"
                 href="/posts/"
                 />
+  </url>
+  
+  <url>
+    <loc>/posts/immutability-alt/</loc>
+    <lastmod>2019-12-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
