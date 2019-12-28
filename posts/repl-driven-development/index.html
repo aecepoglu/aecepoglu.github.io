@@ -28,7 +28,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 
@@ -420,7 +420,7 @@ Bir string alıp bunun Luhn algoritmasınca gecerli bir sayi olup olmadığını
 <div class="title">JavaScript Maybe kodu</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nx">Maybe</span> <span class="p">{</span>
-  <span class="kd">static</span> <span class="k">of</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>   <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span>
+  <span class="kr">static</span> <span class="k">of</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>   <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span>
                     <span class="p">?</span> <span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
                     <span class="p">:</span> <span class="k">new</span> <span class="nx">Nothing</span><span class="p">()</span> <span class="p">}</span>
 <span class="p">}</span>
@@ -436,7 +436,7 @@ Bir string alıp bunun Luhn algoritmasınca gecerli bir sayi olup olmadığını
   <span class="nx">map</span><span class="p">()</span>          <span class="p">{</span> <span class="k">return</span> <span class="k">this</span> <span class="p">}</span>
   <span class="nx">chain</span><span class="p">()</span>        <span class="p">{</span> <span class="k">return</span> <span class="k">this</span> <span class="p">}</span>
   <span class="nx">withDefault</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="p">}</span>
-  <span class="nx">toString</span><span class="p">()</span>     <span class="p">{</span> <span class="k">return</span> <span class="dl">"</span><span class="s2">Nothing</span><span class="dl">"</span> <span class="p">}</span>
+  <span class="nx">toString</span><span class="p">()</span>     <span class="p">{</span> <span class="k">return</span> <span class="s2">"Nothing"</span> <span class="p">}</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -454,8 +454,8 @@ Bunları koduma koyduğum için de bu kod yaşadığı sürece bu test yapılıy
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">fail</span> <span class="o">=</span> <span class="nx">msg</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">}</span>
 
-<span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">).</span><span class="nx">withDefault</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">Just map withDefault</span><span class="dl">"</span><span class="p">)</span>
-<span class="k">new</span> <span class="nx">Nothing</span><span class="p">().</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">).</span><span class="nx">withDefault</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">Nothing map withDefault</span><span class="dl">"</span><span class="p">)</span></code></pre>
+<span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">).</span><span class="nx">withDefault</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="s2">"Just map withDefault"</span><span class="p">)</span>
+<span class="k">new</span> <span class="nx">Nothing</span><span class="p">().</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">).</span><span class="nx">withDefault</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="s2">"Nothing map withDefault"</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -507,8 +507,8 @@ Bunları koduma koyduğum için de bu kod yaşadığı sürece bu test yapılıy
 <div class="title">map vs chain</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">isEven</span> <span class="o">=</span> <span class="nx">safe</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="kd">const</span> <span class="nx">double</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span>
-<span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">double</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="kd">const</span> <span class="kr">double</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kr">double</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
 <span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">isEven</span><span class="p">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
 <span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nx">chain</span><span class="p">(</span><span class="nx">isEven</span><span class="p">)</span> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
@@ -557,8 +557,8 @@ Bunları koduma koyduğum için de bu kod yaşadığı sürece bu test yapılıy
 
 <span class="kd">const</span> <span class="nx">luhn</span> <span class="o">=</span> <span class="nx">str</span> <span class="o">=&gt;</span> <span class="p">(</span>
   <span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">""</span><span class="p">))</span>
-    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">!=</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">""</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">!=</span> <span class="s2">" "</span><span class="p">))</span>
     <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">x</span><span class="p">)))</span>
     <span class="p">.</span><span class="nx">chain</span><span class="p">(</span><span class="nx">safe</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="nx">l</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="kc">NaN</span><span class="p">)))</span>
     <span class="p">.</span><span class="nx">chain</span><span class="p">(</span><span class="nx">safe</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">))</span>
@@ -574,10 +574,10 @@ Bunları koduma koyduğum için de bu kod yaşadığı sürece bu test yapılıy
     <span class="p">.</span><span class="nx">withDefault</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="nx">luhn</span><span class="p">(</span><span class="dl">"</span><span class="s2">4539 1488 0343 6467</span><span class="dl">"</span><span class="p">)</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">valid num</span><span class="dl">"</span><span class="p">)</span>
-<span class="nx">luhn</span><span class="p">(</span><span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">too short</span><span class="dl">"</span><span class="p">)</span>
-<span class="nx">luhn</span><span class="p">(</span><span class="dl">"</span><span class="s2">123 a 456</span><span class="dl">"</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">has unknown chars</span><span class="dl">"</span><span class="p">)</span>
-<span class="nx">sumList</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">==</span> <span class="mi">6</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="dl">"</span><span class="s2">sumList 1 2 3</span><span class="dl">"</span><span class="p">)</span></code></pre>
+<span class="nx">luhn</span><span class="p">(</span><span class="s2">"4539 1488 0343 6467"</span><span class="p">)</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="s2">"valid num"</span><span class="p">)</span>
+<span class="nx">luhn</span><span class="p">(</span><span class="s2">"1"</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="s2">"too short"</span><span class="p">)</span>
+<span class="nx">luhn</span><span class="p">(</span><span class="s2">"123 a 456"</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="s2">"has unknown chars"</span><span class="p">)</span>
+<span class="nx">sumList</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">==</span> <span class="mi">6</span> <span class="o">||</span> <span class="nx">fail</span><span class="p">(</span><span class="s2">"sumList 1 2 3"</span><span class="p">)</span></code></pre>
 </div>
 </div>
 </div>

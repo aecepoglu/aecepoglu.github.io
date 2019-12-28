@@ -28,7 +28,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 
@@ -382,7 +382,7 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="nx">fabAndEdit</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="p">{</span>
-	<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#text</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">x</span>
+	<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#text"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">x</span>
 	<span class="k">return</span> <span class="nx">A2B</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span>
 <span class="p">}</span></code></pre>
 </div>
@@ -485,16 +485,16 @@ Ruby&#8217;de mutative fonksiyonlarin adlarının sonunda <code>!</code> oluyor.
                <span class="n">sex</span><span class="o">:</span> <span class="n">sex</span><span class="p">;</span>
               <span class="p">}</span>
 
-<span class="k">let</span> <span class="n">a_person</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="o">=</span><span class="s2">"Bruce"</span><span class="p">;</span> <span class="n">age</span><span class="o">=</span><span class="mi">60</span><span class="p">;</span> <span class="n">gender</span><span class="o">=</span><span class="nc">Male</span><span class="p">}</span>
+<span class="k">let</span> <span class="n">a_person</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="o">=</span><span class="s2">"Bruce"</span><span class="p">;</span> <span class="n">age</span><span class="o">=</span><span class="mi">60</span><span class="p">;</span> <span class="n">sex</span><span class="o">=</span><span class="nc">Male</span><span class="p">}</span>
 <span class="n">a_person</span><span class="o">.</span><span class="n">sex</span> <span class="o">&lt;-</span> <span class="nc">Female</span> <span class="c">(* HATALI *)</span>
 
-<span class="k">let</span> <span class="n">a_new_person</span> <span class="o">=</span> <span class="p">{</span><span class="n">a_person</span> <span class="k">with</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Caitlynn"</span><span class="p">;</span> <span class="n">gender</span><span class="o">=</span><span class="nc">Female</span><span class="p">}</span> <span class="c">(* OK *)</span>
+<span class="k">let</span> <span class="n">a_new_person</span> <span class="o">=</span> <span class="p">{</span><span class="n">a_person</span> <span class="k">with</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Caitlynn"</span><span class="p">;</span> <span class="n">sex</span><span class="o">=</span><span class="nc">Female</span><span class="p">}</span> <span class="c">(* OK *)</span>
 
 <span class="k">type</span> <span class="n">changable_person</span> <span class="o">=</span> <span class="p">{</span><span class="k">mutable</span> <span class="n">name</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
                          <span class="n">age</span><span class="o">:</span> <span class="kt">int</span><span class="p">;</span>
                          <span class="k">mutable</span> <span class="n">sex</span><span class="o">:</span> <span class="n">sex</span><span class="p">;</span>
                         <span class="p">}</span>
-<span class="k">let</span> <span class="n">a_person2</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="o">=</span><span class="s2">"Bruce"</span><span class="p">;</span> <span class="n">age</span><span class="o">=</span><span class="mi">60</span><span class="p">;</span> <span class="n">gender</span><span class="o">=</span><span class="nc">Male</span><span class="p">}</span>
+<span class="k">let</span> <span class="n">a_person2</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="o">=</span><span class="s2">"Bruce"</span><span class="p">;</span> <span class="n">age</span><span class="o">=</span><span class="mi">60</span><span class="p">;</span> <span class="n">sex</span><span class="o">=</span><span class="nc">Male</span><span class="p">}</span>
 <span class="n">a_person2</span><span class="o">.</span><span class="n">name</span> <span class="o">&lt;-</span> <span class="s2">"Caitlynn"</span>
 <span class="n">a_new_person</span><span class="o">.</span><span class="n">sex</span> <span class="o">&lt;-</span> <span class="nc">Female</span></code></pre>
 </div>
