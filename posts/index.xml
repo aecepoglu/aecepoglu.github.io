@@ -6,10 +6,19 @@
     <description>Recent content in Posts on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>En Güzel JavaScript kodu: Akış Şeması Programlama</title>
+      <link>/posts/most-elegant-js-code/</link>
+      <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/most-elegant-js-code/</guid>
+      <description>route.post(&#34;/api/proxy&#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.totalUseCount = 0; proxy.lastUsedTime = new Date(); proxy.lastCheckTime = new Date(); proxy.status = &#34;valid&#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy.</description>
+    </item>
     
     <item>
       <title>Kurt, Koyun, Ot</title>

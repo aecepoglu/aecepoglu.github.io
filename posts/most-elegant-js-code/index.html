@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+  <title>En Güzel JavaScript kodu: Akış Şeması Programlama - aecepoglu</title>
+  <meta content='En Güzel JavaScript kodu: Akış Şeması Programlama - aecepoglu' property='title' />
+  <meta content='En Güzel JavaScript kodu: Akış Şeması Programlama - aecepoglu' property='og:title' />
+
+
+<meta property="og:description" content="route.post(&#34;/api/proxy&#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.totalUseCount = 0; proxy.lastUsedTime = new Date(); proxy.lastCheckTime = new Date(); proxy.status = &#34;valid&#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/most-elegant-js-code/" />
+
+
+<meta property="article:published_time" content="2019-12-29T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2019-12-29T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.60.1" />
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<style type="text/css">/*https://coolors.co/afd5aa-f0f2ef-a69f98-3d3d3d-8c6057*/
+:root {
+  --main-color: #8C6056; 
+  --secondary-color: #AFD5AA;
+  --logo-text-color: #fff;
+  --body-text-color: #3d3d3d;
+  --heading-text-color: #383838;
+  --background-color: #fff;
+}</style>
+<link href='/css/tachyons.min.css' rel="stylesheet">
+<link href='/css/styles.css' rel="stylesheet">
+<link href='/style.css' rel="stylesheet">
+
+
+<link rel="icon" 
+ 
+  href='/favicon.ico'
+
+type="image/x-icon"/>
+
+<link href='/feed.xml' rel="alternate" type="application/atom+xml" title="aecepoglu" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	displayAlign: "left",
+	asciimath2jax: {
+		delimiters: [['\\$', '\\$']]
+	}
+});
+</script>
+
+
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=AM_HTMLorMML"> </script>
+
+</head>
+<body class="global-font">
+  <nav class=" flex-ns justify-between border-box pa3 pl3-l pr2-l mt1 mt0-ns" id="navbar">
+  <div class="flex">
+    <a class="f4 fw6 ttu no-underline dim bg-main-color pv1 ph2 br2" id="site-title" href='/' title="Home">aecepoglu</a>
+  </div>
+  
+  <div class=" flex-ns mt2 mt0-ns pv1">
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/posts/index.xml' title="rss">rss</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/en/' title="en">en</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/tr/' title="tr">tr</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/about' title="hakkimda">hakkimda</a>
+    
+  </div>
+  
+</nav>
+  
+<main class="center mv4 content-width ph3">
+  <div class="f3 fw6 heading-color heading-font post-title">En Güzel JavaScript kodu: Akış Şeması Programlama</div>
+  <p class="silver f6 mt1 mb4 post-meta">
+    <time>29 Dec 2019</time> 
+    
+    
+    
+  </p>
+  <div class="lh-copy post-content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">route</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/api/proxy"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">saveAnyway</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">saveAnyway</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">noHealthCheck</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">noHealthCheck</span><span class="p">;</span>
+  <span class="kd">function</span> <span class="nx">save</span><span class="p">(</span><span class="nx">proxy</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">proxy</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">saved</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">saved</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProxyResource</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">proxy</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">proxy</span><span class="p">.</span><span class="nx">totalUseCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nx">proxy</span><span class="p">.</span><span class="nx">lastUsedTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+      <span class="nx">proxy</span><span class="p">.</span><span class="nx">lastCheckTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+      <span class="nx">proxy</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="s2">"valid"</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">saveAnyway</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">save</span><span class="p">(</span><span class="nx">proxy</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="nx">proxy</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">proxy</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">noHealthCheck</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">promises</span> <span class="o">=</span> <span class="nx">HealthService</span><span class="p">.</span><span class="nx">checkProxies</span><span class="p">([</span><span class="nx">proxy</span><span class="p">]);</span>
+        <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">promises</span><span class="p">)</span>
+          <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">save</span><span class="p">();</span>
+          <span class="p">})</span>
+          <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">proxy</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="p">(</span><span class="nx">result</span> <span class="o">&amp;&amp;</span> <span class="nx">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">?</span> <span class="s2">"valid"</span> <span class="p">:</span> <span class="s2">"invalid"</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">proxy</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="s2">"valid"</span><span class="p">)</span> <span class="p">{</span>
+              <span class="nx">save</span><span class="p">(</span><span class="nx">proxy</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">saveAnyway</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s2">"invalid proxy"</span><span class="p">);</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+          <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">});</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Yukarıdaki satırlar, işyerindeki tüm ekibimizin birkaç senelik eforunun en lezzetli meyvelerinden.</p>
+</div>
+<div class="paragraph">
+<p>Bir <code>expressJS</code> <code>Router</code> handler&#8217;ı bu: Sisteme bir <code>proxy</code> eklemek istediğinizde çağırdığımız API.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>NodeJS ile back-end yazımına aşina olmayanlar için notlar:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>req</code> gelen isteğe dair bilgileri içerir.</p>
+</li>
+<li>
+<p><code>res.send()</code> isteğe cevap yollamak için kullanılıyor. Her istek için sadece bir defa cevap dönülebilir. <code>res.status()</code> diyerek cevabın status-code&#8217;u da verilebilir.</p>
+</li>
+<li>
+<p><code>ProxyResource</code> veritabanında tutulan bir model. <code>new</code> denerek oluşturulan nesnelerin <code>save()</code> metodları çağırılarak veritabanına kaydedilebilirler. <code>save()</code> metodu başarılı veya başarısız olabilir ve sonucunu Promise olarak döner.</p>
+</li>
+<li>
+<p><code>Promise</code> asenkron işlemleri birbirlerine zincirleyebilmek için bir yapı.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Yapılmak istenen şu:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>bilgileri verilen proxy'nin bazı alanlarını (totalUseCount, lastUsedTime, ...) ata
+'noHealthCheck' denmiş mi?
+  denmemiş ise:
+    proxy'nin dogruluğunu kontrol et:
+      proxy calışıyor ise:
+        proxy'yi 'valid' olarak işaretle
+        proxy'yi kaydet.
+        proxy'nin kaydına dair cevap dön
+      degil ise:
+        eger 'saveAnyway' denmiş ise:
+          proxy'yi 'invalid' olarak işaretle
+          proxy'yi kaydet.
+          proxy'nin kaydına dair cevap dön
+        denmemis ise:
+          işlemin başarısız olduğuna dair bir cevap dön
+  denmiş ise:
+    proxy'yi kaydet
+    proxy'nin kaydına dair cevap dön</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hadi bakalım, istenen davranış ile kodlanmış davranışın arasındaki 7 farkı bulun.</p>
+</div>
+<div class="paragraph">
+<p>Önce bu kodun nasıl daha okunur/anlaşılır olabileceğine bakayım:</p>
+</div>
+<div class="listingblock">
+<div class="title">İyileştirilmiş kod</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">route</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/api/proxy"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kd">let</span> <span class="nx">saveMode</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">saveMode</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+
+   <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">switch</span> <span class="p">(</span><span class="nx">saveMode</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">case</span> <span class="s2">"SAVE_IF_WORKING"</span><span class="p">:</span>
+         <span class="k">case</span> <span class="s2">"SAVE_REGARDLESS_IF_WORKING"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nx">HealthService</span><span class="p">.</span><span class="nx">checkProxy</span><span class="p">(</span><span class="nx">proxy</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+         <span class="k">case</span> <span class="s2">"NOCHECK"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+         <span class="nl">default</span><span class="p">:</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"Invalid mode: "</span> <span class="o">+</span> <span class="nx">saveMode</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">isValid</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">isValid</span> <span class="o">||</span> <span class="nx">saveMode</span> <span class="o">==</span> <span class="s2">"SAVE_REGARDLESS_IF_WORKING"</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="k">new</span> <span class="nx">ProxyResource</span><span class="p">({</span>
+            <span class="p">...</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span>
+            <span class="na">validity</span><span class="p">:</span> <span class="nx">validity</span><span class="p">,</span>
+            <span class="na">totalUseCount</span><span class="p">:</span> <span class="mi">0</span>
+         <span class="p">}).</span><span class="nx">save</span><span class="p">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"Given proxy doesn't work"</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">savedProxy</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">savedProxy</span><span class="p">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
+   <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+   <span class="p">});</span>
+<span class="p">});</span></code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Cevap sadece 1 yerde gönderiliyor</p>
+</li>
+<li>
+<p>Veritabanına kayıt 1 yerde yapılıyor</p>
+</li>
+<li>
+<p><code>saveAnyway</code> ve <code>noHealthCheck</code> parametreleri tek parametrede birleştirilerek mantıksız durumlardan kaçıldı</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Peki, bu koddaki <strong>akış</strong> dikkatinizi çekti mi?</p>
+</div>
+<div class="paragraph">
+<p>Bi' kağıt kalem olsa hemen akış şeması çıkarılabilecek sanki.</p>
+</div>
+<img src='https://g.gravizo.com/svg?
+digraph G {
+  "?saveMode?" [label="saveMode\nparameter" shape=diamond]
+  "healthCheck success?" [label="healthCheck succeeeded?\nor saveMode=SAVE_REGARDLESS?" shape=diamond]
+  "save success?" [label="save\nsucceeeded?" shape=diamond]
+  "?saveMode?" -> "healthCheck" [label="SAVE_IF_WORKING,\nSAVE_REGARDLESS"]
+  "?saveMode?" -> "save" [label="NOCHECK"]
+  "?saveMode?" -> "send error response" [label="otherwise"]
+  "healthCheck" -> "healthCheck success?"
+  "healthCheck success?" -> "save" [label="yes"]
+  "healthCheck success?" -> "send error response" [label="no"]
+  "save" -> "save success?"
+  "save success?" -> "send success response" [label="yes"]
+  "save success?" -> "send error response" [label="no"]
+}
+'/>
+<div class="paragraph">
+<p>Burada farkedilmesi değerli bazı oluşumlar:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Tüm <code>"no"</code> cevaplarının nasıl aynı baloncukta toplandığı</p>
+</li>
+<li>
+<p>Akış şemasının iki baloncukta (biri başarı durumunda, diğeri hata durumunda) sona erdiği, bunların da koddaki son <code>then</code> ve son <code>catch</code> bloklarına denk geldiği</p>
+</li>
+<li>
+<p>Promise zincirindeki her bir <code>then</code>e şemada denk gelen bir bölgenin var olduğu</p>
+</li>
+<li>
+<p><code>NOCHECK</code> kolu görmezden gelinirse aslında bu şemanın bir hat boyunca ilerlediği, bu yoldan hata durumlarında sadece saptığımız</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Ama dikkat çekmek istediğim yegane durum hata durumları haricinde akışın bir hatta ilerlediği.</p>
+</div>
+<div class="paragraph">
+<p>Bu akışa daha güzel bir örnek Maybe&#8217;ye değindiğim <a href="http:///posts/repl-driven-development/">önceki bir yazımda</a> vardı; Luhn doğrulama algoritmasını yazmıştım. Onun şemasını hayal etsek:</p>
+</div>
+<div class="listingblock">
+<div class="title">Luhn doğrulama</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript">  <span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">""</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">!=</span> <span class="s2">" "</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">x</span><span class="p">)))</span>
+    <span class="p">.</span><span class="nx">chain</span><span class="p">(</span><span class="nx">safe</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="nx">l</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="kc">NaN</span><span class="p">)))</span>
+    <span class="p">.</span><span class="nx">chain</span><span class="p">(</span><span class="nx">safe</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">reverse</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
+                                <span class="p">?</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+                                <span class="p">:</span> <span class="nx">x</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">l</span> <span class="o">=&gt;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">10</span>
+                           <span class="p">?</span> <span class="p">(</span><span class="nx">x</span> <span class="o">-</span> <span class="mi">9</span><span class="p">)</span>
+                           <span class="p">:</span> <span class="nx">x</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">sumList</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">withDefault</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<img src='https://g.gravizo.com/svg?
+digraph G {
+ "a string" [shape=rectangle]
+ "has NaN?" [shape=diamond]
+ "length > 1?" [shape=diamond]
+ "divides 10?" [shape=diamond]
+
+ "a string" -> "split"
+ "split" -> "filter out spaces"
+ "filter out spaces" -> "parseInt"
+ "parseInt" -> "has NaN?"
+ "has NaN?" -> "length > 1?"
+ "has NaN?" -> "false" [label="no"]
+ "length > 1?" -> "reverse"
+ "length > 1?" -> "false" [label="no"]
+ "reverse" -> "*2 every other item"
+ "*2 every other item" -> "-9 each item if >= 10"
+ "-9 each item if >= 10" -> "sum"
+ "sum" -> "divides 10?"
+ "divides 10?" -> "true"
+ "divides 10?" -> false [label="no"]
+}
+'/>
+<div class="paragraph">
+<p>Bu örnekte daha da tek bir yatağa sınırlı bir akış görülebiliyor. Tüm akış tek bir noktada sonlanıyor ve tüm hatalar <code>false</code> baloncuğunda toplanıyor.</p>
+</div>
+<div class="paragraph">
+<p>Hataları yönetmek için Promise&#8217;lerden veya Maybe&#8217;den faydalanamayacak olsak, bu akışı <em>erken-kaçış (early return)</em> ile temsil edebilirdik.</p>
+</div>
+<div class="listingblock">
+<div class="title">Early-return ile Luhn doğrulama</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">luhn</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">digits</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">!=</span> <span class="s2">" "</span><span class="p">)</span>
+                  <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">c</span><span class="p">))</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">digits</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="kc">NaN</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">digits</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">sumList</span><span class="p">(</span><span class="nx">digits</span><span class="p">.</span><span class="nx">reverse</span><span class="p">()</span>
+                       <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
+                                        <span class="p">?</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+                                        <span class="p">:</span> <span class="nx">x</span><span class="p">)</span>
+                       <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">10</span>
+                                   <span class="p">?</span> <span class="p">(</span><span class="nx">x</span> <span class="o">-</span> <span class="mi">9</span><span class="p">)</span>
+                                   <span class="p">:</span> <span class="nx">x</span><span class="p">)</span>
+                <span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Aynı akış hissini bu kod da verebiliyor.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>Maybe</code> kullanmak istememin sebebi hata yönetimi için yegane çözüm olduğu için değil. <code>Maybe</code> bizi <code>Nothing</code> durumunu gözetmeye zorladığı için kullanılmasını teşvik ettiğim bir hazne tipi.</p>
+</div>
+<div class="listingblock">
+<div class="title">parseInt</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="haskell"><span class="n">parseInt</span> <span class="o">::</span> <span class="kt">String</span> <span class="o">-&gt;</span> <span class="kt">Number</span><span class="o">|</span><span class="kt">NaN</span>
+<span class="n">parseIntSafe</span> <span class="o">::</span> <span class="kt">String</span> <span class="o">-&gt;</span> <span class="kt">Maybe</span> <span class="kt">Number</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Javascript eğer <code>parseInt</code> için <code>Maybe</code> dönecek olsa biz hata durumunu görmezden gelemeyecektik; <code>Maybe</code>'den <code>Number</code>'ı çıkarmak için yapabileceğimiz her şey bir şekilde bu hata durumunun kontrolü olacaktı.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Çoğu problem de aslında basit bir akış şemasına denk gelebiliyor. Gereğinden karmaşık; okuması veya anlaması zor bir kodla karşı karşıyaysanız bunun bir de akış şeması olarak nasıl olabileceğini düşünün. Belki de çözümü sadeleştirmek için gereken şey, -beyaz yakalı bir ailenin gönderildiği özel okulda programlama öğretilen 8 yaşındaki çocuğu gibi- akış şeması üzerinden basit çözümler üretmektir.</p>
+</div>
+</div>
+</main>
+ 
+
+
+
+
+
+
+
+
+<div class="pagination tc tr-l db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+  
+<a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
+<br>
+  <p class="mb0 mt2">
+  <a href="/posts/wolf-sheep-grass/">prev post</a>
+  
+  </p>
+</div>
+
+  <footer class="content-width mt0 mt5-l mb4 f6 center ph3 gray tc tl-l">
+	<hr class="dn db-l ml0-l gray w3"><br>
+	Powered by <a href="https://gohugo.io/" target="_blank" class="link gray dim">Hugo</a>, based on the <a href="https://github.com/lingxz/er" target="_blank" class="link gray dim">Er</a> theme. <br>
+	
+</footer>
+
+<script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101227184);</script>
+<script async src="//static.getclicky.com/js"></script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101227184ns.gif" /></p></noscript>
+
+</body>
+</html>
+
+  
+
+
+<script type="text/javascript">
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+
+  
+
+  
+  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+      document.getElementById("scroll-to-top").style.display = "inline";
+      document.getElementById("scroll-to-top").style.visibility = "visible";
+      document.getElementById("scroll-to-top").style.opacity = "1";
+  } else {
+      document.getElementById("scroll-to-top").style.visibility = "hidden";
+      document.getElementById("scroll-to-top").style.opacity = "0";
+  }
+  
+  prevScrollpos = currentScrollPos;
+}
+
+
+function topFunction() {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0; 
+}
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
