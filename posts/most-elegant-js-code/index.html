@@ -9,7 +9,7 @@
   <meta content='En Güzel JavaScript kodu: Akış Şeması Programlama - aecepoglu' property='og:title' />
 
 
-<meta property="og:description" content="route.post(&#34;/api/proxy&#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.totalUseCount = 0; proxy.lastUsedTime = new Date(); proxy.lastCheckTime = new Date(); proxy.status = &#34;valid&#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy." />
+<meta property="og:description" content="route.post(&#34;/api/proxy&#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.status = &#34;valid&#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy.status = (result &amp;&amp; result[0]) ? &#34;valid&#34; : &#34;invalid&#34;; if (proxy.status == &#34;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/most-elegant-js-code/" />
 
@@ -94,7 +94,9 @@ MathJax.Hub.Config({
     
     
   </p>
-  <div class="lh-copy post-content"><div class="listingblock">
+  <div class="lh-copy post-content"><div id="preamble">
+<div class="sectionbody">
+<div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="nx">route</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/api/proxy"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">saveAnyway</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">saveAnyway</span><span class="p">;</span>
@@ -110,9 +112,6 @@ MathJax.Hub.Config({
 
   <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="k">new</span> <span class="nx">ProxyResource</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">))</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">proxy</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">proxy</span><span class="p">.</span><span class="nx">totalUseCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="nx">proxy</span><span class="p">.</span><span class="nx">lastUsedTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
-      <span class="nx">proxy</span><span class="p">.</span><span class="nx">lastCheckTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
       <span class="nx">proxy</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="s2">"valid"</span><span class="p">;</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">saveAnyway</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">save</span><span class="p">(</span><span class="nx">proxy</span><span class="p">);</span>
@@ -163,7 +162,7 @@ MathJax.Hub.Config({
 <p><code>req</code> gelen isteğe dair bilgileri içerir.</p>
 </li>
 <li>
-<p><code>res.send()</code> isteğe cevap yollamak için kullanılıyor. Her istek için sadece bir defa cevap dönülebilir. <code>res.status()</code> diyerek cevabın status-code&#8217;u da verilebilir.</p>
+<p><code>res.send()</code> isteğe cevap yollamak için kullanılıyor.</p>
 </li>
 <li>
 <p><code>ProxyResource</code> veritabanında tutulan bir model. <code>new</code> denerek oluşturulan nesnelerin <code>save()</code> metodları çağırılarak veritabanına kaydedilebilirler. <code>save()</code> metodu başarılı veya başarısız olabilir ve sonucunu Promise olarak döner.</p>
@@ -177,132 +176,360 @@ MathJax.Hub.Config({
 </tr>
 </table>
 </div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Her request için sadece ama sadece 1 adet cevap gönderilmeli.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Yapılmak istenen şu:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>bilgileri verilen proxy'nin bazı alanlarını (totalUseCount, lastUsedTime, ...) ata
-'noHealthCheck' denmiş mi?
-  denmemiş ise:
+<pre>İsteğin gövdesinde gönderilen bilgilerle yeni bir proxy oluştur
+Eğer "saveAnyway" veya "noHealthCheck" parametlerine bak:
+  sadece "saveAnyway" verilmiş ise:
+    proxy'yi 'valid' olarak işaretle
+    proxy'yi kaydet.
+    proxy'nin kaydına dair cevap dön
+  "noHealthCheck" verilMEmiş ise:
     proxy'nin dogruluğunu kontrol et:
       proxy calışıyor ise:
         proxy'yi 'valid' olarak işaretle
         proxy'yi kaydet.
         proxy'nin kaydına dair cevap dön
-      degil ise:
-        eger 'saveAnyway' denmiş ise:
-          proxy'yi 'invalid' olarak işaretle
-          proxy'yi kaydet.
-          proxy'nin kaydına dair cevap dön
-        denmemis ise:
-          işlemin başarısız olduğuna dair bir cevap dön
-  denmiş ise:
-    proxy'yi kaydet
-    proxy'nin kaydına dair cevap dön</pre>
+      değil ise:
+        proxy'nin valid olması gerektiğine dair bir hata dön</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Hadi bakalım, istenen davranış ile kodlanmış davranışın arasındaki 7 farkı bulun.</p>
 </div>
 <div class="paragraph">
-<p>Önce bu kodun nasıl daha okunur/anlaşılır olabileceğine bakayım:</p>
+<p>Öncelikle, bu kodun (eğer zaten bariz değil ise) neden sorunlu olduğuna bakalım:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_hatalar_ve_sorunlar">Hatalar ve Sorunlar</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En öncelikli hata (testleri patlaması üzerine bu kodu keşfetmemin sebebi de bu) <code>save()</code> Promise içerisinden çağırılıyor ama Promise dönmüyor. <code>save()</code>'in birden fazla defa çağırılabileceğini düşünürsek bu hataya gebe bir durum.</p>
 </div>
 <div class="listingblock">
-<div class="title">İyileştirilmiş kod</div>
+<div class="title">save()</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">route</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/api/proxy"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-   <span class="kd">let</span> <span class="nx">saveMode</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">saveMode</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-
-   <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">switch</span> <span class="p">(</span><span class="nx">saveMode</span><span class="p">)</span> <span class="p">{</span>
-         <span class="k">case</span> <span class="s2">"SAVE_IF_WORKING"</span><span class="p">:</span>
-         <span class="k">case</span> <span class="s2">"SAVE_REGARDLESS_IF_WORKING"</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nx">HealthService</span><span class="p">.</span><span class="nx">checkProxy</span><span class="p">(</span><span class="nx">proxy</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-         <span class="k">case</span> <span class="s2">"NOCHECK"</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-            <span class="k">break</span><span class="p">;</span>
-         <span class="nl">default</span><span class="p">:</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"Invalid mode: "</span> <span class="o">+</span> <span class="nx">saveMode</span><span class="p">);</span>
-      <span class="p">}</span>
-   <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">isValid</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">isValid</span> <span class="o">||</span> <span class="nx">saveMode</span> <span class="o">==</span> <span class="s2">"SAVE_REGARDLESS_IF_WORKING"</span><span class="p">)</span> <span class="p">{</span>
-         <span class="k">return</span> <span class="k">new</span> <span class="nx">ProxyResource</span><span class="p">({</span>
-            <span class="p">...</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span>
-            <span class="na">validity</span><span class="p">:</span> <span class="nx">validity</span><span class="p">,</span>
-            <span class="na">totalUseCount</span><span class="p">:</span> <span class="mi">0</span>
-         <span class="p">}).</span><span class="nx">save</span><span class="p">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
-      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-         <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"Given proxy doesn't work"</span><span class="p">);</span>
-      <span class="p">}</span>
-   <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">savedProxy</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">savedProxy</span><span class="p">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
-   <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-   <span class="p">});</span>
-<span class="p">});</span></code></pre>
+<pre class="rouge highlight"><code data-lang="javascript">  <span class="kd">function</span> <span class="nx">save</span><span class="p">(</span><span class="nx">proxy</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">proxy</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span> <i class="conum" data-value="1"></i><b>(1)</b>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+         <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">);</span>
+         <span class="k">return</span> <span class="nx">proxy</span>
+      <span class="p">})</span>
+  <span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Cevap sadece 1 yerde gönderiliyor</p>
-</li>
-<li>
-<p>Veritabanına kayıt 1 yerde yapılıyor</p>
-</li>
-<li>
-<p><code>saveAnyway</code> ve <code>noHealthCheck</code> parametreleri tek parametrede birleştirilerek mantıksız durumlardan kaçıldı</p>
+<p>Bu metodu çağıran her yeri de döndüğümüz Promise&#8217;i kullanacak şekilde değiştireceğiz. Mesela <code>save()</code> denilip geçilen bir yerde artık <code>return save()</code> demeli.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Peki, bu koddaki <strong>akış</strong> dikkatinizi çekti mi?</p>
+<p>Kaçıranlar için altını çizeyim, API&#8217;mize gelen her bir istek için sadece ama sadece bir cevap dönülmeli. Kodda bu kuralın sağlandığını iddia etmek zor.</p>
 </div>
 <div class="paragraph">
-<p>Bi' kağıt kalem olsa hemen akış şeması çıkarılabilecek sanki.</p>
+<p>Bunu daha görsel bir biçimde görmek adına kodun akış şemasını çizeceğim:</p>
 </div>
 <img src='https://g.gravizo.com/svg?
 digraph G {
-  "?saveMode?" [label="saveMode\nparameter" shape=diamond]
-  "healthCheck success?" [label="healthCheck succeeeded?\nor saveMode=SAVE_REGARDLESS?" shape=diamond]
-  "save success?" [label="save\nsucceeeded?" shape=diamond]
-  "?saveMode?" -> "healthCheck" [label="SAVE_IF_WORKING,\nSAVE_REGARDLESS"]
-  "?saveMode?" -> "save" [label="NOCHECK"]
-  "?saveMode?" -> "send error response" [label="otherwise"]
-  "healthCheck" -> "healthCheck success?"
-  "healthCheck success?" -> "save" [label="yes"]
-  "healthCheck success?" -> "send error response" [label="no"]
-  "save" -> "save success?"
-  "save success?" -> "send success response" [label="yes"]
-  "save success?" -> "send error response" [label="no"]
+  "?saveAnyway?" [label="saveAnyway\nparameter" shape=diamond]
+  "?saveAnyway2?" [label="saveAnyway\nparameter" shape=diamond]
+  "?noHealthCheck?" [label="noHealthCheck\nparameter" shape=diamond]
+  "check proxy works?" [label="check proxy works" shape=diamond]
+  "result?" [shape=diamond]
+  "save1" [label="save and respond" style=filled fillcolor=yellow]
+  "save2" [label="save and respond" style=filled fillcolor=yellow]
+  "save3" [label="save and respond" style=filled fillcolor=yellow]
+  "proxy.status = valid1" [label="proxy.status = valid"]
+
+  "start" -> "proxy.status = valid1"
+  "proxy.status = valid1" -> "?saveAnyway?"
+  "?saveAnyway?" -> "save1" [label="yes"]
+  "?saveAnyway?" -> "?noHealthCheck?" [label="no"]
+  "save1" -> "?noHealthCheck?"
+  "?noHealthCheck?" -> "check proxy works?" [label="no"]
+  "check proxy works?" -> "save2" [label="error"]
+  "check proxy works?" -> "result?" [label="result"]
+  "save2" -> "return false"
+  "return false" -> "result?"
+  "result?" -> "proxy.status = invalid" [label="false"]
+  "result?" -> "proxy.status = valid" [label="true"]
+  "proxy.status = valid" -> "save3"
+  "proxy.status = invalid" -> "?saveAnyway2?"
+  "?saveAnyway2?" -> "send invalid_proxy response" [label="no"]
 }
 '/>
 <div class="paragraph">
-<p>Burada farkedilmesi değerli bazı oluşumlar:</p>
+<p>Veritabanına kaydı yapıp cevap dönen balonu sarıyla işaretledim. Bu işlemi sadece bir defa yapma hakkımız var. Ama akışlara bakarak pek çok halde (mesela <code>saveAnyway</code> verilmiş ise ve proxy&#8217;nin çalıştığı denenirken hata olursa) bunun birden fazla yapıldığı görülebiliyor.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title"><code>save and respond</code>'un şeması</div>
+<img src='https://g.gravizo.com/svg?
+digraph G {
+	subgraph cluster_0 {
+                node [style=filled fillcolor=white]
+		save -> "save successful?" -> "send saved proxy in response"
+                "save successful?" -> "send validation error"
+                "save successful?" [shape=diamond]
+                label="save and respond"
+                style=filled
+	}
+}
+'/>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adım_adım_i̇yileştirme">Adım Adım İyileştirme</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>save and respond</code> bir defa yapılsın istiyor isek, o balondan çıkan tüm okları silebiliriz.</p>
+</div>
+<img src='https://g.gravizo.com/svg?
+digraph G {
+  "?saveAnyway?" [label="saveAnyway\nparameter" shape=diamond]
+  "?saveAnyway2?" [label="saveAnyway\nparameter" shape=diamond]
+  "?noHealthCheck?" [label="noHealthCheck\nparameter" shape=diamond]
+  "check proxy works?" [label="check proxy works" shape=diamond]
+  "result?" [shape=diamond]
+  "save1" [label="save and respond" style=dotted]
+  "save2" [label="save and respond" style=dotted]
+  "save3" [label="save and respond" style=filled fillcolor=yellow]
+  "proxy.status = valid1" [label="proxy.status = valid"]
+  "return false" [style=dotted]
+
+  "start" -> "proxy.status = valid1"
+  "proxy.status = valid1" -> "?saveAnyway?"
+  "?saveAnyway?" -> "save1" [style=dotted]
+  "?saveAnyway?" -> "save3" [label="yes" color=red]
+  "?saveAnyway?" -> "?noHealthCheck?" [label="no"]
+  "save1" -> "?noHealthCheck?" [style=dotted]
+  "?noHealthCheck?" -> "check proxy works?" [label="no"]
+  "check proxy works?" -> "save3" [label="error" color=red]
+  "check proxy works?" -> "save2" [style=dotted]
+  "check proxy works?" -> "result?" [label="result"]
+  "save2" -> "return false" [style=dotted]
+  "return false" -> "result?" [style=dotted]
+  "result?" -> "proxy.status = invalid" [label="false"]
+  "result?" -> "proxy.status = valid" [label="true"]
+  "proxy.status = valid" -> "save3"
+  "proxy.status = invalid" -> "?saveAnyway2?"
+  "?saveAnyway2?" -> "send invalid_proxy response" [label="no"]
+}
+'/>
+<div class="paragraph">
+<p>Sırada <code>saveAnyway</code> durumunu birden fazla kontrol ediyor olmamız var.</p>
+</div>
+<div class="paragraph">
+<p>Zaten <code>saveAnyway</code> parametresinin değerine bakarak girdiğimiz yolda ayni değere ikinci bir defa bakmamıza gerek yok. Yani:</p>
+</div>
+<img src='https://g.gravizo.com/svg?
+digraph G {
+  "?saveAnyway?" [label="saveAnyway\nparameter" shape=diamond]
+  "?saveAnyway2?" [label="saveAnyway\nparameter" shape=diamond style=dotted]
+  "?noHealthCheck?" [label="noHealthCheck\nparameter" shape=diamond]
+  "check proxy works?" [label="check proxy works" shape=diamond]
+  "result?" [shape=diamond]
+  "save3" [label="save and respond"]
+  "proxy.status = valid1" [label="proxy.status = valid"]
+  "proxy.status = invalid" [style=dotted]
+
+  "start" -> "proxy.status = valid1"
+  "proxy.status = valid1" -> "?saveAnyway?"
+  "?saveAnyway?" -> "save3" [label="yes"]
+  "?saveAnyway?" -> "?noHealthCheck?" [label="no"]
+  "?noHealthCheck?" -> "check proxy works?" [label="no"]
+  "check proxy works?" -> "save3" [label="error"]
+  "check proxy works?" -> "result?" [label="result"]
+  "result?" -> "send invalid_proxy response" [label="false" color=red]
+  "result?" -> "proxy.status = invalid" [style=dotted]
+  "result?" -> "proxy.status = valid" [label="true"]
+  "proxy.status = valid" -> "save3"
+  "proxy.status = invalid" -> "?saveAnyway2?" [style=dotted]
+  "?saveAnyway2?" -> "send invalid_proxy response" [style=dotted]
+}
+'/>
+<div class="paragraph">
+<p><code>proxy.status = valid</code> atamasının da 2 defa yapılmasına gerek yok.</p>
+</div>
+<img src='https://g.gravizo.com/svg?
+digraph G {
+  "?saveAnyway?" [label="saveAnyway\nparameter" shape=diamond]
+  "?noHealthCheck?" [label="noHealthCheck\nparameter" shape=diamond]
+  "check proxy works?" [label="check proxy works" shape=diamond]
+  "result?" [shape=diamond]
+  "save3" [label="save and respond"]
+  "proxy.status = valid1" [label="proxy.status = valid" style=dotted]
+  "proxy.status = valid" [style=filled fillcolor=yellow]
+
+  "start" ->  "proxy.status = valid1" [style=dotted]
+  "start" ->  "?saveAnyway?" [color=red]
+  "proxy.status = valid1" -> "?saveAnyway?" [style=dotted]
+  "?saveAnyway?" -> "proxy.status = valid" [label="yes" color=red]
+  "?saveAnyway?" -> "?noHealthCheck?" [label="no"]
+  "?noHealthCheck?" -> "check proxy works?" [label="no"]
+  "check proxy works?" -> "proxy.status = valid" [label="error" color=red]
+  "check proxy works?" -> "result?" [label="result"]
+  "result?" -> "send invalid_proxy response" [label="false"]
+  "result?" -> "proxy.status = valid" [label="true"]
+  "proxy.status = valid" -> "save3"
+}
+'/>
+<div class="paragraph">
+<p><code>noHealthCheck</code> parametresi olmadığı vakit ne yapacağımız tanımlı değil. Parametreyi görmezden gelebiliriz (o kutuyu silerek); ama API&#8217;nin yapmak istediği <code>saveAnyway</code> parametresi verilmiş ise <code>invalid</code> olan proxy&#8217;leri de kaydetmek.</p>
+</div>
+<div class="paragraph">
+<p>Ki bu şemayı şu hale sokuyor:</p>
+</div>
+<img src='https://g.gravizo.com/svg?
+digraph G {
+  "?saveAnyway?" [label="saveAnyway\nparameter" shape=diamond]
+  "?noHealthCheck?" [label="noHealthCheck\nparameter" shape=diamond]
+  "check proxy works?" [label="check proxy works" shape=diamond]
+  "result?" [shape=diamond]
+  "save3" [label="save and respond"]
+
+  "start" ->  "?noHealthCheck?"
+  "?noHealthCheck?" -> "proxy.status = valid" [label="yes"]
+  "?noHealthCheck?" -> "check proxy works?" [label="no"]
+  "check proxy works?" -> "proxy.status = valid" [label="error"]
+  "check proxy works?" -> "result?" [label="result"]
+  "result?" -> "?saveAnyway?" [label="false"]
+  "result?" -> "proxy.status = valid" [label="true"]
+  "?saveAnyway?" -> "send invalid_proxy error" [label="no"]
+  "?saveAnyway?" -> "proxy.status = invalid" [label="yes"]
+  "proxy.status = valid" -> "save3"
+  "proxy.status = invalid" -> "save3"
+}
+'/>
+<div class="paragraph">
+<p><code>save and respond</code> işlemini açarsak:</p>
+</div>
+<img src='https://g.gravizo.com/svg?
+digraph G {
+  "?saveAnyway?" [label="saveAnyway\nparameter" shape=diamond]
+  "?noHealthCheck?" [label="noHealthCheck\nparameter" shape=diamond]
+  "check proxy works?" [label="check proxy works" shape=diamond]
+  "result?" [shape=diamond]
+  "save ok?" [label="save succesful?" shape=diamond]
+
+  "start" ->  "?noHealthCheck?"
+  "?noHealthCheck?" -> "proxy.status = valid" [label="yes"]
+  "?noHealthCheck?" -> "check proxy works?" [label="no"]
+  "check proxy works?" -> "proxy.status = valid" [label="error"]
+  "check proxy works?" -> "result?" [label="result"]
+  "result?" -> "?saveAnyway?" [label="false"]
+  "result?" -> "proxy.status = valid" [label="true"]
+  "?saveAnyway?" -> "send invalid_proxy error" [label="no"]
+  "?saveAnyway?" -> "proxy.status = invalid" [label="yes"]
+  "proxy.status = valid" -> "save"
+  "proxy.status = invalid" -> "save"
+  "save" -> "save ok?"
+  "save ok?" -> "send validation error" [label="no"]
+  "save ok?" -> "send saved proxy in response" [label="yes"]}
+'/>
+<div class="paragraph">
+<p>Peki bu şemayı ilk şemamızla kıyaslarsak dikkat çeken şeyler neler?</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Tüm <code>"no"</code> cevaplarının nasıl aynı baloncukta toplandığı</p>
+<p>Sadece bir yerde kaydediyor, bir yerde cevap dönüyoruz.</p>
 </li>
 <li>
-<p>Akış şemasının iki baloncukta (biri başarı durumunda, diğeri hata durumunda) sona erdiği, bunların da koddaki son <code>then</code> ve son <code>catch</code> bloklarına denk geldiği</p>
+<p>Cevap dönmek yaptığımız son işlem</p>
 </li>
 <li>
-<p>Promise zincirindeki her bir <code>then</code>e şemada denk gelen bir bölgenin var olduğu</p>
+<p>Şema yukarıdan aşağıya doğru okunabiliyor.</p>
 </li>
 <li>
-<p><code>NOCHECK</code> kolu görmezden gelinirse aslında bu şemanın bir hat boyunca ilerlediği, bu yoldan hata durumlarında sadece saptığımız</p>
+<p>Akışta bir dallanma olmuş ve bu dallar tekrar birleşmişse eğer, bunun nasıl olduğu değil sonucu bizi ilgilendiriyor. Örneğin <code>status = valid</code> derken bunun <code>noHealthCheck</code> dendiği için mi yoksa proxy kontrolünde hata çıktığı için mi olduğunu umursamıyoruz; <code>status</code>'un <code>valid</code> olarak atanması isteğiyle ilgileniyoruz sadece.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Ama dikkat çekmek istediğim yegane durum hata durumları haricinde akışın bir hatta ilerlediği.</p>
+<p>Tüm bu maddeler de zaten Promise kullanarak bunun inşaa edilebileceğine ipucu veriyor.</p>
+</div>
+<div class="listingblock">
+<div class="title">yeni kodumuz</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">route</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"/api/proxy"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kd">let</span> <span class="nx">noHealthCheck</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">noHealthCheck</span>
+   <span class="kd">let</span> <span class="nx">saveAnyway</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">saveAnyway</span>
+   <span class="kd">let</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Proxy</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+
+   <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nx">noHealthCheck</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">(</span>
+               <span class="nx">HealthService</span><span class="p">.</span><span class="nx">checkProxy</span><span class="p">(</span><span class="nx">proxy</span><span class="p">)</span>
+                  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">_</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">)</span>
+            <span class="p">)</span>
+         <span class="p">}</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">isValid</span> <span class="o">=&gt;</span> <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isValid</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">saveAnyway</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"proxy is invalid"</span><span class="p">)</span>
+         <span class="p">}</span>
+         <span class="nx">proxy</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="nx">isValid</span> <span class="p">?</span> <span class="s2">"valid"</span> <span class="p">:</span> <span class="s2">"invalid"</span>
+         <span class="k">return</span> <span class="nx">proxy</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">proxy</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">proxy</span><span class="p">))</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">))</span>
+<span class="p">});</span></code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Bu akışa daha güzel bir örnek Maybe&#8217;ye değindiğim <a href="http:///posts/repl-driven-development/">önceki bir yazımda</a> vardı; Luhn doğrulama algoritmasını yazmıştım. Onun şemasını hayal etsek:</p>
+<p>Az evvel vurguladığım 4 maddeyi burada da bulabiliriz:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>res.send</code> ve <code>proxy.save()</code> bir yerde yapılıyor</p>
+</li>
+<li>
+<p><code>res.send</code> yaptığımız son işlem</p>
+</li>
+<li>
+<p>(ve 4) Promise zincirinin her bir halkası (<code>then</code> (veya <code>catch</code>) statement&#8217;ları) da kendi başına manalı. <code>isValid &#8658; &#8230;&#8203;</code> adımında bu <code>isValid</code> değerinin nereden geldiğini umursamadan onu kullanabiliriz. Bu sayede kodu yukarıdan aşağıya okuyabiliyoruz.</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_maybe_akışı">Maybe Akışı</h3>
+<div class="paragraph">
+<p>Promise olmadan da bu gibi akışlar inşaa edilebilir. Güzel bir örnek Maybe&#8217;ye değindiğim <a href="http:///posts/repl-driven-development/">önceki bir yazımda</a> vardı; Luhn doğrulama algoritmasını yazmıştım. Onun şemasını hayal etsek:</p>
 </div>
 <div class="listingblock">
 <div class="title">Luhn doğrulama</div>
@@ -400,14 +627,17 @@ digraph G {
 </div>
 </div>
 <div class="paragraph">
-<p>Javascript eğer <code>parseInt</code> için <code>Maybe</code> dönecek olsa biz hata durumunu görmezden gelemeyecektik; <code>Maybe</code>'den <code>Number</code>'ı çıkarmak için yapabileceğimiz her şey bir şekilde bu hata durumunun kontrolü olacaktı.</p>
+<p>Javascript eğer <code>parseInt</code> için <code>Maybe</code> dönüyor olsa biz hata durumunu görmezden gelemeyecektik; <code>Maybe</code>'den <code>Number</code>'ı çıkarmak için yapabileceğimiz her şey bir şekilde bu hata durumunun kontrolü olacaktı.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Çoğu problem de aslında basit bir akış şemasına denk gelebiliyor. Gereğinden karmaşık; okuması veya anlaması zor bir kodla karşı karşıyaysanız bunun bir de akış şeması olarak nasıl olabileceğini düşünün. Belki de çözümü sadeleştirmek için gereken şey, -beyaz yakalı bir ailenin gönderildiği özel okulda programlama öğretilen 8 yaşındaki çocuğu gibi- akış şeması üzerinden basit çözümler üretmektir.</p>
+<p>Çoğu problem de aslında basit bir akış şemasına denk gelebiliyor. Gereğinden karmaşık; okuması veya anlaması zor bir kodla karşı karşıyaysanız bunun bir de akış şeması olarak nasıl olabileceğini düşünün. Belki de çözümü sadeleştirmek için gereken şey, <em>-beyaz yakalı bir ailenin gönderildiği özel okulda programlama öğretilen 8 yaşındaki çocuğu gibi-</em> akış şeması üzerinden basit çözümler üretmektir.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </main>
