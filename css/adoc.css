@@ -1,0 +1,119 @@
+:root {
+	--primary-color: #a02020;
+	--bg-color: #f8f8f8;
+	--fg-color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--primary-color: #d0a0a0;
+		--bg-color: #202020;
+		--fg-color: #fdfdfd;
+	}
+}
+
+.admonitionblock {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.admonitionblock td.icon .icon-note:before {
+	content: "\f05a";
+}
+.admonitionblock td.icon .icon-caution:before {
+	content: "\f06d";
+}
+.admonitionblock td.icon .icon-tip:before {
+	content: "\f0eb";
+}
+blockquote pre {
+	text-align: left
+}
+.attribution {
+	margin-top: -50px;
+	margin-bottom: 50px;
+	margin-right: 5em;
+	text-align: right;
+	font-family: "Old Standard TT",serif;
+}
+td.icon {
+	padding: 0.5em;
+	border-right: 1px solid;
+	vertical-align: middle;
+	font-size: 2em;
+}
+
+td.content {
+	padding: 0.5em;
+}
+
+.title {
+	font-weight: bold;
+	color: var(--primary-color);
+	margin-bottom: -15px;
+}
+.stemblock .content {
+	background-color: var(--bg-color);
+	color: var(--fg-color);
+	padding: 1em;
+	margin-top: 10px;
+}
+@media (prefer-color-scheme: light) {
+}
+@media (prefer-color-scheme: dark) {
+	.stemblock .content {
+	}
+}
+.ulist {
+	    margin-left: 1em;
+}
+
+.colist {
+	margin-top: -0.5em;
+	margin-bottom: 1em;
+	padding-left:2em;
+}
+.conum[data-value] + b { display: none }
+.conum[data-value]:after { content: attr(data-value) }
+.conum[data-value] {
+	background-color: black;
+	color: white;
+	border-radius: 100px;
+	width: 1em;
+	line-height: 1em;
+	display: inline-block;
+	text-align: center;
+	font-size: 0.9em;
+	font-weight: bold;
+	padding: 0.2em;
+	margin-right: 0.5em;
+}
+@media (prefers-color-scheme: dark) {
+	.conum[data-value] {
+		background-color: white;
+		color: black;
+	}
+}
+.content ul li {
+	list-style-type: inherit;
+}
+ul li p, ol li p {
+	margin: .6em 0px;
+}
+ul li:before {
+	content: none;
+}
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content a {
+	color: var(--primary-color);
+}
+#content .posts_listing h1,
+#content .posts_listing h2,
+#content .posts_listing h3,
+#content .posts_listing h4,
+#content .posts_listing a {
+	color: inherit;
+}
+

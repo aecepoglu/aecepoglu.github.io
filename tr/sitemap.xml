@@ -4,7 +4,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-12-29T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -18,13 +18,13 @@
   </url>
   
   <url>
-    <loc>/posts/most-elegant-js-code/</loc>
-    <lastmod>2019-12-29T00:00:00+00:00</lastmod>
+    <loc>/posts/goodbye-dark/</loc>
+    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/posts/</loc>
-    <lastmod>2019-12-29T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -35,6 +35,11 @@
                 hreflang="tr"
                 href="/posts/"
                 />
+  </url>
+  
+  <url>
+    <loc>/posts/most-elegant-js-code/</loc>
+    <lastmod>2019-12-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -54,7 +59,7 @@
   
   <url>
     <loc>/about/</loc>
-    <priority>0</priority>
+    <lastmod>2019-05-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -64,34 +69,6 @@
                 rel="alternate"
                 hreflang="tr"
                 href="/about/"
-                />
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="tr"
-                href="/categories/"
-                />
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="tr"
-                href="/tags/"
                 />
   </url>
   

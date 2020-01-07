@@ -6,10 +6,22 @@
     <description>Recent content on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Güle Güle Karanlık, Hoşgeldin Karanlık</title>
+      <link>/posts/goodbye-dark/</link>
+      <pubDate>Mon, 06 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/goodbye-dark/</guid>
+      <description>&#34;İnsanlar ikiye ayrılır&#34; derler; &#34;Sayı saymayı bilenler, saymayı bilmeyenler, ve diğerleri&amp;#8230;&amp;#8203;&#34;.
+Ben buna katılıyor ve bir de şöyle bir ayrım öneriyorum: &#34;Karanlıkta çalışmayı sevenler ve aydınlıkta çalışmayı sevenler&#34;.
+ Ben hava karardıktan sonra hala saat öğlen 1&amp;#8217;miş gibi davranıp içeriyi florasan ışık ile aydınlatmayı seçenlerden değilim. Hava kararınca ben de ekranımı ve kullandığım yazılımları karanlık-modlarına geçirmeyi gözlerim için daha rahatlatıcı buluyorum.
+     kakoune&#39;da karanlık temayı otomatik olarak seçmek için şöyle bir tanımlama kolayca yapılabiliyor:</description>
+    </item>
     
     <item>
       <title>En Güzel JavaScript kodu: Akış Şeması Programlama</title>
@@ -17,7 +29,8 @@
       <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/most-elegant-js-code/</guid>
-      <description>route.post(&#34;/api/proxy&#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.status = &#34;valid&#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy.status = (result &amp;amp;&amp;amp; result[0]) ? &#34;valid&#34; : &#34;invalid&#34;; if (proxy.status == &#34;</description>
+      <description>Aşağıdaki satırlar, işyerindeki tüm ekibimizin birkaç senelik eforunun en lezzetli meyvelerinden.
+ route.post(&#34;/api/proxy&#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.status = &#34;valid&#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy.</description>
     </item>
     
     <item>
@@ -62,9 +75,9 @@ Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebil
     </item>
     
     <item>
-      <title></title>
+      <title>Hakkımda</title>
       <link>/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 05 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
       <description>E-posta: aec \\@ mm \\. st

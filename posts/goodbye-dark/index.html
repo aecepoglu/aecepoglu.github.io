@@ -23,10 +23,10 @@
     <title>
       
       
-         Hakkımda 
+         Güle Güle Karanlık, Hoşgeldin Karanlık 
       
     </title>
-    <link rel="canonical" href="/about/">
+    <link rel="canonical" href="/posts/goodbye-dark/">
 
     <style>
   * {
@@ -447,22 +447,117 @@ MathJax.Hub.Config({
 
 
 <section id=content>
-  <h1> Hakkımda </h1>
+  <h1> Güle Güle Karanlık, Hoşgeldin Karanlık </h1>
 
   
     <div id=sub-header>
-      May 2019 · 1 minute read
+      January 2020 · 2 minute read
     </div>
   
 
   <div class="entry-content">
-    <div class="paragraph">
-<p>E-posta: aec \\@ mm \\. st</p>
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>"İnsanlar ikiye ayrılır" derler; "Sayı saymayı bilenler, saymayı bilmeyenler, ve diğerleri&#8230;&#8203;".<br>
+Ben buna katılıyor ve bir de şöyle bir ayrım öneriyorum: "Karanlıkta çalışmayı sevenler ve aydınlıkta çalışmayı sevenler".</p>
+</div>
+<div class="paragraph">
+<p>Ben hava karardıktan sonra hala saat öğlen 1&#8217;miş gibi davranıp içeriyi florasan ışık ile aydınlatmayı seçenlerden değilim. Hava kararınca ben de ekranımı ve kullandığım yazılımları karanlık-modlarına geçirmeyi gözlerim için daha rahatlatıcı buluyorum.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><a href="http://kakoune.org">kakoune</a>'da karanlık temayı otomatik olarak seçmek için şöyle bir tanımlama kolayca yapılabiliyor:</p>
+</div>
+<div class="listingblock">
+<div class="title">kakrc</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell"><span class="nb">eval</span> %sh<span class="o">{</span>
+	<span class="nv">H</span><span class="o">=</span><span class="sb">`</span><span class="nb">date</span> +<span class="s1">'%H'</span><span class="sb">`</span>
+	<span class="k">if</span> <span class="o">[</span> <span class="nv">$H</span> <span class="nt">-gt</span> 7 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nv">$H</span> <span class="nt">-lt</span> 16 <span class="o">]</span><span class="p">;</span> <span class="k">then
+		</span><span class="nb">echo</span> <span class="s2">"colorscheme base16-gruvbox-light-soft"</span>
+	<span class="k">else
+		</span><span class="nb">echo</span> <span class="s2">"colorscheme base16-gruvbox-dark-pale"</span>
+	<span class="k">fi</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_darkreader">DarkReader</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kod yazarken internetten dökümentasyonuna bakmaya çalışıp tarayıcının açtığı bembeyaz sayfayla gözünüzdeki tüm sensörleri yaktınız mı? Neden internet sayfalarına kağıt muamelesi yapıp beyaz-üzerine-siyah kullandığımızı hiç anlamamışımdır. O kadar rahatsız edici bir tecrübe ki birkaç ayda bir görsel tarayıcıları kullanmayı bırakıp <code>w3m</code>, <code>links</code> vs. kullanmayı değerlendiriyor, çoğu internet sayfasını okurken zorlanıp vazgeçiyorum.</p>
+</div>
+<div class="paragraph">
+<p><a href="http://userstyles.org" class="bare">http://userstyles.org</a>, <a href="http://darkreader.org" class="bare">http://darkreader.org</a> internet sayfalarının CSS&#8217;lerini ezip isterseniz daha gözü rahat ettiren renkler kullanma imkanı veriyordu, ama sorunsuz da değildi.</p>
+</div>
+<div class="paragraph">
+<p>Neyse ki internet tarayıcıların yeni sürümlerinde <code>prefer-color-scheme</code> adıyla bir çözüm geliyor.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prefer_color_scheme">prefer-color-scheme</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Artık tarayıcıda bir defa "aydınlık" veya "karanlık" tema seçimi yapıp, internet sitelerinin bu seçim ile uyan renkler sunması mümkün.</p>
+</div>
+<div class="paragraph">
+<p>Eğer internet tarayıcısında şu şekilde bir CSS tanımı varsa:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nt">body</span> <span class="p">{</span>
+	<span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
+	<span class="nl">color</span><span class="p">:</span> <span class="no">brown</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="p">(</span><span class="n">prefer-color-scheme</span><span class="p">:</span> <span class="n">dark</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nt">body</span> <span class="p">{</span>
+		<span class="nl">background-color</span><span class="p">:</span> <span class="no">brown</span><span class="p">;</span>
+		<span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Bu aydınlık temadaki bir kullanıcıya sarı-üzerine-kahverengi, karanlık temalı bir kullanıcıya da kahverengi-üzerine-beyaz yazı gösteriyor, tarayıcınız bunu destekliyorsa tabii.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Daha fazla bilgi için: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" class="bare">https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme</a></p>
+</li>
+<li>
+<p>Eğer "dark-mode"un geçmişten bugüne hikayesini okumak istiyorsanız: <a href="https://web.dev/prefers-color-scheme/" class="bare">https://web.dev/prefers-color-scheme/</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Bu fırsatla ben de sayfamın temasını değiştirdim. Bu sayfa da bundan sonra sizin tema seçiminize saygı gösterecek.</p>
+</div>
+<div class="paragraph">
+<p>Yakın gelecekte gözlerimiz çok daha rahat edebilecek sanki&#8230;&#8203;</p>
+</div>
+</div>
 </div>
 
   </div>
 
   <div id=links>
+    
+      <a class="basic-alignment left" href="/posts/most-elegant-js-code/">&laquo; En Güzel JavaScript kodu: Akış Şeması Programlama</a>
     
     
   </div>
