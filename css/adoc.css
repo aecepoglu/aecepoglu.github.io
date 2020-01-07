@@ -57,12 +57,6 @@ td.content {
 	padding: 1em;
 	margin-top: 10px;
 }
-@media (prefer-color-scheme: light) {
-}
-@media (prefer-color-scheme: dark) {
-	.stemblock .content {
-	}
-}
 .ulist {
 	    margin-left: 1em;
 }
