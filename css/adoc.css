@@ -1,17 +1,22 @@
 :root {
-	--primary-color: #a02020;
-	--bg-color: #f8f8f8;
-	--fg-color: black;
+	--primary-color: #a22;
+	--bg-color: #edc;
+	--bg-color-alt: #f8e7d7;
+	--fg-color: #222;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--primary-color: #d0a0a0;
-		--bg-color: #202020;
-		--fg-color: #fdfdfd;
+		--primary-color: #daa;
+		--bg-color: #111;
+		--bg-color-alt: #080808;
+		--fg-color: #b0a0a0;
 	}
 }
-
+blockquote:before, blockquote:after {
+	color: var(--fg-color);
+	font-size: 3em;
+}
 .admonitionblock {
 	margin-top: 1em;
 	margin-bottom: 1em;
@@ -52,13 +57,15 @@ td.content {
 	margin-bottom: -15px;
 }
 .stemblock .content {
-	background-color: var(--bg-color);
 	color: var(--fg-color);
 	padding: 1em;
 	margin-top: 10px;
 }
+pre, code, .stemblock .content {
+	background-color: var(--bg-color-alt);
+}
 .ulist {
-	    margin-left: 1em;
+	margin-left: 1em;
 }
 
 .colist {
@@ -69,8 +76,8 @@ td.content {
 .conum[data-value] + b { display: none }
 .conum[data-value]:after { content: attr(data-value) }
 .conum[data-value] {
-	background-color: black;
-	color: white;
+	background-color: var(--fg-color);
+	color: var(--bg-color);
 	border-radius: 100px;
 	width: 1em;
 	line-height: 1em;
@@ -81,21 +88,16 @@ td.content {
 	padding: 0.2em;
 	margin-right: 0.5em;
 }
-@media (prefers-color-scheme: dark) {
-	.conum[data-value] {
-		background-color: white;
-		color: black;
-	}
-}
-.content ul li {
-	list-style-type: inherit;
-}
 ul li p, ol li p {
 	margin: .6em 0px;
 }
-ul li:before {
-	content: none;
+body {
+	background-color: var(--bg-color);
 }
+* {
+	color: var(--fg-color);
+}
+#nav h1 a,
 #content h1,
 #content h2,
 #content h3,
@@ -108,6 +110,10 @@ ul li:before {
 #content .posts_listing h3,
 #content .posts_listing h4,
 #content .posts_listing a {
-	color: inherit;
+	/*color: inherit;*/
+}
+ul li:before {
+	float: left;
+	margin-right: 1em;
 }
 

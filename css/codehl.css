@@ -1,6 +1,4 @@
 @media (prefers-color-scheme: dark) {
-	.highlight .hll { background-color: #404040 }
-	.highlight  { background: #202020; color: #d0d0d0 }
 	.highlight .c { color: #999999; font-style: italic }
 	.highlight .err { color: #a61717; background-color: #e3d2d2 }
 	.highlight .esc { color: #d0d0d0 }
@@ -79,8 +77,6 @@
 	.highlight .il { color: #3677a9 }
 }
 @media (prefers-color-scheme: light) {
-	.highlight .hll { background-color: #ffffcc }
-	.highlight  { background: #f8f8f8; }
 	.highlight .c { color: #408080; font-style: italic } /* Comment */
 	.highlight .err { border: 1px solid #FF0000 } /* Error */
 	.highlight .k { color: #008000; font-weight: bold } /* Keyword */
