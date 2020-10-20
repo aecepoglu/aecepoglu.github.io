@@ -23,10 +23,10 @@
     <title>
       
       
-         Güle Güle Karanlık, Hoşgeldin Karanlık 
+         Klavyeler 
       
     </title>
-    <link rel="canonical" href="/posts/goodbye-dark/">
+    <link rel="canonical" href="/projects/keyboards/">
 
     <style>
   * {
@@ -449,11 +449,11 @@ MathJax.Hub.Config({
 
 
 <section id=content>
-  <h1> Güle Güle Karanlık, Hoşgeldin Karanlık </h1>
+  <h1> Klavyeler </h1>
 
   
     <div id=sub-header>
-      January 2020 · 2 minute read
+      October 2020 · 3 minute read
     </div>
   
 
@@ -461,96 +461,158 @@ MathJax.Hub.Config({
     <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>&#34;İnsanlar ikiye ayrılır&#34; derler; &#34;Sayı saymayı bilenler, saymayı bilmeyenler, ve diğerleri…​&#34;.<br/>
-Ben buna katılıyor ve bir de şöyle bir ayrım öneriyorum: &#34;Karanlıkta çalışmayı sevenler ve aydınlıkta çalışmayı sevenler&#34;.</p>
+<p><em>(Artik siparis uzerine klavye yapiyorum. Detayli bilgi icin <a href="#siparis">Siparis</a>&#39;e bakin)</em></p>
 </div>
 <div class="paragraph">
-<p>Ben hava karardıktan sonra hala saat öğlen 1’miş gibi davranıp içeriyi florasan ışık ile aydınlatmayı seçenlerden değilim. Hava kararınca ben de ekranımı ve kullandığım yazılımları karanlık-modlarına geçirmeyi gözlerim için daha rahatlatıcı buluyorum.</p>
+<p>Universitede aldigim derslerden birinden gecmek icin tek yapmak gereken seminerlere katilmakti. Bu seminerlerden birisinde konusmaci klavye duzenlerinden ve F-klavyenin nasil daha ergonomik ve istatistik olarak ustun bir klavye oldugundan bahsetti. O aksam internette gezinip <a href="http://www.dvzine.org/zine/index.html" class="bare">http://www.dvzine.org/zine/index.html</a> &#39;yi okuyup Dvorak klavye duzenini ogrenmeye karar verdim.</p>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tbody><tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><a href="http://kakoune.org">kakoune</a>&#39;da karanlık temayı otomatik olarak seçmek için şöyle bir tanımlama kolayca yapılabiliyor:</p>
-</div>
-<div class="listingblock">
-<div class="title">kakrc</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="shell"><span class="nb">eval</span> %sh<span class="o">{</span>
-	<span class="nv">H</span><span class="o">=</span><span class="sb">`</span><span class="nb">date</span> +<span class="s1">&#39;%H&#39;</span><span class="sb">`</span>
-	<span class="k">if</span> <span class="o">[</span> <span class="nv">$H</span> <span class="nt">-gt</span> 7 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nv">$H</span> <span class="nt">-lt</span> 16 <span class="o">]</span><span class="p">;</span> <span class="k">then
-		</span><span class="nb">echo</span> <span class="s2">&#34;colorscheme base16-gruvbox-light-soft&#34;</span>
-	<span class="k">else
-		</span><span class="nb">echo</span> <span class="s2">&#34;colorscheme base16-gruvbox-dark-pale&#34;</span>
-	<span class="k">fi</span>
-<span class="o">}</span></code></pre>
-</div>
+<p>Neden dvorak klavye kullandigimi soranlara cevap vermekten usanip su minik siteyi hazirlamistim:
+<a href="http://aecepoglu.com/why-dvorak" class="bare">http://aecepoglu.com/why-dvorak</a></p>
 </div>
 </td>
 </tr>
 </tbody></table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_darkreader">DarkReader</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Kod yazarken internetten dökümentasyonuna bakmaya çalışıp tarayıcının açtığı bembeyaz sayfayla gözünüzdeki tüm sensörleri yaktınız mı? Neden internet sayfalarına kağıt muamelesi yapıp beyaz-üzerine-siyah kullandığımızı hiç anlamamışımdır. O kadar rahatsız edici bir tecrübe ki birkaç ayda bir görsel tarayıcıları kullanmayı bırakıp <code>w3m</code>, <code>links</code> vs. kullanmayı değerlendiriyor, çoğu internet sayfasını okurken zorlanıp vazgeçiyorum.</p>
-</div>
-<div class="paragraph">
-<p><a href="http://userstyles.org" class="bare">http://userstyles.org</a>, <a href="http://darkreader.org" class="bare">http://darkreader.org</a> internet sayfalarının CSS’lerini ezip isterseniz daha gözü rahat ettiren renkler kullanma imkanı veriyordu, ama sorunsuz da değildi.</p>
-</div>
-<div class="paragraph">
-<p>Neyse ki internet tarayıcıların yeni sürümlerinde <code>prefers-color-scheme</code> adıyla bir çözüm geliyor.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_prefers_color_scheme">prefers-color-scheme</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Artık tarayıcıda bir defa &#34;aydınlık&#34; veya &#34;karanlık&#34; tema seçimi yapıp, internet sitelerinin bu seçim ile uyan renkler sunması mümkün.</p>
-</div>
-<div class="paragraph">
-<p>Eğer internet tarayıcısında şu şekilde bir CSS tanımı varsa:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">body</span> <span class="p">{</span>
-	<span class="nl">background-color</span><span class="p">:</span> <span class="no">yellow</span><span class="p">;</span>
-	<span class="nl">color</span><span class="p">:</span> <span class="no">brown</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">@media</span> <span class="p">(</span><span class="n">prefers-color-scheme</span><span class="p">:</span> <span class="n">dark</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nt">body</span> <span class="p">{</span>
-		<span class="nl">background-color</span><span class="p">:</span> <span class="no">brown</span><span class="p">;</span>
-		<span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-	<span class="p">}</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Bu aydınlık temadaki bir kullanıcıya sarı-üzerine-kahverengi, karanlık temalı bir kullanıcıya da kahverengi-üzerine-beyaz yazı gösteriyor, tarayıcınız bunu destekliyorsa tabii.</p>
+<p>Huyumdur da bir fikri sonlandiramayip arastirmaya ve gelistirmeye calisarak vakit harcamak. O yuzden sandalye ustundeki rahatini onemseyen biri olarak soru sormaya devam ettim.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Daha fazla bilgi için: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" class="bare">https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme</a></p>
+<p>Artik daktilo kullanmadigimiza gore neden Q tusu hala A tusunun uzerinde degil de biraz daha kenara konuluyor?</p>
 </li>
 <li>
-<p>Eğer &#34;dark-mode&#34;un geçmişten bugüne hikayesini okumak istiyorsanız: <a href="https://web.dev/prefers-color-scheme/" class="bare">https://web.dev/prefers-color-scheme/</a></p>
+<p>Neden on-parmak kullanirken iki elin parmaklari farkli eksenlerde hareket ediyor? (sol elin isaret parmagi R tusuna basmak icin F tusundan kalkip orta parmaga yaklasarak yukari cikiyor. Sag elin isaret parmagi ise J tusundan kalkip parmagin dogal kivrim ekseninde yukari cikarak U tusuna basiyor)</p>
+</li>
+<li>
+<p>Neden kullanmadigim tuslar standart olarak her klavyede geliyor? F3 ve F4’e su ana kadar iki kere basmis olabilirim, o da tuslari temizlerken. Menu/Compose ve Capslock tuslari da boyle…​</p>
+</li>
+<li>
+<p><em>Benim babam boyle pasta yapmayi nerede ogrendi?</em></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Bu fırsatla ben de sayfamın temasını değiştirdim. Bu sayfa da bundan sonra sizin tema seçiminize saygı gösterecek.</p>
+<p>Bu konulari evvelden konusan/tartisan kisiler terimler kullanmislar. Ilkine &#34;row stagger&#34; diyorlar, biz &#34;kayik satir&#34; diyebiliriz belki. &#34;Staggered&#34; olmayan klavyelere de &#34;ortholinear&#34; diyorlar.</p>
 </div>
 <div class="paragraph">
-<p>Yakın gelecekte gözlerimiz çok daha rahat edebilecek sanki…​</p>
+<p>Bakiniz bir ortholinear klavye:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://geekhack.org/index.php?PHPSESSID=ou4eud5p4ugg01kjdlaeqpem1k565p83&amp;action=dlattach;topic=75111.0;attach=110551;image" alt="full-size-ortholinear"/>
+</div>
+</div>
+<div class="paragraph">
+<p>Vim ekolunden gelen biri olarak zaten ne yon tuslarini ne de numpad’i kullaniyorum. Numpad’i olmayan klavyelere TKL (<em>ten keyless</em> , her ne kadar numpad’de 10’dan fazla tus olsa da) ya da 80% deniyor. Yon tuslarinin oldugu bolumu de atarsak 60% limitine inmis oluyoruz. &#34;Preonic&#34; denilen klavye ortholinear 60% bir klavye mesela:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://cdn.shopify.com/s/files/1/0277/3260/7010/products/dss-tecla-preonic_360x.jpg?v=1602199047" alt="preonic"/>
+</div>
+</div>
+<div class="paragraph">
+<p>&#34;Ben sayilari da istemiyorum. Farkli tus kombinasyonlari ile sayilari basarim ben&#34; dediginizde de Planck isimli klavyeyi bulmus oluyoruz:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://cdn.shopify.com/s/files/1/1152/3264/t/25/assets/neat-planck-banner.png?v=8240692596812405210" alt="planck"/>
+</div>
+</div>
+<div class="paragraph">
+<p>Bu kadar az sayida tusun nasil yeterli oldugunu su video’dan ognerebilirsiniz:</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/bEPg8kk84gw?rel=0" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+<div class="paragraph">
+<p>Peki ben bu klavyeyi ikiye ayirmak istiyorum derseniz? O tasarimi da biri bulmus, adi &#34;Lets Split&#34;</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://raw.githubusercontent.com/diimdeep/awesome-split-keyboards/master/img/LetsSplit.jpg" alt="lets-split"/>
+</div>
+</div>
+<div class="paragraph">
+<p>Peki &#34;benim orta parmagim isaret parmagimdan uzun. Neden E tusu R tusu ile ayni hizada?&#34; sorusu aklinizda canlandi ise onun cevabi da &#34;ErgoTravel&#34; olabilir:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://raw.githubusercontent.com/diimdeep/awesome-split-keyboards/master/img/Ergotravel.jpg" alt="ergotravel"/>
+</div>
+</div>
+<div class="paragraph">
+<p>Ki &#34;ergotravel&#34; denen klavye aslinda &#34;ErgoDox&#34; isimli klavyenin biraz daha ufak hali. Buyrun &#34;ErgoDox EZ&#34;:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://raw.githubusercontent.com/diimdeep/awesome-split-keyboards/master/img/Ergodox_EZ_white.jpg" alt="ergodox ez"/>
+</div>
+</div>
+<div class="paragraph">
+<p>Parmaklarinizin bir duzlemdeki degil de ic-bukey bir yuzeyde daha dogal hareket edebilecegini dusunuyorsaniz o zaman karsinizda &#34;Dactyl&#34;:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://raw.githubusercontent.com/diimdeep/awesome-split-keyboards/master/img/Dactyl.jpg" alt="dactyl"/>
+</div>
+</div>
+<div class="paragraph">
+<p>Ve bas-parmagin sorumlu oldugu tuslarin alternatif dizilimli hali &#34;Dactyl Manuform&#34;</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://raw.githubusercontent.com/diimdeep/awesome-split-keyboards/master/img/Dactyl-ManuForm.jpg" alt="dactyl-manuform"/>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="siparis">Istege Gore Klavye</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cok sevgili Dogukan’in (isterse buraya sitesine giden bir link de koyarim) 3D yazici almasi ve benim bu klavyelerden yapma istegimi kabul etmesi uzerine Dogukan ile birlikte bi’kac klavye yaptik, bi’kac daha yapmakta/fikir-gelistirmekteyiz.</p>
+</div>
+<div class="paragraph">
+<p>Ilk klavyemiz; gittigim yerlere benimle gelecek bir Pteron:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/imgs/pteron.jpg" alt="pteron-promo"/>
+</div>
+</div>
+<div class="paragraph">
+<p>Gunluk kullanimim icin bir Dactyl Manuform:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/imgs/dactyl-manuform.jpg" alt="dactylmanuform-promo"/>
+</div>
+</div>
+<div class="paragraph">
+<p>Diger yaptiklarimizin ve yapacaklarimizin da resimlerini buraya eklerim zamanla.</p>
+</div>
+<div class="paragraph">
+<p>Ama bu surec oldukca keyifliydi ve biz daha fazlasini yapmak istiyoruz. Bu yuzden gelir amaci gutmese de harcanan vakte degmesi kosuluyla istek/siparis uzerine klavye yapmaya karar verdik. Henuz bir fiyat cetveli yok, olunca burayi guncellerim.</p>
+</div>
+<div class="sect2">
+<h3 id="_siparis_vermek_icin">Siparis Vermek Icin</h3>
+<div class="paragraph">
+<p>Siz de bir klavye siparisi vermek istiyorsaniz <code>aec \@ mm \. st</code> adresine eposta atabilirsiniz.</p>
+</div>
+<div class="paragraph">
+<p>Klavye tipi, switch ve keycap tercihleri ve varsa bunlarin temin edilmesini istediginiz yerleri belirtin. Diger istek ve fikirleriniz var ise onlardan da bahsedin.</p>
+</div>
 </div>
 </div>
 </div>
@@ -559,10 +621,6 @@ Ben buna katılıyor ve bir de şöyle bir ayrım öneriyorum: &#34;Karanlıkta 
 
   <div id=links>
     
-      <a class="basic-alignment left" href="/posts/most-elegant-js-code/">&laquo; En Güzel JavaScript kodu: Akış Şeması Programlama</a>
-    
-    
-      <a class="basic-alignment left" href="/posts/a-new-page/">aecepoglu İlişki Durumunu Değiştirdi &raquo;</a>
     
   </div>
 </section>

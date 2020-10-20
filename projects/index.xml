@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on aecepoglu</title>
+    <link>/projects/</link>
+    <description>Recent content in Projects on aecepoglu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 15 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Klavyeler</title>
+      <link>/projects/keyboards/</link>
+      <pubDate>Thu, 15 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/keyboards/</guid>
+      <description>(Artik siparis uzerine klavye yapiyorum. Detayli bilgi icin Siparis&amp;#39;e bakin)
+ Universitede aldigim derslerden birinden gecmek icin tek yapmak gereken seminerlere katilmakti. Bu seminerlerden birisinde konusmaci klavye duzenlerinden ve F-klavyenin nasil daha ergonomik ve istatistik olarak ustun bir klavye oldugundan bahsetti. O aksam internette gezinip http://www.dvzine.org/zine/index.html &amp;#39;yi okuyup Dvorak klavye duzenini ogrenmeye karar verdim.
+   Note  Neden dvorak klavye kullandigimi soranlara cevap vermekten usanip su minik siteyi hazirlamistim: http://aecepoglu.</description>
+    </item>
+    
+  </channel>
+</rss>

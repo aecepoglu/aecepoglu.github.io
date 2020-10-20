@@ -4,7 +4,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-02-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-15T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -18,6 +18,16 @@
   </url>
   
   <url>
+    <loc>/projects/keyboards/</loc>
+    <lastmod>2020-10-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/projects/</loc>
+    <lastmod>2020-10-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/a-new-page/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
   </url>
@@ -25,16 +35,6 @@
   <url>
     <loc>/posts/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="tr"
-                href="/posts/"
-                />
   </url>
   
   <url>

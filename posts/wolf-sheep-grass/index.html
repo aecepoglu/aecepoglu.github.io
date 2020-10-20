@@ -440,6 +440,8 @@ MathJax.Hub.Config({
         
           <li><a href="/tr/">tr</a></li>
         
+          <li><a href="/projects/keyboards">diğer</a></li>
+        
           <li><a href="/about">hakkımda</a></li>
         
       </ul>
@@ -459,15 +461,15 @@ MathJax.Hub.Config({
     <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Bir çobanın bir kurdu, bir koyunu, bir balya da otu var.<br>
-Bunları nehrin karşı yakasına taşımak istiyor.<br>
-Nehirde bir kayık var.<br>
-Kayık ancak çobanı ve bir adet şeyi (ot, koyun ya da kurt) taşıyacak kadar büyük.<br>
-Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebiliyor.<br>
+<p>Bir çobanın bir kurdu, bir koyunu, bir balya da otu var.<br/>
+Bunları nehrin karşı yakasına taşımak istiyor.<br/>
+Nehirde bir kayık var.<br/>
+Kayık ancak çobanı ve bir adet şeyi (ot, koyun ya da kurt) taşıyacak kadar büyük.<br/>
+Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebiliyor.<br/>
 Çoban herkesi sağ salim nasıl karşıya taşır?</p>
 </div>
 <div class="paragraph">
-<p>Evet, farkındayım&#8230;&#8203; Basit bir bulmaca.</p>
+<p>Evet, farkındayım…​ Basit bir bulmaca.</p>
 </div>
 <div class="paragraph">
 <p>Peki ya bunu kod ile çozecek olsak?</p>
@@ -500,13 +502,13 @@ Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebil
 <p>Elinizde yan yana dizili 3 kart var.</p>
 </li>
 <li>
-<p>Bu kartların üzerinde soldan sağa sırayla "A", "B" ve "C" yazıyor.</p>
+<p>Bu kartların üzerinde soldan sağa sırayla &#34;A&#34;, &#34;B&#34; ve &#34;C&#34; yazıyor.</p>
 </li>
 <li>
 <p>Yapabileceğiniz iki çeşit hamle var: soldaki kart ile ortadaki kartı yer değiştirebilirsiniz ya da ortadaki kart ile sağdaki kartı yer değiştirebilirsiniz.</p>
 </li>
 <li>
-<p>Hangi hamleleri yapmanız gerekir ki kartlar ters sıraya girsinler: soldan sağa "C", "B", "A" şeklinde.</p>
+<p>Hangi hamleleri yapmanız gerekir ki kartlar ters sıraya girsinler: soldan sağa &#34;C&#34;, &#34;B&#34;, &#34;A&#34; şeklinde.</p>
 </li>
 </ol>
 </div>
@@ -522,14 +524,14 @@ Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebil
 
 <span class="p">:-</span> <span class="ss">state</span><span class="p">(</span><span class="nv">M</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">),</span> <span class="ss">max_moves</span><span class="p">(</span><span class="nv">M</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">finish</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">).</span> <i class="conum" data-value="3"></i><b>(3)</b>
 
-<span class="c1">#show state/4. </span><i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+<span class="o">#</span><span class="ss">show</span> <span class="ss">state</span><span class="o">/</span><span class="m">4</span><span class="p">.</span> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
-<tr>
+<tbody><tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Eğer <code>T</code> vaktinde <code>X,Y,Z</code> halinde bir sistemim var ise <code>T+1</code> halinde bu <code>X,Z,Y</code> olabilir (<code>Y</code> ve <code>Z</code> yer değiştirirse), eğer zaten <code>T+1</code> anı için ben <code>X</code> ve <code>Y</code>'yi yer değiştirmeyi seçmemiş isem.</td>
+<td>Eğer <code>T</code> vaktinde <code>X,Y,Z</code> halinde bir sistemim var ise <code>T+1</code> halinde bu <code>X,Z,Y</code> olabilir (<code>Y</code> ve <code>Z</code> yer değiştirirse), eğer zaten <code>T+1</code> anı için ben <code>X</code> ve <code>Y</code>&#39;yi yer değiştirmeyi seçmemiş isem.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -537,17 +539,17 @@ Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebil
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Son state&#8217;in istediğim hal olmadığı durumları istemiyorum</td>
+<td>Son state’in istediğim hal olmadığı durumları istemiyorum</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
 <td>Sonuçta sadece <code>state</code> kuralına dair bilgileri göster (<code>/4</code> denmesi bu <code>state</code> kuralının 4 argüman aldığını belirtiyor)</td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="Tip"></i>
 </td>
@@ -557,7 +559,7 @@ Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebil
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="listingblock">
 <div class="title">sonuç:</div>
@@ -569,7 +571,7 @@ SATISFIABLE</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ancak bu <code>T</code>'den <code>T+1</code>'e geçiş anı için tanımladığım kural bu seviyede bir problem için yeterli olsa da daha karmaşık olanlarda zorluk çıkaracak. Üstesinden kısıt-kapsamında-kural üreterek gelebiliyoruz:</p>
+<p>Ancak bu <code>T</code>&#39;den <code>T+1</code>&#39;e geçiş anı için tanımladığım kural bu seviyede bir problem için yeterli olsa da daha karmaşık olanlarda zorluk çıkaracak. Üstesinden kısıt-kapsamında-kural üreterek gelebiliyoruz:</p>
 </div>
 <div class="listingblock">
 <div class="title">kısıtlar ile kural türetme</div>
@@ -587,40 +589,40 @@ SATISFIABLE</pre>
 <span class="p">:-</span> <span class="ss">state</span><span class="p">(</span><span class="nv">M</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">),</span> <span class="ss">max_moves</span><span class="p">(</span><span class="nv">M</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">finish</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">).</span>
 <span class="p">:-</span> <span class="ss">state</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">),</span> <span class="ss">not</span> <span class="ss">achievable_state</span><span class="p">(</span><span class="nv">T</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">,</span> <span class="nv">Z</span><span class="p">),</span> <span class="ss">max_moves</span><span class="p">(</span><span class="nv">M</span><span class="p">),</span> <span class="nv">T</span><span class="o">=</span><span class="m">1</span><span class="p">..</span><span class="nv">M</span><span class="p">.</span> <i class="conum" data-value="2"></i><b>(2)</b>
 
-<span class="c1">#show state/4.</span></code></pre>
+<span class="o">#</span><span class="ss">show</span> <span class="ss">state</span><span class="o">/</span><span class="m">4</span><span class="p">.</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
-<tr>
+<tbody><tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>1</code>'den <code>max_moves</code>'a kadar her bir <code>T</code> için sadece 1 değer üret.</td>
+<td><code>1</code>&#39;den <code>max_moves</code>&#39;a kadar her bir <code>T</code> için sadece 1 değer üret.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>bir yer-değiştirme ile elde edilemeyecek durumları istemiyorum.</td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="admonitionblock note">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Bu 3 kart probleminde yapmamıza izin verilen 2 hamle ile kartların olabileceği tüm dizilimleri elde etmek mümkün. Bu 3 kart üzerinde tanımlayabileceğimiz her yeni hamleyi (1&#8217;nci kart ile 3&#8217;ncü kartı yer değiştirmek gibi, kartları bir sağa kaydırmak gibi [<code>ABC&#8217;yi `CAB</code> yapmak]&#8230;&#8203;) zaten elimizdeki hamleler ile elde edebiliyoruz.</p>
+<p>Bu 3 kart probleminde yapmamıza izin verilen 2 hamle ile kartların olabileceği tüm dizilimleri elde etmek mümkün. Bu 3 kart üzerinde tanımlayabileceğimiz her yeni hamleyi (1’nci kart ile 3’ncü kartı yer değiştirmek gibi, kartları bir sağa kaydırmak gibi [<code>ABC’yi `CAB</code> yapmak]…​) zaten elimizdeki hamleler ile elde edebiliyoruz.</p>
 </div>
 <div class="paragraph">
-<p>Bu gibi sistemlere matematikte "grup", sistemi üretebilen en ufak hamle kümesine (bize verilen 2 hamle gibi) de sistemin "üreticileri"(generator) deniyor.</p>
+<p>Bu gibi sistemlere matematikte &#34;grup&#34;, sistemi üretebilen en ufak hamle kümesine (bize verilen 2 hamle gibi) de sistemin &#34;üreticileri&#34;(generator) deniyor.</p>
 </div>
 <div class="paragraph">
 <p>Grup teorisine de ileriki zamanlarda değinmeyi düşünüyorum.</p>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 </div>
 </div>
@@ -657,12 +659,12 @@ SATISFIABLE</pre>
 <span class="p">:-</span> <span class="ss">not</span> <span class="ss">onshore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">),</span> <span class="ss">goal_shore</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">S</span><span class="p">),</span> <span class="ss">moves</span><span class="p">(</span><span class="nv">T</span><span class="p">).</span> <i class="conum" data-value="8"></i><b>(8)</b>
 <span class="p">:-</span> <span class="ss">danger</span><span class="p">(</span><span class="nv">S</span><span class="p">,</span> <span class="nv">T</span><span class="p">),</span> <span class="ss">shore</span><span class="p">(</span><span class="nv">S</span><span class="p">),</span> <span class="ss">moves</span><span class="p">(</span><span class="nv">M</span><span class="p">),</span> <span class="nv">T</span><span class="o">=</span><span class="m">1</span><span class="p">..</span><span class="nv">M</span><span class="p">.</span> <i class="conum" data-value="9"></i><b>(9)</b>
 
-<span class="c1">#show move/3.</span></code></pre>
+<span class="o">#</span><span class="ss">show</span> <span class="ss">move</span><span class="o">/</span><span class="m">3</span><span class="p">.</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
-<tr>
+<tbody><tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>Her bir <code>item</code> <code>a</code> yakasında başlamalı</td>
 </tr>
@@ -676,7 +678,7 @@ SATISFIABLE</pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Eğer bir şey bir yakaya taşınmış ise, o an itibariyle o yakadadır.<br>
+<td>Eğer bir şey bir yakaya taşınmış ise, o an itibariyle o yakadadır.<br/>
 Eğer bir şeye son hamlemde dokunmamış isem, o şey önceden nerede ise oradadır</td>
 </tr>
 <tr>
@@ -699,7 +701,7 @@ Eğer bir şeye son hamlemde dokunmamış isem, o şey önceden nerede ise orada
 <td><i class="conum" data-value="9"></i><b>9</b></td>
 <td>Herhangi bir anda tehlikeli bir durum olmasın</td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="listingblock">
 <div class="title">Ve sonuç:</div>

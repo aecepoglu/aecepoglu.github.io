@@ -5,23 +5,7 @@
     <link>/en/</link>
     <description>Recent content on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 12 Aug 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>A look into composing, Composability, Immutability</title>
-      <link>/en/posts/immutability/</link>
-      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/immutability/</guid>
-      <description>An ordinary work day,
-I&amp;#8217;m adding a feature to our JavaScript driven tables so it can pull/push data while navigating between the pages(I belive in common tongue they call this &#34;pagination&#34;). I wrote two functions named retrieveItems and drawItems. As I&amp;#8217;m building the retrieveItemsAndDraw function, this is what I find myself writing:
- const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   At that time one of the guys in my team creep up behind me and ask what I&amp;#8217;m up to, and what that line does.</description>
-    </item>
-    
+    <language>en-us</language><atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Me</title>
       <link>/en/about/</link>

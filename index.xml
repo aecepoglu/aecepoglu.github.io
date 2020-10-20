@@ -6,10 +6,17 @@
     <description>Recent content on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Thu, 15 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Klavyeler</title>
+      <link>/projects/keyboards/</link>
+      <pubDate>Thu, 15 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/keyboards/</guid>
+      <description>(Artik siparis uzerine klavye yapiyorum. Detayli bilgi icin Siparis&amp;#39;e bakin)
+ Universitede aldigim derslerden birinden gecmek icin tek yapmak gereken seminerlere katilmakti. Bu seminerlerden birisinde konusmaci klavye duzenlerinden ve F-klavyenin nasil daha ergonomik ve istatistik olarak ustun bir klavye oldugundan bahsetti. O aksam internette gezinip http://www.dvzine.org/zine/index.html &amp;#39;yi okuyup Dvorak klavye duzenini ogrenmeye karar verdim.
+   Note  Neden dvorak klavye kullandigimi soranlara cevap vermekten usanip su minik siteyi hazirlamistim: http://aecepoglu.</description>
+    </item>
     
     <item>
       <title>aecepoglu İlişki Durumunu Değiştirdi</title>
@@ -28,10 +35,9 @@
       <pubDate>Mon, 06 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>/posts/goodbye-dark/</guid>
-      <description>&#34;İnsanlar ikiye ayrılır&#34; derler; &#34;Sayı saymayı bilenler, saymayı bilmeyenler, ve diğerleri&amp;#8230;&amp;#8203;&#34;.
-Ben buna katılıyor ve bir de şöyle bir ayrım öneriyorum: &#34;Karanlıkta çalışmayı sevenler ve aydınlıkta çalışmayı sevenler&#34;.
- Ben hava karardıktan sonra hala saat öğlen 1&amp;#8217;miş gibi davranıp içeriyi florasan ışık ile aydınlatmayı seçenlerden değilim. Hava kararınca ben de ekranımı ve kullandığım yazılımları karanlık-modlarına geçirmeyi gözlerim için daha rahatlatıcı buluyorum.
-     kakoune&#39;da karanlık temayı otomatik olarak seçmek için şöyle bir tanımlama kolayca yapılabiliyor:</description>
+      <description>&amp;#34;İnsanlar ikiye ayrılır&amp;#34; derler; &amp;#34;Sayı saymayı bilenler, saymayı bilmeyenler, ve diğerleri…​&amp;#34;. Ben buna katılıyor ve bir de şöyle bir ayrım öneriyorum: &amp;#34;Karanlıkta çalışmayı sevenler ve aydınlıkta çalışmayı sevenler&amp;#34;.
+ Ben hava karardıktan sonra hala saat öğlen 1’miş gibi davranıp içeriyi florasan ışık ile aydınlatmayı seçenlerden değilim. Hava kararınca ben de ekranımı ve kullandığım yazılımları karanlık-modlarına geçirmeyi gözlerim için daha rahatlatıcı buluyorum.
+     kakoune&amp;#39;da karanlık temayı otomatik olarak seçmek için şöyle bir tanımlama kolayca yapılabiliyor:</description>
     </item>
     
     <item>
@@ -41,7 +47,7 @@ Ben buna katılıyor ve bir de şöyle bir ayrım öneriyorum: &#34;Karanlıkta 
       
       <guid>/posts/most-elegant-js-code/</guid>
       <description>Aşağıdaki satırlar, işyerindeki tüm ekibimizin birkaç senelik eforunun en lezzetli meyvelerinden.
- route.post(&#34;/api/proxy&#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.status = &#34;valid&#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy.</description>
+ route.post(&amp;#34;/api/proxy&amp;#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.status = &amp;#34;valid&amp;#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy.</description>
     </item>
     
     <item>
@@ -50,13 +56,8 @@ Ben buna katılıyor ve bir de şöyle bir ayrım öneriyorum: &#34;Karanlıkta 
       <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/wolf-sheep-grass/</guid>
-      <description>Bir çobanın bir kurdu, bir koyunu, bir balya da otu var.
-Bunları nehrin karşı yakasına taşımak istiyor.
-Nehirde bir kayık var.
-Kayık ancak çobanı ve bir adet şeyi (ot, koyun ya da kurt) taşıyacak kadar büyük.
-Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebiliyor.
-Çoban herkesi sağ salim nasıl karşıya taşır?
- Evet, farkındayım&amp;#8230;&amp;#8203; Basit bir bulmaca.
+      <description>Bir çobanın bir kurdu, bir koyunu, bir balya da otu var. Bunları nehrin karşı yakasına taşımak istiyor. Nehirde bir kayık var. Kayık ancak çobanı ve bir adet şeyi (ot, koyun ya da kurt) taşıyacak kadar büyük. Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebiliyor. Çoban herkesi sağ salim nasıl karşıya taşır?
+ Evet, farkındayım…​ Basit bir bulmaca.
  Peki ya bunu kod ile çozecek olsak?
  İleride mantık-proglamlamadan ve declarative programlamadan bahsedeceğim.</description>
     </item>
@@ -67,10 +68,10 @@ Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebil
       <pubDate>Fri, 06 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/immutability-alt/</guid>
-      <description>Sıradan bir iş günü. JavaScript&amp;#8217;te tablolarımızdan birisine sayfalar arasında geçiş yaparken veri indir/kaldır yapma kabiliyeti ekliyorum (halk arasında buna &#34;pagination&#34; diyorlar). retrieveItems diye ve drawItems diye birer fonksiyon yazdım. retrieveItemsAndDraw yazıp çözüme ulaşmak üzereyken şu kodu yazdığımı farkediyorum:
- const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   Ekip arkadaşlarımdan birisi bu satırda n&amp;#8217;aptığımı sorduğunda &#34;Basit!&#34; diye cevaplıyorum:
-  Bu iki fonksiyonu birleştirip yeni bir fonksiyon oluşturuyorum.
- De ki f(x) = 2x + 3 demek istiyorum.</description>
+      <description>(bu yazidaki resimlerin guncellenmesi gerekiyor)
+ Sıradan bir iş günü. JavaScript’te tablolarımızdan birisine sayfalar arasında geçiş yaparken veri indir/kaldır yapma kabiliyeti ekliyorum (halk arasında buna &amp;#34;pagination&amp;#34; diyorlar). retrieveItems diye ve drawItems diye birer fonksiyon yazdım. retrieveItemsAndDraw yazıp çözüme ulaşmak üzereyken şu kodu yazdığımı farkediyorum:
+ const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   Ekip arkadaşlarımdan birisi bu satırda n’aptığımı sorduğunda &amp;#34;Basit!&amp;#34; diye cevaplıyorum:
+  Bu iki fonksiyonu birleştirip yeni bir fonksiyon oluşturuyorum.</description>
     </item>
     
     <item>
@@ -79,8 +80,8 @@ Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebil
       <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/repl-driven-development/</guid>
-      <description>http://discuss.ocaml.org &#39;u açıyorum; uzun zamandır portfolyomu fonksiyonel yaklaşımlar ve diller konusunda zenginleştirmekteyim ve de aktif bir iş arayışındayım. İnternette bir OCaml ilanı var ise orada bulabileceğimden eminim.
- Komşu başlıklardan birisinde &#34;Closure&amp;#8217;da REPL Driven Development&#34; yapmanın ne kadar keyifli olduğunu, acaba OCaml&amp;#8217;da da bunun mümkün olup olmadığı tartışılıyor.
+      <description>http://discuss.ocaml.org &amp;#39;u açıyorum; uzun zamandır portfolyomu fonksiyonel yaklaşımlar ve diller konusunda zenginleştirmekteyim ve de aktif bir iş arayışındayım. İnternette bir OCaml ilanı var ise orada bulabileceğimden eminim.
+ Komşu başlıklardan birisinde &amp;#34;Closure’da REPL Driven Development&amp;#34; yapmanın ne kadar keyifli olduğunu, acaba OCaml’da da bunun mümkün olup olmadığı tartışılıyor.
   I want to define “Repl based development” not as “occasionally use the REPL”, but something like this:
  we start a REPL we type code in some editor, and continuously “send last expression” to the REPL, and we look at the new output eventually, we clean up the buffer a bit and store it as code</description>
     </item>
