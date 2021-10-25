@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    
+
+    
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400' rel='stylesheet' type='text/css'>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='/css/codehl.css' rel="stylesheet">
+    
+
+    <link rel="icon" type="image/png" href="/favicon_16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon_32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon_128x128.png" sizes="128x128">
+
+    <title>
+      
+      
+         Declarative Programlamaya Giriş - 1 / Prolog 
+      
+    </title>
+    <link rel="canonical" href="/posts/prolog-1/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+    text-decoration-skip: ink;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  .left-justify {
+    float: left;
+  }
+
+  .right-justify {
+    float:right;
+  }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  #sub-header, time {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content time {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(2) {
+    float:right;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    *, #nav h1 a {
+      color: #FDFDFD;
+    }
+
+    body {
+      background: #121212;
+    }
+
+    pre, code {
+      background-color: #262626;
+    }
+
+    #sub-header, time {
+      color: #BABABA;
+    }
+
+    hr {
+      background: #EBEBEB;
+    }
+  }
+</style>
+
+
+    
+
+    <link href='/css/adoc.css' rel="stylesheet">
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	displayAlign: "left",
+	asciimath2jax: {
+		delimiters: [['\\$', '\\$']]
+	}
+});
+</script>
+
+
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=AM_HTMLorMML"> </script>
+
+  </head>
+
+  <body>
+    <section id=nav>
+      <h1><a href="/">aecepoglu</a></h1>
+      <ul>
+        
+          <li><a href="/posts/index.xml">rss</a></li>
+        
+          <li><a href="/en/">en</a></li>
+        
+          <li><a href="/tr/">tr</a></li>
+        
+          <li><a href="/projects/keyboards">diğer</a></li>
+        
+          <li><a href="/about">hakkımda</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> Declarative Programlamaya Giriş - 1 / Prolog </h1>
+
+  
+    <div id=sub-header>
+      October 2021 · 3 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kurt-kuzu-ot bulmacasıyla ilgili bir yazı yazmıştım. O yazımı tekrar okudum ve bilgilerin yeterince açıklayıcı bir şekilde sunulmadıĝını farkettim.</p>
+</div>
+<div class="paragraph">
+<p>Declarative kod yazma tarzının anlaşılmasının bir yazılımcı için önemli olduĝunu düşünüyorum, o yüzden Prolog dili ile sıfırdan bir giriş yapma kararı aldım. 3-4 bölümden ibaret olacak ve her bir bölümü bir oturuşta okuyabileceĝiniz uzunlukta. Birinci bölümün sonundaki alıştırmaya gelene kadar arkanıza yaslanıp okumanızı öneriyorum; sonrasında kod yazarak eşlik edebilirsiniz.</p>
+</div>
+<div class="paragraph">
+<p>O zaman başlayalım…​</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bölüm_1_basit_kurallar">Bölüm 1 - Basit Kurallar</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Öncelikle eĝer başka programlama dillerine (hele de imperative tarzdaki (C, Java, Python, JavaScript)) aşina iseniz Prolog’u bir programlama dili deĝil de bir veritabanı veya bir bilgi-sorgu-sistemi olarak düşünmeniz yardımcı olabilir.</p>
+</div>
+<div class="paragraph">
+<p>Sisteme önce bir dizi bilgi/kural girecek, sonra da bu kurallar üzerine sorular soracaĝız.</p>
+</div>
+<div class="paragraph">
+<p>Örneĝin:</p>
+</div>
+<div class="paragraph">
+<p>Kurallar</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">meyve</span><span class="p">(</span><span class="ss">elma</span><span class="p">).</span>
+<span class="ss">meyve</span><span class="p">(</span><span class="ss">armut</span><span class="p">).</span>
+
+<span class="ss">sebze</span><span class="p">(</span><span class="ss">havuc</span><span class="p">).</span>
+<span class="ss">sebze</span><span class="p">(</span><span class="ss">patates</span><span class="p">).</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sorgular</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="p">|</span> <span class="o">?-</span> <span class="ss">meyve</span><span class="p">(</span><span class="ss">elma</span><span class="p">).</span>
+
+<span class="ss">yes</span> <span class="p">(</span><span class="m">1</span><span class="p">)</span>
+
+<span class="p">|</span> <span class="o">?-</span> <span class="ss">meyve</span><span class="p">(</span><span class="ss">patates</span><span class="p">).</span>
+
+<span class="ss">no</span> <span class="p">(</span><span class="m">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(1) &#34;elma bir meyve mi&#34; sorusunu sormuşuz. Cevap &#34;yes&#34;
+(2) bu biçimde bir bilgiyi sistem bulamamış ve &#34;no&#34; cevabını vermiş</p>
+</div>
+<div class="paragraph">
+<p>Bir adım öteye gidelim: Sisteme evet/hayır sorularından ötesini de sorabiliyoruz. Mesela:</p>
+</div>
+<div class="paragraph">
+<p>Sorgular</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="p">|</span> <span class="o">?-</span> <span class="ss">meyve</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span>
+
+<span class="nv">X</span> <span class="o">=</span> <span class="ss">elma</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="ss">armut</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Prolog büyük harfle başlayan bir terimi görünce (mesela <code>X</code> ya da <code>Birsey</code>) &#34;acaba ben bunun yerine ne koyabilirim?&#34; diye aranmaya başlar. <code>meyve(X)</code> şeklindeki kuralları ararsak <code>X</code>in yerine <code>elma</code> veya <code>armut</code> yazınca bunu saĝlayabildiĝimizi farkediyoruz. Sistem de zaten cevap olarak bize 2 adet X deĝerini bulup listelemiş.</p>
+</div>
+<div class="paragraph">
+<p><code>meyve(elma)</code> deyip sonra &#34;elma meyve mi?&#34; diye sormak biraz manasız diye düşünüyorsanız haklısınız. O zaman yazdıĝımızdan ötesini sorgulamaya başlayalım.</p>
+</div>
+<div class="paragraph">
+<p>kurallar.pl</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">insan</span><span class="p">(</span><span class="ss">ali</span><span class="p">).</span>
+<span class="ss">insan</span><span class="p">(</span><span class="ss">veli</span><span class="p">).</span>
+<span class="ss">insan</span><span class="p">(</span><span class="ss">melih</span><span class="p">).</span>
+<span class="ss">insan</span><span class="p">(</span><span class="ss">ayse</span><span class="p">).</span>
+<span class="ss">insan</span><span class="p">(</span><span class="ss">fatma</span><span class="p">).</span>
+<span class="ss">sigir</span><span class="p">(</span><span class="ss">karabas</span><span class="p">).</span>
+<span class="ss">sigir</span><span class="p">(</span><span class="ss">cankiz</span><span class="p">).</span>
+
+<span class="ss">erkek</span><span class="p">(</span><span class="ss">ali</span><span class="p">).</span>
+<span class="ss">erkek</span><span class="p">(</span><span class="ss">veli</span><span class="p">).</span>
+<span class="ss">erkek</span><span class="p">(</span><span class="ss">melih</span><span class="p">).</span>
+<span class="ss">erkek</span><span class="p">(</span><span class="ss">karabas</span><span class="p">).</span>
+<span class="ss">disi</span><span class="p">(</span><span class="ss">ayse</span><span class="p">).</span>
+<span class="ss">disi</span><span class="p">(</span><span class="ss">fatma</span><span class="p">).</span>
+<span class="ss">disi</span><span class="p">(</span><span class="ss">cankiz</span><span class="p">).</span>
+
+<span class="ss">kadin</span><span class="p">(</span><span class="nv">X</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">insan</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">disi</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span>
+<span class="ss">adam</span><span class="p">(</span><span class="nv">X</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">insan</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">erkek</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span>
+<span class="ss">inek</span><span class="p">(</span><span class="nv">X</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">sigir</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">disi</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span> <span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="ss">boga</span><span class="p">(</span><span class="nv">X</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">sigir</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">erkek</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span></code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>inek(X)</code> kuralı doĝru ise öyle bir X deĝeri vardır ki <code>sigir(X)</code> dogrudur ve <code>disi(X)</code> de dogrudur. Yani X inek ise o zaman X sıĝırdır ve X dişidir.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Sorgular</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="p">|</span> <span class="o">?-</span> <span class="ss">kadin</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span>
+
+<span class="nv">X</span> <span class="o">=</span> <span class="ss">ayse</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="ss">fatma</span>
+
+<span class="p">|</span> <span class="o">?-</span> <span class="ss">boga</span><span class="p">(</span><span class="nv">X</span><span class="p">)</span>
+
+<span class="nv">X</span> <span class="o">=</span> <span class="ss">karabas</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dikkatinizi çekti mi bilmiyorum ama hem <code>ve</code> hem de <code>veya</code> işlemlerini gördük şimdiye kadar.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">erkek</span><span class="p">(</span><span class="ss">ali</span><span class="p">).</span>
+<span class="ss">erkek</span><span class="p">(</span><span class="ss">veli</span><span class="p">).</span>
+<span class="ss">erkek</span><span class="p">(</span><span class="ss">melih</span><span class="p">).</span> <span class="p">(</span><span class="m">1</span><span class="p">)</span>
+
+<span class="ss">boga</span><span class="p">(</span><span class="nv">X</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">sigir</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">erkek</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span> <span class="p">(</span><span class="m">2</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>X = ali</code> <em>veya</em> <code>X = veli</code> <em>veya</em> <code>X = melih</code> için <code>erkek(X)</code> kuralı doĝrudur.</p>
+</li>
+<li>
+<p>bir X deĝeri için <code>sigir(X)</code> <em>ve</em> <code>erkek(X)</code> ise <code>boga(X)</code> doĝrudur.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">edepsiz</span><span class="p">(</span><span class="ss">melih</span><span class="p">).</span>
+
+<span class="ss">okuz</span><span class="p">(</span><span class="nv">X</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">boga</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span>
+<span class="ss">okuz</span><span class="p">(</span><span class="nv">X</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">insan</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">edepsiz</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Veya</em> kullanımına başka bir örnek. Eĝer X bir boĝa ise <em>veya</em> asansörden inerken kendinden sonraki binecekler için sürpriz osuruklar bırakan Melih adında bir arkadaşımız ise o zaman <code>okuz(X)</code> doĝrudur. Melih arkadaşım, kahvaltıda çürük yumurta mı yiyorsun, n’apıyorsun anlamıyorum ama bi gastro-entroloĝa görünmende fayda var. Bu koku normal deĝil.</p>
+</div>
+<div class="sect2">
+<h3 id="_bölüm_1_alıştırma">Bölüm 1 - Alıştırma</h3>
+<div class="paragraph">
+<p>Kurallar giderek karmaşıklaşacak. Oralara geçmeden biraz pratik yapmak faydalı olabilir.</p>
+</div>
+<div class="paragraph">
+<p>Ben sizden aile ilişkilerini sorgulayabileceĝimiz kurallar istiyorum. Oldukça klasik bir prolog’a-giriş problemidir: Aşaĝıda yazacaĝınız kod için bir taslak sundum: <code>anne</code> ve <code>dayi</code> için de örnek çözümler verdim.</p>
+</div>
+<div class="paragraph">
+<p>Kendi geniş ailenizdeki (veya bildiĝiniz başka bir ailedeki):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>erkeklerin kimler olduĝunu yazın.</p>
+</li>
+<li>
+<p>kadınlarin kimler olduĝunu yazın.</p>
+</li>
+<li>
+<p>kimin kimin çocuĝu olduĝunu yazın.</p>
+</li>
+<li>
+<p><code>anne</code> ve <code>dayi</code> &#39;yi yazdıĝım gibi diĝer aile ilişkileri için de kurallar yazın.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://swish.swi-prolog.org/" class="bare">https://swish.swi-prolog.org/</a> adresinde çalışan bir prolog makinesi var.
+Kuralları ekranın solundaki panele yazıyoruz. Sorguları ise ekranın saĝındaki (<code>?-</code> simgesi olan) panelden yapıyoruz. Bittikten sonra sistemi sorgulayın. Bir kişinin amcalarının kimler olduĝunu bulabiliyor mu? Kuzenlerinizi doĝruluyor mu?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">erkek</span><span class="p">(</span><span class="o">?</span><span class="p">).</span>
+<span class="ss">erkek</span><span class="p">(</span><span class="o">?</span><span class="p">).</span>
+<span class="p">...</span>
+<span class="ss">disi</span><span class="p">(</span><span class="o">?</span><span class="p">).</span>
+<span class="ss">disi</span><span class="p">(</span><span class="o">?</span><span class="p">).</span>
+<span class="p">...</span>
+
+<span class="ss">cocuk</span><span class="p">(</span><span class="o">?,</span> <span class="o">?</span><span class="p">).</span>
+<span class="ss">cocuk</span><span class="p">(</span><span class="o">?,</span> <span class="o">?</span><span class="p">).</span>
+<span class="p">...</span>
+
+<span class="ss">anne</span><span class="p">(</span><span class="nv">Anne</span><span class="p">,</span> <span class="nv">Cocuk</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">cocuk</span><span class="p">(</span><span class="nv">Cocuk</span><span class="p">,</span> <span class="nv">Anne</span><span class="p">),</span> <span class="ss">kadin</span><span class="p">(</span><span class="nv">Anne</span><span class="p">).</span>
+<span class="ss">baba</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="o">?</span>
+<span class="ss">dayi</span><span class="p">(</span><span class="nv">Dayi</span><span class="p">,</span> <span class="nv">Yegen</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">kardes</span><span class="p">(</span><span class="nv">Dayi</span><span class="p">,</span> <span class="nv">X</span><span class="p">),</span> <span class="ss">evebeyn</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Yegen</span><span class="p">),</span> <span class="ss">kadin</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span>
+<span class="ss">amca</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="o">?</span>
+<span class="ss">kardes</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="o">?</span>
+<span class="ss">kuzen</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="o">?</span>
+<span class="ss">dede</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="o">?</span>
+<span class="ss">babanne</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="o">?</span>
+<span class="ss">es</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="o">?</span>
+<span class="ss">gorumce</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="o">?</span>
+<span class="ss">kaynana</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="o">?</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Yazının ikinci bölümünde aile-ilişkileri problemi için olası bir çözüm verecek ve kendini recursive açan kural tanımlarından bahsederek biraz kafa karıştıracaĝım.</p>
+</div>
+<div class="paragraph">
+<p>Görüşmek üzere…​</p>
+</div>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="/posts/a-new-page/">&laquo; aecepoglu İlişki Durumunu Değiştirdi</a>
+    
+    
+  </div>
+</section>
+
+  
+</body>
+</html>
+
+
+

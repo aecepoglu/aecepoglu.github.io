@@ -6,7 +6,18 @@
     <description>Recent content on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Declarative Programlamaya Giriş - 1 / Prolog</title>
+      <link>/posts/prolog-1/</link>
+      <pubDate>Mon, 25 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/prolog-1/</guid>
+      <description>Kurt-kuzu-ot bulmacasıyla ilgili bir yazı yazmıştım. O yazımı tekrar okudum ve bilgilerin yeterince açıklayıcı bir şekilde sunulmadıĝını farkettim.
+ Declarative kod yazma tarzının anlaşılmasının bir yazılımcı için önemli olduĝunu düşünüyorum, o yüzden Prolog dili ile sıfırdan bir giriş yapma kararı aldım. 3-4 bölümden ibaret olacak ve her bir bölümü bir oturuşta okuyabileceĝiniz uzunlukta. Birinci bölümün sonundaki alıştırmaya gelene kadar arkanıza yaslanıp okumanızı öneriyorum; sonrasında kod yazarak eşlik edebilirsiniz.
+ O zaman başlayalım…​</description>
+    </item>
+    
     <item>
       <title>Klavyeler</title>
       <link>/projects/keyboards/</link>
