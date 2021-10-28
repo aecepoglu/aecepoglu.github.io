@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    
+
+    
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400' rel='stylesheet' type='text/css'>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='/css/codehl.css' rel="stylesheet">
+    
+
+    <link rel="icon" type="image/png" href="/favicon_16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon_32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon_128x128.png" sizes="128x128">
+
+    <title>
+      
+      
+         Declarative Programlamaya Giriş - 2 / Prolog&#39;da Recursive Tanımlar 
+      
+    </title>
+    <link rel="canonical" href="/posts/prolog-2/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+    text-decoration-skip: ink;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  .left-justify {
+    float: left;
+  }
+
+  .right-justify {
+    float:right;
+  }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  #sub-header, time {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content time {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(2) {
+    float:right;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    *, #nav h1 a {
+      color: #FDFDFD;
+    }
+
+    body {
+      background: #121212;
+    }
+
+    pre, code {
+      background-color: #262626;
+    }
+
+    #sub-header, time {
+      color: #BABABA;
+    }
+
+    hr {
+      background: #EBEBEB;
+    }
+  }
+</style>
+
+
+    
+
+    <link href='/css/adoc.css' rel="stylesheet">
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	displayAlign: "left",
+	asciimath2jax: {
+		delimiters: [['\\$', '\\$']]
+	}
+});
+</script>
+
+
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=AM_HTMLorMML"> </script>
+
+  </head>
+
+  <body>
+    <section id=nav>
+      <h1><a href="/">aecepoglu</a></h1>
+      <ul>
+        
+          <li><a href="/posts/index.xml">rss</a></li>
+        
+          <li><a href="/en/">en</a></li>
+        
+          <li><a href="/tr/">tr</a></li>
+        
+          <li><a href="/projects/keyboards">diğer</a></li>
+        
+          <li><a href="/about">hakkımda</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> Declarative Programlamaya Giriş - 2 / Prolog&#39;da Recursive Tanımlar </h1>
+
+  
+    <div id=sub-header>
+      October 2021 · 5 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bence prolog’un zorlaştıĝı yerler birazdan girişeceĝim &#34;recursive&#34;-kurallar.</p>
+</div>
+<div class="paragraph">
+<p>Diĝer programlama dillerinde recursion’u görüp sevmediyseniz veya zor geldiyse o ön yargınızı bir kenara bırakın. Biz prolog yazıyoruz ve recursion prolog’un ve declarative dillerin en temel silahlarındandır.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>&#34;recursive&#34; demek kendine atıfta bulunan demek.</p>
+</div>
+<div class="paragraph">
+<p>Mesela &#34;GNU/Linux&#34;taki GNU kısaltmasının açılımı &#34;GNU (is) Not Unix&#34; (GNU Unix Degildir).</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Bu bölümü prolog öĝrenme niyetiyle okuyorsanız kenardan <a href="https://swish.swi-prolog.org" class="bare">https://swish.swi-prolog.org</a> &#39;i açıp alıştırma yapmanızı öneririm.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recursive_kural_tanımlama">Recursive Kural Tanımlama</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Recursive kuralları yine aile ilişkileri uzerinden örneklendirelim. Bir aile aĝacını, bir de bu grafiĝe denk gelen prolog kurallarını yazayım:</p>
+</div>
+<img src="https://g.gravizo.com/svg?
+digraph G {
+  &#34;murat&#34; -&gt; &#34;muhsin&#34;
+  &#34;gaye&#34; -&gt; &#34;muhsin&#34;
+  &#34;muhsin&#34; -&gt; &#34;pelin&#34;
+  &#34;zeynep&#34; -&gt; &#34;pelin&#34;
+  &#34;pelin&#34; -&gt; &#34;fisun&#34;
+  &#34;melih&#34; -&gt; &#34;fisun&#34;
+  &#34;gokhan&#34; -&gt; &#34;zeynep&#34;
+  &#34;guzide&#34; -&gt; &#34;zeynep&#34;
+  &#34;deniz&#34; -&gt; &#34;melih&#34;
+  &#34;eren&#34; -&gt; &#34;melih&#34;
+  &#34;mehmet&#34; -&gt; &#34;deniz&#34;
+  &#34;omer&#34; -&gt; &#34;eren&#34;
+  &#34;tugba&#34; -&gt; &#34;eren&#34;
+  &#34;irem&#34; -&gt; &#34;deniz&#34;
+}
+"/>
+<div class="paragraph">
+<p>&#34;muhsin&#34;den &#34;pelin&#34;e ok gitmesi demek muhsin pelin’in evebeyn’i demek.</p>
+</div>
+<div class="listingblock">
+<div class="title">prolog’da iki aile</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">evebeyn</span><span class="p">(</span><span class="ss">murat</span><span class="p">,</span> <span class="ss">muhsin</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">gaye</span><span class="p">,</span> <span class="ss">muhsin</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">muhsin</span><span class="p">,</span> <span class="ss">pelin</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">zeynep</span><span class="p">,</span> <span class="ss">pelin</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">pelin</span><span class="p">,</span> <span class="ss">fisun</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">melih</span><span class="p">,</span> <span class="ss">fisun</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">gokhan</span><span class="p">,</span> <span class="ss">zeynep</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">guzide</span><span class="p">,</span> <span class="ss">zeynep</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">deniz</span><span class="p">,</span> <span class="ss">melih</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">eren</span><span class="p">,</span> <span class="ss">melih</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">mehmet</span><span class="p">,</span> <span class="ss">deniz</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">omer</span><span class="p">,</span> <span class="ss">eren</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">tugba</span><span class="p">,</span> <span class="ss">eren</span><span class="p">).</span>
+<span class="ss">evebeyn</span><span class="p">(</span><span class="ss">irem</span><span class="p">,</span> <span class="ss">deniz</span><span class="p">).</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ve ben bir kişinin bir başkasının soyundan gelip gelmediĝine bakan bir kural yazayım:</p>
+</div>
+<div class="listingblock">
+<div class="title">akraba(A, B)</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">ata</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span> <span class="nv">B</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">evebeyn</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span> <span class="nv">B</span><span class="p">).</span>
+<span class="ss">ata</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span> <span class="nv">B</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">ata</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span> <span class="nv">C</span><span class="p">),</span> <span class="ss">evebeyn</span><span class="p">(</span><span class="nv">C</span><span class="p">,</span> <span class="nv">B</span><span class="p">).</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sorularımızı soralım:</p>
+</div>
+<div class="listingblock">
+<div class="title">?-</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="o">?-</span> <span class="ss">ata</span><span class="p">(</span><span class="ss">pelin</span><span class="p">,</span> <span class="ss">fisun</span><span class="p">).</span> <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="nv">YES</span>
+
+<span class="o">?-</span> <span class="ss">ata</span><span class="p">(</span><span class="ss">muhsin</span><span class="p">,</span> <span class="ss">fisun</span><span class="p">).</span> <i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="nv">YES</span>
+
+<span class="o">?-</span> <span class="ss">ata</span><span class="p">(</span><span class="ss">murat</span><span class="p">,</span> <span class="ss">fisun</span><span class="p">).</span> <i class="conum" data-value="3"></i><b>(3)</b>
+
+<span class="nv">YES</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>A = murat</code>, <code>B = muhsin</code> için; birinci kural (<code>ata(A, B) :- evebeyn(A, B)</code>) bu soruyu cevaplıyor</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>A = murat</code> <code>C = muhsin</code> ve <code>B = pelin</code> ile ikinci kural (<code>ata(A, B) :- ata(A, C), evebeyn(C, B)</code> bu soruyu cevaplıyor</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>ata(murat, pelin)</code>in doĝru olduğunu az evvel gosterdik. <code>evebeyn(pelin, fisun)</code> olduĝuna göre bu <code>ata(murat, pelin)</code> sorusunu da ikinci kural ile cevaplamış olduk.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p><code>ata(A, B) :- ata(A, C), evebeyn(C, B).</code> tipindeki bir kurala <code>recursive</code> kural deniyor: <code>ata</code> kuralı kendini yine <code>ata</code> kuralı cinsinden tanımlamış.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sıfırdan_sayı_sistemi">Sıfırdan Sayı Sistemi</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Şimdi…​ prolog’da diĝer dillerde olan sayı tanımları (integer, vb) yok deĝil AMA diyelim ki yok…​
+Kendi sayı sistemimizi inşaa edebilir miyiz?</p>
+</div>
+<div class="paragraph">
+<p>Cevap tabii ki evet, yoksa bahsini açmazdım, deĝil mi?</p>
+</div>
+<div class="paragraph">
+<p>Basitleştirmek adına sadece doĝal sayılar ile ilgilenelim.
+<code>sıfır</code> sayısını baz alacak ve diĝer sayıları sıfır’a kıyasen yazacaĝız.</p>
+</div>
+<div class="paragraph">
+<p>Yani:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&#34;bir&#34; demek için &#34;sıfır’ın bir arttırılmışı&#34;,</p>
+</li>
+<li>
+<p>&#34;iki&#34; demek için &#34;sıfır’ın bir arttırılmışının bir arttırılmışı&#34;,</p>
+</li>
+<li>
+<p>&#34;üç&#34; demek için &#34;sıfır’ın bir arttırılmışının bir arttırılmışının bir arttırılmışı&#34;,</p>
+</li>
+<li>
+<p>…​</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ben &#34;X’in bir arttırılmışı&#34; demek icin prolog’da <code>bir_arttirilmisi(X)</code> yazacaĝım.</p>
+</div>
+<div class="paragraph">
+<p>Yani:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&#34;bir&#34; demek için <code>bir_arttirilmisi(sifir)</code> ,</p>
+</li>
+<li>
+<p>&#34;iki&#34; demek için <code>bir_arttirilmisi(bir_arttirilmisi(sifir))</code> ,</p>
+</li>
+<li>
+<p>&#34;üç&#34; demek için <code>bir_arttirilmisi(bir_arttirilmisi(bir_arttirilmisi(sifir)))</code> ,</p>
+</li>
+<li>
+<p>…​</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Böyle çok uzun oluyor, <code>bir_arttirilmisi</code> yerine <code>a</code> deyip geçelim.</p>
+</div>
+<div class="paragraph">
+<p>Yani:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&#34;bir&#34; demek için <code>a(sifir)</code> ,</p>
+</li>
+<li>
+<p>&#34;iki&#34; demek için <code>a(a(sifir))</code> ,</p>
+</li>
+<li>
+<p>&#34;üç&#34; demek için <code>a(a(a(sifir)))</code> ,</p>
+</li>
+<li>
+<p>…​</p>
+</li>
+<li>
+<p>&#34;beş&#34; demek için <code>a(a(a(a(a(sifir)))))</code> ,</p>
+</li>
+<li>
+<p>…​</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>5 demek için <code>a(a(a(a(a(sifir)))))</code> yazmak garip gelebilir ama şu anda elimizden gelen bu.
+Bu yapıyı kullanarak bi’kaç kural yazalım: <code>buyuk(X, Y)</code> X’in Y’den büyük olup olmadığını söylesin.</p>
+</div>
+<div class="paragraph">
+<p>Ama ondan önce ufacık bir şey göstereceĝim. Bir deĝerin dogal sayı olup olmadığını bulalım:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dogalsayix">dogalsayi(X)</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">dogasayi</span><span class="p">(</span><span class="ss">sifir</span><span class="p">).</span>
+<span class="ss">dogalsayi</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="nv">X</span><span class="p">))</span> <span class="p">:-</span> <span class="ss">dogalsayi</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span>   <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Eger X bir dogal sayı ise X+1 de bir doĝal sayıdır.
+Yani X+1 ancak ve ancak X bir doĝal sayı ise doĝal sayıdır.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Mesela 3’un bir doĝal sayı olup olmadığına bakalım.</p>
+</div>
+<div class="paragraph">
+<p>3’u temsilen <code>a(a(a(sifir)))</code> diyoruz.</p>
+</div>
+<div class="paragraph">
+<p><code>dogalsayi( a(a(a(sifir))) )</code> eĝer <code>dogalsayi( a(a(sifir)) )</code> ise doĝrudur.
+<code>dogalsayi( a(a(sifir)) )</code> eĝer <code>dogalsayi( a(sifir) )</code> ise doĝrudur.
+<code>dogalsayi( a(sifir) )</code> eĝer <code>dogalsayi( sifir )</code> ise doĝrudur.
+<code>dogalsayi( sifir )</code> in dogru oldugunu zaten biliyoruz.</p>
+</div>
+<div class="paragraph">
+<p>O zaman <code>dogalsayi(a(a(a(sifir))))</code> doĝrudur.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Farkederseniz <code>x :- y</code> biçimindeki bir kuralı &#34;eĝer &#39;y&#39; ise &#39;x&#39; doĝrudur&#34; şeklinde okuduk.
+Yani <code>x :- y</code> demek (lisedeki mantık derslerini hatırlarsanız) <code>y → x</code> yani <code>y ise x</code> yani <code>y doĝru ise x de doĝrudur</code> demek.</p>
+</div>
+<div class="paragraph">
+<p><code>:-</code> sembolünü <code>←</code> olarak hayal edebilirsiniz.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_buyukx_y">buyuk(X, Y)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Şimdi <code>buyuk(X, Y)</code> kuralına geri dönelim. X deĝeri Y’den büyük ise <code>buyuk(X,Y)</code> doĝru olsun.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">buyuk</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="nv">_</span><span class="p">),</span> <span class="ss">sifir</span><span class="p">).</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="ss">buyuk</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">a</span><span class="p">(</span><span class="nv">Y</span><span class="p">))</span> <span class="p">:-</span> <span class="ss">buyuk</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">).</span> <i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="ss">kucuk</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">buyuk</span><span class="p">(</span><span class="nv">Y</span><span class="p">,</span> <span class="nv">X</span><span class="p">).</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>sıfır dışındaki tüm sayılar sıfır’dan büyüktür</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>X&gt;Y demek için X-1&gt;Y-1 de diyebilmeliyiz. Bu kuralın deĝerleri nasıl faydalı bir şekilde erittiĝini şimdi vereceĝim örnekte göstereceĝim</td>
+</tr>
+</tbody></table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>5 &gt; 3 müdür?</p>
+</div>
+<div class="paragraph">
+<p><code>buyuk(a(X), a(Y)) :- buyuk(X, Y)</code> kuralını kullanalım:</p>
+</div>
+<div class="paragraph">
+<p>5&gt;3 ← 4&gt;2 : 5’in 3’ten büyük olup olmadığını bilmiyorum ama eĝer 4&gt;2 ise 5&gt;3’tür.
+4&gt;2 ← 3&gt;1 : 4’ün 2’den büyük olup olmadığını bilmiyorum ama eĝer 3&gt;2 ise 4&gt;2’tür.
+3&gt;1 ← 2&gt;0 : 3’ün 1’den büyük olup olmadığını bilmiyorum ama eĝer 2&gt;0 ise 3&gt;2’tür.
+2&gt;0 : 1’nci kural bunu söylüyor.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Sisteme 5&gt;3’u sorarsam:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="o">?-</span> <span class="ss">buyuk</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">sifir</span><span class="p">))))),</span> <span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">sifir</span><span class="p">)))).</span>
+
+<span class="nv">YES</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_toplamz_x_y">toplam(Z, X, Y)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Devam edelim. `toplam(Z, X, Y)`yi yazalim; Z=X+Y ise dogru olsun.</p>
+</div>
+<div class="paragraph">
+<p>Yaklaşım olarak <code>buyuk(X, Y)</code>&#39;nin çözümünde <code>a(_)</code> tipindeki bir deĝerin sıfırdan büyük olduğunu kullanmamız gibi, ispatı basit bir doĝru tanımlayıp kalanları onun üzerine inşaa edeceĝiz.</p>
+</div>
+<div class="listingblock">
+<div class="title">ispatı daha basit bir doĝru</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="stem">Z = X + Y
+
+Y = 0 ise
+  Z = X + 0
+  Z = X</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>yani:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">toplam</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">sifir</span><span class="p">).</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>buyuk(X, Y)</code> kuralını yazarken de <code>buyuk(X, 0)</code> kuralına dayanmıştık. Yaklaşım aynı; ispatı zor olan bir kuralı ispatı kolay olan bir kurala indirgeyecek şekilde yazıyoruz.
+Sıfır deĝerinin işlemi nasıl etkilediĝini göz önünde bulundurarak kuralı inşaa ediyoruz. Ondan sonra da elimizdeki deĝerleri sıfıra indirgemenin yolunu ariyoruz</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="stem">Z = X + Y
+  = (X+Y) + (Y-Y)
+  = (X+Y) + 0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>yani</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">toplam</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">sifir</span><span class="p">).</span>
+<span class="ss">toplam</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">a</span><span class="p">(</span><span class="nv">Y</span><span class="p">))</span> <span class="p">:-</span> <span class="ss">toplam</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="ss">a</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="nv">Y</span><span class="p">).</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">3+2’yi sorgulayalım</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">toplam</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">sifir</span><span class="p">))),</span> <span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">sifir</span><span class="p">)))</span>
+
+<span class="nv">Z</span> <span class="o">=</span> <span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">sifir</span><span class="p">)))))</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>3 + 2 &#39;nin cevabi 5 imiş.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_diĝer_aritmetik_i̇şlemler">Diĝer Aritmetik İşlemler</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">çıkarma, bölme, çarpma</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="prolog"><span class="c1">% cikar(Z, X, Y) demek Z=X-Y demek olsun</span>
+<span class="ss">cikar</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">sifir</span><span class="p">).</span>
+<span class="ss">cikar</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="ss">a</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">a</span><span class="p">(</span><span class="nv">Y</span><span class="p">))</span> <span class="p">:-</span> <span class="ss">cikar</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">).</span>
+
+<span class="c1">% bolum(Z, K, X, Y) demek X&#39;in Y&#39;ye bolumu Z edip kalani K olsun: X = Z*Y + K</span>
+<span class="ss">bolum</span><span class="p">(</span><span class="ss">sifir</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">kucuk</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">).</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="ss">bolum</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="nv">Z</span><span class="p">),</span> <span class="nv">K</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">bolum</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="nv">K</span><span class="p">,</span> <span class="nv">X_</span><span class="p">,</span> <span class="nv">Y</span><span class="p">),</span> <span class="ss">cikar</span><span class="p">(</span><span class="nv">X_</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">).</span> <i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="ss">carpim</span><span class="p">(</span><span class="ss">sifir</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">sifir</span><span class="p">).</span>
+<span class="ss">carpim</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">a</span><span class="p">(</span><span class="nv">Y</span><span class="p">))</span> <span class="p">:-</span> <span class="ss">carpim</span><span class="p">(</span><span class="nv">Z_</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">),</span> <span class="ss">cikar</span><span class="p">(</span><span class="nv">Z_</span><span class="p">,</span> <span class="nv">Z</span><span class="p">,</span> <span class="nv">X</span><span class="p">).</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>eĝer X&lt;Y ise X/Y=0’dir ve kalan X’tir.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>X &gt; Y ise
+X / Y = Z demek (X-Y) / Y = Z - 1 demektir. 2’nci kuralı X&lt;Y olana kadar uygulayacagiz. O durumda zaten bolüm’ün de kalan’ın da ne olduğunu biliyoruz çünkü</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Guzel degil mi? Kendi sayı sistemimizi inşaa ettik ve onun üzerinde cebir yapiyoruz!</p>
+</div>
+<div class="paragraph">
+<p>Bundan sonraki konuda Linked-List’lerden bahsedeceĝim. Bakalım oradan nereye gideriz…​</p>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="/posts/prolog-1/">&laquo; Declarative Programlamaya Giriş - 1 / Prolog</a>
+    
+    
+  </div>
+</section>
+
+  
+</body>
+</html>
+
+
+

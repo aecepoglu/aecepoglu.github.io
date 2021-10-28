@@ -6,7 +6,20 @@
     <description>Recent content on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Declarative Programlamaya Giriş - 2 / Prolog&#39;da Recursive Tanımlar</title>
+      <link>/posts/prolog-2/</link>
+      <pubDate>Thu, 28 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/prolog-2/</guid>
+      <description>Bence prolog’un zorlaştıĝı yerler birazdan girişeceĝim &amp;#34;recursive&amp;#34;-kurallar.
+ Diĝer programlama dillerinde recursion’u görüp sevmediyseniz veya zor geldiyse o ön yargınızı bir kenara bırakın. Biz prolog yazıyoruz ve recursion prolog’un ve declarative dillerin en temel silahlarındandır.
+     &amp;#34;recursive&amp;#34; demek kendine atıfta bulunan demek.
+ Mesela &amp;#34;GNU/Linux&amp;#34;taki GNU kısaltmasının açılımı &amp;#34;GNU (is) Not Unix&amp;#34; (GNU Unix Degildir).
+         Bu bölümü prolog öĝrenme niyetiyle okuyorsanız kenardan https://swish.</description>
+    </item>
+    
     <item>
       <title>Declarative Programlamaya Giriş - 1 / Prolog</title>
       <link>/posts/prolog-1/</link>
