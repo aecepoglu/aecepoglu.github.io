@@ -5,7 +5,19 @@
     <link>/en/</link>
     <description>Recent content on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why can&#39;t I see any posts?</title>
+      <link>/en/posts/introduction/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/introduction/</guid>
+      <description>Please see http://aecepoglu.com/en/about . The about page describes why this blog exists, what I write about, and what you can expect to show up here in the future.
+ I primarily post here in Turkish. The tr button in the navigation menu should take you there or you can click here: http://aecepoglu.com/
+ I’ll start putting up some english-only content and translate some of my posts from Turkish soon enough. You can subscribe to my rss-feed to be notified when that happens.</description>
+    </item>
+    
     <item>
       <title>About Me</title>
       <link>/en/about/</link>
