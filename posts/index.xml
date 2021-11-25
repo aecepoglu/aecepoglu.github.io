@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on aecepoglu</title>
+    <title>My Posts on aecepoglu</title>
     <link>/posts/</link>
-    <description>Recent content in Posts on aecepoglu</description>
+    <description>Recent content in My Posts on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Declarative Programlamaya Giriş - 3 / Kendi Matematik Sistemimizin İcadı</title>
+      <link>/posts/prolog-3/</link>
+      <pubDate>Thu, 25 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/prolog-3/</guid>
+      <description>Şimdi…​ prolog’da diĝer dillerde olan sayı tanımları (integer, vb) yok deĝil AMA diyelim ki yok…​ Kendi sayı sistemimizi inşaa edebilir miyiz?
+ Cevap tabii ki evet, yoksa bahsini açmazdım, deĝil mi?
+ Basitleştirmek adına sadece doĝal sayılar ile ilgilenelim. sıfır sayısını baz alacak ve diĝer sayıları sıfır’a kıyasen yazacaĝız.
+ Yani:
+   &amp;#34;bir&amp;#34; demek için &amp;#34;sıfır’ın bir arttırılmışı&amp;#34;,
+  &amp;#34;iki&amp;#34; demek için &amp;#34;sıfır’ın bir arttırılmışının bir arttırılmışı&amp;#34;,</description>
+    </item>
+    
     <item>
       <title>Declarative Programlamaya Giriş - 2 / Prolog&#39;da Recursive Tanımlar</title>
       <link>/posts/prolog-2/</link>

@@ -2,23 +2,18 @@
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    
+    <meta name="description" content="">
 
     
-      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400' rel='stylesheet' type='text/css'>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400&display=swap" rel="stylesheet" media="print" type="text/css" onload="this.media='all'">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='/css/codehl.css' rel="stylesheet">
     
-
-    <link rel="icon" type="image/png" href="/favicon_16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="/favicon_32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon_128x128.png" sizes="128x128">
 
     <title>
       
@@ -63,13 +58,8 @@
     display: block;
   }
 
-  .left-justify {
-    float: left;
-  }
-
-  .right-justify {
-    float:right;
-  }
+  .left-justify { float: left; }
+  .right-justify { float:right; }
 
   pre, code {
     font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -103,7 +93,6 @@
 
   pre code {
     display: inline;
-    max-width: auto;
     padding: 0;
     margin: 0;
     overflow: visible;
@@ -200,7 +189,7 @@
     margin-top:28px;
   }
 
-  #sub-header, time {
+  #sub-header, .date {
     color:#403c3b;
     font-size:13px;
   }
@@ -243,7 +232,7 @@
     text-align:left;
     width:100%;
     font-size:15px;
-    padding:60px 0 80px;
+     
   }
 
   #content h1,#content h2 {
@@ -258,7 +247,7 @@
     margin-top:15px;
   }
 
-  #content time {
+  #content .date {
     margin-left:3px;
   }
 
@@ -286,6 +275,7 @@
     text-align:center;
     position:static;
     margin-top:60px;
+    margin-bottom: 40px;
   }
 
   #nav ul {
@@ -301,11 +291,17 @@
   }
 
   #links {
+    display: flex;
+    justify-content: space-between;
     margin: 50px 0 0 0;
   }
 
+  #links :nth-child(1) {
+    margin-right:0.5em;;
+  }
+
   #links :nth-child(2) {
-    float:right;
+    margin-left:0.5em;;
   }
 
   #not-found {
@@ -337,7 +333,7 @@
 
     #content {
       margin-top:0;
-      padding-top:50px;
+       
       font-size:14px;
     }
 
@@ -401,7 +397,7 @@
       background-color: #262626;
     }
 
-    #sub-header, time {
+    #sub-header, .date {
       color: #BABABA;
     }
 
@@ -411,8 +407,6 @@
   }
 </style>
 
-
-    
 
     <link href='/css/adoc.css' rel="stylesheet">
     <script type="text/x-mathjax-config">
@@ -440,9 +434,9 @@ MathJax.Hub.Config({
         
           <li><a href="/tr/">tr</a></li>
         
-          <li><a href="/projects/keyboards">diğer</a></li>
-        
           <li><a href="/about">hakkımda</a></li>
+        
+          <li><a href="/projects/">yaptıklarım</a></li>
         
       </ul>
     </section>
@@ -559,10 +553,10 @@ Ben buna katılıyor ve bir de şöyle bir ayrım öneriyorum: &#34;Karanlıkta 
 
   <div id=links>
     
-      <a class="basic-alignment left" href="/posts/most-elegant-js-code/">&laquo; En Güzel JavaScript kodu: Akış Şeması Programlama</a>
+      <a href="/posts/most-elegant-js-code/">&laquo;&nbsp;En Güzel JavaScript kodu: Akış Şeması Programlama</a>
     
     
-      <a class="basic-alignment left" href="/posts/a-new-page/">aecepoglu İlişki Durumunu Değiştirdi &raquo;</a>
+      <a href="/posts/a-new-page/">aecepoglu İlişki Durumunu Değiştirdi&nbsp;&raquo;</a>
     
   </div>
 </section>

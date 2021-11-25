@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-	<meta name="generator" content="Hugo 0.88.1" />
+	<meta name="generator" content="Hugo 0.89.3" />
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    
+    <meta name="description" content="">
 
     
-      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400' rel='stylesheet' type='text/css'>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400&display=swap" rel="stylesheet" media="print" type="text/css" onload="this.media='all'">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='/css/codehl.css' rel="stylesheet">
     
-
-    <link rel="icon" type="image/png" href="/favicon_16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="/favicon_32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon_128x128.png" sizes="128x128">
 
     <title>
       
@@ -64,13 +59,8 @@
     display: block;
   }
 
-  .left-justify {
-    float: left;
-  }
-
-  .right-justify {
-    float:right;
-  }
+  .left-justify { float: left; }
+  .right-justify { float:right; }
 
   pre, code {
     font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -104,7 +94,6 @@
 
   pre code {
     display: inline;
-    max-width: auto;
     padding: 0;
     margin: 0;
     overflow: visible;
@@ -201,7 +190,7 @@
     margin-top:28px;
   }
 
-  #sub-header, time {
+  #sub-header, .date {
     color:#403c3b;
     font-size:13px;
   }
@@ -244,7 +233,7 @@
     text-align:left;
     width:100%;
     font-size:15px;
-    padding:60px 0 80px;
+     
   }
 
   #content h1,#content h2 {
@@ -259,7 +248,7 @@
     margin-top:15px;
   }
 
-  #content time {
+  #content .date {
     margin-left:3px;
   }
 
@@ -287,6 +276,7 @@
     text-align:center;
     position:static;
     margin-top:60px;
+    margin-bottom: 40px;
   }
 
   #nav ul {
@@ -302,11 +292,17 @@
   }
 
   #links {
+    display: flex;
+    justify-content: space-between;
     margin: 50px 0 0 0;
   }
 
+  #links :nth-child(1) {
+    margin-right:0.5em;;
+  }
+
   #links :nth-child(2) {
-    float:right;
+    margin-left:0.5em;;
   }
 
   #not-found {
@@ -338,7 +334,7 @@
 
     #content {
       margin-top:0;
-      padding-top:50px;
+       
       font-size:14px;
     }
 
@@ -402,7 +398,7 @@
       background-color: #262626;
     }
 
-    #sub-header, time {
+    #sub-header, .date {
       color: #BABABA;
     }
 
@@ -413,10 +409,7 @@
 </style>
 
 
-    
-        <atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
-    
-
+    <link rel="alternate" type="application/rss+xml" href="/en/index.xml" title="aecepoglu" />
     <link href='/css/adoc.css' rel="stylesheet">
     <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -451,13 +444,6 @@ MathJax.Hub.Config({
 
 <section id=content>
   <ul class=posts_listing>
-    
-      <li>
-        <h2><a href="/en/about/">About Me</a></h2>
-        <div id=date>
-          <time>May 2019</time>
-        </div>
-      </li>
     
   </ul>
 </section>

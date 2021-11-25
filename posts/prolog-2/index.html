@@ -2,23 +2,18 @@
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    
+    <meta name="description" content="">
 
     
-      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400' rel='stylesheet' type='text/css'>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400&display=swap" rel="stylesheet" media="print" type="text/css" onload="this.media='all'">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='/css/codehl.css' rel="stylesheet">
     
-
-    <link rel="icon" type="image/png" href="/favicon_16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="/favicon_32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon_128x128.png" sizes="128x128">
 
     <title>
       
@@ -63,13 +58,8 @@
     display: block;
   }
 
-  .left-justify {
-    float: left;
-  }
-
-  .right-justify {
-    float:right;
-  }
+  .left-justify { float: left; }
+  .right-justify { float:right; }
 
   pre, code {
     font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -103,7 +93,6 @@
 
   pre code {
     display: inline;
-    max-width: auto;
     padding: 0;
     margin: 0;
     overflow: visible;
@@ -200,7 +189,7 @@
     margin-top:28px;
   }
 
-  #sub-header, time {
+  #sub-header, .date {
     color:#403c3b;
     font-size:13px;
   }
@@ -243,7 +232,7 @@
     text-align:left;
     width:100%;
     font-size:15px;
-    padding:60px 0 80px;
+     
   }
 
   #content h1,#content h2 {
@@ -258,7 +247,7 @@
     margin-top:15px;
   }
 
-  #content time {
+  #content .date {
     margin-left:3px;
   }
 
@@ -286,6 +275,7 @@
     text-align:center;
     position:static;
     margin-top:60px;
+    margin-bottom: 40px;
   }
 
   #nav ul {
@@ -301,11 +291,17 @@
   }
 
   #links {
+    display: flex;
+    justify-content: space-between;
     margin: 50px 0 0 0;
   }
 
+  #links :nth-child(1) {
+    margin-right:0.5em;;
+  }
+
   #links :nth-child(2) {
-    float:right;
+    margin-left:0.5em;;
   }
 
   #not-found {
@@ -337,7 +333,7 @@
 
     #content {
       margin-top:0;
-      padding-top:50px;
+       
       font-size:14px;
     }
 
@@ -401,7 +397,7 @@
       background-color: #262626;
     }
 
-    #sub-header, time {
+    #sub-header, .date {
       color: #BABABA;
     }
 
@@ -411,8 +407,6 @@
   }
 </style>
 
-
-    
 
     <link href='/css/adoc.css' rel="stylesheet">
     <script type="text/x-mathjax-config">
@@ -440,9 +434,9 @@ MathJax.Hub.Config({
         
           <li><a href="/tr/">tr</a></li>
         
-          <li><a href="/projects/keyboards">diğer</a></li>
-        
           <li><a href="/about">hakkımda</a></li>
+        
+          <li><a href="/projects/">yaptıklarım</a></li>
         
       </ul>
     </section>
@@ -453,7 +447,7 @@ MathJax.Hub.Config({
 
   
     <div id=sub-header>
-      October 2021 · 5 minute read
+      October 2021 · 3 minute read
     </div>
   
 
@@ -596,186 +590,128 @@ digraph G {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_sıfırdan_sayı_sistemi">Sıfırdan Sayı Sistemi</h2>
+<h2 id="_listeler">Listeler</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Şimdi…​ prolog’da diĝer dillerde olan sayı tanımları (integer, vb) yok deĝil AMA diyelim ki yok…​
-Kendi sayı sistemimizi inşaa edebilir miyiz?</p>
+<p><code>meyve(elma).</code> yazarak &#34; <code>elma</code> bir <code>meyve</code>dir&#34; demiştik. Sonra da <code>meyve(elma)</code> sorusunu sorunca <code>YES</code> cevabı almıştık.</p>
 </div>
 <div class="paragraph">
-<p>Cevap tabii ki evet, yoksa bahsini açmazdım, deĝil mi?</p>
+<p>Diyelim ki benim elimde <code>{elma, armut, patates, muz}</code> şeklinde bir liste var ve bunların hepsinin meyve olup olmadıĝını sormak istiyorum. N’apacaĝız?</p>
 </div>
 <div class="paragraph">
-<p>Basitleştirmek adına sadece doĝal sayılar ile ilgilenelim.
-<code>sıfır</code> sayısını baz alacak ve diĝer sayıları sıfır’a kıyasen yazacaĝız.</p>
-</div>
-<div class="paragraph">
-<p>Yani:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#34;bir&#34; demek için &#34;sıfır’ın bir arttırılmışı&#34;,</p>
-</li>
-<li>
-<p>&#34;iki&#34; demek için &#34;sıfır’ın bir arttırılmışının bir arttırılmışı&#34;,</p>
-</li>
-<li>
-<p>&#34;üç&#34; demek için &#34;sıfır’ın bir arttırılmışının bir arttırılmışının bir arttırılmışı&#34;,</p>
-</li>
-<li>
-<p>…​</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Ben &#34;X’in bir arttırılmışı&#34; demek icin prolog’da <code>bir_arttirilmisi(X)</code> yazacaĝım.</p>
-</div>
-<div class="paragraph">
-<p>Yani:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#34;bir&#34; demek için <code>bir_arttirilmisi(sifir)</code> ,</p>
-</li>
-<li>
-<p>&#34;iki&#34; demek için <code>bir_arttirilmisi(bir_arttirilmisi(sifir))</code> ,</p>
-</li>
-<li>
-<p>&#34;üç&#34; demek için <code>bir_arttirilmisi(bir_arttirilmisi(bir_arttirilmisi(sifir)))</code> ,</p>
-</li>
-<li>
-<p>…​</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Böyle çok uzun oluyor, <code>bir_arttirilmisi</code> yerine <code>a</code> deyip geçelim.</p>
-</div>
-<div class="paragraph">
-<p>Yani:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#34;bir&#34; demek için <code>a(sifir)</code> ,</p>
-</li>
-<li>
-<p>&#34;iki&#34; demek için <code>a(a(sifir))</code> ,</p>
-</li>
-<li>
-<p>&#34;üç&#34; demek için <code>a(a(a(sifir)))</code> ,</p>
-</li>
-<li>
-<p>…​</p>
-</li>
-<li>
-<p>&#34;beş&#34; demek için <code>a(a(a(a(a(sifir)))))</code> ,</p>
-</li>
-<li>
-<p>…​</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>5 demek için <code>a(a(a(a(a(sifir)))))</code> yazmak garip gelebilir ama şu anda elimizden gelen bu.
-Bu yapıyı kullanarak bi’kaç kural yazalım: <code>buyuk(X, Y)</code> X’in Y’den büyük olup olmadığını söylesin.</p>
-</div>
-<div class="paragraph">
-<p>Ama ondan önce ufacık bir şey göstereceĝim. Bir deĝerin dogal sayı olup olmadığını bulalım:</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_dogalsayix">dogalsayi(X)</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">dogasayi</span><span class="p">(</span><span class="ss">sifir</span><span class="p">).</span>
-<span class="ss">dogalsayi</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="nv">X</span><span class="p">))</span> <span class="p">:-</span> <span class="ss">dogalsayi</span><span class="p">(</span><span class="nv">X</span><span class="p">).</span>   <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tbody><tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Eger X bir dogal sayı ise X+1 de bir doĝal sayıdır.
-Yani X+1 ancak ve ancak X bir doĝal sayı ise doĝal sayıdır.</td>
-</tr>
-</tbody></table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tbody><tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Mesela 3’un bir doĝal sayı olup olmadığına bakalım.</p>
-</div>
-<div class="paragraph">
-<p>3’u temsilen <code>a(a(a(sifir)))</code> diyoruz.</p>
-</div>
-<div class="paragraph">
-<p><code>dogalsayi( a(a(a(sifir))) )</code> eĝer <code>dogalsayi( a(a(sifir)) )</code> ise doĝrudur.
-<code>dogalsayi( a(a(sifir)) )</code> eĝer <code>dogalsayi( a(sifir) )</code> ise doĝrudur.
-<code>dogalsayi( a(sifir) )</code> eĝer <code>dogalsayi( sifir )</code> ise doĝrudur.
-<code>dogalsayi( sifir )</code> in dogru oldugunu zaten biliyoruz.</p>
-</div>
-<div class="paragraph">
-<p>O zaman <code>dogalsayi(a(a(a(sifir))))</code> doĝrudur.</p>
-</div>
-</td>
-</tr>
-</tbody></table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tbody><tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Farkederseniz <code>x :- y</code> biçimindeki bir kuralı &#34;eĝer &#39;y&#39; ise &#39;x&#39; doĝrudur&#34; şeklinde okuduk.
-Yani <code>x :- y</code> demek (lisedeki mantık derslerini hatırlarsanız) <code>y → x</code> yani <code>y ise x</code> yani <code>y doĝru ise x de doĝrudur</code> demek.</p>
-</div>
-<div class="paragraph">
-<p><code>:-</code> sembolünü <code>←</code> olarak hayal edebilirsiniz.</p>
-</div>
-</td>
-</tr>
-</tbody></table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_buyukx_y">buyuk(X, Y)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Şimdi <code>buyuk(X, Y)</code> kuralına geri dönelim. X deĝeri Y’den büyük ise <code>buyuk(X,Y)</code> doĝru olsun.</p>
+<p>Kurallar</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">buyuk</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="nv">_</span><span class="p">),</span> <span class="ss">sifir</span><span class="p">).</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="ss">buyuk</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">a</span><span class="p">(</span><span class="nv">Y</span><span class="p">))</span> <span class="p">:-</span> <span class="ss">buyuk</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">).</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">meyve</span><span class="p">(</span><span class="ss">elma</span><span class="p">).</span>
+<span class="ss">meyve</span><span class="p">(</span><span class="ss">armut</span><span class="p">).</span>
+<span class="ss">meyve</span><span class="p">(</span><span class="ss">muz</span><span class="p">).</span>
 
-<span class="ss">kucuk</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">buyuk</span><span class="p">(</span><span class="nv">Y</span><span class="p">,</span> <span class="nv">X</span><span class="p">).</span></code></pre>
+<span class="ss">sebze</span><span class="p">(</span><span class="ss">havuc</span><span class="p">).</span>
+<span class="ss">sebze</span><span class="p">(</span><span class="ss">patates</span><span class="p">).</span></code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tbody><tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>sıfır dışındaki tüm sayılar sıfır’dan büyüktür</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>X&gt;Y demek için X-1&gt;Y-1 de diyebilmeliyiz. Bu kuralın deĝerleri nasıl faydalı bir şekilde erittiĝini şimdi vereceĝim örnekte göstereceĝim</td>
-</tr>
-</tbody></table>
+<div class="paragraph">
+<p>Akla gelen ilk çözüm, hepsini tek tek sormak:</p>
+</div>
+<div class="listingblock">
+<div class="title">?-</div>
+<div class="content">
+<pre>?- meyve(elma).
+
+YES
+
+?- meyve(armut).
+
+YES
+
+?- meyve(patates).
+
+YES
+
+?- meyve(muz).
+
+YES</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ama ben hepsini tek bir soru olarak sormak istiyorum. Bunun için bir liste tanımlayabilmem lazım ki <code>meyveler(…​)</code> deyip <code>…​</code> gelen yere bu listeyi yazabileyim. <code>meyveler(…​)</code> de bu listedeki her şey meyve mi diye bakıp cevap versin.</p>
+</div>
+<div class="paragraph">
+<p>Bunun için işe yarayan ama ilginç görünen şu gösterimi seçtim: <code>elma(armut(patates(muz)))).</code> . Bunu yazınca sırayla <code>elma, armut, patates, muz</code> kelimelerinden oluşan bir liste tanımlıyor olayım.</p>
+</div>
+<div class="paragraph">
+<p>Yani;</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>{x1, x2, x3}</code> listesini <code>x1( x2( x3 ) )</code> olarak yazacaĝım,</p>
+</li>
+<li>
+<p><code>{x1, x2}</code> listesi <code>x1( x2 )</code> olarak yazılacak,</p>
+</li>
+<li>
+<p>sadece bir elemani olan <code>{x1}</code> listesi <code>x1</code> olarak yazılacak,</p>
+</li>
+<li>
+<p>boş bir liste tanımlayamıyoruz şu an :)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Yani ben sorgumu <code>meyveler( elma( armut( patates( muz ) ) ) )</code> olarak yazacaĝım. Buna cevap verecek bi <code>meyveler</code> kuralı tanımlamam lazım önce:</p>
+</div>
+<div class="listingblock">
+<div class="title">verilen listedeki her şeyin meyve olup olmadıĝını cevaplayacak kural</div>
+<div class="content">
+<pre>meyveler(X) :- meyve(X). <i class="conum" data-value="1"></i><b>(1)</b>
+meyveler(X(Y)) :- meyve(X), meyveler(Y). <i class="conum" data-value="2"></i><b>(2)</b></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ben <code>meyveler(elma(armut(muz)))</code> diye bir soru sorunca <code>X = elma</code> <code>Y = armut(muz)</code> ise 2’nci kurala denk gelecek. <code>meyve(elma)</code> kuralı mevcut, peki <code>meyveler(armut(muz))</code> var mı?</p>
+</li>
+<li>
+<p><code>meyveler(armut(muz))</code> sorusu <code>X = armut</code> <code>Y = muz</code> ise 2’nci kurala denk gelecek. <code>meyve(armut)</code> diye bir kural mevcut, peki <code>meyveler(muz)</code> var mı?</p>
+</li>
+<li>
+<p><code>meyveler(muz)</code> sorusu <code>X = muz</code> için 1’nci kurala denk gelecek. Bu kural ise <code>meyve(muz)</code> ise doĝru, ki <code>meyve(muz)</code> diye bir kural da zaten var.
+O zaman <code>meyveler(muz)</code> doĝruymuş.
+Yani <code>meyveler(armut(muz))</code> de doĝruymuş.
+Yani <code>meyveler(elma(armut(muz)))</code> de doĝruymuş.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Deneyelim:</p>
+</div>
+<div class="listingblock">
+<div class="title">?-</div>
+<div class="content">
+<pre>?- meyveler(elma(armut)).
+
+YES
+
+?- meyveler(armut).
+
+YES
+
+?- meyveler(patates).
+
+NO
+
+?- meyveler(muz(armut(patates))).
+
+NO</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ne_öĝrendik">Ne Öĝrendik?</h3>
+<div class="paragraph">
+<p>demek ki parantezleri kural tanımlarken veya soru sorarken de kullanabiliyormuşuz. Yeter ki bizim girdiĝimiz parantezli biçime denk gelen kurallar mevcut olsun.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -785,129 +721,29 @@ Yani <code>x :- y</code> demek (lisedeki mantık derslerini hatırlarsanız) <co
 </td>
 <td class="content">
 <div class="paragraph">
-<p>5 &gt; 3 müdür?</p>
-</div>
-<div class="paragraph">
-<p><code>buyuk(a(X), a(Y)) :- buyuk(X, Y)</code> kuralını kullanalım:</p>
-</div>
-<div class="paragraph">
-<p>5&gt;3 ← 4&gt;2 : 5’in 3’ten büyük olup olmadığını bilmiyorum ama eĝer 4&gt;2 ise 5&gt;3’tür.
-4&gt;2 ← 3&gt;1 : 4’ün 2’den büyük olup olmadığını bilmiyorum ama eĝer 3&gt;2 ise 4&gt;2’tür.
-3&gt;1 ← 2&gt;0 : 3’ün 1’den büyük olup olmadığını bilmiyorum ama eĝer 2&gt;0 ise 3&gt;2’tür.
-2&gt;0 : 1’nci kural bunu söylüyor.</p>
+<p>Bu biçimdeki iç içe yazılan listelere Linked-List diyorlar</p>
 </div>
 </td>
 </tr>
 </tbody></table>
 </div>
-<div class="paragraph">
-<p>Sisteme 5&gt;3’u sorarsam:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="prolog"><span class="o">?-</span> <span class="ss">buyuk</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">sifir</span><span class="p">))))),</span> <span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">sifir</span><span class="p">)))).</span>
-
-<span class="nv">YES</span></code></pre>
-</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_toplamz_x_y">toplam(Z, X, Y)</h2>
+<h2 id="_devamı">Devamı</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Devam edelim. `toplam(Z, X, Y)`yi yazalim; Z=X+Y ise dogru olsun.</p>
+<p>Bir sonraki prolog yazısında bu yeni kural tanımlama biçimini kendi sayı sistemimizi kurarken kullanacaĝız.</p>
 </div>
 <div class="paragraph">
-<p>Yaklaşım olarak <code>buyuk(X, Y)</code>&#39;nin çözümünde <code>a(_)</code> tipindeki bir deĝerin sıfırdan büyük olduğunu kullanmamız gibi, ispatı basit bir doĝru tanımlayıp kalanları onun üzerine inşaa edeceĝiz.</p>
-</div>
-<div class="listingblock">
-<div class="title">ispatı daha basit bir doĝru</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="stem">Z = X + Y
-
-Y = 0 ise
-  Z = X + 0
-  Z = X</code></pre>
-</div>
+<p>Bir bilgisayara &#34;3 + 5&#34; dediĝimizde ne bilgisayar <code>3</code> ne demek, <code>5</code> ne demek, e peki <code>+</code> ne demek biliyor. Peki nasıl oluyor da biliyor? Bilmeseydi bunun nasıl üstesinden geliriz?</p>
 </div>
 <div class="paragraph">
-<p>yani:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">toplam</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">sifir</span><span class="p">).</span></code></pre>
-</div>
+<p>Bu soruların cevabı olan bir yazı.</p>
 </div>
 <div class="paragraph">
-<p><code>buyuk(X, Y)</code> kuralını yazarken de <code>buyuk(X, 0)</code> kuralına dayanmıştık. Yaklaşım aynı; ispatı zor olan bir kuralı ispatı kolay olan bir kurala indirgeyecek şekilde yazıyoruz.
-Sıfır deĝerinin işlemi nasıl etkilediĝini göz önünde bulundurarak kuralı inşaa ediyoruz. Ondan sonra da elimizdeki deĝerleri sıfıra indirgemenin yolunu ariyoruz</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="stem">Z = X + Y
-  = (X+Y) + (Y-Y)
-  = (X+Y) + 0</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>yani</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">toplam</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">sifir</span><span class="p">).</span>
-<span class="ss">toplam</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">a</span><span class="p">(</span><span class="nv">Y</span><span class="p">))</span> <span class="p">:-</span> <span class="ss">toplam</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="ss">a</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="nv">Y</span><span class="p">).</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">3+2’yi sorgulayalım</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="prolog"><span class="ss">toplam</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">sifir</span><span class="p">))),</span> <span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">sifir</span><span class="p">)))</span>
-
-<span class="nv">Z</span> <span class="o">=</span> <span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="ss">sifir</span><span class="p">)))))</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>3 + 2 &#39;nin cevabi 5 imiş.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_diĝer_aritmetik_i̇şlemler">Diĝer Aritmetik İşlemler</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="title">çıkarma, bölme, çarpma</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="prolog"><span class="c1">% cikar(Z, X, Y) demek Z=X-Y demek olsun</span>
-<span class="ss">cikar</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">sifir</span><span class="p">).</span>
-<span class="ss">cikar</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="ss">a</span><span class="p">(</span><span class="nv">X</span><span class="p">),</span> <span class="ss">a</span><span class="p">(</span><span class="nv">Y</span><span class="p">))</span> <span class="p">:-</span> <span class="ss">cikar</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">).</span>
-
-<span class="c1">% bolum(Z, K, X, Y) demek X&#39;in Y&#39;ye bolumu Z edip kalani K olsun: X = Z*Y + K</span>
-<span class="ss">bolum</span><span class="p">(</span><span class="ss">sifir</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">kucuk</span><span class="p">(</span><span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">).</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="ss">bolum</span><span class="p">(</span><span class="ss">a</span><span class="p">(</span><span class="nv">Z</span><span class="p">),</span> <span class="nv">K</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">)</span> <span class="p">:-</span> <span class="ss">bolum</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="nv">K</span><span class="p">,</span> <span class="nv">X_</span><span class="p">,</span> <span class="nv">Y</span><span class="p">),</span> <span class="ss">cikar</span><span class="p">(</span><span class="nv">X_</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">).</span> <i class="conum" data-value="2"></i><b>(2)</b>
-
-<span class="ss">carpim</span><span class="p">(</span><span class="ss">sifir</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">sifir</span><span class="p">).</span>
-<span class="ss">carpim</span><span class="p">(</span><span class="nv">Z</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="ss">a</span><span class="p">(</span><span class="nv">Y</span><span class="p">))</span> <span class="p">:-</span> <span class="ss">carpim</span><span class="p">(</span><span class="nv">Z_</span><span class="p">,</span> <span class="nv">X</span><span class="p">,</span> <span class="nv">Y</span><span class="p">),</span> <span class="ss">cikar</span><span class="p">(</span><span class="nv">Z_</span><span class="p">,</span> <span class="nv">Z</span><span class="p">,</span> <span class="nv">X</span><span class="p">).</span></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tbody><tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>eĝer X&lt;Y ise X/Y=0’dir ve kalan X’tir.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>X &gt; Y ise
-X / Y = Z demek (X-Y) / Y = Z - 1 demektir. 2’nci kuralı X&lt;Y olana kadar uygulayacagiz. O durumda zaten bolüm’ün de kalan’ın da ne olduğunu biliyoruz çünkü</td>
-</tr>
-</tbody></table>
-</div>
-<div class="paragraph">
-<p>Guzel degil mi? Kendi sayı sistemimizi inşaa ettik ve onun üzerinde cebir yapiyoruz!</p>
-</div>
-<div class="paragraph">
-<p>Bundan sonraki konuda Linked-List’lerden bahsedeceĝim. Bakalım oradan nereye gideriz…​</p>
+<p>Görüşmek üzere…​</p>
 </div>
 </div>
 </div>
@@ -916,8 +752,10 @@ X / Y = Z demek (X-Y) / Y = Z - 1 demektir. 2’nci kuralı X&lt;Y olana kadar u
 
   <div id=links>
     
-      <a class="basic-alignment left" href="/posts/prolog-1/">&laquo; Declarative Programlamaya Giriş - 1 / Prolog</a>
+      <a href="/posts/prolog-1/">&laquo;&nbsp;Declarative Programlamaya Giriş - 1 / Prolog</a>
     
+    
+      <a href="/posts/prolog-3/">Declarative Programlamaya Giriş - 3 / Kendi Matematik Sistemimizin İcadı&nbsp;&raquo;</a>
     
   </div>
 </section>
