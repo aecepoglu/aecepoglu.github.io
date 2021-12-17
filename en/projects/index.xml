@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on aecepoglu</title>
+    <link>/en/projects/</link>
+    <description>Recent content in Projects on aecepoglu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="/en/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advent of Code 2021</title>
+      <link>/en/projects/advent-of-code/</link>
+      <pubDate>Wed, 15 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/en/projects/advent-of-code/</guid>
+      <description>So I have decided to follow Advent-of-Code live this year [I am 10 days behind so it’s hardly live, but I should catch up soon :) ]
+ Advent of Code is a programming themed fun-little-event that takes place every year on http://adventofcode.com
+ You can find my solutions (in (Dyalog-)APL) below.
+   Day 1 https://adventofcode.com/2021/day/1
+ q1 ←{ +/ (1↓⍵) &amp;gt; (¯1↓⍵) } q1pt1 ←{ q1 ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;.</description>
+    </item>
+    
+  </channel>
+</rss>

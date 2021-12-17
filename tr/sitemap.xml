@@ -2,8 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/posts/advent-of-code-intro/</loc>
+    <lastmod>2021-12-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/posts/advent-of-code-intro/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/posts/advent-of-code-intro/"
+                />
+  </url><url>
     <loc>/</loc>
-    <lastmod>2021-11-25T00:00:00+00:00</lastmod>
+    <lastmod>2021-12-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -13,6 +26,33 @@
                 rel="alternate"
                 hreflang="tr"
                 href="/"
+                />
+  </url><url>
+    <loc>/projects/</loc>
+    <lastmod>2021-12-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/projects/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/projects/"
+                />
+  </url><url>
+    <loc>/projects/advent-of-code/</loc>
+    <lastmod>2021-12-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/projects/advent-of-code/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/projects/advent-of-code/"
                 />
   </url><url>
     <loc>/posts/prolog-3/</loc>
@@ -36,10 +76,6 @@
                 hreflang="tr"
                 href="/posts/"
                 />
-  </url><url>
-    <loc>/projects/</loc>
-    <lastmod>2020-10-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url><url>
     <loc>/projects/keyboards/</loc>
     <lastmod>2020-10-15T00:00:00+00:00</lastmod>

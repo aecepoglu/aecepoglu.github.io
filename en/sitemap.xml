@@ -2,8 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/en/posts/advent-of-code-intro/</loc>
+    <lastmod>2021-12-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/posts/advent-of-code-intro/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/posts/advent-of-code-intro/"
+                />
+  </url><url>
     <loc>/en/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2021-12-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
@@ -16,7 +29,7 @@
                 />
   </url><url>
     <loc>/en/posts/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2021-12-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
@@ -26,6 +39,32 @@
                 rel="alternate"
                 hreflang="en"
                 href="/en/posts/"
+                />
+  </url><url>
+    <loc>/en/projects/advent-of-code/</loc>
+    <lastmod>2021-12-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/projects/advent-of-code/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/projects/advent-of-code/"
+                />
+  </url><url>
+    <loc>/en/projects/</loc>
+    <lastmod>2021-12-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tr"
+                href="/projects/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/en/projects/"
                 />
   </url><url>
     <loc>/en/posts/introduction/</loc>

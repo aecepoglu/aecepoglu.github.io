@@ -18,10 +18,10 @@
     <title>
       
       
-         Klavyeler 
+         Advent of Code 2021 
       
     </title>
-    <link rel="canonical" href="/projects/keyboards/">
+    <link rel="canonical" href="/projects/advent-of-code/">
 
     <style>
   * {
@@ -443,11 +443,11 @@ MathJax.Hub.Config({
 
 
 <section id=content>
-  <h1> Klavyeler </h1>
+  <h1> Advent of Code 2021 </h1>
 
   
     <div id=sub-header>
-      October 2020 · 3 minute read
+      December 2021 · 1 minute read
     </div>
   
 
@@ -455,158 +455,109 @@ MathJax.Hub.Config({
     <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>(Artik siparis uzerine klavye yapiyorum. Detayli bilgi icin <a href="#siparis">Siparis</a>&#39;e bakin)</em></p>
+<p>APL programlama diliyle çözümlerimi aşaĝıda bulabilirsiniz.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_gün">1. Gün</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Universitede aldigim derslerden birinden gecmek icin tek yapmak gereken seminerlere katilmakti. Bu seminerlerden birisinde konusmaci klavye duzenlerinden ve F-klavyenin nasil daha ergonomik ve istatistik olarak ustun bir klavye oldugundan bahsetti. O aksam internette gezinip <a href="http://www.dvzine.org/zine/index.html" class="bare">http://www.dvzine.org/zine/index.html</a> &#39;yi okuyup Dvorak klavye duzenini ogrenmeye karar verdim.</p>
+<p><a href="https://adventofcode.com/2021/day/1" class="bare">https://adventofcode.com/2021/day/1</a></p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tbody><tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Neden dvorak klavye kullandigimi soranlara cevap vermekten usanip su minik siteyi hazirlamistim:
-<a href="http://aecepoglu.com/why-dvorak" class="bare">http://aecepoglu.com/why-dvorak</a></p>
-</div>
-</td>
-</tr>
-</tbody></table>
-</div>
-<div class="paragraph">
-<p>Huyumdur da bir fikri sonlandiramayip arastirmaya ve gelistirmeye calisarak vakit harcamak. O yuzden sandalye ustundeki rahatini onemseyen biri olarak soru sormaya devam ettim.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Artik daktilo kullanmadigimiza gore neden Q tusu hala A tusunun uzerinde degil de biraz daha kenara konuluyor?</p>
-</li>
-<li>
-<p>Neden on-parmak kullanirken iki elin parmaklari farkli eksenlerde hareket ediyor? (sol elin isaret parmagi R tusuna basmak icin F tusundan kalkip orta parmaga yaklasarak yukari cikiyor. Sag elin isaret parmagi ise J tusundan kalkip parmagin dogal kivrim ekseninde yukari cikarak U tusuna basiyor)</p>
-</li>
-<li>
-<p>Neden kullanmadigim tuslar standart olarak her klavyede geliyor? F3 ve F4’e su ana kadar iki kere basmis olabilirim, o da tuslari temizlerken. Menu/Compose ve Capslock tuslari da boyle…​</p>
-</li>
-<li>
-<p><em>Benim babam boyle pasta yapmayi nerede ogrendi?</em></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Bu konulari evvelden konusan/tartisan kisiler terimler kullanmislar. Ilkine &#34;row stagger&#34; diyorlar, biz &#34;kayik satir&#34; diyebiliriz belki. &#34;Staggered&#34; olmayan klavyelere de &#34;ortholinear&#34; diyorlar.</p>
-</div>
-<div class="paragraph">
-<p>Bakiniz bir ortholinear klavye:</p>
-</div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="https://geekhack.org/index.php?PHPSESSID=ou4eud5p4ugg01kjdlaeqpem1k565p83&amp;action=dlattach;topic=75111.0;attach=110551;image" alt="full-size-ortholinear"/>
+<pre class="highlight"><code class="language-apl" data-lang="apl">q1 ←{ +/ (1↓⍵) &gt; (¯1↓⍵) }
+q1pt1 ←{
+	q1 ⍎⍤1⊢↑ ⊃⎕NGET &#39;./q1.txt&#39;1
+}
+q1pt2 ← {
+	x ← ⍎⍤1⊢↑ ⊃⎕NGET &#39;./q1.txt&#39;1
+	q1 (2↓x) + (1↓¯1↓x) + (¯2↓x)
+}
+q1pt1_v2 ←{
+	+/2&lt;/ ⍎⍤1⊢↑ ⊃⎕NGET &#39;./q1.txt&#39;1
+}
+q1pt2_v2 ← {
+	x ← ⍎⍤1⊢↑ ⊃⎕NGET &#39;./q1.txt&#39;1
+	+/2&lt;/3+/x
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Vim ekolunden gelen biri olarak zaten ne yon tuslarini ne de numpad’i kullaniyorum. Numpad’i olmayan klavyelere TKL (<em>ten keyless</em> , her ne kadar numpad’de 10’dan fazla tus olsa da) ya da 80% deniyor. Yon tuslarinin oldugu bolumu de atarsak 60% limitine inmis oluyoruz. &#34;Preonic&#34; denilen klavye ortholinear 60% bir klavye mesela:</p>
+<p><code>N op /</code> diyerek çözümü basitleştirebileceĝimi sonradan öĝrendim.</p>
 </div>
-<div class="imageblock">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_gün">2. Gün</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://adventofcode.com/2021/day/2" class="bare">https://adventofcode.com/2021/day/2</a></p>
+</div>
+<div class="listingblock">
 <div class="content">
-<img src="https://cdn.shopify.com/s/files/1/0277/3260/7010/products/dss-tecla-preonic_360x.jpg?v=1602199047" alt="preonic"/>
+<pre class="highlight"><code class="language-apl" data-lang="apl">C ← &#39;forward&#39; &#39;down&#39; &#39;up&#39;
+M ← (1 0) (0 1) (0 ¯1)
+d ← ⊃⎕NGET &#39;./q2.txt&#39;1
+
+q2←{
+	×/↑↑+/{M[C⍳⍵[1]]×(⍎⍤1⊢↑⍵[2])}¨&#39; &#39;(≠⊆⊢)¨d
+}
+
+q2pt2←{
+	f←{
+		h ← ⍵[1]
+		a ← ⍵[2]
+		d ← ⍵[3]
+		⍵ + ((⍺[1]) (⍺[2]) (a×⍺[1]))
+	}
+	⍝ (0 0 0) reduce&#39;taki accumulator&#39;un baslangic degeri
+	x ← ⊖(↓↓0 0 0), {M[C⍳⍵[1]]×(⍎⍤1⊢↑⍵[2])}¨ &#39; &#39;(≠⊆⊢)¨d_
+	×/ (1 0 1)/ ↑f/ ↑¨x
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>&#34;Ben sayilari da istemiyorum. Farkli tus kombinasyonlari ile sayilari basarim ben&#34; dediginizde de Planck isimli klavyeyi bulmus oluyoruz:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://cdn.shopify.com/s/files/1/1152/3264/t/25/assets/neat-planck-banner.png?v=8240692596812405210" alt="planck"/>
+<p>reduce (<code>/</code>) saĝdan sola ilerliyor. Bu yüzden ⊖ yapıp ⍵ ile ⍺ &#39;yı deĝiştirmem gerekti.</p>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_3_gün">3. Gün</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Bu kadar az sayida tusun nasil yeterli oldugunu su video’dan ognerebilirsiniz:</p>
+<p><a href="https://adventofcode.com/2021/day/3" class="bare">https://adventofcode.com/2021/day/3</a></p>
 </div>
-<div class="videoblock">
+<div class="listingblock">
 <div class="content">
-<iframe src="https://www.youtube.com/embed/bEPg8kk84gw?rel=0" frameborder="0" allowfullscreen=""></iframe>
-</div>
-</div>
-<div class="paragraph">
-<p>Peki ben bu klavyeyi ikiye ayirmak istiyorum derseniz? O tasarimi da biri bulmus, adi &#34;Lets Split&#34;</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://raw.githubusercontent.com/diimdeep/awesome-split-keyboards/master/img/LetsSplit.jpg" alt="lets-split"/>
-</div>
-</div>
-<div class="paragraph">
-<p>Peki &#34;benim orta parmagim isaret parmagimdan uzun. Neden E tusu R tusu ile ayni hizada?&#34; sorusu aklinizda canlandi ise onun cevabi da &#34;ErgoTravel&#34; olabilir:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://raw.githubusercontent.com/diimdeep/awesome-split-keyboards/master/img/Ergotravel.jpg" alt="ergotravel"/>
-</div>
-</div>
-<div class="paragraph">
-<p>Ki &#34;ergotravel&#34; denen klavye aslinda &#34;ErgoDox&#34; isimli klavyenin biraz daha ufak hali. Buyrun &#34;ErgoDox EZ&#34;:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://raw.githubusercontent.com/diimdeep/awesome-split-keyboards/master/img/Ergodox_EZ_white.jpg" alt="ergodox ez"/>
-</div>
-</div>
-<div class="paragraph">
-<p>Parmaklarinizin bir duzlemdeki degil de ic-bukey bir yuzeyde daha dogal hareket edebilecegini dusunuyorsaniz o zaman karsinizda &#34;Dactyl&#34;:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://raw.githubusercontent.com/diimdeep/awesome-split-keyboards/master/img/Dactyl.jpg" alt="dactyl"/>
-</div>
-</div>
-<div class="paragraph">
-<p>Ve bas-parmagin sorumlu oldugu tuslarin alternatif dizilimli hali &#34;Dactyl Manuform&#34;</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="https://raw.githubusercontent.com/diimdeep/awesome-split-keyboards/master/img/Dactyl-ManuForm.jpg" alt="dactyl-manuform"/>
+<pre class="highlight"><code class="language-apl" data-lang="apl">C ← &#39;forward&#39; &#39;down&#39; &#39;up&#39;
+M ← (1 0) (0 1) (0 ¯1)
+d ← ⊃⎕NGET &#39;./q2.txt&#39;1
+
+q2←{
+	×/↑↑+/{M[C⍳⍵[1]]×(⍎⍤1⊢↑⍵[2])}¨&#39; &#39;(≠⊆⊢)¨d
+}
+
+q2pt2←{
+	f←{
+		h ← ⍵[1]
+		a ← ⍵[2]
+		d ← ⍵[3]
+		⍵ + ((⍺[1]) (⍺[2]) (a×⍺[1]))
+	}
+	x ← ⊖(↓↓0 0 0), {M[C⍳⍵[1]]×(⍎⍤1⊢↑⍵[2])}¨ &#39; &#39;(≠⊆⊢)¨d_
+	×/ (1 0 1)/ ↑{}/ ↑¨x
+}</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="siparis">Istege Gore Klavye</h2>
+<h2 id="_4_gün">4. Gün</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cok sevgili Dogukan’in (isterse buraya sitesine giden bir link de koyarim) 3D yazici almasi ve benim bu klavyelerden yapma istegimi kabul etmesi uzerine Dogukan ile birlikte bi’kac klavye yaptik, bi’kac daha yapmakta/fikir-gelistirmekteyiz.</p>
-</div>
-<div class="paragraph">
-<p>Ilk klavyemiz; gittigim yerlere benimle gelecek bir Pteron:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/imgs/pteron.jpg" alt="pteron-promo"/>
-</div>
-</div>
-<div class="paragraph">
-<p>Gunluk kullanimim icin bir Dactyl Manuform:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/imgs/dactyl-manuform.jpg" alt="dactylmanuform-promo"/>
-</div>
-</div>
-<div class="paragraph">
-<p>Diger yaptiklarimizin ve yapacaklarimizin da resimlerini buraya eklerim zamanla.</p>
-</div>
-<div class="paragraph">
-<p>Ama bu surec oldukca keyifliydi ve biz daha fazlasini yapmak istiyoruz. Bu yuzden gelir amaci gutmese de harcanan vakte degmesi kosuluyla istek/siparis uzerine klavye yapmaya karar verdik. Henuz bir fiyat cetveli yok, olunca burayi guncellerim.</p>
-</div>
-<div class="sect2">
-<h3 id="_siparis_vermek_icin">Siparis Vermek Icin</h3>
-<div class="paragraph">
-<p>Siz de bir klavye siparisi vermek istiyorsaniz <code>aec \@ mm \. st</code> adresine eposta atabilirsiniz.</p>
-</div>
-<div class="paragraph">
-<p>Klavye tipi, switch ve keycap tercihleri ve varsa bunlarin temin edilmesini istediginiz yerleri belirtin. Diger istek ve fikirleriniz var ise onlardan da bahsedin.</p>
-</div>
+<p><em>pek yakında…​</em></p>
 </div>
 </div>
 </div>
@@ -615,8 +566,8 @@ MathJax.Hub.Config({
 
   <div id=links>
     
+      <a href="/projects/keyboards/">&laquo;&nbsp;Klavyeler</a>
     
-      <a href="/projects/advent-of-code/">Advent of Code 2021&nbsp;&raquo;</a>
     
   </div>
 </section>
