@@ -447,7 +447,7 @@ MathJax.Hub.Config({
 
   
     <div id=sub-header>
-      December 2021 · 1 minute read
+      December 2021 · 2 minute read
     </div>
   
 
@@ -555,6 +555,37 @@ q2pt2←{
 </div>
 <div class="sect1">
 <h2 id="_4_gün">4. Gün</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">n ←{ ⍎⍤1⊢↑⍵ }
+
+nonempty ←{ ↑,/0≠⍴¨⍵ }
+playcards ←{ n↑↑(nonempty⊆⊢)&#39; &#39;∘(≠⊆⊢)¨1↓⍵ }
+
+d ← ⊃⎕nget&#39;q4-tmp.txt&#39;1
+P ← n&#39;,&#39;(≠⊆⊢)⊃d ⍝ Pouch
+C ← playcards d ⍝ Cards
+WT ← {⍵⍳1}¨ ↓⍉↑ ↑∨/¨{∨/5∊¨⍵}¨¨{(+/[1]⍵) (+/[2]⍵)}¨∨\C∘=¨P ⍝ Winning Turns
+score ←{ P(⊢⌷⊣)WT(⊢⌷⊣)⍵ × +/ (↑,/,/⍵⌷C) ~ (1+⍵⌷WT)↑P }
+
+q4pt1 ← score WT⍳⌊/WT
+q4pt2 ← score WT⍳⌈/WT</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>∨\C∘=¨P</code> diyerek tombala kartlarının her bir turdaki halini türetmek gayet hoştu. <code>\</code> işlemini önümüzdeki problemlerde nerelerde deĝerlendirebileceĝimi merak ediyorum.</p>
+</div>
+<div class="paragraph">
+<p>Bu sefer tacit (bileşik) programlamayı daha iyi anladım. <code>Y(⊢⌷⊣)X</code> demenin <code>Y[X]</code> için en iyi çözüm olduĝundan emin deĝilim ama en azından bu tür fonksiyonlar yazabiliyorum.</p>
+</div>
+<div class="paragraph">
+<p>Bir de çok <code>↑</code> ve <code>↓</code> yaptıĝımı farkediyorum, ki bu da <code>¨</code> kullanmamı gerektiriyor. Kutulanmış deĝerleri işlemeyi daha iyi öĝrenmem gerek.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_5_gün">5. Gün</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><em>pek yakında…​</em></p>
