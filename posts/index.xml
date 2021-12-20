@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>My Posts on aecepoglu</title>
-    <link>/posts/</link>
+    <link>https://aecepoglu.com/posts/</link>
     <description>Recent content in My Posts on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://aecepoglu.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Advent Of Code 2021 başladı</title>
-      <link>/posts/advent-of-code-intro/</link>
+      <link>https://aecepoglu.com/posts/advent-of-code-intro/</link>
       <pubDate>Fri, 17 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/advent-of-code-intro/</guid>
+      <guid>https://aecepoglu.com/posts/advent-of-code-intro/</guid>
       <description>Advent of Code’u duydunuz mu bilmiyorum.
  Bir ay süren programlama temalı bir etkinlik. http://adventofcode.com adresinde gerçekleşiyor.
  2021 yılının etkinliĝi şu an devam ediyor. Ben genelde etkinlik bittikten sonra soruları çözmeye başlıyorum ama bu sene canlı olarak takip etmeye karar verdim, hem de (Dyalog) APL dilini bir deneme fırsatı elde etmiş olacaĝım.
@@ -23,10 +23,10 @@
     
     <item>
       <title>Declarative Programlamaya Giriş - 3 / Kendi Matematik Sistemimizin İcadı</title>
-      <link>/posts/prolog-3/</link>
+      <link>https://aecepoglu.com/posts/prolog-3/</link>
       <pubDate>Thu, 25 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/prolog-3/</guid>
+      <guid>https://aecepoglu.com/posts/prolog-3/</guid>
       <description>Şimdi…​ prolog’da diĝer dillerde olan sayı tanımları (integer, vb) yok deĝil AMA diyelim ki yok…​ Kendi sayı sistemimizi inşaa edebilir miyiz?
  Cevap tabii ki evet, yoksa bahsini açmazdım, deĝil mi?
  Basitleştirmek adına sadece doĝal sayılar ile ilgilenelim. sıfır sayısını baz alacak ve diĝer sayıları sıfır’a kıyasen yazacaĝız.
@@ -37,10 +37,10 @@
     
     <item>
       <title>Declarative Programlamaya Giriş - 2 / Prolog&#39;da Recursive Tanımlar</title>
-      <link>/posts/prolog-2/</link>
+      <link>https://aecepoglu.com/posts/prolog-2/</link>
       <pubDate>Thu, 28 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/prolog-2/</guid>
+      <guid>https://aecepoglu.com/posts/prolog-2/</guid>
       <description>Bence prolog’un zorlaştıĝı yerler birazdan girişeceĝim &amp;#34;recursive&amp;#34;-kurallar.
  Diĝer programlama dillerinde recursion’u görüp sevmediyseniz veya zor geldiyse o ön yargınızı bir kenara bırakın. Biz prolog yazıyoruz ve recursion prolog’un ve declarative dillerin en temel silahlarındandır.
      &amp;#34;recursive&amp;#34; demek kendine atıfta bulunan demek.
@@ -50,10 +50,10 @@
     
     <item>
       <title>Declarative Programlamaya Giriş - 1 / Prolog</title>
-      <link>/posts/prolog-1/</link>
+      <link>https://aecepoglu.com/posts/prolog-1/</link>
       <pubDate>Mon, 25 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/prolog-1/</guid>
+      <guid>https://aecepoglu.com/posts/prolog-1/</guid>
       <description>Kurt-kuzu-ot bulmacasıyla ilgili bir yazı yazmıştım. O yazımı tekrar okudum ve bilgilerin yeterince açıklayıcı bir şekilde sunulmadıĝını farkettim.
  Declarative kod yazma tarzının anlaşılmasının bir yazılımcı için önemli olduĝunu düşünüyorum, o yüzden Prolog dili ile sıfırdan bir giriş yapma kararı aldım. 3-4 bölümden ibaret olacak ve her bir bölümü bir oturuşta okuyabileceĝiniz uzunlukta. Birinci bölümün sonundaki alıştırmaya gelene kadar arkanıza yaslanıp okumanızı öneriyorum; sonrasında kod yazarak eşlik edebilirsiniz.
  O zaman başlayalım…​</description>
@@ -61,10 +61,10 @@
     
     <item>
       <title>aecepoglu İlişki Durumunu Değiştirdi</title>
-      <link>/posts/a-new-page/</link>
+      <link>https://aecepoglu.com/posts/a-new-page/</link>
       <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/a-new-page/</guid>
+      <guid>https://aecepoglu.com/posts/a-new-page/</guid>
       <description>İlişkilerde tüm sorunların temelinde iletişim kopukluğu olduğuna inanıyorum. Bir taraf kendisini eksik hissediyorsa, yalan söylüyorsa, karşı tarafa ilgisini kaybetmiş ise; bunların hepsi iletişim hatalarına işaret ediyordur.
  İletişimde ise saydam olmak doğru diye düşünüyorum. Çünkü insanlar (yani biz (http://reddit.com/r/TOTALLYNOTROBOTS )) eylemleri değil, eylemlerin ardındaki niyetleri değerlendiriyoruz. Kötü olduğunu düşündüğümüz davranış kötü niyetle yapılmamışsa o kadar kırıcı olmayabiliyor.
  Bir işveren ile işçi arasındaki ilişki de benzer mekaniklerle ilerliyor, daha fazla paydaş var ve taraflar arasında güç eşitsizliği var; ama mekanikler aynı.</description>
@@ -72,10 +72,10 @@
     
     <item>
       <title>Güle Güle Karanlık, Hoşgeldin Karanlık</title>
-      <link>/posts/goodbye-dark/</link>
+      <link>https://aecepoglu.com/posts/goodbye-dark/</link>
       <pubDate>Mon, 06 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/goodbye-dark/</guid>
+      <guid>https://aecepoglu.com/posts/goodbye-dark/</guid>
       <description>&amp;#34;İnsanlar ikiye ayrılır&amp;#34; derler; &amp;#34;Sayı saymayı bilenler, saymayı bilmeyenler, ve diğerleri…​&amp;#34;. Ben buna katılıyor ve bir de şöyle bir ayrım öneriyorum: &amp;#34;Karanlıkta çalışmayı sevenler ve aydınlıkta çalışmayı sevenler&amp;#34;.
  Ben hava karardıktan sonra hala saat öğlen 1’miş gibi davranıp içeriyi florasan ışık ile aydınlatmayı seçenlerden değilim. Hava kararınca ben de ekranımı ve kullandığım yazılımları karanlık-modlarına geçirmeyi gözlerim için daha rahatlatıcı buluyorum.
      kakoune&amp;#39;da karanlık temayı otomatik olarak seçmek için şöyle bir tanımlama kolayca yapılabiliyor:</description>
@@ -83,20 +83,20 @@
     
     <item>
       <title>En Güzel JavaScript kodu: Akış Şeması Programlama</title>
-      <link>/posts/most-elegant-js-code/</link>
+      <link>https://aecepoglu.com/posts/most-elegant-js-code/</link>
       <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/most-elegant-js-code/</guid>
+      <guid>https://aecepoglu.com/posts/most-elegant-js-code/</guid>
       <description>Aşağıdaki satırlar, işyerindeki tüm ekibimizin birkaç senelik eforunun en lezzetli meyvelerinden.
  route.post(&amp;#34;/api/proxy&amp;#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.status = &amp;#34;valid&amp;#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy.</description>
     </item>
     
     <item>
       <title>Kurt, Koyun, Ot</title>
-      <link>/posts/wolf-sheep-grass/</link>
+      <link>https://aecepoglu.com/posts/wolf-sheep-grass/</link>
       <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/wolf-sheep-grass/</guid>
+      <guid>https://aecepoglu.com/posts/wolf-sheep-grass/</guid>
       <description>Bir çobanın bir kurdu, bir koyunu, bir balya da otu var. Bunları nehrin karşı yakasına taşımak istiyor. Nehirde bir kayık var. Kayık ancak çobanı ve bir adet şeyi (ot, koyun ya da kurt) taşıyacak kadar büyük. Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebiliyor. Çoban herkesi sağ salim nasıl karşıya taşır?
  Evet, farkındayım…​ Basit bir bulmaca.
  Peki ya bunu kod ile çozecek olsak?
@@ -105,10 +105,10 @@
     
     <item>
       <title>Değişebilirlik(Mutability) Suratınızda Patlayınca</title>
-      <link>/posts/immutability-alt/</link>
+      <link>https://aecepoglu.com/posts/immutability-alt/</link>
       <pubDate>Fri, 06 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/immutability-alt/</guid>
+      <guid>https://aecepoglu.com/posts/immutability-alt/</guid>
       <description>(bu yazidaki resimlerin guncellenmesi gerekiyor)
  Sıradan bir iş günü. JavaScript’te tablolarımızdan birisine sayfalar arasında geçiş yaparken veri indir/kaldır yapma kabiliyeti ekliyorum (halk arasında buna &amp;#34;pagination&amp;#34; diyorlar). retrieveItems diye ve drawItems diye birer fonksiyon yazdım. retrieveItemsAndDraw yazıp çözüme ulaşmak üzereyken şu kodu yazdığımı farkediyorum:
  const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   Ekip arkadaşlarımdan birisi bu satırda n’aptığımı sorduğunda &amp;#34;Basit!&amp;#34; diye cevaplıyorum:
@@ -117,10 +117,10 @@
     
     <item>
       <title>NodeJS&#39;te Maybe Monad&#39;ını Kullanarak REPL-Destekli Kod Yazma</title>
-      <link>/posts/repl-driven-development/</link>
+      <link>https://aecepoglu.com/posts/repl-driven-development/</link>
       <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/repl-driven-development/</guid>
+      <guid>https://aecepoglu.com/posts/repl-driven-development/</guid>
       <description>http://discuss.ocaml.org &amp;#39;u açıyorum; uzun zamandır portfolyomu fonksiyonel yaklaşımlar ve diller konusunda zenginleştirmekteyim ve de aktif bir iş arayışındayım. İnternette bir OCaml ilanı var ise orada bulabileceğimden eminim.
  Komşu başlıklardan birisinde &amp;#34;Closure’da REPL Driven Development&amp;#34; yapmanın ne kadar keyifli olduğunu, acaba OCaml’da da bunun mümkün olup olmadığı tartışılıyor.
   I want to define “Repl based development” not as “occasionally use the REPL”, but something like this:

@@ -21,7 +21,7 @@
          Advent of Code 2021 
       
     </title>
-    <link rel="canonical" href="/en/projects/advent-of-code/">
+    <link rel="canonical" href="https://aecepoglu.com/en/projects/advent-of-code/">
 
     <style>
   * {
@@ -447,7 +447,7 @@ MathJax.Hub.Config({
 
   
     <div id=sub-header>
-      December 2021 · 2 minute read
+      December 2021 · 4 minute read
     </div>
   
 
@@ -570,7 +570,7 @@ q2pt2←{
 nonempty ←{ ↑,/0≠⍴¨⍵ }
 playcards ←{ n↑↑(nonempty⊆⊢)&#39; &#39;∘(≠⊆⊢)¨1↓⍵ }
 
-d ← ⊃⎕nget&#39;q4-tmp.txt&#39;1
+d ← ⊃⎕nget&#39;q4.txt&#39;1
 P ← n&#39;,&#39;(≠⊆⊢)⊃d ⍝ Pouch
 C ← playcards d ⍝ Cards
 WT ← {⍵⍳1}¨ ↓⍉↑ ↑∨/¨{∨/5∊¨⍵}¨¨{(+/[1]⍵) (+/[2]⍵)}¨∨\C∘=¨P ⍝ Winning Turns
@@ -593,6 +593,120 @@ q4pt2 ← score WT⍳⌈/WT</code></pre>
 </div>
 <div class="sect1">
 <h2 id="_day_5">Day 5</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">valid_pt1 ← {(∆x ∆y)←|-/¨⍵ ⋄         (∆x=0)∨(∆y=0)}
+valid_pt2 ← {(∆x ∆y)←|-/¨⍵ ⋄ (∆x=∆y)∨(∆x=0)∨(∆y=0)}
+applyvent ← {{(⍵⌷M)+←1}¨⍵} ⍝ impure function. modifies M
+range ← {d←⍵-⍺ ⋄ s←d÷|d ⋄ ⍺+s×⍳+1+|d} ⍝ 5 range 3 gives 5 4 3
+
+d ← ⊃⎕nget&#39;q5.txt&#39;1
+V ← {n¨&#39;,&#39;∘(≠⊆⊢)¨(1 0 1)/&#39; &#39;(≠⊆⊢)⍵}¨d
+D ← 1+⌈/∊V
+M ← D D⍴0 ⋄ valid ← valid_pt1 ⋄ applyvent¨0⌷{↑(↑,.(⊂,))/↑range/¨⍵}¨(↑valid¨⊆⊢){↓⍉↑⍵}¨V
+q5pt1 ← +/∊M≥2
+M ← D D⍴0 ⋄ valid ← valid_pt2 ⋄ applyvent¨0⌷{↑(↑,.(⊂,))/↑range/¨⍵}¨(↑valid¨⊆⊢){↓⍉↑⍵}¨V
+q5pt2 ← +/∊M≥2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It was fun to solve this problem as I iterated over the map-view. I enjoy this style of interactive programming, doing as I’m seeing. It helps get rid of some hesitancy to approach even a seemingly difficult problem.</p>
+</div>
+<div class="paragraph">
+<p>I ended relying on a mutable table to solve this and I wonder how I could have done it purely.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_day_6">Day 6</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">f ← {s←⍵⋄((1↓s),0)+s[0]×(0 0 0 0 0 0 1 0 1)}
+genS ← {x←⍵ ⋄ {+/x=⍵}¨⍳8+1}
+
+d ← ⊃⎕nget&#39;q6.txt&#39;1
+N ← n&#39;,&#39;(≠⊆⊢)d
+
+q6pt1 ← 20⍕ +/↑(⊢f)/(⍳80),↓genS N
+q6pt2 ← 20⍕ +/↑(⊢f)/(⍳256),↓genS N</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Thinking of this problem as arrays of values helped me coming up with a solution.</p>
+</div>
+<div class="paragraph">
+<p>The first solution I came up relied on keeping a record of each fish (as an integer) and resulted in memory overflow for part-2.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_day_7">Day 7</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">d ← ⊃⎕nget&#39;q7.txt&#39;1
+N ← n&#39;,&#39;(≠⊆⊢)⊃d
+K ← 1+⌈/∊N
+q7pt1 ← ⌊/+/ |(⍉↑K⍴¨N)-(0⌷¨⍳K(≢N))
+g ← {0.5×⍵×⍵+1}
+q7pt2 ← ⌊/+/g|(⍉↑K⍴¨N)-(0⌷¨⍳K(≢N))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Another problem that was represented by a table rather neatly. If I write about APL this could be the problem I solve.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_day_8">Day 8</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">A ← &#39;abcdefg&#39;
+MK ← {(∊∘⍵)¨A}
+MK_v2 ← A∊
+Mb ← ↑MK ¨ (&#39;abcfeg&#39; &#39;cf&#39; &#39;acdeg&#39; &#39;acdfg&#39; &#39;bcdf&#39; &#39;abdfg&#39; &#39;abdefg&#39; &#39;acf&#39; &#39;abcdefg&#39; &#39;abcdfg&#39;)
+
+l ← {{((~&#39;|&#39;∊⊢)¨⍵)⊆⍵}&#39; &#39;∘(≠⊆⊢)⍵}
+loner ← {x←⍵ ⋄ {⍵/x}1={+/x=⍵}¨x}
+len ← {∊(⍺=≢¨⍵)⊆⍵} ⍝ selects items with given length
+decode ←{
+     b←⍺∊⍵
+     1(⊢⍳⊣)b∘(⊢≡⊣)¨↓Mb
+ }
+
+solve ← {
+     x←⍵
+     S_1←2 len x
+     S_4←4 len x
+     S_7←3 len x
+     S_8←7 len x
+     S_a←S_7~S_1
+     S_g←⊃1 len{⍵~S_a,S_4}¨x
+     S_e←⊃∊{⍵~S_g,S_a,S_4}¨x
+     S_b←loner 1 len{⍵~S_7,S_e,S_g}¨x
+     S_d←S_8~S_7,S_b,S_e,S_g
+     S_c←loner 1 len{⍵~S_a,S_g,S_e,S_b,S_d}¨x
+     S_f←⊃∊{⍵~S_a,S_c,S_g,S_e,S_b,S_d}¨x
+     ∊(S_a S_b S_c S_d S_e S_f S_g)
+ }
+
+d ← ⊃⎕nget&#39;q8.txt&#39;1
+q8pt2 ← +/{R←solve↑0⌷l ⍵ ⋄ ⊖{⍺+10×⍵}/⊖R∘decode¨↑1⌷l ⍵}¨d</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OK, this one actually took me a while. Once I was able to decode <code>S_g</code> the rest came smoothly.</p>
+</div>
+<div class="paragraph">
+<p>I want to be able to come up with tacit versions of <code>len</code> and <code>loner</code>, but not yet :)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_day_9">Day 9</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><em>coming soon…​</em></p>

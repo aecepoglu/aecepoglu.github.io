@@ -2,85 +2,85 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/en/posts/advent-of-code-intro/</loc>
+    <loc>https://aecepoglu.com/en/posts/advent-of-code-intro/</loc>
     <lastmod>2021-12-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/posts/advent-of-code-intro/"
+                href="https://aecepoglu.com/posts/advent-of-code-intro/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/posts/advent-of-code-intro/"
+                href="https://aecepoglu.com/en/posts/advent-of-code-intro/"
                 />
   </url><url>
-    <loc>/en/</loc>
+    <loc>https://aecepoglu.com/en/</loc>
     <lastmod>2021-12-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/"
+                href="https://aecepoglu.com/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/"
+                href="https://aecepoglu.com/en/"
                 />
   </url><url>
-    <loc>/en/posts/</loc>
+    <loc>https://aecepoglu.com/en/posts/</loc>
     <lastmod>2021-12-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/posts/"
+                href="https://aecepoglu.com/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/posts/"
+                href="https://aecepoglu.com/en/posts/"
                 />
   </url><url>
-    <loc>/en/projects/advent-of-code/</loc>
+    <loc>https://aecepoglu.com/en/projects/advent-of-code/</loc>
     <lastmod>2021-12-15T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/projects/advent-of-code/"
+                href="https://aecepoglu.com/projects/advent-of-code/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/projects/advent-of-code/"
+                href="https://aecepoglu.com/en/projects/advent-of-code/"
                 />
   </url><url>
-    <loc>/en/projects/</loc>
+    <loc>https://aecepoglu.com/en/projects/</loc>
     <lastmod>2021-12-15T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/projects/"
+                href="https://aecepoglu.com/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/projects/"
+                href="https://aecepoglu.com/en/projects/"
                 />
   </url><url>
-    <loc>/en/posts/introduction/</loc>
+    <loc>https://aecepoglu.com/en/posts/introduction/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/en/about/</loc>
+    <loc>https://aecepoglu.com/en/about/</loc>
     <lastmod>2019-05-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/about/"
+                href="https://aecepoglu.com/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/about/"
+                href="https://aecepoglu.com/en/about/"
                 />
   </url>
 </urlset>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>aecepoglu</title>
-    <link>/projects/</link>
+    <link>https://aecepoglu.com/projects/</link>
     <description>Recent content on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="/projects/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://aecepoglu.com/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Advent of Code 2021</title>
-      <link>/projects/advent-of-code/</link>
+      <link>https://aecepoglu.com/projects/advent-of-code/</link>
       <pubDate>Wed, 15 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>/projects/advent-of-code/</guid>
+      <guid>https://aecepoglu.com/projects/advent-of-code/</guid>
       <description>APL programlama diliyle çözümlerimi aşaĝıda bulabilirsiniz.
    1. Gün https://adventofcode.com/2021/day/1
  q1 ←{ +/ (1↓⍵) &amp;gt; (¯1↓⍵) } q1pt1 ←{ q1 ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 } q1pt2 ← { x ← ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 q1 (2↓x) + (1↓¯1↓x) + (¯2↓x) } q1pt1_v2 ←{ +/2&amp;lt;/ ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 } q1pt2_v2 ← { x ← ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 +/2&amp;lt;/3+/x }   N op / diyerek çözümü basitleştirebileceĝimi sonradan öĝrendim.
@@ -21,10 +21,10 @@
     
     <item>
       <title>Klavyeler</title>
-      <link>/projects/keyboards/</link>
+      <link>https://aecepoglu.com/projects/keyboards/</link>
       <pubDate>Thu, 15 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/projects/keyboards/</guid>
+      <guid>https://aecepoglu.com/projects/keyboards/</guid>
       <description>(Artik siparis uzerine klavye yapiyorum. Detayli bilgi icin Siparis&amp;#39;e bakin)
  Universitede aldigim derslerden birinden gecmek icin tek yapmak gereken seminerlere katilmakti. Bu seminerlerden birisinde konusmaci klavye duzenlerinden ve F-klavyenin nasil daha ergonomik ve istatistik olarak ustun bir klavye oldugundan bahsetti. O aksam internette gezinip http://www.dvzine.org/zine/index.html &amp;#39;yi okuyup Dvorak klavye duzenini ogrenmeye karar verdim.
    Note  Neden dvorak klavye kullandigimi soranlara cevap vermekten usanip su minik siteyi hazirlamistim: http://aecepoglu.</description>

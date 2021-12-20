@@ -2,113 +2,113 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/posts/advent-of-code-intro/</loc>
+    <loc>https://aecepoglu.com/posts/advent-of-code-intro/</loc>
     <lastmod>2021-12-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/posts/advent-of-code-intro/"
+                href="https://aecepoglu.com/en/posts/advent-of-code-intro/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/posts/advent-of-code-intro/"
+                href="https://aecepoglu.com/posts/advent-of-code-intro/"
                 />
   </url><url>
-    <loc>/</loc>
+    <loc>https://aecepoglu.com/</loc>
     <lastmod>2021-12-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/"
+                href="https://aecepoglu.com/en/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/"
+                href="https://aecepoglu.com/"
                 />
   </url><url>
-    <loc>/projects/</loc>
+    <loc>https://aecepoglu.com/projects/</loc>
     <lastmod>2021-12-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/projects/"
+                href="https://aecepoglu.com/en/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/projects/"
+                href="https://aecepoglu.com/projects/"
                 />
   </url><url>
-    <loc>/projects/advent-of-code/</loc>
+    <loc>https://aecepoglu.com/projects/advent-of-code/</loc>
     <lastmod>2021-12-15T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/projects/advent-of-code/"
+                href="https://aecepoglu.com/en/projects/advent-of-code/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/projects/advent-of-code/"
+                href="https://aecepoglu.com/projects/advent-of-code/"
                 />
   </url><url>
-    <loc>/posts/prolog-3/</loc>
+    <loc>https://aecepoglu.com/posts/prolog-3/</loc>
     <lastmod>2021-11-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/prolog-2/</loc>
+    <loc>https://aecepoglu.com/posts/prolog-2/</loc>
     <lastmod>2021-10-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/prolog-1/</loc>
+    <loc>https://aecepoglu.com/posts/prolog-1/</loc>
     <lastmod>2021-10-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/</loc>
+    <loc>https://aecepoglu.com/posts/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/posts/"
+                href="https://aecepoglu.com/en/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/posts/"
+                href="https://aecepoglu.com/posts/"
                 />
   </url><url>
-    <loc>/projects/keyboards/</loc>
+    <loc>https://aecepoglu.com/projects/keyboards/</loc>
     <lastmod>2020-10-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/a-new-page/</loc>
+    <loc>https://aecepoglu.com/posts/a-new-page/</loc>
     <lastmod>2020-02-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/goodbye-dark/</loc>
+    <loc>https://aecepoglu.com/posts/goodbye-dark/</loc>
     <lastmod>2020-01-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/most-elegant-js-code/</loc>
+    <loc>https://aecepoglu.com/posts/most-elegant-js-code/</loc>
     <lastmod>2019-12-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/wolf-sheep-grass/</loc>
+    <loc>https://aecepoglu.com/posts/wolf-sheep-grass/</loc>
     <lastmod>2019-12-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/immutability-alt/</loc>
+    <loc>https://aecepoglu.com/posts/immutability-alt/</loc>
     <lastmod>2019-12-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/repl-driven-development/</loc>
+    <loc>https://aecepoglu.com/posts/repl-driven-development/</loc>
     <lastmod>2019-07-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/about/</loc>
+    <loc>https://aecepoglu.com/about/</loc>
     <lastmod>2019-05-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/about/"
+                href="https://aecepoglu.com/en/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="tr"
-                href="/about/"
+                href="https://aecepoglu.com/about/"
                 />
   </url>
 </urlset>

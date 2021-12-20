@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on aecepoglu</title>
-    <link>/en/posts/</link>
+    <link>https://aecepoglu.com/en/posts/</link>
     <description>Recent content in Posts on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://aecepoglu.com/en/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Advent Of Code 2021 has begun (a while ago)</title>
-      <link>/en/posts/advent-of-code-intro/</link>
+      <link>https://aecepoglu.com/en/posts/advent-of-code-intro/</link>
       <pubDate>Fri, 17 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>/en/posts/advent-of-code-intro/</guid>
+      <guid>https://aecepoglu.com/en/posts/advent-of-code-intro/</guid>
       <description>I am going to be sharing my solutions for Advent of Code 2021 on my blog; at this page
  I’m going to be using Dyalog-APL this year to solve the problems.
  As I go through each problem I’ll update that article with my solutions.
@@ -22,10 +22,10 @@
     
     <item>
       <title>Why can&#39;t I see any posts?</title>
-      <link>/en/posts/introduction/</link>
+      <link>https://aecepoglu.com/en/posts/introduction/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>/en/posts/introduction/</guid>
+      <guid>https://aecepoglu.com/en/posts/introduction/</guid>
       <description>Please see http://aecepoglu.com/en/about . The about page describes why this blog exists, what I write about, and what you can expect to show up here in the future.
  I primarily post here in Turkish. The tr button in the navigation menu should take you there or you can click here: http://aecepoglu.com/
  I’ll start putting up some english-only content and translate some of my posts from Turkish soon enough. You can subscribe to my rss-feed to be notified when that happens.</description>
