@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="description" content="">
+
+    
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400&display=swap" rel="stylesheet" media="print" type="text/css" onload="this.media='all'">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='/css/codehl.css' rel="stylesheet">
+    
+
+    <title>
+      
+      
+         Advent Of Code 2021 bitti 
+      
+    </title>
+    <link rel="canonical" href="https://aecepoglu.com/posts/advent-of-code-end/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+    text-decoration-skip: ink;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  .left-justify { float: left; }
+  .right-justify { float:right; }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  #sub-header, .date {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+     
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content .date {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+    margin-bottom: 40px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(1) {
+    margin-right:0.5em;;
+  }
+
+  #links :nth-child(2) {
+    margin-left:0.5em;;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+       
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    *, #nav h1 a {
+      color: #FDFDFD;
+    }
+
+    body {
+      background: #121212;
+    }
+
+    pre, code {
+      background-color: #262626;
+    }
+
+    #sub-header, .date {
+      color: #BABABA;
+    }
+
+    hr {
+      background: #EBEBEB;
+    }
+  }
+</style>
+
+
+    <link href='/css/adoc.css' rel="stylesheet">
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	displayAlign: "left",
+	asciimath2jax: {
+		delimiters: [['\\$', '\\$']]
+	}
+});
+</script>
+
+
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=AM_HTMLorMML"> </script>
+
+  </head>
+
+  <body>
+    <section id=nav>
+      <h1><a href="/">aecepoglu</a></h1>
+      <ul>
+        
+          <li><a href="/posts/index.xml">rss</a></li>
+        
+          <li><a href="/en">en</a></li>
+        
+          <li><a href="/tr/">tr</a></li>
+        
+          <li><a href="/projects/">yaptıklarım</a></li>
+        
+          <li><a href="/about">hakkımda</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> Advent Of Code 2021 bitti </h1>
+
+  
+    <div id=sub-header>
+      January 2022 · 2 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    <div class="paragraph">
+<p>AOC noel civarinda sonlaniyor sanirim. Yani 2 hafta oldu biteli. Tabii problemleri cozmek icin bir son tarih yok. 2016 yili etkinliginin sorularini da acip cozebiliriz yani hala.</p>
+</div>
+<div class="paragraph">
+<p>Bu sene APL kullandim problemleri cozmek icin. APL’e de bu sayede girme firsati elde etmis oldum. <a href="https://xpqz.github.io/learnapl/intro.html" class="bare">https://xpqz.github.io/learnapl/intro.html</a> adresindeki kaynak bu surecte oldukca yardimci oldu.</p>
+</div>
+<div class="paragraph">
+<p><a href="/projects/advent-of-code">projects/advent-of-code</a> adresindeki cozumlerden de goreceginiz uzere APL dili diger programlama dillerine pek benzemiyor. Pek cok islem ve fonksiyon icin semboller mevcut. Mesela asagidaki bir problemin (<a href="https://adventofcode.com/2021/day/20" class="bare">https://adventofcode.com/2021/day/20</a>) cozumu. Tum cozum bu satirdan ibaret. Ilginctir ki bu satir aslinda okunabilir bir satir.</p>
+</div>
+<div class="sect1">
+<h2 id="_ornek">Ornek</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">⊢part1←+/∊({s←⊃⍵ ⋄ a←⊃1⌷⍵ ⋄ (m⌷⍨2⊥9⍴s),⊂({m⌷⍨2⊥∊{(s 0 1)[⍵]}¨⍵}⌺3 3)1+s pad a}⍣2)(0,(⊂x0))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Aciklamasi:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>(0,(⊂x0))</code> benim baslangic state’im. 0 resmin disindaki pixellerin ortak degeri, x0 ise resmin kendisi.</p>
+</li>
+<li>
+<p><code>f⍣2</code> 2 defa <code>f</code> fonksiyonunu yap</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>state’in ilk elemanini <code>s</code>e ata, ikinci elemanini <code>a</code>&#39;a yata.</p>
+</li>
+<li>
+<p><code>{m⌷⍨2⊥∊(s 0 1)[⍵]}¨⍵}⌺3 3</code></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>f⌺(3 3)X</code> X uzerinde 3x3’luk bir filtre ile gezerek her bir 3x3’luk alan icin f’i cagir demek.</p>
+</li>
+<li>
+<p><code>{…​ (s 0 1)[⍵]}¨⍵}⌺3 3</code> 3x3’luk filtrenin icerisindeki her bir deger icin 0 ise 1, 1 ise 2, resmin disinda ise 0.</p>
+</li>
+<li>
+<p><code>m⌷⍨2⊥∊</code> icindeki elemanlari bir liste haline getirip, bu listenin denk geldigi 2 tabanindaki degeri hesapla. <code>m</code>in bu hesaplanan konumdaki degerini al. Bu</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><code>(m⌷⍨2⊥9⍴s),⊂</code>: su ana kadar hesaplanan degeri kutula (ornegin 5 elemanlik bir listeyi bir kutu icine koyup tek bir eleman yap.). Basina da `s’nin 9 bit kopyalanmis halinin m’deki karsigini koy.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><code>+/∊</code> 1’lerin sayisini bul.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>E- algoritmayi birebir yazmisiz, degil mi? Zaten APL dili programlama dili olarak degil, not alma dili olarak cikmis.</p>
+</div>
+<div class="paragraph">
+<p>Yani dusunceyi, algoritmayi kagit uzerine anlasilabilir bir sekilde, bu algoritmayi calistiracak bilgisayarin calisma prensibinden de cok kopuk olmayan bir sekilde yazmak icin cikmis.</p>
+</div>
+<div class="paragraph">
+<p>APL’in programlama dili olarak cikisi daha sonraki tarihlerde oluyor. Su anda Dyalog, J, K, Q, vb turevleri mevcut. Finans teknolojileri haricinde piyasada pek yeri yok. Ama zaten bir dili ogrenmek icin bu dilin piyasa dili olmasina da gerek yok. Bir sey sadece keyifli oldugu icin de yapilabilir, ve de gorunen o ki ben bulmaca cozumlerinde APL kullanmaktan keyif alacagim.</p>
+</div>
+<div class="paragraph">
+<p>Ayni zamanda APL bir &#34;array&#34; programlama dili. Ruby’de mesela &#34;her sey bir nesnedir&#34;, LISP’te &#34;her sey bir listedir (linked-list)&#34; algisi var. APL’de de &#34;her sey bir array&#34; deniliyor. Problemi array’ler kullanarak cozmeye calismak da <strong>bence</strong> yazilimcilara bir bakis acisi katiyor.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sonuc">Sonuc</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ben APL dilini kullanmaya devam edecegim sanirim. Bulmaca cozmek disinda hangi konularda kullanacagim, hangi konularda kullanabilecegim, bunlar zamanla gorecegim seyler. Ama dil ile ilk etkilesimimden keyif aldim. 2022’de yeni bir dil ogrenmek istiyor iseniz ve henuz secmediyseniz APL turevi dillere (ben Dyalog’u sectim) bir bakin derim.</p>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <div id=links>
+    
+      <a href="https://aecepoglu.com/posts/advent-of-code-intro/">&laquo;&nbsp;Advent Of Code 2021 başladı</a>
+    
+    
+  </div>
+</section>
+
+  
+</body>
+</html>
+
+
+
