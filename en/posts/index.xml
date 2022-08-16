@@ -14,10 +14,9 @@
       
       <guid>https://aecepoglu.com/en/posts/advent-of-code-intro/</guid>
       <description>I am going to be sharing my solutions for Advent of Code 2021 on my blog; at this page
- I’m going to be using Dyalog-APL this year to solve the problems.
- As I go through each problem I’ll update that article with my solutions.
- At the end of the event I will write a blog-post about my impressions of APL.
- </description>
+I’m going to be using Dyalog-APL this year to solve the problems.
+As I go through each problem I’ll update that article with my solutions.
+At the end of the event I will write a blog-post about my impressions of APL.</description>
     </item>
     
     <item>
@@ -27,8 +26,8 @@
       
       <guid>https://aecepoglu.com/en/posts/introduction/</guid>
       <description>Please see http://aecepoglu.com/en/about . The about page describes why this blog exists, what I write about, and what you can expect to show up here in the future.
- I primarily post here in Turkish. The tr button in the navigation menu should take you there or you can click here: http://aecepoglu.com/
- I’ll start putting up some english-only content and translate some of my posts from Turkish soon enough. You can subscribe to my rss-feed to be notified when that happens.</description>
+I primarily post here in Turkish. The tr button in the navigation menu should take you there or you can click here: http://aecepoglu.com/
+I’ll start putting up some english-only content and translate some of my posts from Turkish soon enough. You can subscribe to my rss-feed to be notified when that happens.</description>
     </item>
     
   </channel>

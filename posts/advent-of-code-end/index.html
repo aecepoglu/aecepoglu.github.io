@@ -447,81 +447,71 @@ MathJax.Hub.Config({
 
   
     <div id=sub-header>
-      January 2022 · 2 minute read
+      August 2022 · 3 minute read
     </div>
   
 
   <div class="entry-content">
     <div class="paragraph">
+<p>(Bu yaziyi 2022-01-18 tarihinde hazirlamis ama farkli sebeplerden yukleyememistim.)</p>
+</div>
+<div class="paragraph">
 <p>AOC noel civarinda sonlaniyor sanirim. Yani 2 hafta oldu biteli. Tabii problemleri cozmek icin bir son tarih yok. 2016 yili etkinliginin sorularini da acip cozebiliriz yani hala.</p>
 </div>
 <div class="paragraph">
 <p>Bu sene APL kullandim problemleri cozmek icin. APL’e de bu sayede girme firsati elde etmis oldum. <a href="https://xpqz.github.io/learnapl/intro.html" class="bare">https://xpqz.github.io/learnapl/intro.html</a> adresindeki kaynak bu surecte oldukca yardimci oldu.</p>
 </div>
 <div class="paragraph">
-<p><a href="/projects/advent-of-code">projects/advent-of-code</a> adresindeki cozumlerden de goreceginiz uzere APL dili diger programlama dillerine pek benzemiyor. Pek cok islem ve fonksiyon icin semboller mevcut. Mesela asagidaki bir problemin (<a href="https://adventofcode.com/2021/day/20" class="bare">https://adventofcode.com/2021/day/20</a>) cozumu. Tum cozum bu satirdan ibaret. Ilginctir ki bu satir aslinda okunabilir bir satir.</p>
+<p><a href="/projects/advent-of-code">projects/advent-of-code</a> adresindeki cozumlerden de goreceginiz uzere APL dili diger programlama dillerine pek benzemiyor. Pek cok islem ve fonksiyon icin semboller mevcut. Mesela asagidaki bir problemin (<a href="https://adventofcode.com/2021/day/20" class="bare">https://adventofcode.com/2021/day/20</a>) cozumu. Tum cozum bu satirdan ibaret. Ilginctir ki bu satir aslinda okunabilir bir satir. (Agustos 2022 tarihli ek not: gectigimiz aylarda APL bilgim gelisti ve bu cozumun idealden uzakligini daha iyi gorebiliyorum. Ama benim o tarihteki bilgimi temsil ettigi icin yaziya ve koda dokunmadan birakiyorum).</p>
 </div>
 <div class="sect1">
 <h2 id="_ornek">Ornek</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-apl" data-lang="apl">⊢part1←+/∊({s←⊃⍵ ⋄ a←⊃1⌷⍵ ⋄ (m⌷⍨2⊥9⍴s),⊂({m⌷⍨2⊥∊{(s 0 1)[⍵]}¨⍵}⌺3 3)1+s pad a}⍣2)(0,(⊂x0))</code></pre>
+<pre class="highlight"><code class="language-apl" data-lang="apl">⊢part1 ← +/∊ ({s←⊃⍵ ⋄ a←⊃1⌷⍵ ⋄ (m⌷⍨2⊥9⍴s),⊂({m⌷⍨2⊥∊{(s 0 1)[⍵]}¨⍵}⌺3 3)1+s pad a}⍣2) (0,(⊂x0))</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Aciklamasi:</p>
+<p>Ilginc bulabileceginiz kisimlar:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>(0,(⊂x0))</code> benim baslangic state’im. 0 resmin disindaki pixellerin ortak degeri, x0 ise resmin kendisi.</p>
+<p><code>f⍣2 X</code>: 2 defa <code>f</code> fonksiyonunu X uzerinde calistir: <code>f (f X)</code></p>
 </li>
 <li>
-<p><code>f⍣2</code> 2 defa <code>f</code> fonksiyonunu yap</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>state’in ilk elemanini <code>s</code>e ata, ikinci elemanini <code>a</code>&#39;a yata.</p>
+<p><code>f⌺(3 3)X</code>: X uzerinde 3x3’luk bir filtre ile gezerek her bir 3x3’luk alan icin f’i cagir demek.</p>
 </li>
 <li>
-<p><code>{m⌷⍨2⊥∊(s 0 1)[⍵]}¨⍵}⌺3 3</code></p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p><code>f⌺(3 3)X</code> X uzerinde 3x3’luk bir filtre ile gezerek her bir 3x3’luk alan icin f’i cagir demek.</p>
+<p><code>m⌷⍨2⊥∊ X</code>: X icindeki elemanlari bir liste haline getirip, bu listenin denk geldigi 2 tabanindaki degeri hesapla. <code>m</code>nin bu hesaplanan konumdaki degerini al.</p>
 </li>
 <li>
-<p><code>{…​ (s 0 1)[⍵]}¨⍵}⌺3 3</code> 3x3’luk filtrenin icerisindeki her bir deger icin 0 ise 1, 1 ise 2, resmin disinda ise 0.</p>
-</li>
-<li>
-<p><code>m⌷⍨2⊥∊</code> icindeki elemanlari bir liste haline getirip, bu listenin denk geldigi 2 tabanindaki degeri hesapla. <code>m</code>in bu hesaplanan konumdaki degerini al. Bu</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p><code>(m⌷⍨2⊥9⍴s),⊂</code>: su ana kadar hesaplanan degeri kutula (ornegin 5 elemanlik bir listeyi bir kutu icine koyup tek bir eleman yap.). Basina da `s’nin 9 bit kopyalanmis halinin m’deki karsigini koy.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p><code>+/∊</code> 1’lerin sayisini bul.</p>
+<p><code>+/∊X</code>: X icindeki 1’lerin sayisini bul.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>E- algoritmayi birebir yazmisiz, degil mi? Zaten APL dili programlama dili olarak degil, not alma dili olarak cikmis.</p>
+<p>Bu 1 adet satir aslinda algoritmanin koda dokulmus hali.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-forth" data-lang="forth">: FILL    FAUCETS OPEN  TILL-FULL  FAUCETS CLOSE ;
+: RINSE   FILL AGITATE DRAIN ;
+: WASHER  WASH SPIN RINSE SPIN ;</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Yani dusunceyi, algoritmayi kagit uzerine anlasilabilir bir sekilde, bu algoritmayi calistiracak bilgisayarin calisma prensibinden de cok kopuk olmayan bir sekilde yazmak icin cikmis.</p>
+<p>FORTH dilini ogretirken verilen bu kod ornekleri nasil ki bir camasir makinesinin algoritmasini saydam bir sekilde okuyucuya aktarabiliyorsa, APL okuyabilen birisi de <code>part1</code> satirini okuyup algoritmayi netce gorebilir.</p>
 </div>
 <div class="paragraph">
-<p>APL’in programlama dili olarak cikisi daha sonraki tarihlerde oluyor. Su anda Dyalog, J, K, Q, vb turevleri mevcut. Finans teknolojileri haricinde piyasada pek yeri yok. Ama zaten bir dili ogrenmek icin bu dilin piyasa dili olmasina da gerek yok. Bir sey sadece keyifli oldugu icin de yapilabilir, ve de gorunen o ki ben bulmaca cozumlerinde APL kullanmaktan keyif alacagim.</p>
+<p>APL de zaten algoritmayi kagit uzerine anlasilabilir bir sekilde, bu algoritmayi calistiracak bilgisayarin calisma prensibinden de cok kopuk olmayan bir sekilde yazabilmek icin cikmis. Bir programlama dili degil, bir notasyon olarak kullanilmis.</p>
 </div>
 <div class="paragraph">
-<p>Ayni zamanda APL bir &#34;array&#34; programlama dili. Ruby’de mesela &#34;her sey bir nesnedir&#34;, LISP’te &#34;her sey bir listedir (linked-list)&#34; algisi var. APL’de de &#34;her sey bir array&#34; deniliyor. Problemi array’ler kullanarak cozmeye calismak da <strong>bence</strong> yazilimcilara bir bakis acisi katiyor.</p>
+<p>APL’in programlama dili olarak cikisi daha sonraki tarihlerde oluyor. Su anda Dyalog-APL, J, K, Q, vb turevleri mevcut. Finans teknolojileri haricinde piyasada pek yeri yok. Ama zaten bir dili ogrenmek icin bu dilin piyasa dili olmasina da gerek yok. Bir sey sadece keyifli oldugu icin de yapilabilir, ve de gorunen o ki ben bulmaca cozumlerinde APL kullanmaktan keyif alacagim.</p>
+</div>
+<div class="paragraph">
+<p>Ayni zamanda APL bir &#34;array&#34; programlama dili. Ruby’de mesela &#34;her sey bir nesnedir&#34;, LISP’te &#34;her sey bir listedir (linked-list)&#34; algisi var. APL’de de &#34;her sey bir array&#34; deniliyor.</p>
 </div>
 </div>
 </div>
@@ -540,6 +530,8 @@ MathJax.Hub.Config({
     
       <a href="https://aecepoglu.com/posts/advent-of-code-intro/">&laquo;&nbsp;Advent Of Code 2021 başladı</a>
     
+    
+      <a href="https://aecepoglu.com/posts/another-new-page/">Blog&#39;a Geri Dönüş&nbsp;&raquo;</a>
     
   </div>
 </section>

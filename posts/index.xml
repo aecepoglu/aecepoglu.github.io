@@ -8,17 +8,53 @@
     <language>en-us</language>
     <lastBuildDate>Fri, 01 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://aecepoglu.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Blog&#39;a Geri Dönüş</title>
+      <link>https://aecepoglu.com/posts/another-new-page/</link>
+      <pubDate>Tue, 16 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://aecepoglu.com/posts/another-new-page/</guid>
+      <description>Epeydir yazmıyorum…​ Yazmak istemediğimden değil, çeşitli bahaneler üreterek ertelediğim için.
+Heyecanlı beklenti sona erebilir, çünkü bugün itibariyle yazmaya devam ediyorum.
+Bir de son birkaç ay içerisinde hayatımda bazı ciddi değişiklikler oldu. Şimdilik bahsetmeyeceğim ne olduğundan ama blog’uma meraklılar için ipuçları gizledim. Bakalım kaçınız ilk haberimi ben duyurmadan bilebilecek!
+xxxx
+xxxxxxxx
+xxxxxxxxxxxx
+xxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</description>
+    </item>
+    
+    <item>
+      <title>Advent Of Code 2021 bitti</title>
+      <link>https://aecepoglu.com/posts/advent-of-code-end/</link>
+      <pubDate>Mon, 15 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://aecepoglu.com/posts/advent-of-code-end/</guid>
+      <description>(Bu yaziyi 2022-01-18 tarihinde hazirlamis ama farkli sebeplerden yukleyememistim.)
+AOC noel civarinda sonlaniyor sanirim. Yani 2 hafta oldu biteli. Tabii problemleri cozmek icin bir son tarih yok. 2016 yili etkinliginin sorularini da acip cozebiliriz yani hala.
+Bu sene APL kullandim problemleri cozmek icin. APL’e de bu sayede girme firsati elde etmis oldum. https://xpqz.github.io/learnapl/intro.html adresindeki kaynak bu surecte oldukca yardimci oldu.
+projects/advent-of-code adresindeki cozumlerden de goreceginiz uzere APL dili diger programlama dillerine pek benzemiyor.</description>
+    </item>
+    
+    <item>
       <title>Advent Of Code 2021 başladı</title>
       <link>https://aecepoglu.com/posts/advent-of-code-intro/</link>
       <pubDate>Fri, 17 Dec 2021 00:00:00 +0000</pubDate>
       
       <guid>https://aecepoglu.com/posts/advent-of-code-intro/</guid>
       <description>Advent of Code’u duydunuz mu bilmiyorum.
- Bir ay süren programlama temalı bir etkinlik. http://adventofcode.com adresinde gerçekleşiyor.
- 2021 yılının etkinliĝi şu an devam ediyor. Ben genelde etkinlik bittikten sonra soruları çözmeye başlıyorum ama bu sene canlı olarak takip etmeye karar verdim, hem de (Dyalog) APL dilini bir deneme fırsatı elde etmiş olacaĝım.
- Blog’umda bu link’teki sayfada çözümlerimi paylaşıyorum.
- Yeni problemleri çözdükçe sayfayı güncelleyeceĝim.
- Etkinlik sonunda da APL dili izlenimlerime dair bir blog yazısı yazarım diye düşünüyorum.</description>
+Bir ay süren programlama temalı bir etkinlik. http://adventofcode.com adresinde gerçekleşiyor.
+2021 yılının etkinliĝi şu an devam ediyor. Ben genelde etkinlik bittikten sonra soruları çözmeye başlıyorum ama bu sene canlı olarak takip etmeye karar verdim, hem de (Dyalog) APL dilini bir deneme fırsatı elde etmiş olacaĝım.
+Blog’umda bu link’teki sayfada çözümlerimi paylaşıyorum.
+Yeni problemleri çözdükçe sayfayı güncelleyeceĝim.
+Etkinlik sonunda da APL dili izlenimlerime dair bir blog yazısı yazarım diye düşünüyorum.</description>
     </item>
     
     <item>
@@ -28,11 +64,12 @@
       
       <guid>https://aecepoglu.com/posts/prolog-3/</guid>
       <description>Şimdi…​ prolog’da diĝer dillerde olan sayı tanımları (integer, vb) yok deĝil AMA diyelim ki yok…​ Kendi sayı sistemimizi inşaa edebilir miyiz?
- Cevap tabii ki evet, yoksa bahsini açmazdım, deĝil mi?
- Basitleştirmek adına sadece doĝal sayılar ile ilgilenelim. sıfır sayısını baz alacak ve diĝer sayıları sıfır’a kıyasen yazacaĝız.
- Yani:
-   &amp;#34;bir&amp;#34; demek için &amp;#34;sıfır’ın bir arttırılmışı&amp;#34;,
-  &amp;#34;iki&amp;#34; demek için &amp;#34;sıfır’ın bir arttırılmışının bir arttırılmışı&amp;#34;,</description>
+Cevap tabii ki evet, yoksa bahsini açmazdım, deĝil mi?
+Basitleştirmek adına sadece doĝal sayılar ile ilgilenelim. sıfır sayısını baz alacak ve diĝer sayıları sıfır’a kıyasen yazacaĝız.
+Yani:
+&amp;#34;bir&amp;#34; demek için &amp;#34;sıfır’ın bir arttırılmışı&amp;#34;,
+&amp;#34;iki&amp;#34; demek için &amp;#34;sıfır’ın bir arttırılmışının bir arttırılmışı&amp;#34;,
+&amp;#34;üç&amp;#34; demek için &amp;#34;sıfır’ın bir arttırılmışının bir arttırılmışının bir arttırılmışı&amp;#34;,</description>
     </item>
     
     <item>
@@ -42,10 +79,11 @@
       
       <guid>https://aecepoglu.com/posts/prolog-2/</guid>
       <description>Bence prolog’un zorlaştıĝı yerler birazdan girişeceĝim &amp;#34;recursive&amp;#34;-kurallar.
- Diĝer programlama dillerinde recursion’u görüp sevmediyseniz veya zor geldiyse o ön yargınızı bir kenara bırakın. Biz prolog yazıyoruz ve recursion prolog’un ve declarative dillerin en temel silahlarındandır.
-     &amp;#34;recursive&amp;#34; demek kendine atıfta bulunan demek.
- Mesela &amp;#34;GNU/Linux&amp;#34;taki GNU kısaltmasının açılımı &amp;#34;GNU (is) Not Unix&amp;#34; (GNU Unix Degildir).
-         Bu bölümü prolog öĝrenme niyetiyle okuyorsanız kenardan https://swish.</description>
+Diĝer programlama dillerinde recursion’u görüp sevmediyseniz veya zor geldiyse o ön yargınızı bir kenara bırakın. Biz prolog yazıyoruz ve recursion prolog’un ve declarative dillerin en temel silahlarındandır.
+&amp;#34;recursive&amp;#34; demek kendine atıfta bulunan demek.
+Mesela &amp;#34;GNU/Linux&amp;#34;taki GNU kısaltmasının açılımı &amp;#34;GNU (is) Not Unix&amp;#34; (GNU Unix Degildir).
+Bu bölümü prolog öĝrenme niyetiyle okuyorsanız kenardan https://swish.swi-prolog.org &amp;#39;i açıp alıştırma yapmanızı öneririm.
+Recursive Kural Tanımlama Recursive kuralları yine aile ilişkileri uzerinden örneklendirelim.</description>
     </item>
     
     <item>
@@ -55,8 +93,8 @@
       
       <guid>https://aecepoglu.com/posts/prolog-1/</guid>
       <description>Kurt-kuzu-ot bulmacasıyla ilgili bir yazı yazmıştım. O yazımı tekrar okudum ve bilgilerin yeterince açıklayıcı bir şekilde sunulmadıĝını farkettim.
- Declarative kod yazma tarzının anlaşılmasının bir yazılımcı için önemli olduĝunu düşünüyorum, o yüzden Prolog dili ile sıfırdan bir giriş yapma kararı aldım. 3-4 bölümden ibaret olacak ve her bir bölümü bir oturuşta okuyabileceĝiniz uzunlukta. Birinci bölümün sonundaki alıştırmaya gelene kadar arkanıza yaslanıp okumanızı öneriyorum; sonrasında kod yazarak eşlik edebilirsiniz.
- O zaman başlayalım…​</description>
+Declarative kod yazma tarzının anlaşılmasının bir yazılımcı için önemli olduĝunu düşünüyorum, o yüzden Prolog dili ile sıfırdan bir giriş yapma kararı aldım. 3-4 bölümden ibaret olacak ve her bir bölümü bir oturuşta okuyabileceĝiniz uzunlukta. Birinci bölümün sonundaki alıştırmaya gelene kadar arkanıza yaslanıp okumanızı öneriyorum; sonrasında kod yazarak eşlik edebilirsiniz.
+O zaman başlayalım…​</description>
     </item>
     
     <item>
@@ -66,8 +104,8 @@
       
       <guid>https://aecepoglu.com/posts/a-new-page/</guid>
       <description>İlişkilerde tüm sorunların temelinde iletişim kopukluğu olduğuna inanıyorum. Bir taraf kendisini eksik hissediyorsa, yalan söylüyorsa, karşı tarafa ilgisini kaybetmiş ise; bunların hepsi iletişim hatalarına işaret ediyordur.
- İletişimde ise saydam olmak doğru diye düşünüyorum. Çünkü insanlar (yani biz (http://reddit.com/r/TOTALLYNOTROBOTS )) eylemleri değil, eylemlerin ardındaki niyetleri değerlendiriyoruz. Kötü olduğunu düşündüğümüz davranış kötü niyetle yapılmamışsa o kadar kırıcı olmayabiliyor.
- Bir işveren ile işçi arasındaki ilişki de benzer mekaniklerle ilerliyor, daha fazla paydaş var ve taraflar arasında güç eşitsizliği var; ama mekanikler aynı.</description>
+İletişimde ise saydam olmak doğru diye düşünüyorum. Çünkü insanlar (yani biz (http://reddit.com/r/TOTALLYNOTROBOTS )) eylemleri değil, eylemlerin ardındaki niyetleri değerlendiriyoruz. Kötü olduğunu düşündüğümüz davranış kötü niyetle yapılmamışsa o kadar kırıcı olmayabiliyor.
+Bir işveren ile işçi arasındaki ilişki de benzer mekaniklerle ilerliyor, daha fazla paydaş var ve taraflar arasında güç eşitsizliği var; ama mekanikler aynı.</description>
     </item>
     
     <item>
@@ -77,8 +115,8 @@
       
       <guid>https://aecepoglu.com/posts/goodbye-dark/</guid>
       <description>&amp;#34;İnsanlar ikiye ayrılır&amp;#34; derler; &amp;#34;Sayı saymayı bilenler, saymayı bilmeyenler, ve diğerleri…​&amp;#34;. Ben buna katılıyor ve bir de şöyle bir ayrım öneriyorum: &amp;#34;Karanlıkta çalışmayı sevenler ve aydınlıkta çalışmayı sevenler&amp;#34;.
- Ben hava karardıktan sonra hala saat öğlen 1’miş gibi davranıp içeriyi florasan ışık ile aydınlatmayı seçenlerden değilim. Hava kararınca ben de ekranımı ve kullandığım yazılımları karanlık-modlarına geçirmeyi gözlerim için daha rahatlatıcı buluyorum.
-     kakoune&amp;#39;da karanlık temayı otomatik olarak seçmek için şöyle bir tanımlama kolayca yapılabiliyor:</description>
+Ben hava karardıktan sonra hala saat öğlen 1’miş gibi davranıp içeriyi florasan ışık ile aydınlatmayı seçenlerden değilim. Hava kararınca ben de ekranımı ve kullandığım yazılımları karanlık-modlarına geçirmeyi gözlerim için daha rahatlatıcı buluyorum.
+kakoune&amp;#39;da karanlık temayı otomatik olarak seçmek için şöyle bir tanımlama kolayca yapılabiliyor:</description>
     </item>
     
     <item>
@@ -88,7 +126,7 @@
       
       <guid>https://aecepoglu.com/posts/most-elegant-js-code/</guid>
       <description>Aşağıdaki satırlar, işyerindeki tüm ekibimizin birkaç senelik eforunun en lezzetli meyvelerinden.
- route.post(&amp;#34;/api/proxy&amp;#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.status = &amp;#34;valid&amp;#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy.</description>
+route.post(&amp;#34;/api/proxy&amp;#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.status = &amp;#34;valid&amp;#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy.</description>
     </item>
     
     <item>
@@ -98,9 +136,9 @@
       
       <guid>https://aecepoglu.com/posts/wolf-sheep-grass/</guid>
       <description>Bir çobanın bir kurdu, bir koyunu, bir balya da otu var. Bunları nehrin karşı yakasına taşımak istiyor. Nehirde bir kayık var. Kayık ancak çobanı ve bir adet şeyi (ot, koyun ya da kurt) taşıyacak kadar büyük. Başlarında çoban olmaz ise; kurt kuzuya saldırabiliyor, kuzu ise otu yiyebiliyor. Çoban herkesi sağ salim nasıl karşıya taşır?
- Evet, farkındayım…​ Basit bir bulmaca.
- Peki ya bunu kod ile çozecek olsak?
- İleride mantık-proglamlamadan ve declarative programlamadan bahsedeceğim.</description>
+Evet, farkındayım…​ Basit bir bulmaca.
+Peki ya bunu kod ile çozecek olsak?
+İleride mantık-proglamlamadan ve declarative programlamadan bahsedeceğim.</description>
     </item>
     
     <item>
@@ -110,9 +148,10 @@
       
       <guid>https://aecepoglu.com/posts/immutability-alt/</guid>
       <description>(bu yazidaki resimlerin guncellenmesi gerekiyor)
- Sıradan bir iş günü. JavaScript’te tablolarımızdan birisine sayfalar arasında geçiş yaparken veri indir/kaldır yapma kabiliyeti ekliyorum (halk arasında buna &amp;#34;pagination&amp;#34; diyorlar). retrieveItems diye ve drawItems diye birer fonksiyon yazdım. retrieveItemsAndDraw yazıp çözüme ulaşmak üzereyken şu kodu yazdığımı farkediyorum:
- const retrieveAndDrawItems = R.compose(drawItems, retrieveItems)   Ekip arkadaşlarımdan birisi bu satırda n’aptığımı sorduğunda &amp;#34;Basit!&amp;#34; diye cevaplıyorum:
-  Bu iki fonksiyonu birleştirip yeni bir fonksiyon oluşturuyorum.</description>
+Sıradan bir iş günü. JavaScript’te tablolarımızdan birisine sayfalar arasında geçiş yaparken veri indir/kaldır yapma kabiliyeti ekliyorum (halk arasında buna &amp;#34;pagination&amp;#34; diyorlar). retrieveItems diye ve drawItems diye birer fonksiyon yazdım. retrieveItemsAndDraw yazıp çözüme ulaşmak üzereyken şu kodu yazdığımı farkediyorum:
+const retrieveAndDrawItems = R.compose(drawItems, retrieveItems) Ekip arkadaşlarımdan birisi bu satırda n’aptığımı sorduğunda &amp;#34;Basit!&amp;#34; diye cevaplıyorum:
+Bu iki fonksiyonu birleştirip yeni bir fonksiyon oluşturuyorum.
+De ki f(x) = 2x + 3 demek istiyorum.</description>
     </item>
     
     <item>
@@ -122,9 +161,9 @@
       
       <guid>https://aecepoglu.com/posts/repl-driven-development/</guid>
       <description>http://discuss.ocaml.org &amp;#39;u açıyorum; uzun zamandır portfolyomu fonksiyonel yaklaşımlar ve diller konusunda zenginleştirmekteyim ve de aktif bir iş arayışındayım. İnternette bir OCaml ilanı var ise orada bulabileceğimden eminim.
- Komşu başlıklardan birisinde &amp;#34;Closure’da REPL Driven Development&amp;#34; yapmanın ne kadar keyifli olduğunu, acaba OCaml’da da bunun mümkün olup olmadığı tartışılıyor.
-  I want to define “Repl based development” not as “occasionally use the REPL”, but something like this:
- we start a REPL we type code in some editor, and continuously “send last expression” to the REPL, and we look at the new output eventually, we clean up the buffer a bit and store it as code</description>
+Komşu başlıklardan birisinde &amp;#34;Closure’da REPL Driven Development&amp;#34; yapmanın ne kadar keyifli olduğunu, acaba OCaml’da da bunun mümkün olup olmadığı tartışılıyor.
+I want to define “Repl based development” not as “occasionally use the REPL”, but something like this:
+we start a REPL we type code in some editor, and continuously “send last expression” to the REPL, and we look at the new output eventually, we clean up the buffer a bit and store it as code</description>
     </item>
     
   </channel>

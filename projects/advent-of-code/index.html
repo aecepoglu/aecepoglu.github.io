@@ -447,7 +447,7 @@ MathJax.Hub.Config({
 
   
     <div id=sub-header>
-      December 2021 · 2 minute read
+      December 2021 · 9 minute read
     </div>
   
 
@@ -456,6 +456,9 @@ MathJax.Hub.Config({
 <div class="sectionbody">
 <div class="paragraph">
 <p>APL programlama diliyle çözümlerimi aşaĝıda bulabilirsiniz.</p>
+</div>
+<div class="paragraph">
+<p>Etkinligin ikinci yarisindaki sorularin kaydini gunluk bu sayfaya gecirmedigim icin eksiklikler var. Bir ara tekrar cozup buraya koymak isterim o cozumleri.</p>
 </div>
 </div>
 </div>
@@ -585,10 +588,581 @@ q4pt2 ← score WT⍳⌈/WT</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_5_gün">5. Gün</h2>
+<h2 id="_5_gun">5. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">valid_pt1 ← {(∆x ∆y)←|-/¨⍵ ⋄         (∆x=0)∨(∆y=0)}
+valid_pt2 ← {(∆x ∆y)←|-/¨⍵ ⋄ (∆x=∆y)∨(∆x=0)∨(∆y=0)}
+applyvent ← {{(⍵⌷M)+←1}¨⍵} ⍝ impure function. modifies M
+range ← {d←⍵-⍺ ⋄ s←d÷|d ⋄ ⍺+s×⍳+1+|d} ⍝ 5 range 3 gives 5 4 3
+
+d ← ⊃⎕nget&#39;q5.txt&#39;1
+V ← {n¨&#39;,&#39;∘(≠⊆⊢)¨(1 0 1)/&#39; &#39;(≠⊆⊢)⍵}¨d
+D ← 1+⌈/∊V
+M ← D D⍴0 ⋄ valid ← valid_pt1 ⋄ applyvent¨0⌷{↑(↑,.(⊂,))/↑range/¨⍵}¨(↑valid¨⊆⊢){↓⍉↑⍵}¨V
+q5pt1 ← +/∊M≥2
+M ← D D⍴0 ⋄ valid ← valid_pt2 ⋄ applyvent¨0⌷{↑(↑,.(⊂,))/↑range/¨⍵}¨(↑valid¨⊆⊢){↓⍉↑⍵}¨V
+q5pt2 ← +/∊M≥2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Haritanin uzerinde gezinerek bu problemi cozmek keyifliydi. Zaten ben bu gibi etkilesimli-kodlama benim sevdigim ve tavsiye ettigim bir yontem. Veri uzerinde yaptigim islemleri adim adim insaa edebiliyor olmak ilk basta zor gorunen problemleri bile goz korkutucu olmaktan cikariyor.</p>
+</div>
+<div class="paragraph">
+<p>Degisebilir (mutable) bir tablo kullanmak durumunda kaldim. Saf olarak da cozmeyi denemek isterim.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_6_gun">6. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">f ← {s←⍵⋄((1↓s),0)+s[0]×(0 0 0 0 0 0 1 0 1)}
+genS ← {x←⍵ ⋄ {+/x=⍵}¨⍳8+1}
+
+d ← ⊃⎕nget&#39;q6.txt&#39;1
+N ← n&#39;,&#39;(≠⊆⊢)d
+
+q6pt1 ← 20⍕ +/↑(⊢f)/(⍳80),↓genS N
+q6pt2 ← 20⍕ +/↑(⊢f)/(⍳256),↓genS N</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Problemi &#34;array&#34;ler uzerinden dusunmenin cozumu kolaylastirdigi bir ornekti bu benim icin.</p>
+</div>
+<div class="paragraph">
+<p>Ilk buldugum cozum sorunun ikinci yarisinda hafizayi cok sisirince yeni bir cozum bulmam gerekti.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_7_gun">7. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">d ← ⊃⎕nget&#39;q7.txt&#39;1
+N ← n&#39;,&#39;(≠⊆⊢)⊃d
+K ← 1+⌈/∊N
+q7pt1 ← ⌊/+/ |(⍉↑K⍴¨N)-(0⌷¨⍳K(≢N))
+g ← {0.5×⍵×⍵+1}
+q7pt2 ← ⌊/+/g|(⍉↑K⍴¨N)-(0⌷¨⍳K(≢N))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Tablo ile hos bir sekilde cozulebilen bir problem daha. APL’den bahsettigim bir yazi yazarsam ornek olarak bu problemi kullanacagim.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_8_gun">8. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">A ← &#39;abcdefg&#39;
+MK ← {(∊∘⍵)¨A}
+MK_v2 ← A∊
+Mb ← ↑MK ¨ (&#39;abcfeg&#39; &#39;cf&#39; &#39;acdeg&#39; &#39;acdfg&#39; &#39;bcdf&#39; &#39;abdfg&#39; &#39;abdefg&#39; &#39;acf&#39; &#39;abcdefg&#39; &#39;abcdfg&#39;)
+
+l ← {{((~&#39;|&#39;∊⊢)¨⍵)⊆⍵}&#39; &#39;∘(≠⊆⊢)⍵}
+loner ← {x←⍵ ⋄ {⍵/x}1={+/x=⍵}¨x}
+len ← {∊(⍺=≢¨⍵)⊆⍵} ⍝ selects items with given length
+decode ←{
+     b←⍺∊⍵
+     1(⊢⍳⊣)b∘(⊢≡⊣)¨↓Mb
+ }
+
+solve ← {
+     x←⍵
+     S_1←2 len x
+     S_4←4 len x
+     S_7←3 len x
+     S_8←7 len x
+     S_a←S_7~S_1
+     S_g←⊃1 len{⍵~S_a,S_4}¨x
+     S_e←⊃∊{⍵~S_g,S_a,S_4}¨x
+     S_b←loner 1 len{⍵~S_7,S_e,S_g}¨x
+     S_d←S_8~S_7,S_b,S_e,S_g
+     S_c←loner 1 len{⍵~S_a,S_g,S_e,S_b,S_d}¨x
+     S_f←⊃∊{⍵~S_a,S_c,S_g,S_e,S_b,S_d}¨x
+     ∊(S_a S_b S_c S_d S_e S_f S_g)
+ }
+
+d ← ⊃⎕nget&#39;q8.txt&#39;1
+q8pt2 ← +/{R←solve↑0⌷l ⍵ ⋄ ⊖{⍺+10×⍵}/⊖R∘decode¨↑1⌷l ⍵}¨d</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Bu aslinda epey vaktimi aldi. <code>S_g</code> yi bulmak problemin dugumunu cozdu.</p>
+</div>
+<div class="paragraph">
+<p><code>len</code> ve <code>loner</code> gibi fonksiyonlarin &#34;tacit&#34; hallerini de yazabilmek isterim tabii bir gun :)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_9_gun">9. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">x←↑n¨¨⊃⎕NGET&#39;q9.txt&#39; 1
+d←⍴x
+
+q9_pt1 ← +/{o←4⌷⍵ ⋄ (o+1)×0=+/o&gt;(0 1 0 1 0 1 0 1 0)/⍵}¨∊¨sx
+
+connlabel←{{{⍵[1;0]=0:0 ⋄ ⌊/0~⍨,⍵}¨(⊂⊢)⌺3 1⊢{⍵[0;1]=0:0 ⋄ ⌊/0~⍨,⍵}¨(⊂⊢)⌺1 3⊢⍵}(⍣≡)1+∘⍸@⊢⍵}
+m2←connlabel x&lt;9
+pt2←×/3↑(⊂∘⍒⌷⊢){+/∊m2=⍵}¨0~⍨∪∊m2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Komsu-renklendirme problemiydi bu seferki. Array uzerinden bir cozum bulmak icin ugrasir iken  <code>⍣≡</code> &#39;i kesfettim. Sistem dengeye varana kadar (sonuc degisene kadar) ayni fonksiyonu tekrar tekrar cagirma imkani veriyor.</p>
+</div>
+<div class="paragraph">
+<p>Ayrica <code>⌺</code> &#39;yi kullanmayi bilsem evvelden yaptigim 2-boyutlu filtre islemleri cok kolaylasirdi.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_10_gun">10. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">B        ← &#39;&gt;&#39;   &#39;}&#39;  &#39;]&#39; &#39;)&#39; &#39; &#39; &#39;(&#39; &#39;[&#39; &#39;{&#39; &#39;&lt;&#39;
+Cost_b_1 ← 25137 1197 57  3   0   1   2   3   4
+Cost_b_2 ← 25137 1197 57  3   0   0   0   0   0
+Cost_b ← Cost_b_1
+
+c←{Cost_b[B⍳⍵] }
+cost←{
+    x ← c⊃(⍵∊&#39;&gt;}])&#39;)/⍵
+    x&gt;0:0
+    {⍺+⍵×5}/⊖0,⊖c¨⍵
+}
+f_i←{{(⍵,0)∨(0,⍵)}2=(1↓⍺[1]=⍵)+(¯1↓⍺[0]=⍵)}
+f_rm←{∊(⊢⊆∘⍵)↑~∨/(⊢f_i∘⍵)¨&#39;()&#39; &#39;{}&#39; &#39;[]&#39; &#39;&lt;&gt;&#39;}
+f_rms←{
+    w_←f_rm ⍵
+    (⍴w_)=(⍴⍵):w_
+    f_rms w_
+}
+q10← {{⍵[0.5×(⍴⍵)-1]}{(⊂⍋⍵)⌷⍵}∊0(≠⊆⊢)cost¨f_rms¨d}
+⍝ pt1
+Cost_b ← Cost_b_1
+q10 0
+⍝ pt2
+Cost_b ← Cost_b_2
+q10 0</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_11_gun">11. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">step←{
+     x0←↑⍵[1]
+     d←⍴x0
+     flash←{
+         ⍝⎕←DISPLAY ⍺ ⍵
+         x←⍵
+         F←⍺
+         F_new←F-⍨x&gt;9
+         0=+/∊F_new:F x
+         0=+/{(⍵⌷x)+←1}¨N_diag¨(,F_new)/(,⍳d):F x
+         (F∨F_new)∇(x)
+     }
+     l r←↑¨(d⍴0)flash 1+x0
+     (+/⍵[0],∊l)({9&lt;⍵:0 ⋄ ⍵}¨r)
+ }
+x←↑n¨¨⊃⎕NGET&#39;q11.txt&#39;1
+pt1←0⌷⊃step/⊖(⊂0 x),⍳100
+pt2←1+{⍵⍳1}99&lt;|2-/⊃¨{⊃step/⊖(⊂0 x),⍳⍵}¨⍳1000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#34;scan&#34; (tarama) islemi tum elemanlarin uzerinden tekrar tekrar geciyor, ve bu yuzden de oldukca hantal. Bunun O(N!) olmayanini bulmak lazim.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_12_gun">12. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">A_lower←819⌶⎕A
+
+d←⊃⎕NGET&#39;q12.txt&#39; 1
+L←&#39;-&#39;∘(≠⊆⊢)¨d
+C←∪↑,/L
+C_once←{⍵/C}{⍵∊A_lower}¨⊃¨C
+D←⊃↑⍴C
+M←D D⍴0⍴D*2
+{(⍵⌷M)←1}¨{⍵⍳1}¨¨{(,⍵)∘≡¨C}¨¨,¨¨L ⍝ marks M with 1s
+
+iCity←{1(⊢⍳⊣)(,⍵)∘≡¨C}
+
+f←{
+  c←⍺
+  Open←⍵
+  next←Open∩{⍵/C}(iCity↑c)⌷(M∨⍉M)
+  c≡&#39;end&#39;:1
+  0=(⍴next):0
+  Open_←Open~C_once∩(↓,c)
+  ∊{⍵ f Open_}¨next
+}
+
+pt1←+/ &#39;start&#39;f(C~↓,&#39;start&#39;)
+
+f2←{
+     fin←{⍵}
+     c←↑⍺[0]
+     path←⍺[1]
+     Closed←⍵
+     C_open←{⍵~↓&#39;start&#39;}{⍵/C}(Closed&lt;(2-+/Closed&gt;1))
+     next←C_open ∩ {⍵/C}(iCity↑c)⌷(M∨⍉M)
+     c≡&#39;end&#39;:(fin 1)
+     0=(⍴next):0
+     +/∊{n←↓,⍵ ⋄ (⍵(∊path,&#39;-&#39;,⍵)) f2 (Closed+(C∊n)×n∊C_once)}¨next
+ }
+
+pt2←(&#39;start&#39; &#39;start&#39;) f2 ((⍴C)⍴0)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Bildigimiz postaci problemi…​</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_13_gun">13. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">p←{&#39;.#&#39;[⍵]}¨                                                      ⍝ plot for binary matrix
+
+{a←⍺[0] ⋄ b←⍺[1]&gt;⍳a⌷⍴⍵ ⋄ (b⌿[a]⍵)((0,¯1↓~b)⌿[a]⍵)}                ⍝ cuts ⍵ at ⍺ to 2
+                                                                  ⍝   where ⍺[0] is axis
+                                                                  ⍝   where ⍺[1] is position at axis
+f←{
+     pt1 pt2←⍺ cut ⍵
+     pt2_←⍺{⍺[0]=0:⊖⍵ ⋄ ⌽⍵}pt2                                    ⍝ flip horizontally or vertically
+     sBigger←∊⌈/⍴¨pt1 pt2_
+     ⊃∨/{⊖⌽sBigger↑⌽⊖⍵}¨⊢pt1 pt2_                                 ⍝ pad (in top and left) to match the bigger of the two
+ }
+dat←⊃⎕NGET&#39;proj/apl/q13.txt&#39;1
+P←⊖¨n¨,&#39;,&#39;(≠⊆⊢)¨↑&#39;,&#39;∘((∊¨)⊆⊢)dat                                  ⍝ points as (i j) tuples
+d←∊1+⌈/P                                                          ⍝ dimensions
+F←((&#39;yx&#39;∘⍳∊)@0)¨(n@1)¨&#39;=&#39;(≠⊆⊢)¨↑2∘⌷¨&#39; &#39;(≠⊆⊢)¨1↓,↑&#39;,&#39;∘((~∊¨)⊆⊢)dat ⍝ folds (as t
+M←(1@P)d⍴0                                                        ⍝ the initial matrix
+
+pt1←q13pt1←+/∊(⊃F) f M
+pt2←p↑f/⌽(⊂M),F</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Internette gordugum APL kodlarindaki gibi yorumlar ekledim yandaki sutuna. Guzel olmamis mi? :)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_14_gun">14. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">fn←{
+ turns←⍵
+ dat←⊃⎕NGET&#39;proj/apl/q14.txt&#39; 1
+ p0←2,/⊃dat                                                  ⍝ initial pairs
+ Ma←{a b c←⍵ ⋄ (a b)(a c)(c b)}¨(∊(1 0 1)∘/)¨&#39; &#39;(≠⊆⊢)¨2↓dat  ⍝ all movez
+ Mk←⊃¨Ma                                                     ⍝ keys of moves
+ Punq←∪↑,/Ma,⊂p0                                             ⍝ all pairs, uniq
+ M←↑(+/(¯1 1 1)∘×)¨(Punq∊⊂)¨¨Ma                              ⍝ ∆state of moves
+ Ps←{↑(Mk∊⊂⍵)/M}¨Punq                                        ⍝ ∆state of pairs
+ s0←⊃+/(Punq∊⊂)¨p0                                           ⍝ initial state
+ sf←↑{⍵+∊+/Ps×⍵}/⌽(⊂s0),⍳turns                               ⍝ final state
+ ⎕←⊢A←∪∊Punq                                                 ⍝ all letters available
+ ⎕←⊢scr←⌈2÷⍨(+/sf∘×)¨(+/¨Punq∘=)¨A                           ⍝ scores
+ (⌈/-⌊/)scr
+}
+pt1←fn 10
+pt2←fn 40</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>pt2 yine pt1’in cozumuyle calisamadi. Hafiza cok sisti ve daha etkin bir cozum bulmak durumunda kaldim. Verileri degil verilerin sayilarini tutarak bunu da hallettim. Ama <code>⌈</code> kullanimindan oturu aldigim cevap istedigimden 1 fazla cikti. Ilk denememde dogru sonucu elde edemedim yani…​</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_15_gun">15. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">solv←{
+  M←⍵
+  d←⍴M
+  O←(1@(⊂0 0))d⍴0
+  V←d⍴0
+  C←d⍴0
+  g←⊂d-1
+  H←+/¨|g-⍳d
+  f←{
+      ⍝ V  visited
+      ⍝ O  open/available
+      ⍝ H  heuristics (cost to &#39;g&#39;oal)
+      ⍝ C  costs (cost to start)
+
+      o←⍸(O∧0=V)
+      0=≢o:1                ⍝ no more open slots. finish
+      x←o⌷⍨{⍵⍳⌊/⍵}C[o]+H[o] ⍝ take the least cost pos
+      x≡g:1
+      V[x]←1
+      n←{(~0∘∊¨⍵≥0)/⍵}{(~0∘∊¨⍵&lt;⊂d)/⍵}(0 ¯1)(¯1 0)(0 1)(1 0)+x      ⍝ neighbours
+      c←C[x]
+      C[n]←{⍵⌷O:(⍵⌷C)⌊c+⍵⌷M ⋄ c+⍵⌷M}¨n ⍝ update costs to neighbours
+      O[n]←1                           ⍝ make available
+
+      0
+  }
+  {f 0:C[g] ⋄ ∇ 0} 0
+}
+pt1←{
+    M←↑n¨¨⊃⎕NGET&#39;tmp.txt&#39; 1
+    solv M
+}
+pt2←{
+    M←↑n¨¨⊃⎕NGET&#39;tmp.txt&#39; 1
+    S←⊖⌽10 9↑⌽⊖↑{⍵⌽1+⍳9}¨∪,+/¨⍳5 5
+    solv⍪/(⊃,/)¨↓{S∘(⌷⍨)¨⍵∘(,⍨)¨M}¨+/¨⍳5 5
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_16_gun_17">16. Gun, 17</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>pek yakında…​</em></p>
+<p>Bu noktadan sonraki sorular icin tuttugum notlarin kalitesi dustu. Bazi cozumleri kullandigim arayuz (Ride) cokunce kaybettigim de oldu.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_18_gun">18. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">mag←{
+    ⍝⎕←↑⍵
+    x←⍵
+    n d←x
+    2&gt;≢n:⊃n
+    i j←0 2+(⊢⍳⌈/)d
+    l←1⌷⍴↑x
+    a←↑i↑¨x
+    c←↑j↓¨x
+    m←+/3 2×⌷∘n¨(i(i+1))
+    n←1-⍨i⌷d
+    ∇↓(a,(2 1⍴m n),c)
+}
+itr←{
+    s x←(9 4)&lt;⌈/¨⍵
+    x:∇ xpl ⍵
+    s:∇ spl ⍵
+    ⍝⎕←↑⍵
+    ⍵
+}
+add←{0 1+↓⊃,/↑¨⍺ ⍵}
+par←{
+    x←⍵
+    b←↑x∘=¨&#39;[],&#39;
+    n←⍎¨(~∨⌿b)⊆x
+    d←⊃¨(~∨⌿b)⊆(-⌿+\2↑b)
+    n d
+}
+
+mag⊃⊢y←(itr add⍨)/⌽par¨⊃⎕NGET&#39;proj/apl/q18.txt&#39; 1</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_19_gun">19. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">&#39;pmat&#39; &#39;det&#39;⎕CY&#39;dfns&#39;
+RA←{⍵/⍨1=det¨⍵},(↓pmat 3)∘.{⍵@(⍺,¨⍳3)⊢3 3⍴0},1-2×⍳2 2 2
+dat←getdata ⍬
+D←≢dat
+snsA←(∘.⊣)⍨dat
+
+⍝ find matching sensors
+matches←(∘.{cmn←⊃∩/∊¨⍺ ⍵ ⋄ 12=+⌿⍺∊cmn})⍨{(∘.far)⍨↓⍵}¨dat
+snsM←↑¨(⍴snsA)⍴↑(,matches),.{⊂⍺/↓⍵}(,snsA)
+
+fnd←(,⍨⍴dat)⍴⊃(,snsM),.(⊂relpos)(,⍉snsM)
+⍝ found matches. fnd[i;j] ≡ r x y z,
+⍝   `r` is ∆rot of &#34;j&#34; wrt &#34;i&#34;
+⍝   `x y z` is ∆pos of &#34;j&#34; wrt &#34;i&#34;
+fndr←⊃¨fnd    ⍝ found rotations
+fndp←(1∘↓)¨fnd ⍝ found positions
+I←⍸25&gt;fndr    ⍝ indexes of matches in &#34;fnd&#34;
+
+⍝{(⍵⌷xp)←⊂0 0 0 ⋄ (⍵⌷xr)←0}¨{(=/¨⍵)/⍵},⍳D D
+
+open←(≢∪∊I)⍴0
+imap←(⊃¨I){⊂(1∘⌷¨⍵)}⌸I
+myi←(≢imap)⍴10+≢imap
+0{myi[⍺]&lt;⍵:⍵ ⋄ myi[⍺]←⍵ ⋄ ⍵&gt;30:⍵ ⋄ ∇/(⊃imap[⍺]),⍵+1}0
+Icand←⊃,/(((⊃¨I){⊂⍵}⌸I)@myi)27⍴9999
+Idup←{i j←⍵ ⋄ open[i]←1 ⋄ open[j]}¨Icand
+I_←(~Idup)/Icand
+0≡≢∊~/∊¨I I_ ⍝ ensure nothing missing
+
+P R←fill I_ ⍝ absolute positions and rotations
+part1←≢∪⊃⍪/{↑(⊃P[⍵])∘+¨R[⍵]∘roti¨↓⊃dat[⍵]}¨⍳D
+part2←{⌈/∊P(∘.{+/⍺-⍵})P}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_20_gun">20. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">m x0←readdata ⍬
+
+pad←{k←⍺ ⋄ r c←(2 0)+⍴⍵ ⋄ (r⍴k){⍺,⍵,⍺}(c⍴k){⍺⍪⍵⍪⍺}⍵}
+
+⊢part1←+/∊({s←⊃⍵ ⋄ a←⊃1⌷⍵ ⋄ (m⌷⍨2⊥9⍴s),⊂({m⌷⍨2⊥∊{(s 0 1)[⍵]}¨⍵}⌺3 3)1+s pad a}⍣2)(0,(⊂x0))
+⊢part2←+/∊({s←⊃⍵ ⋄ a←⊃1⌷⍵ ⋄ (m⌷⍨2⊥9⍴s),⊂({m⌷⍨2⊥∊{(s 0 1)[⍵]}¨⍵}⌺3 3)1+s pad a}⍣50)(0,(⊂x0))</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_21_gun">21. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">part1←{
+   ⍝ both &#39;pad&#39; and &#39;⌺&#39; uses 0 as fill-character
+   ⍝  so I used 1 2 in place of 0 1 in the img matrix
+    n←0
+    scr←0 0
+    pos←1-⍨4 1
+    {i nr←⍵ ⋄ ⌈/scr≥1000:⍵ ⋄ nr_ ∆x←r nr ⋄ pos[i]←10|∆x+i⌷pos ⋄ scr[i]+←1+pos[i] ⋄ ∇(2|i+1)nr_}(0 0)
+    (⌊/scr)×n×3
+}
+part2←{
+    initpos←4 8
+    N←21+10+1
+    I←⍳N N
+    IW←⍸¨⊂[1 2]21&lt;(0 1)∘.⌷I ⍝ win indexes
+    p←↓(initpos-1)(∘.=)⍳10 ⋄ s←(1@(⊂0 0))N N⍴0 ⋄ wins←0 0 ⋄ f 0
+    (⊂p)(⊂s)
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_22_gun">22. Gun</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>todo</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_23_gun">23. Gun</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>todo</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_24_gun">24. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">K←⎕.v&gt;
+s0←&#39;w0&#39; &#39;x0&#39; &#39;y0&#39; &#39;z0&#39;
+doop←{ ⍝ do op at left to state at right
+    k←⊃⍺
+    v←1↓⍺
+    k=INP:v inp ⍵
+    k=ADD:v add ⍵
+    k=MUL:v mul ⍵
+    k=DIV:v div ⍵
+    k=EQL:v eql ⍵
+    k=MOD:v mod ⍵
+    ⎕←&#39;unknown op: &#39;,k
+    ⍵ ⍝noop
+}
+pt1←{doop/(⌽⊃,/8↑digiops),⊂s0}
+pt2←{inpi←0 ⋄ ↑{⊃doop/(⌽⊃,/⍵⌷digiops),⊂&#39;w0&#39; &#39;x0&#39; &#39;y0&#39; &#39;z0&#39;}¨⍳14}
+
+⍝ the above didn&#39;t actually help solve the problem, but they explained the state of it.
+
+P←(12 1 1)  (13 1 9)  (12 1 11)  (¯13 26 6)  (11 1 6)  (15 1 13)  (¯14 26 13)  (12 1 5)  (¯8 26 7)  (14 1 2)  (¯9 26 10)  (¯11 26 14)  (¯6 26 7)  (¯5 26 1)
+itr←{
+    i z←⍵
+    a b c←i⊃P
+    d←i⊃⍺
+    k←d≠a+26|z
+    0≠b∧k:1
+    k=0:(i+1)z÷b
+    (i+1)c+d+26×z÷b
+}
+soln←{{0=⊃(⊖⍵)(itr⍣14)0 0:⍵ ⋄ ∇ dc ⍵}14⍴9}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>yazdigim kod aslinda problemin cozumu olmadi. Problemin cozumunu bu kod bloklarinin ciktisina bakarak kagit ve kalem ile yaptim. 26 tabanindaki sayilar icin bir deste hissiyati veren islemler yaptigimiz ortaya cikti.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_25_gun">25. Gun</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">K←⎕.v&gt;
+plt←{K∘(⌷⍨)¨⍵}
+upd←{(mvS FF)(mvE FF)⍵}
+mvS←{
+    n _ s _ c←⍵[I]
+    (c s)≡S O:O
+    (n c)≡S O:S
+    c
+}
+mvE←{
+    _ e _ w c←⍵[I]
+    (c e)≡E O:O
+    (w c)≡E O:E
+    c
+}
+pt1←{
+    K←&#39;⋄.v&gt;&#39;
+    F O S E←⍳4
+    I←(0 1)(1 2)(2 1)(1 0)(1 1) ⍝ neighbour indexes
+    plt←{K∘(⌷⍨)¨⍵}
+    X←dat←↑K∘⍳¨⊃⎕NGET&#39;tmp.txt&#39; 1
+    ⍝⎕←plt¨{(upd⍣⍵)X}¨⍳⍵
+    1↓({x n←⍵ ⋄ x_←(upd⊃⍵) ⋄ x_(n+1)}⍣{(⊃⍺)≡(⊃⍵)})(X 0)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ve son…​</p>
 </div>
 </div>
 </div>

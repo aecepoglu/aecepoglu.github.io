@@ -14,10 +14,9 @@
       
       <guid>https://aecepoglu.com/en/posts/advent-of-code-intro/</guid>
       <description>I am going to be sharing my solutions for Advent of Code 2021 on my blog; at this page
- I’m going to be using Dyalog-APL this year to solve the problems.
- As I go through each problem I’ll update that article with my solutions.
- At the end of the event I will write a blog-post about my impressions of APL.
- </description>
+I’m going to be using Dyalog-APL this year to solve the problems.
+As I go through each problem I’ll update that article with my solutions.
+At the end of the event I will write a blog-post about my impressions of APL.</description>
     </item>
     
     <item>
@@ -27,10 +26,9 @@
       
       <guid>https://aecepoglu.com/en/projects/advent-of-code/</guid>
       <description>So I have decided to follow Advent-of-Code live this year [I am 10 days behind so it’s hardly live, but I should catch up soon :) ]
- Advent of Code is a programming themed fun-little-event that takes place every year on http://adventofcode.com
- You can find my solutions (in (Dyalog-)APL) below.
-   Day 1 https://adventofcode.com/2021/day/1
- q1 ←{ +/ (1↓⍵) &amp;gt; (¯1↓⍵) } q1pt1 ←{ q1 ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;.</description>
+Advent of Code is a programming themed fun-little-event that takes place every year on http://adventofcode.com
+You can find my solutions (in (Dyalog-)APL) below.
+Day 1 q1 ←{ +/ (1↓⍵) &amp;gt; (¯1↓⍵) } q1pt1 ←{ q1 ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 } q1pt2 ← { x ← ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;.</description>
     </item>
     
     <item>
@@ -40,8 +38,8 @@
       
       <guid>https://aecepoglu.com/en/posts/introduction/</guid>
       <description>Please see http://aecepoglu.com/en/about . The about page describes why this blog exists, what I write about, and what you can expect to show up here in the future.
- I primarily post here in Turkish. The tr button in the navigation menu should take you there or you can click here: http://aecepoglu.com/
- I’ll start putting up some english-only content and translate some of my posts from Turkish soon enough. You can subscribe to my rss-feed to be notified when that happens.</description>
+I primarily post here in Turkish. The tr button in the navigation menu should take you there or you can click here: http://aecepoglu.com/
+I’ll start putting up some english-only content and translate some of my posts from Turkish soon enough. You can subscribe to my rss-feed to be notified when that happens.</description>
     </item>
     
     <item>
@@ -51,8 +49,9 @@
       
       <guid>https://aecepoglu.com/en/about/</guid>
       <description>Hello,
- Welcome to my blog which started off because I had a lot to say in discussions I was having with my colleagues at work and realized that I deliver better in long-form text.
-   I write about programming in practice and theory Specifically about new and interesting tech that catches my eyes and that can further serve what I’m now realising is my passion for simplicity.</description>
+Welcome to my blog which started off because I had a lot to say in discussions I was having with my colleagues at work and realized that I deliver better in long-form text.
+I write about programming in practice and theory Specifically about new and interesting tech that catches my eyes and that can further serve what I’m now realising is my passion for simplicity.
+My posts are primarily in Turkish It’s only natural because this blog started off as a spill-over from my discussions with my Turkish colleagues.</description>
     </item>
     
   </channel>

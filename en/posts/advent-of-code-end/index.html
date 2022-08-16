@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-	<meta name="generator" content="Hugo 0.101.0" />
     <meta charset="utf-8">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -19,10 +18,10 @@
     <title>
       
       
-         aecepoglu 
+         Advent Of Code 2021 has ended (a while ago) 
       
     </title>
-    <link rel="canonical" href="https://aecepoglu.com/en/">
+    <link rel="canonical" href="https://aecepoglu.com/en/posts/advent-of-code-end/">
 
     <style>
   * {
@@ -409,7 +408,6 @@
 </style>
 
 
-    <link rel="alternate" type="application/rss+xml" href="https://aecepoglu.com/en/index.xml" title="aecepoglu" />
     <link href='/css/adoc.css' rel="stylesheet">
     <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -445,31 +443,96 @@ MathJax.Hub.Config({
 
 
 <section id=content>
-  <ul class=posts_listing>
+  <h1> Advent Of Code 2021 has ended (a while ago) </h1>
+
+  
+    <div id=sub-header>
+      January 2022 · 2 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    <div class="paragraph">
+<p>AOC noel civarinda sonlaniyor sanirim. Yani 2 hafta oldu biteli. Tabii problemleri cozmek icin bir son tarih yok. 2016 yili etkinliginin sorularini da acip cozebiliriz yani hala.</p>
+</div>
+<div class="paragraph">
+<p>Bu sene APL kullandim problemleri cozmek icin. APL’i de bu sayede ogrenme firsati elde etmis oldum. <a href="https://xpqz.github.io/learnapl/intro.html" class="bare">https://xpqz.github.io/learnapl/intro.html</a> adresindeki kaynak bu surecte oldukca yardimci oldu.</p>
+</div>
+<div class="paragraph">
+<p>/en/projects/advent-of-code/ adresindeki cozumlerden de goreceginiz uzere APL dili diger programlama dillerine pek benzemiyor. Pek cok islem ve fonksiyon icin semboller mevcut. Mesela asagidaki bir problemin (<a href="https://adventofcode.com/2021/day/20" class="bare">https://adventofcode.com/2021/day/20</a>) cozumu. Tum cozum bu satirdan ibaret. Ilginctir ki bu satir aslinda okunabilir bir satir.</p>
+</div>
+<div class="sect1">
+<h2 id="_ornek">Ornek</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-apl" data-lang="apl">⊢part1←+/∊({s←⊃⍵ ⋄ a←⊃1⌷⍵ ⋄ (m⌷⍨2⊥9⍴s),⊂({m⌷⍨2⊥∊{(s 0 1)[⍵]}¨⍵}⌺3 3)1+s pad a}⍣2)(0,(⊂x0))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Aciklamasi:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>(0,(⊂x0))</code> benim baslangic state’im. 0 resmin disindaki deger, x0 ise resmin kendisi.</p>
+</li>
+<li>
+<p><code>f⍣2</code> 2 defa <code>f</code> fonksiyonunu yap</p>
+</li>
+<li>
+<p>state’in ilk elemanini <code>s</code>e ata, ikinci elemanini a’a yata. <code>s</code> resmin disindaki degerleri ifade ediyor.</p>
+</li>
+<li>
+<p><code>f⌺(3 3)X</code> X uzerinde 3x3’luk bir filtre ile gezerek her bir 3x3’luk alan icin f’i cagir demek.</p>
+</li>
+<li>
+<p><code>{(s 0 1)[⍵]}¨⍵}⌺3 3</code> 3x3’luk filtrenin icerisindeki her bir deger icin 0 ise 1, 1 ise 2, resmin disinda ise 0 yaz</p>
+</li>
+<li>
+<p><code>m⌷⍨2⊥∊</code> icindeki elemanlari bir liste haline getirip, bu listenin denk geldigi 2 tabanindaki degeri hesapla. <code>m</code>in bu hesaplanan konumdaki degerini al.</p>
+</li>
+<li>
+<p><code>+/</code> her seyi topla.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>E- algoritmayi birebir yazmisiz, degil mi? Zaten APL dili programlama dili olarak degil, not alma dili olarak cikmis.</p>
+</div>
+<div class="paragraph">
+<p>Yani dusunceyi, algoritmayi kagit uzerine anlasilabilir bir sekilde, bu algoritmayi calistiracak bilgisayarin calisma prensibinden de cok kopuk olmayan bir sekilde yazmak icin cikmis.</p>
+</div>
+<div class="paragraph">
+<p>APL’in programlama dili olarak cikisi daha sonraki tarihlerde oluyor. Su anda Dyalog, J, K, Q, vb turevleri mevcut. Finans teknolojileri haricinde piyasada pek yeri yok. Ama zaten bir dili ogrenmek icin bu dilin piyasa dili olmasina da gerek yok. Bir sey sadece keyifli oldugu icin de yapilabilir, ve de gorunen o ki ben bulmaca cozumlerinde APL kullanmaktan keyif alacagim.</p>
+</div>
+<div class="paragraph">
+<p>Ayni zamanda APL bir &#34;array&#34; programlama dili. Ruby’de mesela &#34;her sey bir nesnedir&#34;, LISP’te &#34;her sey bir listedir (linked-list)&#34; algisi var. APL’de de &#34;her sey bir array&#34; deniliyor. Problemi array’ler kullanarak cozmeye calismak da <strong>bence</strong> yazilimcilara bir bakis acisi katiyor.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sonuc">Sonuc</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ben APL dilini kullanmaya devam edecegim sanirim. Bulmaca cozmek disinda hangi konularda kullanacagim, hangi konularda kullanabilecegim, bunlar zamanla gorecegim seyler. Ama dil ile ilk etkilesimimden keyif aldim. 2022’de yeni bir dil ogrenmek istiyor iseniz ve henuz secmediyseniz APL turevi dillere (ben Dyalog’u sectim) bir bakin derim.</p>
+</div>
+</div>
+</div>
+
+  </div>
+
+  <div id=links>
     
-      <li>
-        <h2><a href="https://aecepoglu.com/en/posts/advent-of-code-intro/">Advent Of Code 2021 has begun (a while ago)</a></h2>
-        <div class=date>
-          
-            December 2021
-          
-        </div>
-      </li>
+      <a href="https://aecepoglu.com/en/posts/advent-of-code-intro/">&laquo;&nbsp;Advent Of Code 2021 has begun (a while ago)</a>
     
-      <li>
-        <h2><a href="https://aecepoglu.com/en/posts/introduction/">Why can&#39;t I see any posts?</a></h2>
-        <div class=date>
-          
-            January 2021
-          
-        </div>
-      </li>
     
-  </ul>
+  </div>
 </section>
 
   
 </body>
 </html>
+
 
 

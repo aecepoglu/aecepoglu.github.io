@@ -14,9 +14,9 @@
       
       <guid>https://aecepoglu.com/projects/advent-of-code/</guid>
       <description>APL programlama diliyle çözümlerimi aşaĝıda bulabilirsiniz.
-   1. Gün https://adventofcode.com/2021/day/1
- q1 ←{ +/ (1↓⍵) &amp;gt; (¯1↓⍵) } q1pt1 ←{ q1 ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 } q1pt2 ← { x ← ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 q1 (2↓x) + (1↓¯1↓x) + (¯2↓x) } q1pt1_v2 ←{ +/2&amp;lt;/ ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 } q1pt2_v2 ← { x ← ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 +/2&amp;lt;/3+/x }   N op / diyerek çözümü basitleştirebileceĝimi sonradan öĝrendim.
-   2.</description>
+Etkinligin ikinci yarisindaki sorularin kaydini gunluk bu sayfaya gecirmedigim icin eksiklikler var. Bir ara tekrar cozup buraya koymak isterim o cozumleri.
+1. Gün https://adventofcode.com/2021/day/1
+q1 ←{ +/ (1↓⍵) &amp;gt; (¯1↓⍵) } q1pt1 ←{ q1 ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 } q1pt2 ← { x ← ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 q1 (2↓x) + (1↓¯1↓x) + (¯2↓x) } q1pt1_v2 ←{ +/2&amp;lt;/ ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;./q1.txt&amp;#39;1 } q1pt2_v2 ← { x ← ⍎⍤1⊢↑ ⊃⎕NGET &amp;#39;.</description>
     </item>
     
     <item>
@@ -26,8 +26,9 @@
       
       <guid>https://aecepoglu.com/projects/keyboards/</guid>
       <description>(Artik siparis uzerine klavye yapiyorum. Detayli bilgi icin Siparis&amp;#39;e bakin)
- Universitede aldigim derslerden birinden gecmek icin tek yapmak gereken seminerlere katilmakti. Bu seminerlerden birisinde konusmaci klavye duzenlerinden ve F-klavyenin nasil daha ergonomik ve istatistik olarak ustun bir klavye oldugundan bahsetti. O aksam internette gezinip http://www.dvzine.org/zine/index.html &amp;#39;yi okuyup Dvorak klavye duzenini ogrenmeye karar verdim.
-   Note  Neden dvorak klavye kullandigimi soranlara cevap vermekten usanip su minik siteyi hazirlamistim: http://aecepoglu.</description>
+Universitede aldigim derslerden birinden gecmek icin tek yapmak gereken seminerlere katilmakti. Bu seminerlerden birisinde konusmaci klavye duzenlerinden ve F-klavyenin nasil daha ergonomik ve istatistik olarak ustun bir klavye oldugundan bahsetti. O aksam internette gezinip http://www.dvzine.org/zine/index.html &amp;#39;yi okuyup Dvorak klavye duzenini ogrenmeye karar verdim.
+Note Neden dvorak klavye kullandigimi soranlara cevap vermekten usanip su minik siteyi hazirlamistim: http://aecepoglu.com/why-dvorak
+Huyumdur da bir fikri sonlandiramayip arastirmaya ve gelistirmeye calisarak vakit harcamak.</description>
     </item>
     
   </channel>
