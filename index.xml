@@ -6,7 +6,19 @@
     <description>Recent content on aecepoglu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://aecepoglu.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://aecepoglu.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Declarative Programlamaya Giriş - 4 / Son</title>
+      <link>https://aecepoglu.com/posts/prolog-4/</link>
+      <pubDate>Sat, 08 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://aecepoglu.com/posts/prolog-4/</guid>
+      <description>En son (prolog-3) yazısında kendi sayı sistemimizden 10’luk sayı sistemine geçiş yapacağımızı söylemiştim.
+10’dan küçük olan sayılar kolay:
+onluk(0, sifir). onluk(1, a(sifir)). onluk(2, a(a(sifir))). onluk(3, a(a(a(sifir)))). onluk(4, a(a(a(a(sifir))))). onluk(5, a(a(a(a(a(sifir)))))). onluk(6, a(a(a(a(a(a(sifir))))))). onluk(7, a(a(a(a(a(a(a(sifir)))))))). onluk(8, a(a(a(a(a(a(a(a(sifir))))))))). onluk(9, a(a(a(a(a(a(a(a(a(sifir)))))))))). 10’dan büyük sayıları yazarken sağdan sola basamak basamak ilerleyeceğiz.
+132 = 13×10 + 2 13 = 1×10 + 3 1 = 0×10 + 1 ┊ 1,3,2 ──┘ Dikkat ettiyseniz değerleri bulduğumuz sırada yazınca 2,3,1 ediyor, yani istediğimiz cevabın tersten okunuşu.</description>
+    </item>
+    
     <item>
       <title>Blog&#39;a Geri Dönüş</title>
       <link>https://aecepoglu.com/posts/another-new-page/</link>
@@ -150,7 +162,7 @@ kakoune&amp;#39;da karanlık temayı otomatik olarak seçmek için şöyle bir t
       
       <guid>https://aecepoglu.com/posts/most-elegant-js-code/</guid>
       <description>Aşağıdaki satırlar, işyerindeki tüm ekibimizin birkaç senelik eforunun en lezzetli meyvelerinden.
-route.post(&amp;#34;/api/proxy&amp;#34;, function (req, res) { var saveAnyway = req.body.saveAnyway; var noHealthCheck = req.body.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.status = &amp;#34;valid&amp;#34;; if (saveAnyway) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { save(); }) .then(function(result) { proxy.</description>
+route.post(&amp;#34;/api/proxy&amp;#34;, function (req, res) { var saveAnyway = req.params.saveAnyway; var noHealthCheck = req.params.noHealthCheck; function save(proxy) { proxy.save(function (err, saved) { if (err) { res.status(400).send(err.stack); } res.send(saved); }); } Promise.resolve(new ProxyResource(req.body)) .then(function(proxy) { proxy.status = &amp;#34;valid&amp;#34;; if (noHealthCheck) { save(proxy); } return proxy; }) .then(function(proxy) { if (!noHealthCheck) { var promises = HealthService.checkProxies([proxy]); Promise.all(promises) .catch(function(error) { if (saveAnyway) { save(proxy); } return false; }) .</description>
     </item>
     
     <item>
