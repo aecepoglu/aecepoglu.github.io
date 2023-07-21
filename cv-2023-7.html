@@ -1,0 +1,415 @@
+<!--
+<meta http-equiv="refresh" content="90" />
+-->
+
+<style>
+.ml, .ai, .old:not(.c) {
+	/* display: none */
+}
+:root {
+	--bg: #fff;
+	--bg2: #ccc;
+	--fg: #666;
+	--primary: #4380c0;
+	--primaryDim: #436080;
+	--accent: #c88;
+}
+body {
+	background-color: var(--bg);
+	color: var(--fg);
+	display: flex;
+	justify-content: center;
+	line-height:1.4em;
+}
+container {
+	max-width: 900px;
+}
+a { color: var(--primary); text-decoration: none }
+a:visited { color: var(--primaryDim) }
+@media print {
+	a:visited { color: var(--primary) }
+	.responsibility,.giglette { break-inside: avoid }
+}
+p a::before { content: "🔗"; font-size: 0.7em; vertical-align: text-top }
+.gig p::before { content: '·' }
+#header {
+	display: flex;
+}
+.tags {
+	padding-left: 1em;
+	padding-right: 1em;
+	font-size: 0.8em;
+}
+.gig .body {
+	display: flex
+}
+.responsibility .title, p {
+	margin: 8px 0px;
+}
+.media {
+	float: right;
+	display: flex;
+	flex-direction: column;
+	border-left: 0.5px solid var(--bg2);
+}
+tag {
+	display: inline-block;
+}
+tag:not(:last-child) {
+	margin-right: 0.25em
+}
+tag::before {
+	content: "•";
+	color: var(--fg);
+}
+#name {
+	font-size: 2em;
+	flex: 1;
+	display: flex;
+	align-items: center;
+}
+.debug {
+   border: 1px solid grey;
+   padding: 10px;
+}
+.title {}
+.tinted {
+	background-color: var(--bg2);
+}
+.block {
+	padding: 0.5em;
+}
+.gig-header {
+	display: flex;
+}
+#giglettes {
+	display: flex;
+	flex-flow: row wrap;
+}
+.giglette {
+	width: 30%;
+	flex: 1;
+	flex-basis: 30%;
+}
+.giglette .title-and-sub {
+	font-size: 0.8em;
+}
+.gig.block, .giglette.block {
+	line-height: 1em;
+}
+.gig .gig-header .title-and-sub {
+	display: flex;
+	align-items: baseline;
+}
+.gig-header .title-and-sub {
+	flex: 1;
+}
+.gig .title-and-sub .title {
+	font-size: 1.25em;
+}
+.gig .title-and-sub .subtitle {
+	font-size: 1em;
+	margin-left: 0.5em;
+}
+.gig-header .date-range {
+	font-size: 0.75em;
+	display: flex;
+	align-items: center;
+}
+.responsibility .title {
+	margin-top: 1em;
+	font-weight: bold;
+}
+
+</style>
+
+<container>
+
+<div id="header" class="block tinted">
+	<div id="name">Ahmet Emre Cepoglu</div>
+
+	<div id="contactInfos">
+		<div><a href="aecepoglu@fastmail.com">aecepoglu@fastmail.com</a></div>
+		<div><a href="https://github.com/aecepoglu?tab=repositories&amp;type=source">github.com/aecepoglu</a></div>
+		<div><a href="http://aecepoglu.com/en/">aecepoglu.com/en</a></div>
+	</div>
+</div>
+
+<div class="tags"></div>
+
+<i>
+	<p>I am a systems engineer with experience building data-intensive tools.</p>
+	<p>I have spent most of my time doing backend-heavy full-stack engineering for the web, but feel just as comfortable building the entire stack in APL.</p>
+	<p>I enjoy solving puzzles and want to develop systems with far-reaching impact. I like studying and discussing the math and theory behind programming, patterns, symmetry or The King of Fighters 2002!</p>
+	<p>I reside in Leeds/UK, under a Skilled Worker (Tier-2) visa.</p>
+</i>
+
+<div class="gig block">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				Sr Software Engineer
+			</div>
+			<div class="subtitle">
+				in <a href="https://arup.com">Arup</a>
+			</div>
+		</div>
+		<div class="date-range">03/2022 - now</div>
+	</div>
+
+	<div class="tags"><tag>nodeJS</tag><tag>c++</tag><tag>mentoring</tag><tag>azure</tag></div>
+
+
+		<div class="responsibility js lead">
+			<div class="title">nodeJS full-stack engineering</div>
+				<p>Raised the skill set of the mostly Jr staff of my team by organising 1-1 mentoring sessions.</p>
+				<p>Learned to balance (with difficulty!) individual development responsibilities and my team's demands for me.</p>
+				<p>Identified and solved tech debts of a system to unblock my team (and save my sanity).</p>
+				<p>Designed systems for managing data to save 40k dollars/month in infrastructure costs.</p>
+				<p>Built event-sourcing to provide history of entities and travel in time.</p>
+				<p>Improved test reliability by highlighting and resolving anti-patterns by up to 100%.</p>
+				<p>Shortened CI/CD runs from hours to minutes, got rid of traffic jams, parallelising testing infrastructure.</p>
+				<p>Extended nodeJS toplevel to talk to local/remote dependencies. Shortened the feedback loop in work done.</p>
+		</div>
+		<div class="responsibility cpp lead">
+			<div class="title">C++ tool development</div>
+				<p>Refactored a 30-years old codebase.</p>
+		</div>
+</div>
+<div class="gig block">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				Sr Software Engineer
+			</div>
+			<div class="subtitle">
+				in <a href="http://soostone.com">Soostone</a>
+			</div>
+		</div>
+		<div class="date-range">02/2020 - 01/2022</div>
+	</div>
+
+	<div class="tags"><tag>nodeJS</tag><tag>AWS</tag><tag>serverless</tag><tag>haskell</tag><tag>nix</tag><tag>python</tag></div>
+
+
+		<div class="responsibility">
+			<div class="title">full-stack engineering</div>
+				<p>Improved our Haskell-DB interface layer to get friendlier messages.</p>
+				<p>Led a team to build an event-sourcing system to bridge JS and Haskell, improving the quality of content suggestion.</p>
+				<p>Integrated call-center and payment systems with REST APIs.</p>
+				<p>Increased team efficiency by identifying and getting rid of slow processes. Replaced manual QA processes with the E2E testing effort I led.</p>
+		</div>
+</div>
+<div class="gig block">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				Software Engineer
+			</div>
+			<div class="subtitle">
+				in <a href="https://www.esensi.com.tr/en/">Esen System Integration</a>
+			</div>
+		</div>
+		<div class="date-range">2012 - 2020</div>
+	</div>
+
+	<div class="tags"><tag>full-stack</tag><tag>big-data</tag><tag>dev-ops</tag><tag>systems-design</tag><tag>nodeJS</tag><tag>angularJS</tag><tag>python</tag><tag>graphQL</tag><tag>mongodb</tag><tag>elasticsearch</tag><tag>rabbitMQ</tag><tag>mqtt</tag></div>
+
+		<p>Joined while a student doing image-processing and iterated through a number of domains and technologies, working with a great team of people.</p>
+		<p>Did 3 major projects: Big-data system, Telemedicine product<a href="https://vimeo.com/158201385"></a> and Dengue-fever treatment software.</p>
+
+		<div class="responsibility backend frontend">
+			<div class="title">proprietary big-data solution</div>
+				<p>Liaison with clients, planned workloads and to meat delivery goals.</p>
+				<p>Worked the entire stack spanning angularJS, nodeJS, python, java, scala, groovy-on-rails and used a variety of tools such as mongo, redis, kafka, rabbitMQ, and splunk, solr, hdfs, elasticsearch to query large amounts of data.</p>
+				<p>Built systems to fetch, enrich and query big-data. Processed 300 millions of rows every day.</p>
+				<p>Built systems around async-data flows to provide transparency and ability to update messages on the wire.</p>
+				<p>Built a Kibana-like frontend from scratch, an SPA with fully customisable visual dashboards.</p>
+				<p>Created charting libraries atop d3.js</p>
+				<p>Built a snapshot-based testing framework for AngularJS components.</p>
+				<p>Designed patterns and libraries for frontend clients to gently consume significant volumes of data from various backends.</p>
+				<p>Designed systems for entity extraction and intent-analysis in Turkish, pattern analysis, contextual word search, and human/bot/burner-account identification.</p>
+		</div>
+		<div class="responsibility backend frontend">
+			<div class="title">cross-platform telemedicine system</div>
+				<p>Picked up AngularJS and raised the skill set of the team through multiple workshops on it.</p>
+				<p>Built systems for reliable communication across multiple channels (GSM,3G,4G,wi-fi,LAN) to transfer live audio, text, video, binary data over MQTT and Websockets.</p>
+				<p>Made extensions to MQTT protocol.</p>
+				<p>Integrated with medical devices/sensors (EKG, Ultrasound, BP) and patient management systems (PACS).</p>
+				<p>Created an Android library to bridge with MQTT, Websockets and REST APIs.</p>
+				<p>Used groovy-on-rails, angularJS, java, C.</p>
+		</div>
+		<div class="responsibility medicine old">
+			<div class="title">dengue-fever monitor</div>
+				<p>Collaboratively worked with parties in the US and Vietnam.</p>
+				<p>Built protocols to communicate w/ proprietary medical sensors.</p>
+				<p>Designed and built a server-client architecture with a Windows Desktop app and a Groovy-on-rails backend, using C#, C and Groovy.</p>
+		</div>
+		<div class="responsibility odd old">
+			<div class="title">high altitude, high resolution live image processing</div>
+				<p>Worked with domain experts to implement image processing algorithms to process large volumes of live images at 32-64K resolution</p>
+				<p>Implemented algorithms in Matlab, OpenCV and Java; identified problems and found solutions.</p>
+				<p>Built systems to facilitate pattern recognition and store and replay them.</p>
+		</div>
+		<div class="responsibility">
+			<div class="title">ambassador for a better engineering culture</div>
+				<p>Pushed and supported my team's efforts to follow best practices more closely, have means of continuous growth and get better treatment.</p>
+				<p>Organised events to connect otherwise isolated teams. Used those networking opportunities to learn about how our know-how could ease the works of other teams in the company.</p>
+				<p>Hosted workshops about functional programming, containerisation, AngularJS and automated testing.</p>
+		</div>
+</div>
+<div class="gig block js lead">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				Lead Developer
+			</div>
+			<div class="subtitle">
+				in <a href="http://videoremix.io">Digital Strategies</a>
+			</div>
+		</div>
+		<div class="date-range">2015 - 2016</div>
+	</div>
+
+	<div class="tags"><tag>nodeJS</tag><tag>popcornJS</tag></div>
+
+		<p>Led a team of 5+ doing full-stack development, making an online video-editor to allow the viewer to see themselves in the video they're watching.</p>
+		<p>Gave seminars and managed priorities to meet launch goals</p>
+
+</div>
+
+<div id="giglettes">
+<div class="giglette block cool bqn apl cli">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				<a href="https://sr.ht/~aec/biposta"> biposta</a>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="tags"><tag>BQN</tag><tag>terminal</tag><tag>notmuch-mail</tag></div>
+
+		<p>An email client built from scratch (depending on gmime, notmuch only), that allows rapid tagging/consumption of emails. It is my main email client.</p>
+		<p>Has calendar integration, git-email flows, todo.txt bindings.</p>
+</div>
+<div class="giglette block cool ocaml fp js frontend">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				<a href="http://aecepoglu.com/why-dvorak"> Why-Dvorak</a>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="tags"><tag>OCaml</tag><tag>virtual-dom</tag><tag>ocaml-to-js</tag><tag>frontend</tag></div>
+
+		<p>Visualised arguments for why Dvorak is a more efficient layout. It has a very elm-like architecture.</p>
+</div>
+<div class="giglette block js frontend fp">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				<a href="https://aecepoglu.com/bicycle-geometry"> Bicycle-Geometry-Illustrator</a>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="tags"><tag>JavaScript</tag><tag>full-stack</tag></div>
+
+		<p>Visual bicycle geometry calculator.</p>
+		<p>Written in purely functional JS with haskell-like types, using RestDB API-as-Service.</p>
+</div>
+<div class="giglette block game ai fp js">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				<a href="https://vimeo.com/147230388"> Heuristics Driven Tetris AI</a>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="tags"><tag>JavaScript</tag><tag>AI</tag><tag>React</tag></div>
+
+		<p>Heuristics driven tetris AI-bot I wrote. I used similar bots to compete in online tournaments hosted by <i>(no longer existing)</i> TheAIBattle.com</p>
+</div>
+<div class="giglette block old">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				
+				Internship at Milsoft
+			</div>
+		</div>
+	</div>
+
+	<div class="tags"><tag>java</tag><tag>antlr</tag><tag>DSL</tag><tag>c++</tag></div>
+
+		<p>Developed a DSL that took descriptions of NATO communication protocols and turned them into C++ code.</p>
+</div>
+<div class="giglette block game ai c old">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				<a href="https://github.com/aecepoglu/aecs-top-down-game-engine"> yz-01 top down game engine</a>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="tags"><tag>C</tag><tag>SDL2</tag><tag>gamedev</tag><tag>AI</tag></div>
+
+		<p>A game engine I built on top of SDL2 from scratch, to create and demo game-AI models</p>
+</div>
+<div class="giglette block ocaml fp odd">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				
+				Portophile
+			</div>
+		</div>
+	</div>
+
+	<div class="tags"><tag>OCaml</tag><tag>mustach</tag><tag>full-stack</tag></div>
+
+		<p>Parametrically produce portfolios.</p>
+		<p>You are looking at a PDF generated by that system.</p>
+</div>
+<div class="giglette block fp odd">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				
+				Goldfish &amp; TwitchyTickles
+			</div>
+		</div>
+	</div>
+
+	<div class="tags"><tag>scheme</tag><tag>TUI</tag></div>
+
+		<p>A command-line twitch streamer suite, chat interface, task manager, banner, chat bot.</p>
+		<p>Features actor-threads, editor integration, various IPC mechanisms.</p>
+</div>
+<div class="giglette block">
+	<div class="tinted block gig-header">
+		<div class="title-and-sub">
+			<div class="title">
+				
+				CS major at Bilkent University
+			</div>
+		</div>
+	</div>
+
+	<div class="tags"></div>
+
+		<p>My freshman project was an OCR for music sheets</p>
+		<p>My senior project was a video analytics/tagging tool that used speech-to-text and ML</p>
+</div>
+</div>
+
+</container>
